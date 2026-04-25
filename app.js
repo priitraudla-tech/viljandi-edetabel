@@ -389,7 +389,6 @@ function setupTrend() {
   sel.value = HIGHLIGHT_NAME in playerSet() ? HIGHLIGHT_NAME : state.current.players[0]?.name;
 
   sel.addEventListener("change", renderTrend);
-  $("#trend-axis").addEventListener("change", renderTrend);
   renderTrend();
 }
 
@@ -415,42 +414,14 @@ async function ensureHistorySnapshot(date) {
 
 async function renderTrend() {
   const name = $("#trend-player").value;
-  const axis = $("#trend-axis").value;
   const note = $("#trend-note");
 
-  if (axis === "stage") {
-    // Per-stage results from current data — works even with no history
-    const player = state.current.players.find((p) => p.name === name);
-    const labels = state.current.stages.map((s) => shortStageLabel(s.label));
-    const values = state.current.stages.map((s) => player?.stages?.[s.label] ?? null);
-    drawChart(labels, [{ label: `${name} — etapi tulemus`, data: values }]);
-    note.textContent = "Mängija tulemused etappide kaupa praeguse seisu järgi.";
-    return;
-  }
-
-  // History-based trend
-  if (!state.historyDates.length) {
-    drawChart([], []);
-    note.textContent = "Ajalugu on tühi — vali \"Etapi tulemus\" või oota, kuni ajaloolisi snapshot'e koguneb.";
-    return;
-  }
-
-  const snapshots = await Promise.all(state.historyDates.map(ensureHistorySnapshot));
-  const labels = state.historyDates.map(fmtDate);
-  const values = snapshots.map((snap) => {
-    const p = snap.players.find((p) => p.name === name);
-    if (!p) return null;
-    return axis === "rank" ? p.rank : p.total;
-  });
-
-  drawChart(labels, [{
-    label: `${name} — ${axis === "rank" ? "koht" : "punkte kokku"}`,
-    data: values,
-    invertY: axis === "rank",
-  }]);
-  note.textContent = state.historyDates.length === 1
-    ? "Ajaloos on ainult üks snapshot — graafik täidetakse päevadega, kui andmed muutuvad."
-    : "";
+  // Per-stage results from current data
+  const player = state.current.players.find((p) => p.name === name);
+  const labels = state.current.stages.map((s) => shortStageLabel(s.label));
+  const values = state.current.stages.map((s) => player?.stages?.[s.label] ?? null);
+  drawChart(labels, [{ label: `${name} — etapi tulemus`, data: values }]);
+  note.textContent = "Mängija tulemused etappide kaupa.";
 }
 
 function drawChart(labels, datasets) {
