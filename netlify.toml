@@ -1,0 +1,16 @@
+# Netlify build configuration.
+# Saidil on staatilised failid + JSON andmed — build pole vajalik.
+
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=60"

@@ -1,0 +1,796 @@
+{
+  "title": "Viljandi üksikmängu edetabel (27.04.2026 seisuga)",
+  "fetched_at": "2026-04-25T18:33:58+00:00",
+  "stages": [
+    {
+      "label": "5. etapp 29.06.2025",
+      "date": "2025-06-29",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "6. etapp 27.07.2025",
+      "date": "2025-07-27",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "Viljandi maakonna MV 08.2025",
+      "date": "2025-08-01",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "8. etapp 25.10.2025",
+      "date": "2025-10-25",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "9. etapp 29.11.2025",
+      "date": "2025-11-29",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "Masters 27.12.2025",
+      "date": "2025-12-27",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "1. etapp 24.01.2026",
+      "date": "2026-01-24",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "2. etapp 21.02.2026",
+      "date": "2026-02-21",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "3. etapp 21.03.2026",
+      "date": "2026-03-21",
+      "first_seen": null,
+      "first_run": true
+    },
+    {
+      "label": "4. etapp 25.04.2026",
+      "date": "2026-04-25",
+      "first_seen": null,
+      "first_run": true
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "name": "Viljar Vahemaa",
+      "total": 780,
+      "stages": {
+        "5. etapp 29.06.2025": 100,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 280,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 300,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 100
+      },
+      "tournaments_played": 4,
+      "average": 195.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 2,
+      "name": "Heimar Mirka",
+      "total": 670,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 150,
+        "8. etapp 25.10.2025": 50,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 200,
+        "1. etapp 24.01.2026": 100,
+        "2. etapp 21.02.2026": 70,
+        "3. etapp 21.03.2026": 100,
+        "4. etapp 25.04.2026": 22
+      },
+      "tournaments_played": 7,
+      "average": 98.9,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 3,
+      "name": "Reevo Kirna",
+      "total": 512,
+      "stages": {
+        "5. etapp 29.06.2025": 50,
+        "6. etapp 27.07.2025": 70,
+        "Viljandi maakonna MV 08.2025": 62,
+        "8. etapp 25.10.2025": 100,
+        "9. etapp 29.11.2025": 50,
+        "Masters 27.12.2025": 160,
+        "1. etapp 24.01.2026": 70,
+        "2. etapp 21.02.2026": 50,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 50
+      },
+      "tournaments_played": 9,
+      "average": 73.6,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 4,
+      "name": "Priit Raudla",
+      "total": 464,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": 100,
+        "Viljandi maakonna MV 08.2025": 104,
+        "8. etapp 25.10.2025": 70,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 80,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": 70,
+        "4. etapp 25.04.2026": 40
+      },
+      "tournaments_played": 6,
+      "average": 77.3,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 5,
+      "name": "Ott Ahonen",
+      "total": 400,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 400,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 400.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 6,
+      "name": "Kert Perkmann",
+      "total": 380,
+      "stages": {
+        "5. etapp 29.06.2025": 70,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 200,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 40,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 70
+      },
+      "tournaments_played": 4,
+      "average": 95.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 7,
+      "name": "Ilja Balabko",
+      "total": 352,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": 50,
+        "Viljandi maakonna MV 08.2025": 92,
+        "8. etapp 25.10.2025": 40,
+        "9. etapp 29.11.2025": 26,
+        "Masters 27.12.2025": 80,
+        "1. etapp 24.01.2026": 50,
+        "2. etapp 21.02.2026": 28,
+        "3. etapp 21.03.2026": 40,
+        "4. etapp 25.04.2026": 28
+      },
+      "tournaments_played": 9,
+      "average": 48.2,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 8,
+      "name": "Henri Liiv",
+      "total": 310,
+      "stages": {
+        "5. etapp 29.06.2025": 40,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": 100,
+        "Masters 27.12.2025": 120,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": 50,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 4,
+      "average": 77.5,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 9,
+      "name": "Sander Loigo",
+      "total": 260,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 160,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": 100,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 2,
+      "average": 130.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 9,
+      "name": "Andrus Jürgenson",
+      "total": 260,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": 40,
+        "Viljandi maakonna MV 08.2025": 84,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 40,
+        "1. etapp 24.01.2026": 40,
+        "2. etapp 21.02.2026": 28,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 28
+      },
+      "tournaments_played": 6,
+      "average": 43.3,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 11,
+      "name": "Gabriel Tralla",
+      "total": 224,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 76,
+        "8. etapp 25.10.2025": 28,
+        "9. etapp 29.11.2025": 40,
+        "Masters 27.12.2025": 80,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 4,
+      "average": 56.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 12,
+      "name": "Helmut Hallemaa",
+      "total": 150,
+      "stages": {
+        "5. etapp 29.06.2025": 19,
+        "6. etapp 27.07.2025": 26,
+        "Viljandi maakonna MV 08.2025": 24,
+        "8. etapp 25.10.2025": 18,
+        "9. etapp 29.11.2025": 19,
+        "Masters 27.12.2025": 40,
+        "1. etapp 24.01.2026": 20,
+        "2. etapp 21.02.2026": 17,
+        "3. etapp 21.03.2026": 21,
+        "4. etapp 25.04.2026": 13
+      },
+      "tournaments_played": 10,
+      "average": 21.7,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 13,
+      "name": "Indrek Taukar",
+      "total": 132,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 62,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": 30,
+        "2. etapp 21.02.2026": 22,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 18
+      },
+      "tournaments_played": 4,
+      "average": 33.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 14,
+      "name": "Lauri Tõnisalu",
+      "total": 121,
+      "stages": {
+        "5. etapp 29.06.2025": 22,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 44,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": 25,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": 30,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 4,
+      "average": 30.3,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 15,
+      "name": "Manfred Mets",
+      "total": 112,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 68,
+        "8. etapp 25.10.2025": 22,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": 22,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 3,
+      "average": 37.3,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 16,
+      "name": "Eneli Pihl",
+      "total": 90,
+      "stages": {
+        "5. etapp 29.06.2025": 22,
+        "6. etapp 27.07.2025": 30,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": 22,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 0,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 16
+      },
+      "tournaments_played": 5,
+      "average": 18.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 17,
+      "name": "Marken Varis",
+      "total": 84,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": 20,
+        "2. etapp 21.02.2026": 19,
+        "3. etapp 21.03.2026": 23,
+        "4. etapp 25.04.2026": 22
+      },
+      "tournaments_played": 4,
+      "average": 21.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 18,
+      "name": "Lauri Zoova",
+      "total": 83,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": 22,
+        "Masters 27.12.2025": 0,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": 17,
+        "3. etapp 21.03.2026": 26,
+        "4. etapp 25.04.2026": 18
+      },
+      "tournaments_played": 5,
+      "average": 16.6,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 19,
+      "name": "Marcel Mikiver",
+      "total": 71,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 32,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 0,
+        "1. etapp 24.01.2026": 25,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 14
+      },
+      "tournaments_played": 4,
+      "average": 17.8,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 20,
+      "name": "Mati Miilen",
+      "total": 70,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": 70,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 70.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 21,
+      "name": "Tõnu Roslender",
+      "total": 58,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": 28,
+        "9. etapp 29.11.2025": 30,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 2,
+      "average": 29.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 22,
+      "name": "Hardi-Sander Luik",
+      "total": 56,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 56,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 56.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 23,
+      "name": "Kaur Kesalo",
+      "total": 52,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 52,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 52.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 24,
+      "name": "Danel Rebane",
+      "total": 48,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 48,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 48.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 25,
+      "name": "Kert Kärner",
+      "total": 40,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 40,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 40.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 25,
+      "name": "Henry Aun",
+      "total": 40,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": 40,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 40.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 27,
+      "name": "Martin Zahkna",
+      "total": 36,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 36,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 36.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 28,
+      "name": "Ave Veldt",
+      "total": 33,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": 17,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 16
+      },
+      "tournaments_played": 2,
+      "average": 16.5,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 29,
+      "name": "Rene Puusild",
+      "total": 31,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": 18,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 13
+      },
+      "tournaments_played": 2,
+      "average": 15.5,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 30,
+      "name": "Anne-Liis Matson",
+      "total": 30,
+      "stages": {
+        "5. etapp 29.06.2025": 30,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 30.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 31,
+      "name": "Herman Haavapuu",
+      "total": 28,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 28,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 28.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 32,
+      "name": "Peeter Matson",
+      "total": 26,
+      "stages": {
+        "5. etapp 29.06.2025": 26,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 26.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 33,
+      "name": "Arne Sammel",
+      "total": 22,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": 22,
+        "Masters 27.12.2025": 0,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 2,
+      "average": 11.0,
+      "prev_rank": null,
+      "rank_delta": null
+    },
+    {
+      "rank": 34,
+      "name": "Markus Mutso",
+      "total": 20,
+      "stages": {
+        "5. etapp 29.06.2025": null,
+        "6. etapp 27.07.2025": null,
+        "Viljandi maakonna MV 08.2025": 20,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": null
+      },
+      "tournaments_played": 1,
+      "average": 20.0,
+      "prev_rank": null,
+      "rank_delta": null
+    }
+  ],
+  "participants_per_stage": {
+    "5. etapp 29.06.2025": 9,
+    "6. etapp 27.07.2025": 6,
+    "Viljandi maakonna MV 08.2025": 22,
+    "8. etapp 25.10.2025": 10,
+    "9. etapp 29.11.2025": 9,
+    "Masters 27.12.2025": 14,
+    "1. etapp 24.01.2026": 10,
+    "2. etapp 21.02.2026": 11,
+    "3. etapp 21.03.2026": 8,
+    "4. etapp 25.04.2026": 15
+  },
+  "snapshot_date": "2026-04-25",
+  "compared_to": null
+}

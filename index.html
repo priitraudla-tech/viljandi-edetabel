@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viljandi üksikmängu edetabel</title>
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1 id="title">Viljandi üksikmängu edetabel</h1>
+      <p class="meta">
+        <span id="meta-asof">—</span>
+        <span class="dot">·</span>
+        <span id="meta-fetched">—</span>
+        <span class="dot">·</span>
+        <span id="meta-compared" class="muted"></span>
+        <span class="dot">·</span>
+        <a id="source-link"
+           href="https://docs.google.com/spreadsheets/d/1QMf8anC80lXGYdrb2fHlYOf8ETyksbOo/edit?gid=1281577154"
+           target="_blank" rel="noopener">allikas</a>
+      </p>
+    </div>
+  </header>
+
+  <div class="container tabs-wrap">
+    <nav class="tabs">
+      <button class="tab active" data-tab="standings">Edetabel</button>
+      <button class="tab" data-tab="trend">Trend</button>
+      <button class="tab" data-tab="history">Ajalugu</button>
+    </nav>
+  </div>
+
+  <main class="container">
+
+    <section id="tab-standings" class="tab-panel active">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Otsi mängijat…" autocomplete="off" />
+        <label class="check">
+          <input type="checkbox" id="hide-zero" />
+          <span>Peida 0-punkti read</span>
+        </label>
+      </div>
+      <div class="table-wrap">
+        <table id="standings-table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="footnote">
+        Klõpsa veerule sorteerimiseks. Klõpsa mängija nimele trendigraafiku nägemiseks.
+      </p>
+    </section>
+
+    <section id="tab-trend" class="tab-panel">
+      <div class="toolbar">
+        <label>
+          Mängija:
+          <select id="trend-player"></select>
+        </label>
+        <label>
+          Telg:
+          <select id="trend-axis">
+            <option value="rank">Koht</option>
+            <option value="total">Punkte kokku</option>
+            <option value="stage">Etapi tulemus</option>
+          </select>
+        </label>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="trend-chart"></canvas>
+      </div>
+      <p id="trend-note" class="footnote"></p>
+    </section>
+
+    <section id="tab-history" class="tab-panel">
+      <div class="toolbar">
+        <label>
+          Kuupäev:
+          <select id="history-date"></select>
+        </label>
+        <span class="muted" id="history-meta"></span>
+      </div>
+      <div class="table-wrap">
+        <table id="history-table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container muted small">
+    Andmed sünkroonitakse igapäevaselt Google Sheetsist. Ajaloos säilitatakse ainult need päevad, kui andmed muutusid.
+  </footer>
+</body>
+</html>
