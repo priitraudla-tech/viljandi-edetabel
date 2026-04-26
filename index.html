@@ -31,6 +31,7 @@
   <div class="container tabs-wrap">
     <nav class="tabs">
       <button class="tab active" data-tab="standings">Edetabel</button>
+      <button class="tab" data-tab="tournament">Turniir</button>
       <button class="tab" data-tab="trend">Trend</button>
       <button class="tab" data-tab="history">Ajalugu</button>
     </nav>
@@ -54,6 +55,32 @@
       </div>
       <p class="footnote">
         Klõpsa veerule sorteerimiseks. Klõpsa mängija nimele trendigraafiku nägemiseks.
+      </p>
+    </section>
+
+    <section id="tab-tournament" class="tab-panel">
+      <header class="tournament-header">
+        <h2 id="tournament-title" class="tournament-title">—</h2>
+        <p id="tournament-meta" class="meta tournament-meta"></p>
+      </header>
+
+      <div id="podium" class="podium" aria-label="Poodium"></div>
+
+      <div id="tournament-rest" class="table-wrap tournament-rest" hidden>
+        <table id="tournament-table">
+          <thead>
+            <tr>
+              <th class="num">Koht</th>
+              <th>Nimi</th>
+              <th class="num">Punkte</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <p id="tournament-empty" class="footnote" hidden>
+        Selle turniiri kohta tulemused puuduvad.
       </p>
     </section>
 

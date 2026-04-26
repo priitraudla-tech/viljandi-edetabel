@@ -84,6 +84,7 @@ async function init() {
 
   setupTabs();
   renderStandings();
+  renderTournament();
   setupTrend();
   setupHistory();
 }
@@ -370,6 +371,147 @@ function buildDetail(player) {
   wrap.appendChild(summary);
 
   return wrap;
+}
+
+// ---------- tournament (latest stage podium + list) ----------
+
+function findLatestStageWithResults() {
+  // Stages are pre-sorted chronologically (asc) in current.json.
+  // Iterate from newest backward, return the first stage where any player
+  // has a non-null score.
+  const stages = state.current.stages.slice().reverse();
+  for (const s of stages) {
+    const hasResults = state.current.players.some((p) => {
+      const v = p.stages?.[s.label];
+      return v !== null && v !== undefined && v !== "";
+    });
+    if (hasResults) return s;
+  }
+  return null;
+}
+
+function buildTournamentResults(stageLabel) {
+  // Collect participants (non-null), sort desc, assign ranks with ties.
+  const participants = [];
+  state.current.players.forEach((p) => {
+    const points = p.stages?.[stageLabel];
+    if (points !== null && points !== undefined && points !== "") {
+      participants.push({ name: p.name, points });
+    }
+  });
+  participants.sort((a, b) => b.points - a.points);
+
+  let prevPoints = null;
+  let prevRank = 0;
+  participants.forEach((entry, idx) => {
+    const position = idx + 1;
+    if (entry.points !== prevPoints) prevRank = position;
+    prevPoints = entry.points;
+    entry.rank = prevRank;
+  });
+  return participants;
+}
+
+function renderTournament() {
+  const stage = findLatestStageWithResults();
+  const titleEl = $("#tournament-title");
+  const metaEl = $("#tournament-meta");
+  const podium = $("#podium");
+  const restWrap = $("#tournament-rest");
+  const empty = $("#tournament-empty");
+  const tbody = $("#tournament-table tbody");
+
+  podium.innerHTML = "";
+  tbody.innerHTML = "";
+  restWrap.hidden = true;
+  empty.hidden = true;
+
+  if (!stage) {
+    titleEl.textContent = "Turniir";
+    metaEl.textContent = "";
+    empty.hidden = false;
+    return;
+  }
+
+  titleEl.textContent = stage.label;
+
+  // Participant count from per-stage tally (more accurate than counting non-null).
+  const participantsCount =
+    state.current.participants_per_stage?.[stage.label] ??
+    buildTournamentResults(stage.label).length;
+
+  const metaParts = [];
+  if (stage.date) metaParts.push(fmtDate(stage.date));
+  metaParts.push(`${participantsCount} osalejat`);
+  metaEl.textContent = metaParts.join(" · ");
+
+  const results = buildTournamentResults(stage.label);
+  if (!results.length) {
+    empty.hidden = false;
+    return;
+  }
+
+  // Podium: take first 3 results (rank 1, 2, 3 — but with ties multiple may share)
+  const topThree = results.filter((r) => r.rank <= 3);
+  // Render with display order [silver, gold, bronze] (2-1-3 visual layout)
+  const byRank = { 1: [], 2: [], 3: [] };
+  topThree.forEach((r) => {
+    if (byRank[r.rank]) byRank[r.rank].push(r);
+  });
+
+  const podiumOrder = [
+    { rank: 2, slot: "silver" },
+    { rank: 1, slot: "gold" },
+    { rank: 3, slot: "bronze" },
+  ];
+  podiumOrder.forEach(({ rank, slot }) => {
+    const entries = byRank[rank];
+    const card = document.createElement("div");
+    card.className = `podium-card ${slot}`;
+    if (!entries || !entries.length) {
+      card.classList.add("empty");
+      card.innerHTML = `<div class="podium-rank">${rank}.</div><div class="podium-empty">—</div>`;
+      podium.appendChild(card);
+      return;
+    }
+    const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : "🥉";
+    const namesHtml = entries
+      .map((e) => `<div class="podium-name">${escapeHtml(e.name)}</div>`)
+      .join("");
+    const pts = entries[0].points;
+    card.innerHTML = `
+      <div class="podium-medal" aria-hidden="true">${medal}</div>
+      <div class="podium-rank">${rank}.</div>
+      ${namesHtml}
+      <div class="podium-points"><span class="num">${pts}</span><span class="podium-pts-label">punkti</span></div>
+    `;
+    podium.appendChild(card);
+  });
+
+  // Rest list (rank > 3)
+  const rest = results.filter((r) => r.rank > 3);
+  if (rest.length) {
+    restWrap.hidden = false;
+    rest.forEach((r) => {
+      const tr = document.createElement("tr");
+      if (r.name === HIGHLIGHT_NAME) tr.classList.add("highlight");
+      tr.innerHTML = `
+        <td class="num">${r.rank}</td>
+        <td class="player-name"><button type="button">${escapeHtml(r.name)}</button></td>
+        <td class="num">${r.points}</td>
+      `;
+      tr.querySelector("button").addEventListener("click", () => openTrendFor(r.name));
+      tbody.appendChild(tr);
+    });
+  }
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 // ---------- trend ----------
