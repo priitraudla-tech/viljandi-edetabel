@@ -12,19 +12,25 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="container">
-      <h1 id="title">Viljandi üksikmängu edetabel</h1>
-      <p class="meta">
-        <span id="meta-asof">—</span>
-        <span class="dot">·</span>
-        <span id="meta-fetched">—</span>
-        <span class="dot">·</span>
-        <span id="meta-compared" class="muted"></span>
-        <span class="dot">·</span>
-        <a id="source-link"
-           href="https://docs.google.com/spreadsheets/d/1QMf8anC80lXGYdrb2fHlYOf8ETyksbOo/edit?gid=1281577154"
-           target="_blank" rel="noopener">allikas</a>
-      </p>
+    <div class="container topbar-inner">
+      <div class="topbar-text">
+        <h1 id="title">Viljandi üksikmängu edetabel</h1>
+        <p class="meta">
+          <span id="meta-asof">—</span>
+          <span class="dot">·</span>
+          <span id="meta-fetched">—</span>
+          <span class="dot">·</span>
+          <span id="meta-compared" class="muted"></span>
+          <span class="dot">·</span>
+          <a id="source-link"
+             href="https://docs.google.com/spreadsheets/d/1QMf8anC80lXGYdrb2fHlYOf8ETyksbOo/edit?gid=1281577154"
+             target="_blank" rel="noopener">allikas</a>
+        </p>
+      </div>
+      <button id="refresh-btn" class="refresh-btn" type="button" aria-label="Uuenda andmeid">
+        <span class="refresh-glyph" aria-hidden="true">↻</span>
+        <span class="refresh-label">Uuenda andmeid</span>
+      </button>
     </div>
   </header>
 

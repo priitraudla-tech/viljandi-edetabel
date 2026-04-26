@@ -83,10 +83,55 @@ async function init() {
     : "võrdlust pole — ootame järgmist snapshot'i";
 
   setupTabs();
+  setupRefresh();
   renderStandings();
   renderTournament();
   setupTrend();
   setupHistory();
+}
+
+// ---------- manual refresh ----------
+
+function setupRefresh() {
+  const btn = $("#refresh-btn");
+  if (!btn) return;
+  btn.addEventListener("click", () => triggerRefresh(btn));
+}
+
+async function triggerRefresh(btn) {
+  const label = btn.querySelector(".refresh-label");
+  const setState = (state, text) => {
+    btn.dataset.state = state;
+    btn.disabled = state === "loading";
+    if (text) label.textContent = text;
+  };
+  const reset = () => {
+    btn.dataset.state = "";
+    btn.disabled = false;
+    label.textContent = "Uuenda andmeid";
+  };
+
+  setState("loading", "Käivitan…");
+
+  try {
+    const res = await fetch("/.netlify/functions/refresh", { method: "POST" });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.ok) {
+      setState("ok", "Käivitatud — sait uueneb 1–2 min");
+      // Reload after Actions + Netlify deploy is likely done.
+      setTimeout(() => window.location.reload(), 90 * 1000);
+      // After 8 min, give up auto-reload and reset button.
+      setTimeout(reset, 8 * 60 * 1000);
+    } else {
+      console.error("Refresh failed:", data);
+      setState("error", data.error || `Viga (${res.status})`);
+      setTimeout(reset, 6000);
+    }
+  } catch (e) {
+    console.error("Refresh network error:", e);
+    setState("error", "Võrgu viga");
+    setTimeout(reset, 6000);
+  }
 }
 
 // ---------- tabs ----------
