@@ -2,8 +2,10 @@ name: Uuenda edetabel
 
 on:
   schedule:
-    # Iga päev kell 04:00 UTC (06:00–07:00 Eesti aeg, sõltuvalt suvi-/talveajast)
-    - cron: "0 4 * * *"
+    # Iga laupäeva õhtu, iga tund 18:00-24:00 EEST (= 15:00-21:00 UTC suvel).
+    # Talveajal (EET, UTC+2) jookseb 17:00-23:00 — ikka õhtu, sobib turniiriõhtuks.
+    # 6 = laupäev (cron: 0=pühapäev, 1=esmaspäev, ..., 6=laupäev).
+    - cron: "0 15-21 * * 6"
   workflow_dispatch: {}
 
 permissions:
