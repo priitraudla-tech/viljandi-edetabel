@@ -76,7 +76,7 @@ async function init() {
   // Strip "(X seisuga)" suffix from title — display it separately as meta
   $("#title").textContent = title.replace(/\s*\([^)]*\)\s*$/, "");
   $("#meta-asof").textContent = title.match(/\(([^)]+)\)/)?.[1] || "";
-  $("#meta-fetched").textContent = `viimati uuendatud ${fmtDateTime(state.current.fetched_at)}`;
+  $("#meta-fetched").textContent = `viimati kontrollitud ${fmtDateTime(state.current.fetched_at)}`;
   const compared = state.current.compared_to;
   $("#meta-compared").textContent = compared
     ? `võrdluses ${fmtDate(compared)} seisuga`
