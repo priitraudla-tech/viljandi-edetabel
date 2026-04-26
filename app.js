@@ -1,6 +1,9 @@
 // Viljandi üksikmängu edetabel — interaktiivne tabel + ajalugu + trend.
 
-const HIGHLIGHT_NAME = "Priit Raudla";
+// First-place highlight — applied wherever a ranked list is shown.
+function isFirstPlace(player) {
+  return player?.rank === 1;
+}
 
 const state = {
   current: null,
@@ -306,7 +309,7 @@ function renderStandingsBody() {
     const tr = document.createElement("tr");
     tr.classList.add("player-row");
     tr.dataset.name = p.name;
-    if (p.name === HIGHLIGHT_NAME) tr.classList.add("highlight");
+    if (isFirstPlace(p)) tr.classList.add("highlight");
     if (state.expandedRow === p.name) tr.classList.add("expanded");
 
     cols.forEach((c) => {
@@ -539,7 +542,7 @@ function renderTournament() {
     restWrap.hidden = false;
     rest.forEach((r) => {
       const tr = document.createElement("tr");
-      if (r.name === HIGHLIGHT_NAME) tr.classList.add("highlight");
+      if (r.rank === 1) tr.classList.add("highlight");
       tr.innerHTML = `
         <td class="num">${r.rank}</td>
         <td class="player-name"><button type="button">${escapeHtml(r.name)}</button></td>
@@ -573,7 +576,9 @@ function setupTrend() {
       opt.textContent = p.name;
       sel.appendChild(opt);
     });
-  sel.value = HIGHLIGHT_NAME in playerSet() ? HIGHLIGHT_NAME : state.current.players[0]?.name;
+  // Default to current rank-1 player if available, otherwise first in list.
+  const topPlayer = state.current.players.find((p) => p.rank === 1);
+  sel.value = topPlayer?.name || state.current.players[0]?.name;
 
   sel.addEventListener("change", renderTrend);
   renderTrend();
@@ -748,7 +753,7 @@ async function renderHistory(date) {
 
   data.players.forEach((p) => {
     const r = document.createElement("tr");
-    if (p.name === HIGHLIGHT_NAME) r.classList.add("highlight");
+    if (isFirstPlace(p)) r.classList.add("highlight");
     [
       [p.rank, true],
       [p.name, false],
