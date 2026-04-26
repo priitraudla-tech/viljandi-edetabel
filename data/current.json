@@ -1,6 +1,6 @@
 {
   "title": "Viljandi üksikmängu edetabel (27.04.2026 seisuga)",
-  "fetched_at": "2026-04-25T19:04:46+00:00",
+  "fetched_at": "2026-04-26T03:31:10+00:00",
   "stages": [
     {
       "label": "5. etapp 29.06.2025",
@@ -82,8 +82,8 @@
       },
       "tournaments_played": 4,
       "average": 195.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 1,
+      "rank_delta": 0
     },
     {
       "rank": 2,
@@ -103,8 +103,8 @@
       },
       "tournaments_played": 7,
       "average": 98.9,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 2,
+      "rank_delta": 0
     },
     {
       "rank": 3,
@@ -124,8 +124,8 @@
       },
       "tournaments_played": 9,
       "average": 73.6,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 3,
+      "rank_delta": 0
     },
     {
       "rank": 4,
@@ -145,8 +145,8 @@
       },
       "tournaments_played": 6,
       "average": 77.3,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 4,
+      "rank_delta": 0
     },
     {
       "rank": 5,
@@ -166,8 +166,8 @@
       },
       "tournaments_played": 1,
       "average": 400.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 5,
+      "rank_delta": 0
     },
     {
       "rank": 6,
@@ -187,8 +187,8 @@
       },
       "tournaments_played": 4,
       "average": 95.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 6,
+      "rank_delta": 0
     },
     {
       "rank": 7,
@@ -208,8 +208,8 @@
       },
       "tournaments_played": 9,
       "average": 48.2,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 7,
+      "rank_delta": 0
     },
     {
       "rank": 8,
@@ -229,8 +229,8 @@
       },
       "tournaments_played": 4,
       "average": 77.5,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 8,
+      "rank_delta": 0
     },
     {
       "rank": 9,
@@ -250,8 +250,8 @@
       },
       "tournaments_played": 2,
       "average": 130.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 9,
+      "rank_delta": 0
     },
     {
       "rank": 9,
@@ -271,8 +271,8 @@
       },
       "tournaments_played": 6,
       "average": 43.3,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 9,
+      "rank_delta": 0
     },
     {
       "rank": 11,
@@ -292,8 +292,8 @@
       },
       "tournaments_played": 4,
       "average": 56.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 11,
+      "rank_delta": 0
     },
     {
       "rank": 12,
@@ -313,8 +313,8 @@
       },
       "tournaments_played": 10,
       "average": 21.7,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 12,
+      "rank_delta": 0
     },
     {
       "rank": 13,
@@ -334,8 +334,8 @@
       },
       "tournaments_played": 4,
       "average": 33.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 13,
+      "rank_delta": 0
     },
     {
       "rank": 14,
@@ -355,8 +355,8 @@
       },
       "tournaments_played": 4,
       "average": 30.3,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 14,
+      "rank_delta": 0
     },
     {
       "rank": 15,
@@ -376,8 +376,8 @@
       },
       "tournaments_played": 3,
       "average": 37.3,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 15,
+      "rank_delta": 0
     },
     {
       "rank": 16,
@@ -397,8 +397,8 @@
       },
       "tournaments_played": 5,
       "average": 18.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 16,
+      "rank_delta": 0
     },
     {
       "rank": 17,
@@ -418,8 +418,8 @@
       },
       "tournaments_played": 4,
       "average": 21.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 17,
+      "rank_delta": 0
     },
     {
       "rank": 18,
@@ -439,8 +439,8 @@
       },
       "tournaments_played": 5,
       "average": 16.6,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 18,
+      "rank_delta": 0
     },
     {
       "rank": 19,
@@ -460,8 +460,8 @@
       },
       "tournaments_played": 4,
       "average": 17.8,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 19,
+      "rank_delta": 0
     },
     {
       "rank": 20,
@@ -481,8 +481,8 @@
       },
       "tournaments_played": 1,
       "average": 70.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 20,
+      "rank_delta": 0
     },
     {
       "rank": 21,
@@ -502,8 +502,8 @@
       },
       "tournaments_played": 2,
       "average": 29.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 21,
+      "rank_delta": 0
     },
     {
       "rank": 22,
@@ -523,8 +523,8 @@
       },
       "tournaments_played": 1,
       "average": 56.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 22,
+      "rank_delta": 0
     },
     {
       "rank": 23,
@@ -544,8 +544,8 @@
       },
       "tournaments_played": 1,
       "average": 52.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 23,
+      "rank_delta": 0
     },
     {
       "rank": 24,
@@ -565,8 +565,8 @@
       },
       "tournaments_played": 1,
       "average": 48.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 24,
+      "rank_delta": 0
     },
     {
       "rank": 25,
@@ -586,8 +586,8 @@
       },
       "tournaments_played": 1,
       "average": 40.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 25,
+      "rank_delta": 0
     },
     {
       "rank": 25,
@@ -607,8 +607,8 @@
       },
       "tournaments_played": 1,
       "average": 40.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 25,
+      "rank_delta": 0
     },
     {
       "rank": 27,
@@ -628,8 +628,8 @@
       },
       "tournaments_played": 1,
       "average": 36.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 27,
+      "rank_delta": 0
     },
     {
       "rank": 28,
@@ -649,8 +649,8 @@
       },
       "tournaments_played": 2,
       "average": 16.5,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 28,
+      "rank_delta": 0
     },
     {
       "rank": 29,
@@ -670,8 +670,8 @@
       },
       "tournaments_played": 2,
       "average": 15.5,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 29,
+      "rank_delta": 0
     },
     {
       "rank": 30,
@@ -691,8 +691,8 @@
       },
       "tournaments_played": 1,
       "average": 30.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 30,
+      "rank_delta": 0
     },
     {
       "rank": 31,
@@ -712,8 +712,8 @@
       },
       "tournaments_played": 1,
       "average": 28.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 31,
+      "rank_delta": 0
     },
     {
       "rank": 32,
@@ -733,8 +733,8 @@
       },
       "tournaments_played": 1,
       "average": 26.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 32,
+      "rank_delta": 0
     },
     {
       "rank": 33,
@@ -754,8 +754,8 @@
       },
       "tournaments_played": 2,
       "average": 11.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 33,
+      "rank_delta": 0
     },
     {
       "rank": 34,
@@ -775,8 +775,8 @@
       },
       "tournaments_played": 1,
       "average": 20.0,
-      "prev_rank": null,
-      "rank_delta": null
+      "prev_rank": 34,
+      "rank_delta": 0
     }
   ],
   "participants_per_stage": {
@@ -791,6 +791,6 @@
     "3. etapp 21.03.2026": 8,
     "4. etapp 25.04.2026": 15
   },
-  "snapshot_date": "2026-04-25",
-  "compared_to": null
+  "snapshot_date": "2026-04-26",
+  "compared_to": "2026-04-25"
 }
