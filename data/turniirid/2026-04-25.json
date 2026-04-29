@@ -83,7 +83,7 @@
   "lohutused_grupp_B": {
     "formaat": "play-off (4 mängijat)",
     "poolfinaalid": [
-      {"voitja": "Lauri Zoova", "kaotaja": "Marcel Mikiver",  "skoor": "?"},
+      {"voitja": "Lauri Zoova", "kaotaja": "Marcel Mikiver",  "skoor": "w/o"},
       {"voitja": "Ave Veldt",   "kaotaja": "Helmut Hallemaa", "skoor": "6-0"}
     ],
     "finaal":   {"voitja": "Lauri Zoova",    "kaotaja": "Ave Veldt",       "skoor": "6-3"},
