@@ -1,0 +1,109 @@
+{
+  "turniir": {
+    "nimi": "VÜS 2026 4. etapp",
+    "sari": "VÜS",
+    "etapp": 4,
+    "kuupaev": "2026-04-25",
+    "asukoht": "TK Fellin",
+    "tarkvara": "etl.tournamentsoftware.com"
+  },
+  "mangijad": [
+    {"id": 1,  "nimi": "Viljar Vahemaa",   "asetus": 1},
+    {"id": 2,  "nimi": "Bye",              "asetus": null},
+    {"id": 3,  "nimi": "Marken Varis",     "asetus": null},
+    {"id": 4,  "nimi": "Eneli Pihl",       "asetus": null},
+    {"id": 5,  "nimi": "Priit Raudla",     "asetus": 4},
+    {"id": 6,  "nimi": "Indrek Taukar",    "asetus": null},
+    {"id": 7,  "nimi": "Ilja Balabko",     "asetus": null},
+    {"id": 8,  "nimi": "Rene Puusild",     "asetus": null},
+    {"id": 9,  "nimi": "Andrus Jürgenson", "asetus": null},
+    {"id": 10, "nimi": "Marcel Mikiver",   "asetus": null},
+    {"id": 11, "nimi": "Ave Veldt",        "asetus": null},
+    {"id": 12, "nimi": "Reevo Kirna",      "asetus": 3},
+    {"id": 13, "nimi": "Lauri Zoova",      "asetus": null},
+    {"id": 14, "nimi": "Kert Perkmann",    "asetus": null},
+    {"id": 15, "nimi": "Helmut Hallemaa",  "asetus": null},
+    {"id": 16, "nimi": "Helmar Mirka",     "asetus": 2}
+  ],
+  "pohitabel": {
+    "round_1": [
+      {"match": "R1-1", "voitja": "Viljar Vahemaa",   "kaotaja": "Bye",             "skoor": "w/o"},
+      {"match": "R1-2", "voitja": "Marken Varis",     "kaotaja": "Eneli Pihl",      "skoor": "6-4"},
+      {"match": "R1-3", "voitja": "Priit Raudla",     "kaotaja": "Indrek Taukar",   "skoor": "7-5"},
+      {"match": "R1-4", "voitja": "Ilja Balabko",     "kaotaja": "Rene Puusild",    "skoor": "6-1"},
+      {"match": "R1-5", "voitja": "Andrus Jürgenson", "kaotaja": "Marcel Mikiver",  "skoor": "6-0"},
+      {"match": "R1-6", "voitja": "Reevo Kirna",      "kaotaja": "Ave Veldt",       "skoor": "6-0"},
+      {"match": "R1-7", "voitja": "Kert Perkmann",    "kaotaja": "Lauri Zoova",     "skoor": "6-1"},
+      {"match": "R1-8", "voitja": "Helmar Mirka",     "kaotaja": "Helmut Hallemaa", "skoor": "6-0"}
+    ],
+    "veerandfinaalid": [
+      {"match": "QF-1", "voitja": "Viljar Vahemaa", "kaotaja": "Marken Varis",     "skoor": "6-0"},
+      {"match": "QF-2", "voitja": "Priit Raudla",   "kaotaja": "Ilja Balabko",     "skoor": "6-1"},
+      {"match": "QF-3", "voitja": "Reevo Kirna",    "kaotaja": "Andrus Jürgenson", "skoor": "6-4"},
+      {"match": "QF-4", "voitja": "Kert Perkmann",  "kaotaja": "Helmar Mirka",     "skoor": "6-1"}
+    ],
+    "poolfinaalid": [
+      {"match": "SF-1", "voitja": "Viljar Vahemaa", "kaotaja": "Priit Raudla", "skoor": "6-1"},
+      {"match": "SF-2", "voitja": "Kert Perkmann",  "kaotaja": "Reevo Kirna",  "skoor": "6-1"}
+    ],
+    "finaal": {
+      "match": "F",
+      "voitja": "Viljar Vahemaa",
+      "kaotaja": "Kert Perkmann",
+      "skoor": "6-4"
+    },
+    "koht_3_4": {
+      "match": "3-4",
+      "voitja": "Reevo Kirna",
+      "kaotaja": "Priit Raudla",
+      "skoor": "6-3"
+    }
+  },
+  "kohamang_5_8": {
+    "poolfinaalid": [
+      {"match": "5-8 SF1", "voitja": "Ilja Balabko",     "kaotaja": "Marken Varis", "skoor": "6-3"},
+      {"match": "5-8 SF2", "voitja": "Andrus Jürgenson", "kaotaja": "Helmar Mirka", "skoor": "6-1"}
+    ],
+    "koht_5_6": {"staatus": "ei mängitud"},
+    "koht_7_8": {"staatus": "ei mängitud"}
+  },
+  "lohutused_grupp_A": {
+    "formaat": "ringsüsteem",
+    "mangud": [
+      {"voitja": "Indrek Taukar", "kaotaja": "Eneli Pihl",   "skoor": "6-4"},
+      {"voitja": "Eneli Pihl",    "kaotaja": "Rene Puusild", "skoor": "6-3"},
+      {"voitja": "Indrek Taukar", "kaotaja": "Rene Puusild", "skoor": "6-0"}
+    ],
+    "tabel": [
+      {"koht": 1, "mangija": "Indrek Taukar", "voidud": 2, "kaotused": 0},
+      {"koht": 2, "mangija": "Eneli Pihl",    "voidud": 1, "kaotused": 1},
+      {"koht": 3, "mangija": "Rene Puusild",  "voidud": 0, "kaotused": 2}
+    ]
+  },
+  "lohutused_grupp_B": {
+    "formaat": "play-off (4 mängijat)",
+    "poolfinaalid": [
+      {"voitja": "Lauri Zoova", "kaotaja": "Marcel Mikiver",  "skoor": "?"},
+      {"voitja": "Ave Veldt",   "kaotaja": "Helmut Hallemaa", "skoor": "6-0"}
+    ],
+    "finaal":   {"voitja": "Lauri Zoova",    "kaotaja": "Ave Veldt",       "skoor": "6-3"},
+    "koht_3_4": {"voitja": "Marcel Mikiver", "kaotaja": "Helmut Hallemaa", "skoor": "6-1"}
+  },
+  "loppjarjestus": [
+    {"koht": 1,     "mangija": "Viljar Vahemaa",   "punktid": 100},
+    {"koht": 2,     "mangija": "Kert Perkmann",    "punktid": 70},
+    {"koht": 3,     "mangija": "Reevo Kirna",      "punktid": 50},
+    {"koht": 4,     "mangija": "Priit Raudla",     "punktid": 40},
+    {"koht": "5-6", "mangija": "Ilja Balabko",     "punktid": 28, "markus": "5-6 koha mäng mängimata"},
+    {"koht": "5-6", "mangija": "Andrus Jürgenson", "punktid": 28, "markus": "5-6 koha mäng mängimata"},
+    {"koht": "7-8", "mangija": "Marken Varis",     "punktid": 22, "markus": "7-8 koha mäng mängimata"},
+    {"koht": "7-8", "mangija": "Helmar Mirka",     "punktid": 22, "markus": "7-8 koha mäng mängimata"},
+    {"koht": 9,     "mangija": "Indrek Taukar",    "punktid": 18, "markus": "lohutused A 1."},
+    {"koht": 9,     "mangija": "Lauri Zoova",      "punktid": 18, "markus": "lohutused B 1."},
+    {"koht": 11,    "mangija": "Eneli Pihl",       "punktid": 16, "markus": "lohutused A 2."},
+    {"koht": 11,    "mangija": "Ave Veldt",        "punktid": 16, "markus": "lohutused B 2."},
+    {"koht": 13,    "mangija": "Marcel Mikiver",   "punktid": 14, "markus": "lohutused B 3."},
+    {"koht": 14,    "mangija": "Rene Puusild",     "punktid": 13, "markus": "lohutused A 3."},
+    {"koht": 14,    "mangija": "Helmut Hallemaa",  "punktid": 13, "markus": "lohutused B 4."}
+  ]
+}

@@ -31,7 +31,8 @@ viljandi-edetabel/
 ├── data/
 │   ├── current.json    # kõige värskem seis (taasloodud iga jooksuga)
 │   ├── history.json    # ajaloo kuupäevade indeks
-│   └── history/        # YYYY-MM-DD.json — ainult päevad, mil andmed muutusid
+│   ├── history/        # YYYY-MM-DD.json — ainult päevad, mil andmed muutusid
+│   └── turniirid/      # YYYY-MM-DD.json — turniiritabeli (bracketi) andmed
 └── .github/workflows/
     └── update.yml      # cron iga päev 04:00 UTC
 ```
@@ -79,6 +80,75 @@ failis juba seadistatud, aga repo settings'is võib olla vaja:
 `fetch.py` võrdleb uut tulemust eelneva snapshot'iga (mängijate nimekiri,
 tulemused, etappide list). Ainult muutuste korral tekib uus
 `data/history/YYYY-MM-DD.json`. Nii ei tekita igapäevane jooks tühje commit'e.
+
+## Bracketi-andmed (turniiri tabel)
+
+Iga turniiri kohta võib `data/turniirid/` alla lisada JSON-faili, mis kirjeldab
+põhitabeli, kohamängud, lohutused ja lõppjärjestuse koos punktidega. Kui see
+fail on olemas, ilmub "Turniir" tab'i toggle "Punktid / Tabel"; muidu jääb
+ainult olemasolev punktide-vaade.
+
+### Failinimi
+
+```
+data/turniirid/YYYY-MM-DD.json
+```
+
+Kuupäev peab vastama `current.json`-i `stages[].date`-väljale (nt
+`2026-04-25.json` = "4. etapp 25.04.2026").
+
+### Skeem (kokkuvõte)
+
+```jsonc
+{
+  "turniir":   { "nimi": "...", "kuupaev": "YYYY-MM-DD", "asukoht": "..." },
+  "mangijad":  [{ "id": 1, "nimi": "Viljar Vahemaa", "asetus": 1 }, ...],
+  "pohitabel": {
+    "round_1":         [{ "voitja": "...", "kaotaja": "...", "skoor": "6-4" }, ...],
+    "veerandfinaalid": [...],
+    "poolfinaalid":    [...],
+    "finaal":          { "voitja": "...", "kaotaja": "...", "skoor": "6-4" },
+    "koht_3_4":        { "voitja": "...", "kaotaja": "...", "skoor": "6-3" }
+  },
+  "kohamang_5_8": {
+    "poolfinaalid": [...],
+    "koht_5_6":    { "staatus": "ei mängitud" },  // või { "voitja": ..., "skoor": ... }
+    "koht_7_8":    { "staatus": "ei mängitud" }
+  },
+  "lohutused_grupp_A": {
+    "formaat": "ringsüsteem",
+    "mangud":  [{ "voitja": "...", "kaotaja": "...", "skoor": "6-4" }, ...],
+    "tabel":   [{ "koht": 1, "mangija": "...", "voidud": 2, "kaotused": 0 }, ...]
+  },
+  "lohutused_grupp_B": {
+    "formaat":      "play-off (4 mängijat)",
+    "poolfinaalid": [...],
+    "finaal":       { ... },
+    "koht_3_4":     { ... }
+  },
+  "loppjarjestus": [
+    { "koht": 1,     "mangija": "Viljar Vahemaa",   "punktid": 100 },
+    { "koht": "5-6", "mangija": "Ilja Balabko",     "punktid": 28, "markus": "..." },
+    ...
+  ]
+}
+```
+
+### Konventsioonid
+
+- **Mängijaid identifitseeritakse nime järgi (string)**, mitte ID-ga.
+- `skoor` formaat: `"6-4"`, `"7-5"`, `"w/o"` walkoveri puhul, `"ret."` katkestuse
+  puhul, `"?"` kui skoor teadmata.
+- `koht` võib olla number (`1`, `2`, ...) või jagatud koha string (`"5-6"`).
+- `punktid` lisamine `loppjarjestus`-kirjele on kohustuslik — komponent kuvab
+  need otse, ilma arvutamata.
+- `kohamang_5_8.koht_5_6.staatus = "ei mängitud"` puhul kuvatakse positsiooni-
+  mäng hallina (faded), mängijad tuletatakse poolfinaalide võitjatest/kaotajatest.
+
+### Validatsioon
+
+Punktide õigsust saab kontrollida vastu `data/current.json`-i samanimelise
+etapi tulpa — punktid peaksid kattuma.
 
 ## Andmestruktuur (`current.json`)
 

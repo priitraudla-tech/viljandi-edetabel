@@ -13,6 +13,8 @@ const state = {
   search: "",
   hideZero: false,
   trendChart: null,
+  bracket: null,            // current loaded bracket data (or null)
+  bracketView: "punktid",   // "punktid" | "tabel"
 };
 
 // ---------- utils ----------
@@ -87,6 +89,7 @@ async function init() {
 
   setupTabs();
   setupRefresh();
+  setupTournamentToggle();
   renderStandings();
   renderTournament();
   setupTrend();
@@ -460,7 +463,7 @@ function buildTournamentResults(stageLabel) {
   return participants;
 }
 
-function renderTournament() {
+async function renderTournament() {
   const stage = findLatestStageWithResults();
   const titleEl = $("#tournament-title");
   const metaEl = $("#tournament-meta");
@@ -473,6 +476,12 @@ function renderTournament() {
   tbody.innerHTML = "";
   restWrap.hidden = true;
   empty.hidden = true;
+
+  // Reset bracket view; reload below if a JSON exists for this stage's date.
+  state.bracket = null;
+  $("#tournament-view-toggle").hidden = true;
+  $("#tournament-view-tabel").innerHTML = "";
+  setTournamentView("punktid");
 
   if (!stage) {
     titleEl.textContent = "Turniir";
@@ -552,6 +561,416 @@ function renderTournament() {
       tbody.appendChild(tr);
     });
   }
+
+  // Try loading the bracket JSON for this stage's date. Surfaces the toggle
+  // only if a JSON exists; otherwise the tab stays at "Punktid" alone.
+  const bracket = await loadBracketIfExists(stage.date);
+  if (bracket) {
+    state.bracket = bracket;
+    $("#tournament-view-tabel").innerHTML = "";
+    $("#tournament-view-tabel").appendChild(buildBracketView(bracket));
+    $("#tournament-view-toggle").hidden = false;
+  }
+}
+
+// ---------- bracket (per-tournament view) ----------
+
+async function loadBracketIfExists(date) {
+  if (!date) return null;
+  try {
+    const res = await fetch(`data/turniirid/${date}.json`, { cache: "no-cache" });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+function setupTournamentToggle() {
+  $$("#tournament-view-toggle .view-toggle-btn").forEach((btn) => {
+    btn.addEventListener("click", () => setTournamentView(btn.dataset.view));
+  });
+}
+
+function setTournamentView(view) {
+  state.bracketView = view;
+  $$("#tournament-view-toggle .view-toggle-btn").forEach((b) => {
+    const active = b.dataset.view === view;
+    b.classList.toggle("active", active);
+    b.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  const punktid = $("#tournament-view-punktid");
+  const tabel = $("#tournament-view-tabel");
+  if (punktid) punktid.hidden = view !== "punktid";
+  if (tabel) tabel.hidden = view !== "tabel";
+}
+
+function parseScore(skoor) {
+  if (skoor == null) return { winner: "", loser: "" };
+  if (skoor === "w/o") return { winner: "w/o", loser: "—" };
+  if (skoor === "ret.") return { winner: "ret.", loser: "—" };
+  if (skoor === "?") return { winner: "?", loser: "?" };
+  if (skoor === "—") return { winner: "—", loser: "—" };
+  const m = String(skoor).match(/^(\d+)\s*[-:]\s*(\d+)$/);
+  if (m) return { winner: m[1], loser: m[2] };
+  return { winner: String(skoor), loser: "" };
+}
+
+function formatKoht(koht) {
+  if (typeof koht === "number") return `${koht}.`;
+  if (typeof koht === "string") {
+    const m = koht.match(/^(\d+)\s*[-–]\s*(\d+)$/);
+    if (m) return `${m[1]}.–${m[2]}.`;
+    return koht;
+  }
+  return String(koht);
+}
+
+function buildSeedMap(mangijad) {
+  const map = {};
+  (mangijad || []).forEach((m) => {
+    if (m.asetus !== null && m.asetus !== undefined) map[m.nimi] = m.asetus;
+  });
+  return map;
+}
+
+function bracketPlayerRow({ name, score, seed, role, medal }) {
+  // role: "winner" | "loser" | "neutral" | "bye"
+  const row = document.createElement("div");
+  row.className = "br-player";
+  if (role === "winner") row.classList.add("is-winner");
+  else if (role === "loser") row.classList.add("is-loser");
+  else if (role === "bye") row.classList.add("is-bye");
+
+  const left = document.createElement("span");
+  left.className = "br-name";
+  if (seed) {
+    const s = document.createElement("span");
+    s.className = "br-seed";
+    s.textContent = `[${seed}]`;
+    left.appendChild(s);
+  }
+  if (medal) {
+    const md = document.createElement("span");
+    md.className = "br-medal";
+    md.textContent = medal;
+    left.appendChild(md);
+  }
+  left.appendChild(document.createTextNode(name || ""));
+
+  const sc = document.createElement("span");
+  sc.className = "br-score";
+  sc.textContent = score == null || score === "" ? "" : score;
+
+  row.appendChild(left);
+  row.appendChild(sc);
+  return row;
+}
+
+function bracketMatch(match, opts = {}) {
+  // opts: { seedMap, final, faded, winnerMedal, loserMedal }
+  const m = document.createElement("div");
+  m.className = "br-match";
+  if (opts.final) m.classList.add("is-final");
+  if (opts.faded) m.classList.add("is-faded");
+
+  const score = parseScore(match.skoor);
+  const seedMap = opts.seedMap || {};
+  const winnerName = match.voitja || "";
+  const loserName = match.kaotaja || "";
+  const winnerIsBye = winnerName === "Bye" || winnerName === "bye";
+  const loserIsBye = loserName === "Bye" || loserName === "bye";
+
+  const role = (isWinner) => {
+    if (opts.faded) return "neutral";
+    if (isWinner) return winnerIsBye ? "neutral" : "winner";
+    return loserIsBye ? "bye" : "loser";
+  };
+
+  m.appendChild(bracketPlayerRow({
+    name: winnerName,
+    score: opts.faded ? "—" : score.winner,
+    seed: seedMap[winnerName],
+    role: winnerIsBye ? "bye" : role(true),
+    medal: opts.winnerMedal,
+  }));
+  m.appendChild(bracketPlayerRow({
+    name: loserName,
+    score: opts.faded ? "—" : score.loser,
+    seed: seedMap[loserName],
+    role: role(false),
+    medal: opts.loserMedal,
+  }));
+  return m;
+}
+
+function bracketRound(title, matches, opts = {}) {
+  const round = document.createElement("div");
+  round.className = "br-round";
+
+  const t = document.createElement("div");
+  t.className = "br-round-title";
+  t.textContent = title;
+  round.appendChild(t);
+
+  const list = document.createElement("div");
+  list.className = "br-matches";
+  (matches || []).filter(Boolean).forEach((mm) => {
+    const matchOpts = {
+      seedMap: opts.seedMap,
+      final: opts.final,
+      faded: opts.faded,
+      winnerMedal: opts.winnerMedal,
+    };
+    list.appendChild(bracketMatch(mm, matchOpts));
+  });
+  round.appendChild(list);
+  return round;
+}
+
+function bracketSectionTitle(text, level = 3) {
+  const el = document.createElement(level === 4 ? "h4" : "h3");
+  el.className = level === 4 ? "br-subtitle" : "br-title";
+  el.textContent = text;
+  return el;
+}
+
+function buildMainBracket(data) {
+  const wrap = document.createElement("div");
+  wrap.className = "br-wrap";
+  const bracket = document.createElement("div");
+  bracket.className = "br-bracket br-bracket--main";
+
+  const seedMap = buildSeedMap(data.mangijad);
+  const pt = data.pohitabel || {};
+
+  bracket.appendChild(bracketRound("1. ring", pt.round_1 || [], { seedMap }));
+  bracket.appendChild(bracketRound("Veerandfinaal", pt.veerandfinaalid || []));
+  bracket.appendChild(bracketRound("Poolfinaal", pt.poolfinaalid || []));
+  if (pt.finaal) {
+    bracket.appendChild(bracketRound("Finaal", [pt.finaal], {
+      final: true,
+      winnerMedal: "🏆",
+    }));
+  }
+
+  wrap.appendChild(bracket);
+  return wrap;
+}
+
+function buildPlayoff58(data) {
+  const wrap = document.createElement("div");
+  wrap.className = "br-wrap";
+  const bracket = document.createElement("div");
+  bracket.className = "br-bracket br-bracket--mini";
+
+  bracket.appendChild(bracketRound("Poolfinaal", data.poolfinaalid || []));
+
+  const fivesix = data.koht_5_6;
+  const seveneight = data.koht_7_8;
+  const round = document.createElement("div");
+  round.className = "br-round";
+  const t = document.createElement("div");
+  t.className = "br-round-title";
+  t.textContent = "5.–6. / 7.–8.";
+  round.appendChild(t);
+  const list = document.createElement("div");
+  list.className = "br-matches";
+
+  const renderPos = (pos, fallbackVoitja, fallbackKaotaja) => {
+    if (pos && pos.staatus !== "ei mängitud" && pos.voitja) {
+      list.appendChild(bracketMatch(pos));
+    } else if (fallbackVoitja && fallbackKaotaja) {
+      list.appendChild(bracketMatch(
+        { voitja: fallbackVoitja, kaotaja: fallbackKaotaja, skoor: "—" },
+        { faded: true },
+      ));
+    }
+  };
+
+  // Faded fallbacks: SF winners meet for 5-6, SF losers for 7-8.
+  const sf1 = data.poolfinaalid?.[0];
+  const sf2 = data.poolfinaalid?.[1];
+  renderPos(fivesix, sf1?.voitja, sf2?.voitja);
+  renderPos(seveneight, sf1?.kaotaja, sf2?.kaotaja);
+
+  round.appendChild(list);
+  bracket.appendChild(round);
+  wrap.appendChild(bracket);
+  return wrap;
+}
+
+function buildRoundRobin(group) {
+  const col = document.createElement("div");
+  col.className = "br-col";
+  col.appendChild(bracketSectionTitle("Grupp A · ringsüsteem", 4));
+
+  const wrap = document.createElement("div");
+  wrap.className = "table-wrap rr-wrap";
+
+  const table = document.createElement("table");
+  table.className = "rr-table";
+  const players = (group.tabel || []).map((r) => r.mangija);
+
+  const thead = document.createElement("thead");
+  const trh = document.createElement("tr");
+  trh.innerHTML = `
+    <th class="num rr-pos">#</th>
+    <th>Mängija</th>
+    ${players.map((_, i) => `<th class="num">${i + 1}</th>`).join("")}
+    <th class="num">V–K</th>
+  `;
+  thead.appendChild(trh);
+  table.appendChild(thead);
+
+  // Build lookup of head-to-head results.
+  const lookup = {};
+  (group.mangud || []).forEach((m) => {
+    const sc = parseScore(m.skoor);
+    lookup[`${m.voitja}|${m.kaotaja}`] = `${sc.winner}/${sc.loser}`;
+    lookup[`${m.kaotaja}|${m.voitja}`] = `${sc.loser}/${sc.winner}`;
+  });
+
+  const tbody = document.createElement("tbody");
+  (group.tabel || []).forEach((row) => {
+    const tr = document.createElement("tr");
+    if (row.koht === 1) tr.classList.add("rr-first");
+    let html = `
+      <td class="num rr-pos">${row.koht}</td>
+      <td class="rr-name">${escapeHtml(row.mangija)}</td>
+    `;
+    players.forEach((opp) => {
+      if (opp === row.mangija) {
+        html += `<td class="num rr-diag">—</td>`;
+      } else {
+        const v = lookup[`${row.mangija}|${opp}`];
+        html += `<td class="num">${v || "—"}</td>`;
+      }
+    });
+    html += `<td class="num"><strong>${row.voidud ?? 0}–${row.kaotused ?? 0}</strong></td>`;
+    tr.innerHTML = html;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  wrap.appendChild(table);
+  col.appendChild(wrap);
+  return col;
+}
+
+function buildGroupB(group) {
+  const col = document.createElement("div");
+  col.className = "br-col";
+  col.appendChild(bracketSectionTitle("Grupp B · play-off", 4));
+
+  const wrap = document.createElement("div");
+  wrap.className = "br-wrap";
+  const bracket = document.createElement("div");
+  bracket.className = "br-bracket br-bracket--mini";
+
+  bracket.appendChild(bracketRound("Poolfinaal", group.poolfinaalid || []));
+
+  const finals = [];
+  if (group.finaal) finals.push(group.finaal);
+  if (group.koht_3_4) finals.push(group.koht_3_4);
+  if (finals.length) {
+    bracket.appendChild(bracketRound("Finaal · 3.–4.", finals));
+  }
+
+  wrap.appendChild(bracket);
+  col.appendChild(wrap);
+  return col;
+}
+
+function buildFinalStandings(loppjarjestus) {
+  const grid = document.createElement("div");
+  grid.className = "br-standings";
+
+  loppjarjestus.forEach((entry) => {
+    const row = document.createElement("div");
+    row.className = "br-standing-row";
+    if (typeof entry.koht === "number" && entry.koht <= 3) {
+      row.classList.add("is-podium");
+    }
+
+    const pos = document.createElement("span");
+    pos.className = "br-standing-pos";
+    pos.textContent = formatKoht(entry.koht);
+
+    const name = document.createElement("span");
+    name.className = "br-standing-name";
+    name.textContent = entry.mangija;
+
+    const pts = document.createElement("span");
+    pts.className = "br-standing-pts";
+    if (entry.punktid !== null && entry.punktid !== undefined) {
+      pts.textContent = `${entry.punktid} p`;
+    }
+
+    row.appendChild(pos);
+    row.appendChild(name);
+    row.appendChild(pts);
+    grid.appendChild(row);
+  });
+  return grid;
+}
+
+function buildBracketView(data) {
+  const wrap = document.createElement("div");
+  wrap.className = "br-root";
+
+  // Põhitabel
+  if (data.pohitabel) {
+    wrap.appendChild(bracketSectionTitle("Põhitabel"));
+    wrap.appendChild(buildMainBracket(data));
+
+    if (data.pohitabel.koht_3_4) {
+      wrap.appendChild(bracketSectionTitle("3.–4. koha mäng", 4));
+      const single = bracketMatch(data.pohitabel.koht_3_4, { winnerMedal: "🥉" });
+      single.classList.add("br-match--single");
+      wrap.appendChild(single);
+    }
+  }
+
+  // Kohamäng 5–8
+  if (data.kohamang_5_8) {
+    wrap.appendChild(bracketSectionTitle("Kohamäng 5.–8."));
+    wrap.appendChild(buildPlayoff58(data.kohamang_5_8));
+    const k56 = data.kohamang_5_8.koht_5_6;
+    const k78 = data.kohamang_5_8.koht_7_8;
+    const notPlayed = [k56, k78].filter((p) => p && p.staatus === "ei mängitud");
+    if (notPlayed.length) {
+      const note = document.createElement("p");
+      note.className = "br-legend";
+      note.textContent = "5.–6. ja 7.–8. koha mängud jäid mängimata — kohad jagatud.";
+      wrap.appendChild(note);
+    }
+  }
+
+  // Lohutused
+  const hasA = !!data.lohutused_grupp_A;
+  const hasB = !!data.lohutused_grupp_B;
+  if (hasA || hasB) {
+    wrap.appendChild(bracketSectionTitle("Lohutused"));
+    const note = document.createElement("p");
+    note.className = "br-legend";
+    note.textContent = "Esimese ringi kaotajad. Punktid lähevad samuti edetabelisse.";
+    wrap.appendChild(note);
+
+    const cols = document.createElement("div");
+    cols.className = "br-two-col";
+    if (hasA) cols.appendChild(buildRoundRobin(data.lohutused_grupp_A));
+    if (hasB) cols.appendChild(buildGroupB(data.lohutused_grupp_B));
+    wrap.appendChild(cols);
+  }
+
+  // Lõppjärjestus
+  if (Array.isArray(data.loppjarjestus) && data.loppjarjestus.length) {
+    wrap.appendChild(bracketSectionTitle("Lõppjärjestus & punktid"));
+    wrap.appendChild(buildFinalStandings(data.loppjarjestus));
+  }
+
+  return wrap;
 }
 
 function escapeHtml(s) {

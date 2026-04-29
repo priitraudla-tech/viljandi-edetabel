@@ -70,24 +70,33 @@
         <p id="tournament-meta" class="meta tournament-meta"></p>
       </header>
 
-      <div id="podium" class="podium" aria-label="Poodium"></div>
-
-      <div id="tournament-rest" class="table-wrap tournament-rest" hidden>
-        <table id="tournament-table">
-          <thead>
-            <tr>
-              <th class="num">Koht</th>
-              <th>Nimi</th>
-              <th class="num">Punkte</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div id="tournament-view-toggle" class="view-toggle" role="tablist" hidden>
+        <button class="view-toggle-btn active" type="button" role="tab" data-view="punktid">Punktid</button>
+        <button class="view-toggle-btn" type="button" role="tab" data-view="tabel">Tabel</button>
       </div>
 
-      <p id="tournament-empty" class="footnote" hidden>
-        Selle turniiri kohta tulemused puuduvad.
-      </p>
+      <div id="tournament-view-punktid" class="tournament-view active">
+        <div id="podium" class="podium" aria-label="Poodium"></div>
+
+        <div id="tournament-rest" class="table-wrap tournament-rest" hidden>
+          <table id="tournament-table">
+            <thead>
+              <tr>
+                <th class="num">Koht</th>
+                <th>Nimi</th>
+                <th class="num">Punkte</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <p id="tournament-empty" class="footnote" hidden>
+          Selle turniiri kohta tulemused puuduvad.
+        </p>
+      </div>
+
+      <div id="tournament-view-tabel" class="tournament-view" hidden></div>
     </section>
 
     <section id="tab-trend" class="tab-panel">
