@@ -733,6 +733,7 @@ footer {
   border-radius: var(--r-pill);
   box-shadow: var(--shadow-inset);
 }
+.view-toggle[hidden] { display: none; }
 .view-toggle-btn {
   background: transparent;
   border: 0;

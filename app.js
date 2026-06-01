@@ -90,6 +90,7 @@ async function init() {
   setupTabs();
   setupRefresh();
   setupTournamentToggle();
+  setupTournamentStagePicker();
   renderStandings();
   renderTournament();
   setupTrend();
@@ -463,8 +464,39 @@ function buildTournamentResults(stageLabel) {
   return participants;
 }
 
-async function renderTournament() {
-  const stage = findLatestStageWithResults();
+function stagesWithResults() {
+  // Newest first; only stages where at least one player has a score.
+  return state.current.stages
+    .slice()
+    .reverse()
+    .filter((s) =>
+      state.current.players.some((p) => {
+        const v = p.stages?.[s.label];
+        return v !== null && v !== undefined && v !== "";
+      }),
+    );
+}
+
+function setupTournamentStagePicker() {
+  const sel = $("#tournament-stage");
+  if (!sel) return;
+  const stages = stagesWithResults();
+  sel.innerHTML = "";
+  stages.forEach((s) => {
+    const opt = document.createElement("option");
+    opt.value = s.label;
+    opt.textContent = s.label;
+    sel.appendChild(opt);
+  });
+  sel.addEventListener("change", () => renderTournament(sel.value));
+}
+
+async function renderTournament(stageLabel) {
+  const stage = stageLabel
+    ? state.current.stages.find((s) => s.label === stageLabel)
+    : findLatestStageWithResults();
+  const sel = $("#tournament-stage");
+  if (sel && stage && sel.value !== stage.label) sel.value = stage.label;
   const titleEl = $("#tournament-title");
   const metaEl = $("#tournament-meta");
   const podium = $("#podium");
