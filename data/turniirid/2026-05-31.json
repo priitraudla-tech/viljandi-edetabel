@@ -1,0 +1,123 @@
+{
+  "turniir": {
+    "nimi": "VÜS 2026 5. etapp",
+    "sari": "VÜS",
+    "etapp": 5,
+    "kuupaev": "2026-05-31",
+    "asukoht": "TK Fellin",
+    "tarkvara": "etl.tournamentsoftware.com",
+    "formaat": "3 alagruppi (ringsüsteem) + positsioonimängud"
+  },
+  "formaat": "alagrupid",
+  "mangijad": [
+    {"id": 1, "nimi": "Reevo Kirna",      "asetus": 1},
+    {"id": 2, "nimi": "Priit Raudla",     "asetus": 2},
+    {"id": 3, "nimi": "Ilja Balabko",     "asetus": 3},
+    {"id": 4, "nimi": "Andrus Jürgenson", "asetus": 4},
+    {"id": 5, "nimi": "Eneli Pihl",       "asetus": 5},
+    {"id": 6, "nimi": "Marken Varis",     "asetus": 6},
+    {"id": 7, "nimi": "Marcel Mikiver",   "asetus": 7},
+    {"id": 8, "nimi": "Kert Kärner",      "asetus": 8},
+    {"id": 9, "nimi": "Rain Paju",        "asetus": 9}
+  ],
+  "alagrupid": [
+    {
+      "nimi": "Grupp A",
+      "formaat": "ringsüsteem",
+      "mangud": [
+        {"voitja": "Reevo Kirna",      "kaotaja": "Andrus Jürgenson", "skoor": "6-3"},
+        {"voitja": "Reevo Kirna",      "kaotaja": "Marcel Mikiver",   "skoor": "6-3"},
+        {"voitja": "Andrus Jürgenson", "kaotaja": "Marcel Mikiver",   "skoor": "6-0"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Reevo Kirna",      "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Andrus Jürgenson", "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Marcel Mikiver",   "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "nimi": "Grupp B",
+      "formaat": "ringsüsteem",
+      "mangud": [
+        {"voitja": "Priit Raudla", "kaotaja": "Marken Varis", "skoor": "6-3"},
+        {"voitja": "Priit Raudla", "kaotaja": "Rain Paju",    "skoor": "6-3"},
+        {"voitja": "Marken Varis", "kaotaja": "Rain Paju",    "skoor": "7-6"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Priit Raudla", "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Marken Varis", "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Rain Paju",    "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "nimi": "Grupp C",
+      "formaat": "ringsüsteem",
+      "mangud": [
+        {"voitja": "Kert Kärner", "kaotaja": "Ilja Balabko", "skoor": "6-1"},
+        {"voitja": "Kert Kärner", "kaotaja": "Eneli Pihl",   "skoor": "7-6"},
+        {"voitja": "Eneli Pihl",  "kaotaja": "Ilja Balabko", "skoor": "6-2"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Kert Kärner", "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Eneli Pihl",  "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Ilja Balabko", "voidud": 0, "kaotused": 2}
+      ]
+    }
+  ],
+  "positsioonimangud": [
+    {
+      "nimi": "Kohad 1.–3.",
+      "formaat": "ringsüsteem (alagruppide võitjad)",
+      "mangud": [
+        {"voitja": "Priit Raudla", "kaotaja": "Reevo Kirna", "skoor": "6-4"},
+        {"voitja": "Priit Raudla", "kaotaja": "Kert Kärner", "skoor": "6-1"},
+        {"voitja": "Reevo Kirna",  "kaotaja": "Kert Kärner", "skoor": "6-3"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Priit Raudla", "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Reevo Kirna",  "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Kert Kärner",  "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "nimi": "Kohad 4.–6.",
+      "formaat": "ringsüsteem (alagruppide 2. kohad)",
+      "mangud": [
+        {"voitja": "Andrus Jürgenson", "kaotaja": "Marken Varis", "skoor": "6-0"},
+        {"voitja": "Andrus Jürgenson", "kaotaja": "Eneli Pihl",   "skoor": "6-2"},
+        {"voitja": "Marken Varis",     "kaotaja": "Eneli Pihl",   "skoor": "6-3"}
+      ],
+      "tabel": [
+        {"koht": 4, "mangija": "Andrus Jürgenson", "voidud": 2, "kaotused": 0},
+        {"koht": 5, "mangija": "Marken Varis",     "voidud": 1, "kaotused": 1},
+        {"koht": 6, "mangija": "Eneli Pihl",       "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "nimi": "Kohad 7.–9.",
+      "formaat": "ringsüsteem (alagruppide 3. kohad)",
+      "markus": "Kolmikvõrdne (igaüks 1 võit / 1 kaotus); järjestus mängude suhtarvu järgi. Marcel võitis Raini katkestuse (ret.) tõttu.",
+      "mangud": [
+        {"voitja": "Ilja Balabko",   "kaotaja": "Marcel Mikiver", "skoor": "6-0"},
+        {"voitja": "Rain Paju",      "kaotaja": "Ilja Balabko",   "skoor": "6-3"},
+        {"voitja": "Marcel Mikiver", "kaotaja": "Rain Paju",      "skoor": "ret."}
+      ],
+      "tabel": [
+        {"koht": 7, "mangija": "Ilja Balabko",   "voidud": 1, "kaotused": 1},
+        {"koht": 8, "mangija": "Marcel Mikiver", "voidud": 1, "kaotused": 1},
+        {"koht": 9, "mangija": "Rain Paju",      "voidud": 1, "kaotused": 1}
+      ]
+    }
+  ],
+  "loppjarjestus": [
+    {"koht": 1, "mangija": "Priit Raudla",     "punktid": 100},
+    {"koht": 2, "mangija": "Reevo Kirna",      "punktid": 70},
+    {"koht": 3, "mangija": "Kert Kärner",      "punktid": 50},
+    {"koht": 4, "mangija": "Andrus Jürgenson", "punktid": 40},
+    {"koht": 5, "mangija": "Marken Varis",     "punktid": 30},
+    {"koht": 6, "mangija": "Eneli Pihl",       "punktid": 26},
+    {"koht": 7, "mangija": "Ilja Balabko",     "punktid": 23},
+    {"koht": 8, "mangija": "Marcel Mikiver",   "punktid": 21},
+    {"koht": 9, "mangija": "Rain Paju",        "punktid": 19}
+  ]
+}

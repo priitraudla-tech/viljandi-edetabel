@@ -800,10 +800,10 @@ function buildPlayoff58(data) {
   return wrap;
 }
 
-function buildRoundRobin(group) {
+function buildRoundRobin(group, title) {
   const col = document.createElement("div");
   col.className = "br-col";
-  col.appendChild(bracketSectionTitle("Grupp A · ringsüsteem", 4));
+  col.appendChild(bracketSectionTitle(title || "Grupp A · ringsüsteem", 4));
 
   const wrap = document.createElement("div");
   wrap.className = "table-wrap rr-wrap";
@@ -827,8 +827,16 @@ function buildRoundRobin(group) {
   const lookup = {};
   (group.mangud || []).forEach((m) => {
     const sc = parseScore(m.skoor);
-    lookup[`${m.voitja}|${m.kaotaja}`] = `${sc.winner}/${sc.loser}`;
-    lookup[`${m.kaotaja}|${m.voitja}`] = `${sc.loser}/${sc.winner}`;
+    const numeric = /^\d+$/.test(sc.winner) && /^\d+$/.test(sc.loser);
+    if (numeric) {
+      lookup[`${m.voitja}|${m.kaotaja}`] = `${sc.winner}/${sc.loser}`;
+      lookup[`${m.kaotaja}|${m.voitja}`] = `${sc.loser}/${sc.winner}`;
+    } else {
+      // Non-numeric result (w/o, ret., ?): show the token on the winner's
+      // cell and a dash on the loser's; the V–K column carries the outcome.
+      lookup[`${m.voitja}|${m.kaotaja}`] = sc.winner;
+      lookup[`${m.kaotaja}|${m.voitja}`] = "—";
+    }
   });
 
   const tbody = document.createElement("tbody");
@@ -915,7 +923,66 @@ function buildFinalStandings(loppjarjestus) {
   return grid;
 }
 
+function buildGroupStageColumns(groups, titleFn) {
+  const cols = document.createElement("div");
+  cols.className = "br-three-col";
+  (groups || []).forEach((g, i) => {
+    cols.appendChild(buildRoundRobin(g, titleFn(g, i)));
+  });
+  return cols;
+}
+
+function buildGroupStageView(data) {
+  const wrap = document.createElement("div");
+  wrap.className = "br-root";
+
+  // Alagrupid
+  if (Array.isArray(data.alagrupid) && data.alagrupid.length) {
+    wrap.appendChild(bracketSectionTitle("Alagrupid"));
+    const note = document.createElement("p");
+    note.className = "br-legend";
+    note.textContent =
+      "Kõik alagrupid mängiti ringsüsteemis. Grupivõitjad mängisid kohtadele 1.–3., " +
+      "teised kohtadele 4.–6. ja kolmandad kohtadele 7.–9.";
+    wrap.appendChild(note);
+    wrap.appendChild(
+      buildGroupStageColumns(
+        data.alagrupid,
+        (g) => `${g.nimi} · ringsüsteem`,
+      ),
+    );
+  }
+
+  // Positsioonimängud
+  if (Array.isArray(data.positsioonimangud) && data.positsioonimangud.length) {
+    wrap.appendChild(bracketSectionTitle("Positsioonimängud"));
+    wrap.appendChild(
+      buildGroupStageColumns(data.positsioonimangud, (g) => g.nimi),
+    );
+    const ret = data.positsioonimangud.find((g) => g.markus);
+    if (ret) {
+      const note = document.createElement("p");
+      note.className = "br-legend";
+      note.textContent = ret.markus;
+      wrap.appendChild(note);
+    }
+  }
+
+  // Lõppjärjestus
+  if (Array.isArray(data.loppjarjestus) && data.loppjarjestus.length) {
+    wrap.appendChild(bracketSectionTitle("Lõppjärjestus & punktid"));
+    wrap.appendChild(buildFinalStandings(data.loppjarjestus));
+  }
+
+  return wrap;
+}
+
 function buildBracketView(data) {
+  // Group-stage format (3 round-robin groups + position play-offs).
+  if (data.formaat === "alagrupid" || Array.isArray(data.alagrupid)) {
+    return buildGroupStageView(data);
+  }
+
   const wrap = document.createElement("div");
   wrap.className = "br-root";
 

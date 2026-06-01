@@ -38,5 +38,9 @@
   "4. etapp 25.04.2026": {
     "first_seen": null,
     "first_run": true
+  },
+  "5. etapp 31.05.2026": {
+    "first_seen": "2026-06-01T04:16:27+00:00",
+    "first_run": false
   }
 }
