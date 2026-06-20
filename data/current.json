@@ -1,6 +1,6 @@
 {
   "title": "Viljandi üksikmängu edetabel (31.05.2026 seisuga)",
-  "fetched_at": "2026-06-13T22:01:15+00:00",
+  "fetched_at": "2026-06-20T16:15:02+00:00",
   "stages": [
     {
       "label": "5. etapp 29.06.2025",
@@ -854,6 +854,6 @@
     "4. etapp 25.04.2026": 15,
     "5. etapp 31.05.2026": 9
   },
-  "snapshot_date": "2026-06-13",
+  "snapshot_date": "2026-06-20",
   "compared_to": "2026-06-01"
 }
