@@ -42,5 +42,9 @@
   "5. etapp 31.05.2026": {
     "first_seen": "2026-06-01T04:16:27+00:00",
     "first_run": false
+  },
+  "6. etapp 28.06.2026": {
+    "first_seen": "2026-06-29T01:11:57+00:00",
+    "first_run": false
   }
 }
