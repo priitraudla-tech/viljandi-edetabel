@@ -231,17 +231,33 @@ def main():
     snapshot_path = HISTORY_DIR / f"{today}.json"
 
     existing = sorted(HISTORY_DIR.glob("*.json"))
-    prior = None
+
+    # Find the most recent snapshot that is the same content-wise as parsed.
+    # This tells us whether we need to save a new snapshot.
+    most_recent_prior = None
     for p in reversed(existing):
-        if p.name != snapshot_path.name:
-            prior = json.loads(p.read_text(encoding="utf-8"))
+        if p.name == snapshot_path.name:
+            continue
+        most_recent_prior = json.loads(p.read_text(encoding="utf-8"))
+        break
+
+    # Find the most recent snapshot that DIFFERS from parsed.
+    # Deltas are computed against this — so the up/down arrows persist
+    # across days where the data hasn't changed (between tournaments).
+    prior_different = None
+    for p in reversed(existing):
+        if p.name == snapshot_path.name:
+            continue
+        candidate = json.loads(p.read_text(encoding="utf-8"))
+        if not players_equal(candidate, parsed):
+            prior_different = candidate
             break
 
-    annotate_deltas(parsed, prior)
+    annotate_deltas(parsed, prior_different)
     update_stage_timeline(parsed, DATA_DIR / "stage_timeline.json")
 
     save_snapshot = True
-    if prior is not None and players_equal(prior, parsed):
+    if most_recent_prior is not None and players_equal(most_recent_prior, parsed):
         if not snapshot_path.exists():
             save_snapshot = False
             print(f"No data changes vs {existing[-1].stem} — skipping snapshot.")
