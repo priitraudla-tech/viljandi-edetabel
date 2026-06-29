@@ -96,16 +96,16 @@
       "id": "7-9",
       "nimi": "Kohamäng 7.–9. · gruppide 3. kohad",
       "mangud": [
-        {"voitja": "Marcel Mikiver",   "kaotaja": "Marken Varis",      "skoor": "?"},
-        {"voitja": "Marcel Mikiver",   "kaotaja": "Helmut Hallemaa",   "skoor": "?"},
-        {"voitja": "Helmut Hallemaa",  "kaotaja": "Marken Varis",      "skoor": "?"}
+        {"voitja": "Marcel Mikiver",   "kaotaja": "Helmut Hallemaa",   "skoor": "6-2"},
+        {"voitja": "Marcel Mikiver",   "kaotaja": "Marken Varis",      "skoor": "w/o"},
+        {"voitja": "Helmut Hallemaa",  "kaotaja": "Marken Varis",      "skoor": "w/o"}
       ],
       "tabel": [
         {"koht": 7, "mangija": "Marcel Mikiver",    "voidud": 2, "kaotused": 0},
         {"koht": 8, "mangija": "Helmut Hallemaa",   "voidud": 1, "kaotused": 1},
         {"koht": 9, "mangija": "Marken Varis",      "voidud": 0, "kaotused": 2}
       ],
-      "markus": "Kohamängu 7.–9. üksikute skoore pole fotodel loetavalt nähtaval — lõplikud kohad pärinevad ametlikust edetabelist."
+      "markus": "Marken Varis loobus mõlemast mängust halva enesetunde tõttu (w/o)."
     }
   ],
   "loppjarjestus": [
