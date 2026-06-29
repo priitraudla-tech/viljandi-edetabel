@@ -1,0 +1,122 @@
+{
+  "turniir": {
+    "nimi": "VÜS 2026 6. etapp",
+    "sari": "VÜS",
+    "etapp": 6,
+    "kuupaev": "2026-06-28",
+    "asukoht": "TK Fellin",
+    "tarkvara": "etl.tournamentsoftware.com"
+  },
+  "formaat": "alagrupid",
+  "mangijad": [
+    {"id": 1, "nimi": "Reevo Kirna",       "asetus": 1},
+    {"id": 2, "nimi": "Priit Raudla",      "asetus": 2},
+    {"id": 3, "nimi": "Ilja Balabko",      "asetus": 3},
+    {"id": 4, "nimi": "Henri Liiv",        "asetus": 4},
+    {"id": 5, "nimi": "Andrus Jürgenson",  "asetus": 5},
+    {"id": 6, "nimi": "Helmut Hallemaa",   "asetus": 6},
+    {"id": 7, "nimi": "Eneli Pihl",        "asetus": 7},
+    {"id": 8, "nimi": "Marken Varis",      "asetus": 8},
+    {"id": 9, "nimi": "Marcel Mikiver",    "asetus": 9}
+  ],
+  "alagrupid": [
+    {
+      "id": "A",
+      "nimi": "Grupp A",
+      "mangud": [
+        {"voitja": "Andrus Jürgenson", "kaotaja": "Marken Varis",     "skoor": "6-2"},
+        {"voitja": "Reevo Kirna",      "kaotaja": "Andrus Jürgenson", "skoor": "6-1"},
+        {"voitja": "Reevo Kirna",      "kaotaja": "Marken Varis",     "skoor": "6-1"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Reevo Kirna",      "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Andrus Jürgenson", "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Marken Varis",     "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "B",
+      "nimi": "Grupp B",
+      "mangud": [
+        {"voitja": "Henri Liiv",   "kaotaja": "Marcel Mikiver", "skoor": "6-1"},
+        {"voitja": "Priit Raudla", "kaotaja": "Henri Liiv",     "skoor": "6-3"},
+        {"voitja": "Priit Raudla", "kaotaja": "Marcel Mikiver", "skoor": "6-0"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Priit Raudla",    "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Henri Liiv",      "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Marcel Mikiver",  "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "C",
+      "nimi": "Grupp C",
+      "mangud": [
+        {"voitja": "Eneli Pihl",   "kaotaja": "Helmut Hallemaa", "skoor": "6-0"},
+        {"voitja": "Ilja Balabko", "kaotaja": "Helmut Hallemaa", "skoor": "6-1"},
+        {"voitja": "Ilja Balabko", "kaotaja": "Eneli Pihl",      "skoor": "7-5"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Ilja Balabko",    "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Eneli Pihl",      "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Helmut Hallemaa", "voidud": 0, "kaotused": 2}
+      ]
+    }
+  ],
+  "positsioonimangud": [
+    {
+      "id": "1-3",
+      "nimi": "Kohamäng 1.–3. · grupivõitjate vahel",
+      "mangud": [
+        {"voitja": "Priit Raudla", "kaotaja": "Ilja Balabko", "skoor": "6-3"},
+        {"voitja": "Priit Raudla", "kaotaja": "Reevo Kirna",  "skoor": "6-1"},
+        {"voitja": "Reevo Kirna",  "kaotaja": "Ilja Balabko", "skoor": "6-3"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Priit Raudla", "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Reevo Kirna",  "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Ilja Balabko", "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "4-6",
+      "nimi": "Kohamäng 4.–6. · gruppide 2. kohad",
+      "mangud": [
+        {"voitja": "Henri Liiv",       "kaotaja": "Eneli Pihl",        "skoor": "6-4"},
+        {"voitja": "Henri Liiv",       "kaotaja": "Andrus Jürgenson",  "skoor": "7-6"},
+        {"voitja": "Andrus Jürgenson", "kaotaja": "Eneli Pihl",        "skoor": "6-1"}
+      ],
+      "tabel": [
+        {"koht": 4, "mangija": "Henri Liiv",        "voidud": 2, "kaotused": 0},
+        {"koht": 5, "mangija": "Andrus Jürgenson",  "voidud": 1, "kaotused": 1},
+        {"koht": 6, "mangija": "Eneli Pihl",        "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "7-9",
+      "nimi": "Kohamäng 7.–9. · gruppide 3. kohad",
+      "mangud": [
+        {"voitja": "Marcel Mikiver",   "kaotaja": "Marken Varis",      "skoor": "?"},
+        {"voitja": "Marcel Mikiver",   "kaotaja": "Helmut Hallemaa",   "skoor": "?"},
+        {"voitja": "Helmut Hallemaa",  "kaotaja": "Marken Varis",      "skoor": "?"}
+      ],
+      "tabel": [
+        {"koht": 7, "mangija": "Marcel Mikiver",    "voidud": 2, "kaotused": 0},
+        {"koht": 8, "mangija": "Helmut Hallemaa",   "voidud": 1, "kaotused": 1},
+        {"koht": 9, "mangija": "Marken Varis",      "voidud": 0, "kaotused": 2}
+      ],
+      "markus": "Kohamängu 7.–9. üksikute skoore pole fotodel loetavalt nähtaval — lõplikud kohad pärinevad ametlikust edetabelist."
+    }
+  ],
+  "loppjarjestus": [
+    {"koht": 1, "mangija": "Priit Raudla",      "punktid": 100, "markus": "Grupp B 1."},
+    {"koht": 2, "mangija": "Reevo Kirna",       "punktid": 70,  "markus": "Grupp A 1."},
+    {"koht": 3, "mangija": "Ilja Balabko",      "punktid": 50,  "markus": "Grupp C 1."},
+    {"koht": 4, "mangija": "Henri Liiv",        "punktid": 40,  "markus": "Grupp B 2."},
+    {"koht": 5, "mangija": "Andrus Jürgenson",  "punktid": 30,  "markus": "Grupp A 2."},
+    {"koht": 6, "mangija": "Eneli Pihl",        "punktid": 26,  "markus": "Grupp C 2."},
+    {"koht": 7, "mangija": "Marcel Mikiver",    "punktid": 23,  "markus": "Grupp B 3."},
+    {"koht": 8, "mangija": "Helmut Hallemaa",   "punktid": 21,  "markus": "Grupp C 3."},
+    {"koht": 9, "mangija": "Marken Varis",      "punktid": 19,  "markus": "Grupp A 3."}
+  ]
+}

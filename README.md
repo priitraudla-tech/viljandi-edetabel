@@ -18,6 +18,55 @@ sub-0.1 läbipaistvusega vari, pill-vormis nupud.
   - Esimesel käivitamisel kuvatakse kõik kui `—`, sest võrdlust pole.
 - **Trend** — graafik mängija koha / punktide / etapi-tulemuste muutumisest.
 - **Ajalugu** — kuupäeva valik + vastava päeva snapshot.
+- **Turniir** — viimase (või valitud) turniiri poodium + osaliste järjestus.
+  Kui sellele turniirile on `data/turniirid/<kuupäev>.json` olemas, ilmub
+  ka **Tabel** toggle, mis kuvab täielikku bracketi / grupistaadiumi.
+
+## Bracketi-andmete lisamine uue etapi kohta
+
+Iga turniiri kohta võib repos olla detailne bracketi-JSON:
+
+```
+data/turniirid/YYYY-MM-DD.json
+```
+
+Failinime kuupäev peab täpselt vastama selle etapi kuupäevale Google Sheetsis
+(nt `4. etapp 25.04.2026` → `2026-04-25.json`). Sait avastab faili automaatselt
+ja kuvab "Tabel" toggle Turniir vahekaardis.
+
+### Toetatud formaadid
+
+**1. Single-elimination + lohutused** (nt 16-mängija turniirid).
+Vaata näidet: [`data/turniirid/2026-04-25.json`](data/turniirid/2026-04-25.json).
+Sisaldab `pohitabel` (1. ring / veerandfinaal / poolfinaal / finaal),
+`kohamang_5_8`, `lohutused_grupp_A` (ringsüsteem), `lohutused_grupp_B`
+(mini-bracket) ja `loppjarjestus`.
+
+**2. Alagrupid + positsioonimängud** (nt 9-mängija turniirid).
+Vaata näidet: [`data/turniirid/2026-06-28.json`](data/turniirid/2026-06-28.json).
+Vajab `"formaat": "alagrupid"` välja juurelt. Sisaldab `alagrupid[]` (iga grupp
+on round-robin tabeliga), `positsioonimangud[]` (kohamängud grupivõitjate vahel
+ja allpool), ja `loppjarjestus`.
+
+### Üksikud väljad
+
+- **`skoor: "6-4"`** — kahepunktiline tulemus, kuvatakse kui `6/4`.
+- **`skoor: "w/o"`** — walkover. Kaotaja näeb `—`.
+- **`skoor: "ret."`** — vastane katkestas.
+- **`skoor: "?"`** — skoor pole teada (kuvatakse `?`).
+- **`punktid: 100`** lõppjärjestuse kirjel — kuvatakse parempoolse `100 p` sildina.
+  Veendu, et see vastaks Google Sheetsi etapi-veeru väärtustele.
+- **`markus: "..."`** — vabasõnaline märkus (kuvatakse legendina sektsiooni all).
+- **`staatus: "ei mängitud"`** — kohamäng, mis jäi mängimata (kuvatakse hallina).
+
+### Kontroll-checklist uue bracketi-faili lisamisel
+
+- [ ] Failinimi vastab Sheetsi kuupäevale (`YYYY-MM-DD.json`)
+- [ ] `loppjarjestus` punktid vastavad Google Sheetsi väärtustele
+- [ ] Kõik mängijate nimed identsed Sheetsis kasutatavatega (sh täpitähed)
+- [ ] Tundmatu skoori asemel `"?"` (mitte tühi)
+- [ ] Test lokaalselt: `python -m http.server 8765`, ava
+      `http://localhost:8765`, mine Turniir tab → "Tabel" toggle
 
 ## Struktuur
 
