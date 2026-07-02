@@ -133,6 +133,18 @@ function renderPyramid() {
     });
     wrap.appendChild(rowEl);
   });
+
+  // On narrow screens the pyramid is wider than the viewport — start centred.
+  // Re-run after fonts load, since card widths (and scrollWidth) change then.
+  const scroller = $("#pyramid-wrap");
+  if (scroller) {
+    const centre = () => {
+      scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) / 2;
+    };
+    requestAnimationFrame(centre);
+    if (document.fonts?.ready) document.fonts.ready.then(centre);
+    window.addEventListener("load", centre, { once: true });
+  }
 }
 
 // ---------- games ----------

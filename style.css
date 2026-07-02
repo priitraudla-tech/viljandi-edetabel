@@ -689,6 +689,10 @@ footer {
 }
 
 /* ---------- pyramid page ---------- */
+.pyramid-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 .pyramid {
   display: flex;
   flex-direction: column;
@@ -700,8 +704,8 @@ footer {
   display: flex;
   gap: 10px;
   justify-content: center;
-  flex-wrap: wrap;
 }
+.mobile-hint { display: none; }
 .pyr-card {
   display: inline-flex;
   align-items: center;
@@ -939,10 +943,14 @@ td.game-winner { font-weight: 600; }
 .admin-status.is-ok { color: var(--up); }
 .admin-status.is-error { color: var(--down); }
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
+  /* Preserve the pyramid SHAPE on phones: fixed min-width + sideways scroll
+     (same pattern as tournament brackets). */
+  .pyramid { min-width: 700px; }
   .pyr-card { font-size: 12px; padding: 7px 11px; gap: 5px; }
   .pyr-row { gap: 6px; }
   .pyramid { gap: 7px; }
+  .mobile-hint { display: inline; }
   .admin-panel { padding: 18px 16px 20px; }
 }
 
