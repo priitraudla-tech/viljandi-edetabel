@@ -974,6 +974,49 @@ td.game-winner { font-weight: 600; }
   .admin-panel { padding: 18px 16px 20px; }
 }
 
+/* ---------- PWA install button ---------- */
+.install-wrap {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 40;
+  animation: install-in 0.3s ease;
+}
+@keyframes install-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.install-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--text);
+  color: var(--surface);
+  border: 0;
+  font: 500 14px/1.4 var(--font-body);
+  letter-spacing: 0.14px;
+  padding: 12px 22px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+.install-btn:active { transform: translateY(1px); }
+.install-btn-close {
+  background: var(--surface);
+  border: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-pill);
+  font-size: 17px;
+  color: var(--text-2);
+  cursor: pointer;
+  box-shadow: var(--shadow-inset), var(--shadow-card);
+}
+
 /* ---------- scrollbar (subtle) ---------- */
 .table-wrap::-webkit-scrollbar { height: 8px; width: 8px; }
 .table-wrap::-webkit-scrollbar-thumb {
