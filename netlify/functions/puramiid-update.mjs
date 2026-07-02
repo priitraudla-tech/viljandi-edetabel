@@ -42,15 +42,27 @@ async function ghFetch(url, options = {}) {
   });
 }
 
+const CHALLENGE_DAYS = 14; // väljakutse tuleb mängida 2 nädala jooksul
+
+function addDays(isoDate, days) {
+  const d = new Date(`${isoDate}T00:00:00Z`);
+  if (Number.isNaN(d.getTime())) return null;
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+
 function applyAddChallenge(data, p) {
   if (!p.challenger || !p.challenged) throw new Error("Mängijad puudu.");
   if (p.challenger === p.challenged) throw new Error("Sama mängija mõlemal poolel.");
+  // Deadline: kliendi väärtus või automaatselt +14 päeva väljakutse kuupäevast.
+  const deadline = p.deadline ||
+    (p.challenge_date ? addDays(p.challenge_date, CHALLENGE_DAYS) : null);
   data.challenges = data.challenges || [];
   data.challenges.push({
     challenger: p.challenger,
     challenged: p.challenged,
     challenge_date: p.challenge_date || null,
-    deadline: p.deadline || null,
+    deadline,
     created_at: new Date().toISOString(),
   });
   return `puramiid: väljakutse ${p.challenger} → ${p.challenged}`;

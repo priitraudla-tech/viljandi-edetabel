@@ -797,6 +797,26 @@ td.game-winner { font-weight: 600; }
   gap: 6px;
   flex-wrap: wrap;
 }
+.challenge-deadline {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+  background: var(--surface-warm);
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset);
+  display: inline-block;
+}
+.challenge-deadline.is-soon {
+  background: rgba(184, 131, 57, 0.12);
+  color: #8a5a1d;
+}
+.challenge-deadline.is-overdue {
+  background: rgba(138, 58, 58, 0.10);
+  color: var(--down);
+}
 
 /* stats */
 .stats-grid {

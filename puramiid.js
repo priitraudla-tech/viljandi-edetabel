@@ -47,6 +47,27 @@ async function fetchJSON(path) {
   return res.json();
 }
 
+const CHALLENGE_DAYS = 14; // väljakutse tuleb mängida 2 nädala jooksul
+
+function addDays(isoDate, days) {
+  const d = new Date(isoDate + "T00:00:00");
+  if (isNaN(d)) return null;
+  d.setDate(d.getDate() + days);
+  // NB: mitte toISOString() — see nihutaks UTC+ ajavööndis päeva tagasi.
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${dd}`;
+}
+
+function daysUntil(isoDate) {
+  const d = new Date(isoDate + "T00:00:00");
+  if (isNaN(d)) return null;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return Math.round((d - today) / 86400000);
+}
+
 // ---------- init ----------
 
 async function init() {
@@ -205,6 +226,33 @@ function renderChallenges() {
   items.forEach((c) => {
     const card = document.createElement("div");
     card.className = "challenge-card";
+
+    // Deadline: stored value, or challenge date + 14 days.
+    const deadline = c.deadline ||
+      (c.challenge_date ? addDays(c.challenge_date, CHALLENGE_DAYS) : null);
+
+    let deadlineHtml = "";
+    if (deadline) {
+      const left = daysUntil(deadline);
+      let cls = "";
+      let label = `Mängida hiljemalt ${escapeHtml(fmtDateISO(deadline))}`;
+      if (left !== null) {
+        if (left < 0) {
+          cls = "is-overdue";
+          label += ` — tähtaeg möödas ${Math.abs(left)} päeva`;
+        } else if (left === 0) {
+          cls = "is-soon";
+          label += " — täna!";
+        } else if (left <= 3) {
+          cls = "is-soon";
+          label += ` — ${left} päeva jäänud`;
+        } else {
+          label += ` — ${left} päeva jäänud`;
+        }
+      }
+      deadlineHtml = `<div class="challenge-deadline ${cls}">${label}</div>`;
+    }
+
     card.innerHTML = `
       <div class="challenge-players">
         <span class="challenge-name">${escapeHtml(c.challenger)}</span>
@@ -213,8 +261,8 @@ function renderChallenges() {
       </div>
       <div class="challenge-meta">
         <span>Esitatud: ${escapeHtml(fmtDateISO(c.challenge_date) || "—")}</span>
-        ${c.deadline ? `<span>· Tähtaeg: ${escapeHtml(fmtDateISO(c.deadline))}</span>` : ""}
       </div>
+      ${deadlineHtml}
     `;
     list.appendChild(card);
   });
@@ -366,13 +414,28 @@ function setupAdmin() {
   $("#res-challenged").addEventListener("change", updateWinnerOptions);
   updateWinnerOptions();
 
+  // Deadline auto-fills to challenge date + 14 days; manual edits stick.
+  const chDate = $("#ch-date");
+  const chDeadline = $("#ch-deadline");
+  let deadlineAutoFilled = true;
+  chDate.addEventListener("change", () => {
+    if (chDate.value && (deadlineAutoFilled || !chDeadline.value)) {
+      chDeadline.value = addDays(chDate.value, CHALLENGE_DAYS) || "";
+      deadlineAutoFilled = true;
+    }
+  });
+  chDeadline.addEventListener("input", () => {
+    deadlineAutoFilled = false;
+  });
+
   $("#form-challenge").addEventListener("submit", (e) => {
     e.preventDefault();
+    const date = chDate.value;
     submitAdmin("add_challenge", {
       challenger: $("#ch-challenger").value,
       challenged: $("#ch-challenged").value,
-      challenge_date: $("#ch-date").value,
-      deadline: $("#ch-deadline").value || null,
+      challenge_date: date,
+      deadline: chDeadline.value || (date ? addDays(date, CHALLENGE_DAYS) : null),
     });
   });
 
