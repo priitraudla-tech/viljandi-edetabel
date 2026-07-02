@@ -116,15 +116,21 @@ function switchTab(tab) {
 
 function pyramidRows(players) {
   // Triangular layout: row n holds n slots.
+  // The LAST position always sits alone on the bottom row (nagu Excelis:
+  // 25. koht üksinda püramiidi põhjas).
   const sorted = players.slice().sort((a, b) => a.pos - b.pos);
+  if (sorted.length < 2) return sorted.length ? [sorted] : [];
+  const last = sorted[sorted.length - 1];
+  const rest = sorted.slice(0, -1);
   const rows = [];
   let i = 0;
   let size = 1;
-  while (i < sorted.length) {
-    rows.push(sorted.slice(i, i + size));
+  while (i < rest.length) {
+    rows.push(rest.slice(i, i + size));
     i += size;
     size += 1;
   }
+  rows.push([last]);
   return rows;
 }
 
