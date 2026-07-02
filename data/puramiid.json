@@ -1,0 +1,864 @@
+{
+  "title": "Püramiid",
+  "updated_at": "2026-07-02T05:43:34+00:00",
+  "players": [
+    {
+      "pos": 1,
+      "name": "Viljar Vahemaa",
+      "badge": "👑"
+    },
+    {
+      "pos": 2,
+      "name": "Kert Perkmann",
+      "badge": ""
+    },
+    {
+      "pos": 3,
+      "name": "Timo Kirsimäe",
+      "badge": ""
+    },
+    {
+      "pos": 4,
+      "name": "Priit Raudla",
+      "badge": ""
+    },
+    {
+      "pos": 5,
+      "name": "Daniel Snegirjov",
+      "badge": ""
+    },
+    {
+      "pos": 6,
+      "name": "Heimar Mirka",
+      "badge": ""
+    },
+    {
+      "pos": 7,
+      "name": "Sander Loigo",
+      "badge": ""
+    },
+    {
+      "pos": 8,
+      "name": "Andri Reiman",
+      "badge": ""
+    },
+    {
+      "pos": 9,
+      "name": "Karl Valter Elmaste",
+      "badge": ""
+    },
+    {
+      "pos": 10,
+      "name": "Reevo Kirna",
+      "badge": ""
+    },
+    {
+      "pos": 11,
+      "name": "Ilja Balabko",
+      "badge": ""
+    },
+    {
+      "pos": 12,
+      "name": "Hardi-Sander Luik",
+      "badge": ""
+    },
+    {
+      "pos": 13,
+      "name": "Andrus Jürgenson",
+      "badge": ""
+    },
+    {
+      "pos": 14,
+      "name": "Danel Rebane",
+      "badge": ""
+    },
+    {
+      "pos": 15,
+      "name": "Lauri Zoova",
+      "badge": ""
+    },
+    {
+      "pos": 16,
+      "name": "Rain Paju",
+      "badge": ""
+    },
+    {
+      "pos": 17,
+      "name": "Lauri Tõnisalu",
+      "badge": ""
+    },
+    {
+      "pos": 18,
+      "name": "Gennadi Lepp",
+      "badge": ""
+    },
+    {
+      "pos": 19,
+      "name": "Peeter Matson",
+      "badge": ""
+    },
+    {
+      "pos": 20,
+      "name": "Elar Kurvits",
+      "badge": ""
+    },
+    {
+      "pos": 21,
+      "name": "Indrek Taukar",
+      "badge": ""
+    },
+    {
+      "pos": 22,
+      "name": "Martin Zahkna",
+      "badge": ""
+    },
+    {
+      "pos": 23,
+      "name": "Mikk Kadak",
+      "badge": ""
+    },
+    {
+      "pos": 24,
+      "name": "Jaanus Akel",
+      "badge": ""
+    },
+    {
+      "pos": 25,
+      "name": "Peeter II Matson",
+      "badge": "👶"
+    }
+  ],
+  "games": [
+    {
+      "nr": 1,
+      "challenger": "Hardi-Sander Luik",
+      "challenged": "Indrek Taukar",
+      "score": "5/7 4/6",
+      "winner": "Indrek Taukar",
+      "type": "tavaline",
+      "challenge_date": "09.06",
+      "play_date": "09.06"
+    },
+    {
+      "nr": 2,
+      "challenger": "Hardi-Sander Luik",
+      "challenged": "Mikk Kadak",
+      "score": "6/1 6/1",
+      "winner": "Hardi-Sander Luik",
+      "type": "tavaline",
+      "challenge_date": "10.06",
+      "play_date": "11.06"
+    },
+    {
+      "nr": 3,
+      "challenger": "Karl Valter Elmaste",
+      "challenged": "Viljar Vahemaa",
+      "score": "3/6 2/6",
+      "winner": "Viljar Vahemaa",
+      "type": "tavaline",
+      "challenge_date": "09.06",
+      "play_date": "13.06"
+    },
+    {
+      "nr": 4,
+      "challenger": "Ilja Balabko",
+      "challenged": "Heimar Mirka",
+      "score": "3/6 6/4 10/7",
+      "winner": "Ilja Balabko",
+      "type": "arvestusevaline",
+      "challenge_date": "11.06",
+      "play_date": "13.06"
+    },
+    {
+      "nr": 5,
+      "challenger": "Reevo Kirna",
+      "challenged": "Timo Kirsimäe",
+      "score": "0/6 0/6",
+      "winner": "Timo Kirsimäe",
+      "type": "tavaline",
+      "challenge_date": "09.06",
+      "play_date": "15.06"
+    },
+    {
+      "nr": 6,
+      "challenger": "Lauri Zoova",
+      "challenged": "Priit Raudla",
+      "score": "5/7 5/7",
+      "winner": "Priit Raudla",
+      "type": "tavaline",
+      "challenge_date": "09.06",
+      "play_date": "16.06"
+    },
+    {
+      "nr": 7,
+      "challenger": "Daniel Snegirjov",
+      "challenged": "Viljar Vahemaa",
+      "score": "3/6 3/6",
+      "winner": "Viljar Vahemaa",
+      "type": "tavaline",
+      "challenge_date": "16.06",
+      "play_date": "16.06"
+    },
+    {
+      "nr": 8,
+      "challenger": "Andri Reiman",
+      "challenged": "Andrus Jürgenson",
+      "score": "7/5 4/6 11/9",
+      "winner": "Andri Reiman",
+      "type": "tavaline",
+      "challenge_date": "17.06",
+      "play_date": "17.06"
+    },
+    {
+      "nr": 9,
+      "challenger": "Viljar Vahemaa",
+      "challenged": "Andrus Jürgenson",
+      "score": "6/0 6/2",
+      "winner": "Viljar Vahemaa",
+      "type": "arvestusevaline",
+      "challenge_date": "18.06",
+      "play_date": "18.06"
+    },
+    {
+      "nr": 10,
+      "challenger": "Sander Loigo",
+      "challenged": "Ilja Balabko",
+      "score": "6/1 6/1",
+      "winner": "Sander Loigo",
+      "type": "tavaline",
+      "challenge_date": "1706",
+      "play_date": "20.06"
+    },
+    {
+      "nr": 11,
+      "challenger": "Peeter Matson",
+      "challenged": "Hardi-Sander Luik",
+      "score": "2/6 3/6",
+      "winner": "Hardi-Sander Luik",
+      "type": "tavaline",
+      "challenge_date": "20. 06",
+      "play_date": "21.06"
+    },
+    {
+      "nr": 12,
+      "challenger": "Rain Paju",
+      "challenged": "Andrus Jürgenson",
+      "score": "6/3 5/7 7/10",
+      "winner": "Andrus Jürgenson",
+      "type": "tavaline",
+      "challenge_date": "20.06",
+      "play_date": "22.06"
+    },
+    {
+      "nr": 13,
+      "challenger": "Lauri Tõnisalu",
+      "challenged": "Indrek Taukar",
+      "score": "3/6 7/6(5) 7/10",
+      "winner": "Indrek Taukar",
+      "type": "tavaline",
+      "challenge_date": "17.06",
+      "play_date": "25.06"
+    },
+    {
+      "nr": 14,
+      "challenger": "Hardi-Sander Luik",
+      "challenged": "Andri Reiman",
+      "score": "7/5 3/6 7/10",
+      "winner": "Andri Reiman",
+      "type": "tavaline",
+      "challenge_date": "30.06",
+      "play_date": "30.06"
+    },
+    {
+      "nr": 15,
+      "challenger": "Sander Loigo",
+      "challenged": "Daniel Snegirjov",
+      "score": "3/6 1/1 katkestus, vigastus",
+      "winner": "Daniel Snegirjov",
+      "type": "tavaline",
+      "challenge_date": "21.06",
+      "play_date": "01.07"
+    },
+    {
+      "nr": 16,
+      "challenger": "Heimar Mirka",
+      "challenged": "Andri Reiman",
+      "score": "1/6 1/6",
+      "winner": "Andri Reiman",
+      "type": "tavaline",
+      "challenge_date": "02.07",
+      "play_date": "03.07"
+    },
+    {
+      "nr": 17,
+      "challenger": "Ilja Balabko",
+      "challenged": "Priit Raudla",
+      "score": "2/6 1/6",
+      "winner": "Priit Raudla",
+      "type": "tavaline",
+      "challenge_date": "2.07",
+      "play_date": "04.07"
+    },
+    {
+      "nr": 18,
+      "challenger": "Peeter Matson",
+      "challenged": "Mikk Kadak",
+      "score": "6/4 6/4",
+      "winner": "Peeter Matson",
+      "type": "tavaline",
+      "challenge_date": "04.07",
+      "play_date": "04.07"
+    },
+    {
+      "nr": 19,
+      "challenger": "Indrek Taukar",
+      "challenged": "Andrus Jürgenson",
+      "score": "3/6 4/6",
+      "winner": "Andrus Jürgenson",
+      "type": "tavaline",
+      "challenge_date": "04.07",
+      "play_date": "07.07"
+    },
+    {
+      "nr": 20,
+      "challenger": "Lauri Tõnisalu",
+      "challenged": "Hardi-Sander Luik",
+      "score": "6/3 0/6 10/8",
+      "winner": "Lauri Tõnisalu",
+      "type": "tavaline",
+      "challenge_date": "09.07",
+      "play_date": "09.07"
+    },
+    {
+      "nr": 21,
+      "challenger": "Indrek Taukar",
+      "challenged": "Hardi-Sander Luik",
+      "score": "6/7(3) 6/4 10/8",
+      "winner": "Indrek Taukar",
+      "type": "arvestusevaline",
+      "challenge_date": "09.07",
+      "play_date": "09.07"
+    },
+    {
+      "nr": 22,
+      "challenger": "Jaanus Akel",
+      "challenged": "Peeter Matson",
+      "score": "4/6 6/7 (9)",
+      "winner": "Peeter Matson",
+      "type": "tavaline",
+      "challenge_date": "10.07",
+      "play_date": "11.07"
+    },
+    {
+      "nr": 23,
+      "challenger": "Reevo Kirna",
+      "challenged": "Timo Kirsimäe",
+      "score": "0/6 0/6",
+      "winner": "Timo Kirsimäe",
+      "type": "tavaline",
+      "challenge_date": "3006",
+      "play_date": "11.07"
+    },
+    {
+      "nr": 24,
+      "challenger": "Daniel Snegirjov",
+      "challenged": "Viljar Vahemaa",
+      "score": "2/6 3/6",
+      "winner": "Viljar Vahemaa",
+      "type": "tavaline",
+      "challenge_date": "13.07",
+      "play_date": "13.07"
+    },
+    {
+      "nr": 25,
+      "challenger": "Karl Valter Elmaste",
+      "challenged": "Kert Perkmann",
+      "score": "1/6 3/6",
+      "winner": "Kert Perkmann",
+      "type": "tavaline",
+      "challenge_date": "09.07",
+      "play_date": "14.07"
+    },
+    {
+      "nr": 26,
+      "challenger": "Kert Perkmann",
+      "challenged": "Viljar Vahemaa",
+      "score": "1/6 7/5 8/10",
+      "winner": "Viljar Vahemaa",
+      "type": "tavaline",
+      "challenge_date": "14.07",
+      "play_date": "14.07"
+    },
+    {
+      "nr": 27,
+      "challenger": "Lauri Tõnisalu",
+      "challenged": "Priit Raudla",
+      "score": "6/4 2/6 2/10",
+      "winner": "Priit Raudla",
+      "type": "tavaline",
+      "challenge_date": "10.07.2025",
+      "play_date": null
+    },
+    {
+      "nr": 28,
+      "challenger": "Priit Raudla",
+      "challenged": "Daniel Snegirjov",
+      "score": "6/2 6/1",
+      "winner": "Daniel Snegirjov",
+      "type": "tavaline",
+      "challenge_date": "20.07",
+      "play_date": "23.07"
+    },
+    {
+      "nr": 29,
+      "challenger": "Elar Kurvits",
+      "challenged": "Rain Paju",
+      "score": "6/3 7/5",
+      "winner": "Elar Kurvits",
+      "type": "tavaline",
+      "challenge_date": "20.07",
+      "play_date": "21.07"
+    },
+    {
+      "nr": 30,
+      "challenger": "Karl Valter Elmaste",
+      "challenged": "Reevo Kirna",
+      "score": "1/6 3/6",
+      "winner": "Reevo Kirna",
+      "type": "tavaline",
+      "challenge_date": "14.07",
+      "play_date": "22.07"
+    },
+    {
+      "nr": 31,
+      "challenger": "Kert Perkmann",
+      "challenged": "Reevo Kirna",
+      "score": "6/1 6/1",
+      "winner": "Kert Perkmann",
+      "type": "tavaline",
+      "challenge_date": null,
+      "play_date": null
+    },
+    {
+      "nr": 32,
+      "challenger": "Jaanus Akel",
+      "challenged": "Elar Kurvits",
+      "score": "7/6(3) 2/6 4/10",
+      "winner": "Elar Kurvits",
+      "type": "tavaline",
+      "challenge_date": "21.07",
+      "play_date": "23.07"
+    },
+    {
+      "nr": 33,
+      "challenger": "Rain Paju",
+      "challenged": "Hardi-Sander Luik",
+      "score": "6/3 3/6 10/5",
+      "winner": "Rain Paju",
+      "type": "tavaline",
+      "challenge_date": "28.07",
+      "play_date": "28.07"
+    },
+    {
+      "nr": 34,
+      "challenger": "Daniel Snegirjov",
+      "challenged": "Viljar Vahemaa",
+      "score": "2/6 4/6",
+      "winner": "Viljar Vahemaa",
+      "type": "tavaline",
+      "challenge_date": "29.07",
+      "play_date": "29.07"
+    },
+    {
+      "nr": 35,
+      "challenger": "Mikk Kadak",
+      "challenged": "Indrek Taukar",
+      "score": "3/6 0/6",
+      "winner": "Indrek Taukar",
+      "type": "tavaline",
+      "challenge_date": "22.07",
+      "play_date": "31. 07"
+    },
+    {
+      "nr": 36,
+      "challenger": "Priit Raudla",
+      "challenged": "Reevo Kirna",
+      "score": "6/4 6/4",
+      "winner": "Priit Raudla",
+      "type": "tavaline",
+      "challenge_date": "23.07",
+      "play_date": "31.07"
+    },
+    {
+      "nr": 37,
+      "challenger": "Indrek Taukar",
+      "challenged": "Lauri Zoova",
+      "score": "6/7(8) 6/2 12/10",
+      "winner": "Indrek Taukar",
+      "type": "tavaline",
+      "challenge_date": "3107",
+      "play_date": "06.08"
+    },
+    {
+      "nr": 38,
+      "challenger": "Karl Valter Elmaste",
+      "challenged": "Viljar Vahemaa",
+      "score": "1/6 1/6",
+      "winner": "Viljar Vahemaa",
+      "type": "tavaline",
+      "challenge_date": "29.07",
+      "play_date": "06.08"
+    },
+    {
+      "nr": 39,
+      "challenger": "Lauri Tõnisalu",
+      "challenged": "Heimar Mirka",
+      "score": "4/6 4/6",
+      "winner": "Heimar Mirka",
+      "type": "tavaline",
+      "challenge_date": "3107",
+      "play_date": "06.08"
+    },
+    {
+      "nr": 40,
+      "challenger": "Reevo Kirna",
+      "challenged": "Daniel Snegirjov",
+      "score": "2/6 5/7",
+      "winner": "Daniel Snegirjov",
+      "type": "tavaline",
+      "challenge_date": "3107",
+      "play_date": "06.08"
+    },
+    {
+      "nr": 41,
+      "challenger": "Kert Perkmann",
+      "challenged": "Timo Kirsimäe",
+      "score": "4/6 0/6",
+      "winner": "Timo Kirsimäe",
+      "type": "tavaline",
+      "challenge_date": "28.07",
+      "play_date": "06.08"
+    },
+    {
+      "nr": 42,
+      "challenger": "Andrus Jürgenson",
+      "challenged": "Heimar Mirka",
+      "score": "3/6 3/6",
+      "winner": "Heimar Mirka",
+      "type": "tavaline",
+      "challenge_date": "10.08",
+      "play_date": "10.08"
+    },
+    {
+      "nr": 43,
+      "challenger": "Hardi-Sander Luik",
+      "challenged": "Indrek Taukar",
+      "score": "5/7 6/3 11/9",
+      "winner": "Hardi-Sander Luik",
+      "type": "tavaline",
+      "challenge_date": "12.08",
+      "play_date": "12.08"
+    },
+    {
+      "nr": 44,
+      "challenger": "Heimar Mirka",
+      "challenged": "Priit Raudla",
+      "score": "2/6 6/7(1)",
+      "winner": "Priit Raudla",
+      "type": "tavaline",
+      "challenge_date": "09.08",
+      "play_date": "09.08"
+    },
+    {
+      "nr": 45,
+      "challenger": "Lauri Tõnisalu",
+      "challenged": "Reevo Kirna",
+      "score": "2/6 1/6",
+      "winner": "Reevo Kirna",
+      "type": "tavaline",
+      "challenge_date": "27.08",
+      "play_date": "27.08"
+    },
+    {
+      "nr": 46,
+      "challenger": "Hardi-Sander Luik",
+      "challenged": "Heimar Mirka",
+      "score": "2/6 3/6",
+      "winner": "Heimar Mirka",
+      "type": "mv",
+      "challenge_date": null,
+      "play_date": null
+    },
+    {
+      "nr": 47,
+      "challenger": "Sander Loigo",
+      "challenged": "Reevo Kirna",
+      "score": "6/2 6/2",
+      "winner": "Sander Loigo",
+      "type": "mv",
+      "challenge_date": "26.08",
+      "play_date": "26.08"
+    },
+    {
+      "nr": 48,
+      "challenger": "Lauri Tõnisalu",
+      "challenged": "Andrus Jürgenson",
+      "score": "0/6 6/3 3/10",
+      "winner": "Andrus Jürgenson",
+      "type": "mv",
+      "challenge_date": "26.08",
+      "play_date": "26.08"
+    },
+    {
+      "nr": 49,
+      "challenger": "Danel Rebane",
+      "challenged": "Priit Raudla",
+      "score": "4/6 2/6",
+      "winner": "Priit Raudla",
+      "type": "mv",
+      "challenge_date": "26.08",
+      "play_date": "26.08"
+    },
+    {
+      "nr": 50,
+      "challenger": "Andrus Jürgenson",
+      "challenged": "Sander Loigo",
+      "score": "2/6 1/6",
+      "winner": "Sander Loigo",
+      "type": "mv",
+      "challenge_date": "27.08",
+      "play_date": "27.08"
+    },
+    {
+      "nr": 51,
+      "challenger": "Lauri Tõnisalu",
+      "challenged": "Reevo Kirna",
+      "score": "4/6 0/6",
+      "winner": "Reevo Kirna",
+      "type": "mv",
+      "challenge_date": null,
+      "play_date": null
+    },
+    {
+      "nr": 52,
+      "challenger": "Priit Raudla",
+      "challenged": "Kert Perkmann",
+      "score": "0/6 2/6",
+      "winner": "Kert Perkmann",
+      "type": "mv",
+      "challenge_date": "27.08",
+      "play_date": "27.08"
+    },
+    {
+      "nr": 53,
+      "challenger": "Heimar Mirka",
+      "challenged": "Viljar Vahemaa",
+      "score": "1/6 1/6",
+      "winner": "Viljar Vahemaa",
+      "type": "mv",
+      "challenge_date": "27.08",
+      "play_date": "27.08"
+    },
+    {
+      "nr": 54,
+      "challenger": "Sander Loigo",
+      "challenged": "Viljar Vahemaa",
+      "score": "1/6 0/6",
+      "winner": "Viljar Vahemaa",
+      "type": "mv",
+      "challenge_date": "28.08",
+      "play_date": "28.08"
+    },
+    {
+      "nr": 55,
+      "challenger": "Andrus Jürgenson",
+      "challenged": "Heimar Mirka",
+      "score": "6/7 (5) 2/6",
+      "winner": "Heimar Mirka",
+      "type": "mv",
+      "challenge_date": "2808",
+      "play_date": "28.08"
+    },
+    {
+      "nr": 56,
+      "challenger": "Lauri Tõnisalu",
+      "challenged": "Hardi-Sander Luik",
+      "score": "6/0 4/6 10/12",
+      "winner": "Hardi-Sander Luik",
+      "type": "mv",
+      "challenge_date": "28.08",
+      "play_date": "28.08"
+    },
+    {
+      "nr": 57,
+      "challenger": "Ilja Balabko",
+      "challenged": "Priit Raudla",
+      "score": "3/6 2/6",
+      "winner": "Priit Raudla",
+      "type": "mv",
+      "challenge_date": "28.08",
+      "play_date": "28.08"
+    },
+    {
+      "nr": 58,
+      "challenger": "Heimar Mirka",
+      "challenged": "Priit Raudla",
+      "score": "1/6 6/1 10/8",
+      "winner": "Heimar Mirka",
+      "type": "mv",
+      "challenge_date": "29.08",
+      "play_date": "29.08"
+    },
+    {
+      "nr": 59,
+      "challenger": "Ilja Balabko",
+      "challenged": "Andrus Jürgenson",
+      "score": "4/6 6/2 10/8",
+      "winner": "Ilja Balabko",
+      "type": "mv",
+      "challenge_date": "29.08",
+      "play_date": "29.08"
+    },
+    {
+      "nr": 60,
+      "challenger": "Sander Loigo",
+      "challenged": "Kert Perkmann",
+      "score": "6/7 (4) 0/6",
+      "winner": "Kert Perkmann",
+      "type": "mv",
+      "challenge_date": "29.08",
+      "play_date": "29.08"
+    },
+    {
+      "nr": 61,
+      "challenger": "Danel Rebane",
+      "challenged": "Lauri Tõnisalu",
+      "score": "Loobukas",
+      "winner": "Danel Rebane",
+      "type": "mv",
+      "challenge_date": "29.08",
+      "play_date": "29.08"
+    },
+    {
+      "nr": 62,
+      "challenger": "Indrek Taukar",
+      "challenged": "Hardi-Sander Luik",
+      "score": "6/3 6/7(3) 9/11",
+      "winner": "Hardi-Sander Luik",
+      "type": "tavaline",
+      "challenge_date": "12.09",
+      "play_date": "12.09"
+    },
+    {
+      "nr": 63,
+      "challenger": "Reevo Kirna",
+      "challenged": "Heimar Mirka",
+      "score": "6/4 6/2",
+      "winner": "Reevo Kirna",
+      "type": "tavaline",
+      "challenge_date": "12.09",
+      "play_date": "13.09"
+    },
+    {
+      "nr": 64,
+      "challenger": "Viljar Vahemaa",
+      "challenged": "Timo Kirsimäe",
+      "score": "6/4 6/1",
+      "winner": "Viljar Vahemaa",
+      "type": "tavaline",
+      "challenge_date": "06.08",
+      "play_date": "26.09"
+    },
+    {
+      "nr": 65,
+      "challenger": "Heimar Mirka",
+      "challenged": "Karl Valter Elmaste",
+      "score": "6/3 5/7 7/10",
+      "winner": "Karl Valter Elmaste",
+      "type": "tavaline",
+      "challenge_date": "08.10",
+      "play_date": "11.10"
+    },
+    {
+      "nr": 66,
+      "challenger": "Indrek Taukar",
+      "challenged": "Hardi-Sander Luik",
+      "score": "6/4 1/6 3/10",
+      "winner": "Hardi-Sander Luik",
+      "type": "tavaline",
+      "challenge_date": "13.10/16/10",
+      "play_date": null
+    },
+    {
+      "nr": 67,
+      "challenger": "Martin Zahkna",
+      "challenged": "Peeter Matson",
+      "score": "6/4 3/6 10/12",
+      "winner": "Peeter Matson",
+      "type": "tavaline",
+      "challenge_date": "24.10",
+      "play_date": "26.10"
+    },
+    {
+      "nr": 68,
+      "challenger": "Andrus Jürgenson",
+      "challenged": "Hardi-Sander Luik",
+      "score": "4/6/ 4/6",
+      "winner": "Hardi-Sander Luik",
+      "type": "tavaline",
+      "challenge_date": "27.10",
+      "play_date": "28.10"
+    },
+    {
+      "nr": 69,
+      "challenger": "Heimar Mirka",
+      "challenged": "Karl Valter Elmaste",
+      "score": "6/0 6/4",
+      "winner": "Heimar Mirka",
+      "type": "tavaline",
+      "challenge_date": "20.11",
+      "play_date": "22.11"
+    },
+    {
+      "nr": 70,
+      "challenger": "Heimar Mirka",
+      "challenged": "Reevo Kirna",
+      "score": "4/6 6/4 5/10",
+      "winner": "Reevo Kirna",
+      "type": "tavaline",
+      "challenge_date": "04.12",
+      "play_date": "05.12"
+    },
+    {
+      "nr": 71,
+      "challenger": "Indrek Taukar",
+      "challenged": "Hardi-Sander Luik",
+      "score": "5/7 7/5 7/10",
+      "winner": "Hardi-Sander Luik",
+      "type": "tavaline",
+      "challenge_date": "10.01",
+      "play_date": "10.01"
+    },
+    {
+      "nr": 72,
+      "challenger": "Priit Raudla",
+      "challenged": "Reevo Kirna",
+      "score": "6/4 6/2",
+      "winner": "Priit Raudla",
+      "type": "tavaline",
+      "challenge_date": "05.06",
+      "play_date": "07.06"
+    },
+    {
+      "nr": 73,
+      "challenger": "Karl Valter Elmaste",
+      "challenged": "Daniel Snegirjov",
+      "score": "0/6 6/3 0/10",
+      "winner": "Daniel Snegirjov",
+      "type": "tavaline",
+      "challenge_date": "08.06",
+      "play_date": "10.06"
+    }
+  ],
+  "challenges": []
+}

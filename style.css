@@ -54,6 +54,9 @@
 /* ---------- reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
+/* hidden attribute must always win over display:flex/grid rules */
+[hidden] { display: none !important; }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -683,6 +686,264 @@ footer {
   font-size: 13px;
   letter-spacing: 0.14px;
   color: var(--text-3);
+}
+
+/* ---------- pyramid page ---------- */
+.pyramid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0 4px;
+}
+.pyr-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.pyr-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface);
+  border: 0;
+  font: 500 14px/1.3 var(--font-body);
+  letter-spacing: 0.14px;
+  color: var(--text);
+  padding: 9px 16px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.pyr-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-inset), var(--shadow-card);
+}
+.pyr-card.pyr-first {
+  background: linear-gradient(180deg, #fff8ec 0%, #ffffff 70%);
+  box-shadow: var(--shadow-inset),
+              rgba(201, 168, 106, 0.20) 0 0 0 1px,
+              rgba(201, 168, 106, 0.12) 0 6px 18px;
+  font-weight: 600;
+  padding: 11px 20px;
+}
+.pyr-pos {
+  color: var(--text-3);
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.pyr-badge { font-size: 15px; }
+
+/* game type badges + rows */
+.type-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 1px 7px;
+  border-radius: var(--r-pill);
+  vertical-align: 1px;
+}
+.type-badge.type-mv {
+  background: var(--accent-soft, rgba(29, 78, 216, 0.08));
+  color: #1d4ed8;
+  box-shadow: var(--shadow-inset);
+  background: rgba(78, 50, 23, 0.07);
+  color: #7a5b2f;
+}
+tr.game-off td { color: var(--text-3); }
+tr.game-off .game-winner { color: var(--text-3); }
+td.game-winner { font-weight: 600; }
+
+/* challenges */
+.challenges-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+.challenge-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+  padding: 16px 18px;
+}
+.challenge-players {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.challenge-name { font-weight: 600; letter-spacing: 0.1px; }
+.challenge-vs {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-3);
+}
+.challenge-meta {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-3);
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+  padding: 18px 20px;
+}
+.stat-card h3 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.stat-card ol {
+  margin: 0;
+  padding-left: 22px;
+  font-size: 14px;
+  letter-spacing: 0.14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stat-card b { font-weight: 600; }
+.stat-card .dim { color: var(--text-3); font-size: 12px; }
+
+/* admin overlay */
+.admin-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 6vh 16px 24px;
+  z-index: 50;
+  overflow-y: auto;
+}
+.admin-panel {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-inset), 0 12px 40px rgba(0, 0, 0, 0.18);
+  padding: 24px 26px 26px;
+  width: 100%;
+  max-width: 480px;
+}
+.admin-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.admin-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+}
+.admin-close {
+  background: var(--surface-warm);
+  border: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-pill);
+  font-size: 18px;
+  color: var(--text-2);
+  cursor: pointer;
+  box-shadow: var(--shadow-inset);
+}
+.admin-close:hover { color: var(--text); }
+
+.admin-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--surface-warm);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset);
+  margin: 14px 0 16px;
+}
+.admin-tab {
+  background: transparent;
+  border: 0;
+  padding: 7px 14px;
+  font: 500 13px/1.4 var(--font-body);
+  color: var(--text-2);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+}
+.admin-tab.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-card);
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14px;
+  color: var(--text-3);
+}
+.admin-field input,
+.admin-field select {
+  min-width: 0;
+  width: 100%;
+}
+.admin-check { font-size: 13px; color: var(--text-2); }
+.admin-submit {
+  margin-top: 4px;
+  background: var(--text);
+  color: var(--surface);
+  border: 0;
+  font: 500 14px/1.4 var(--font-body);
+  letter-spacing: 0.14px;
+  padding: 11px 20px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.admin-submit:hover { opacity: 0.85; }
+
+.admin-status {
+  margin: 14px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+}
+.admin-status.is-ok { color: var(--up); }
+.admin-status.is-error { color: var(--down); }
+
+@media (max-width: 600px) {
+  .pyr-card { font-size: 12px; padding: 7px 11px; gap: 5px; }
+  .pyr-row { gap: 6px; }
+  .pyramid { gap: 7px; }
+  .admin-panel { padding: 18px 16px 20px; }
 }
 
 /* ---------- scrollbar (subtle) ---------- */

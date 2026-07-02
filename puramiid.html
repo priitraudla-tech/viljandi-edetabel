@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Püramiid</title>
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="puramiid.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-text">
+        <h1 id="title">Püramiid</h1>
+        <p class="meta">
+          <span id="meta-updated">—</span>
+          <span class="dot">·</span>
+          <span id="meta-counts" class="muted"></span>
+          <span class="dot">·</span>
+          <a href="index.html">← üksikmängu edetabel</a>
+        </p>
+      </div>
+      <button id="admin-btn" class="refresh-btn" type="button" aria-label="Halda">
+        <span class="refresh-glyph" aria-hidden="true">✎</span>
+        <span class="refresh-label">Halda</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="container tabs-wrap">
+    <nav class="tabs">
+      <button class="tab active" data-tab="pyramid">Püramiid</button>
+      <button class="tab" data-tab="games">Mängud</button>
+      <button class="tab" data-tab="challenges">Väljakutsed</button>
+      <button class="tab" data-tab="stats">Statistika</button>
+    </nav>
+  </div>
+
+  <main class="container">
+
+    <section id="tab-pyramid" class="tab-panel active">
+      <div id="pyramid" class="pyramid" aria-label="Püramiid"></div>
+      <p class="footnote">
+        Klõpsa mängijale, et näha tema mänge. Väljakutsuja võit vahetab kohad.
+      </p>
+    </section>
+
+    <section id="tab-games" class="tab-panel">
+      <div class="toolbar">
+        <input id="games-search" type="search" placeholder="Otsi mängijat…" autocomplete="off" />
+        <label>
+          Tüüp:
+          <select id="games-type">
+            <option value="">Kõik mängud</option>
+            <option value="tavaline">Tavalised</option>
+            <option value="mv">Maakonna MV</option>
+            <option value="arvestusevaline">Arvestusevälised</option>
+          </select>
+        </label>
+      </div>
+      <div class="table-wrap">
+        <table id="games-table">
+          <thead>
+            <tr>
+              <th class="num">#</th>
+              <th>Kuupäev</th>
+              <th>Väljakutsuja</th>
+              <th class="num">Skoor</th>
+              <th>Väljakutsutav</th>
+              <th>Võitja</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="footnote">
+        <span class="type-badge type-mv">MV</span> = Viljandi maakonna meistrivõistlused ·
+        hall rida = arvestuseväline mäng
+      </p>
+    </section>
+
+    <section id="tab-challenges" class="tab-panel">
+      <div id="challenges-list" class="challenges-list"></div>
+      <p id="challenges-empty" class="footnote" hidden>
+        Ootel väljakutseid pole. Halda-nupu kaudu saab uusi lisada.
+      </p>
+    </section>
+
+    <section id="tab-stats" class="tab-panel">
+      <div id="stats-grid" class="stats-grid"></div>
+      <p class="footnote">Statistika arvutatakse mängudest automaatselt (arvestusevälised mängud välja jäetud).</p>
+    </section>
+
+  </main>
+
+  <!-- ===== Admin panel (hidden until opened) ===== -->
+  <div id="admin-overlay" class="admin-overlay" hidden>
+    <div class="admin-panel">
+      <div class="admin-head">
+        <h2>Halda püramiidi</h2>
+        <button id="admin-close" class="admin-close" type="button" aria-label="Sulge">×</button>
+      </div>
+
+      <label class="admin-field">
+        Parool
+        <input id="admin-password" type="password" autocomplete="current-password" placeholder="Sisesta haldusparool" />
+      </label>
+
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-admin-tab="challenge">Uus väljakutse</button>
+        <button class="admin-tab" data-admin-tab="result">Sisesta tulemus</button>
+      </div>
+
+      <!-- New challenge form -->
+      <form id="form-challenge" class="admin-form">
+        <label class="admin-field">
+          Väljakutsuja
+          <select id="ch-challenger" required></select>
+        </label>
+        <label class="admin-field">
+          Väljakutsutav
+          <select id="ch-challenged" required></select>
+        </label>
+        <label class="admin-field">
+          Väljakutse kuupäev
+          <input id="ch-date" type="date" required />
+        </label>
+        <label class="admin-field">
+          Mängimise tähtaeg (valikuline)
+          <input id="ch-deadline" type="date" />
+        </label>
+        <button type="submit" class="admin-submit">Lisa väljakutse</button>
+      </form>
+
+      <!-- Result form -->
+      <form id="form-result" class="admin-form" hidden>
+        <label class="admin-field">
+          Ootel väljakutse (valikuline — täidab väljad)
+          <select id="res-challenge">
+            <option value="">— vali või sisesta käsitsi —</option>
+          </select>
+        </label>
+        <label class="admin-field">
+          Väljakutsuja
+          <select id="res-challenger" required></select>
+        </label>
+        <label class="admin-field">
+          Väljakutsutav
+          <select id="res-challenged" required></select>
+        </label>
+        <label class="admin-field">
+          Skoor (nt 6/4 3/6 10/8)
+          <input id="res-score" type="text" required placeholder="6/4 6/2" />
+        </label>
+        <label class="admin-field">
+          Võitja
+          <select id="res-winner" required>
+            <option value="">— vali —</option>
+          </select>
+        </label>
+        <label class="admin-field">
+          Mängu kuupäev
+          <input id="res-date" type="date" />
+        </label>
+        <label class="admin-field">
+          Tüüp
+          <select id="res-type">
+            <option value="tavaline">Tavaline</option>
+            <option value="mv">Maakonna MV</option>
+            <option value="arvestusevaline">Arvestuseväline</option>
+          </select>
+        </label>
+        <label class="check admin-check">
+          <input id="res-swap" type="checkbox" checked />
+          <span>Väljakutsuja võidu korral vaheta kohad</span>
+        </label>
+        <button type="submit" class="admin-submit">Salvesta tulemus</button>
+      </form>
+
+      <p id="admin-status" class="admin-status" hidden></p>
+    </div>
+  </div>
+
+  <footer class="container muted small">
+    Püramiidi väljakutsete süsteem · andmed uuenevad halduri sisestuste järel.
+  </footer>
+</body>
+</html>

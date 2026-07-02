@@ -22,6 +22,23 @@ sub-0.1 läbipaistvusega vari, pill-vormis nupud.
   Kui sellele turniirile on `data/turniirid/<kuupäev>.json` olemas, ilmub
   ka **Tabel** toggle, mis kuvab täielikku bracketi / grupistaadiumi.
 
+## Püramiid (puramiid.html)
+
+Eraldi leht väljakutsete-süsteemi jaoks: visuaalne püramiid, mängitud mängud,
+ootel väljakutsed ja automaatne statistika. Andmed: `data/puramiid.json`.
+
+- **Mängutüübid:** `tavaline`, `mv` (Viljandi maakonna MV), `arvestusevaline`
+  (sulgudes olnud mängud — kuvatakse hallina, ei mõjuta statistikat ega kohti).
+- **Kohavahetus:** väljakutsuja võit vahetab kohad automaatselt (halduri vormis
+  saab linnukesega välja lülitada). Arvestusevälised mängud kohti ei muuda.
+- **Haldamine:** lehe nupp "Halda" → parool → vormid *Uus väljakutse* ja
+  *Sisesta tulemus*. Kirjutamine käib Netlify Function
+  (`netlify/functions/puramiid-update.mjs`) kaudu, mis kontrollib parooli
+  serveri poolel ja commit'ib muudatuse GitHubi → Netlify deploy'b (~1 min).
+- **Seadistus (ühekordne):** Netlify → Environment variables →
+  lisa `PYRAMID_ADMIN_PASSWORD` (haldusparool). `GITHUB_TOKEN` on juba olemas.
+- **Ühekordne import Excelist:** `python scripts/import_puramiid.py <fail.xlsx>`.
+
 ## Bracketi-andmete lisamine uue etapi kohta
 
 Iga turniiri kohta võib repos olla detailne bracketi-JSON:
