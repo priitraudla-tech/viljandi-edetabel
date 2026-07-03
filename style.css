@@ -1039,6 +1039,160 @@ td.game-winner { font-weight: 600; }
   .admin-panel { padding: 18px 16px 20px; }
 }
 
+/* ---------- players page (mangijad.html) ---------- */
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.player-card {
+  background: var(--surface);
+  border: 0;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+  padding: 16px 18px;
+  text-align: left;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.player-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-inset), var(--shadow-card);
+}
+.player-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.player-card-meta {
+  font-size: 12px;
+  letter-spacing: 0.14px;
+  color: var(--text-3);
+}
+.player-card-stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+.player-card-form { margin-top: 6px; }
+
+.dot-form {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--r-pill);
+  font-size: 10px;
+  font-weight: 700;
+  margin-right: 3px;
+}
+.dot-w { background: rgba(47, 107, 63, 0.14); color: var(--up); }
+.dot-l { background: rgba(138, 58, 58, 0.12); color: var(--down); }
+
+.profile-back { margin-bottom: 16px; display: inline-block; }
+.profile-header { margin-bottom: 18px; }
+.profile-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+  background: var(--surface-warm);
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset);
+}
+.profile-stats { margin-bottom: 8px; }
+.stat-row {
+  font-size: 14px;
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+  padding: 3px 0;
+}
+.stat-row b { color: var(--text); font-weight: 600; }
+.profile-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 28px 0 12px;
+}
+
+.res-w { color: var(--up); font-weight: 600; }
+.res-l { color: var(--down); font-weight: 600; }
+
+/* H2H */
+.h2h-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+  padding: 26px 24px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.h2h-names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.h2h-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+}
+.h2h-score {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 200;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  padding: 4px 20px;
+  background: var(--surface-warm);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-inset);
+}
+.h2h-breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: 0.14px;
+  color: var(--text-3);
+}
+.h2h-breakdown b { color: var(--text); font-weight: 600; }
+
+@media (max-width: 600px) {
+  .h2h-name { font-size: 17px; }
+  .h2h-score { font-size: 30px; padding: 3px 14px; }
+  .player-grid { grid-template-columns: 1fr 1fr; }
+  .player-card { padding: 12px 13px; }
+  .player-card-name { font-size: 14px; }
+}
+
 /* ---------- PWA install button ---------- */
 .install-wrap {
   position: fixed;

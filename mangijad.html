@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mängijad</title>
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="mangijad.js" defer></script>
+  <script src="install.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-text">
+        <h1 id="title">Mängijad</h1>
+        <p class="meta">
+          <span id="meta-counts">—</span>
+          <span class="dot">·</span>
+          <a href="index.html">← edetabel</a>
+          <span class="dot">·</span>
+          <a href="puramiid.html">püramiid →</a>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container tabs-wrap">
+    <nav class="tabs">
+      <button class="tab active" data-tab="players">Mängijad</button>
+      <button class="tab" data-tab="h2h">Omavahelised</button>
+    </nav>
+  </div>
+
+  <main class="container">
+
+    <section id="tab-players" class="tab-panel active">
+
+      <!-- Register view -->
+      <div id="view-register">
+        <div class="toolbar">
+          <input id="player-search" type="search" placeholder="Otsi mängijat…" autocomplete="off" />
+          <label>
+            Järjesta:
+            <select id="player-sort">
+              <option value="vus">VÜS koha järgi</option>
+              <option value="matches">Mängude arvu järgi</option>
+              <option value="winpct">Võiduprotsendi järgi</option>
+              <option value="name">Nime järgi</option>
+            </select>
+          </label>
+        </div>
+        <div id="player-grid" class="player-grid"></div>
+      </div>
+
+      <!-- Profile view -->
+      <div id="view-profile" hidden>
+        <button id="profile-back" class="linklike profile-back" type="button">← kõik mängijad</button>
+
+        <header class="profile-header">
+          <h2 id="profile-name" class="tournament-title">—</h2>
+          <div id="profile-badges" class="profile-badges"></div>
+        </header>
+
+        <div id="profile-stats" class="stats-grid profile-stats"></div>
+
+        <h3 class="profile-section-title">Mängud</h3>
+        <div class="toolbar">
+          <label>
+            Formaat:
+            <select id="profile-format">
+              <option value="">Kõik mängud</option>
+              <option value="vus">VÜS turniirid</option>
+              <option value="puramiid">Püramiid</option>
+            </select>
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table id="profile-matches">
+            <thead>
+              <tr>
+                <th>Kuupäev</th>
+                <th>Sündmus</th>
+                <th>Vastane</th>
+                <th class="num">Skoor</th>
+                <th>Tulemus</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h3 class="profile-section-title">Vastased</h3>
+        <div class="table-wrap">
+          <table id="profile-opponents">
+            <thead>
+              <tr>
+                <th>Vastane</th>
+                <th class="num">Mänge</th>
+                <th class="num">Võite</th>
+                <th class="num">Kaotusi</th>
+                <th class="num">H2H</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="tab-h2h" class="tab-panel">
+      <div class="toolbar">
+        <label>
+          Mängija 1:
+          <select id="h2h-a"></select>
+        </label>
+        <label>
+          Mängija 2:
+          <select id="h2h-b"></select>
+        </label>
+      </div>
+
+      <div id="h2h-result" hidden>
+        <div class="h2h-card">
+          <div class="h2h-names">
+            <span id="h2h-name-a" class="h2h-name"></span>
+            <span id="h2h-score" class="h2h-score">0 : 0</span>
+            <span id="h2h-name-b" class="h2h-name"></span>
+          </div>
+          <div id="h2h-breakdown" class="h2h-breakdown"></div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="h2h-matches">
+            <thead>
+              <tr>
+                <th>Kuupäev</th>
+                <th>Sündmus</th>
+                <th class="num">Skoor</th>
+                <th>Võitja</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <p id="h2h-empty" class="footnote" hidden>Need mängijad pole omavahel mänginud.</p>
+    </section>
+
+  </main>
+
+  <footer class="container muted small">
+    VÜS turniiride mängud on kirjas alates 4. etapist (2026). Püramiidi mängud alates hooaja algusest.
+  </footer>
+</body>
+</html>
