@@ -68,6 +68,78 @@ function daysUntil(isoDate) {
   return Math.round((d - today) / 86400000);
 }
 
+// ---------- rules helpers ----------
+
+const ERAND_MAX = 2;        // allapoole-väljakutseid hooajal mängija kohta
+const ERAND_MAX_DIST = 2;   // mitu kohta allapoole tohib kutsuda
+const COOLDOWN_DAYS = 14;   // sama paari uus väljakutse
+
+function playerByName(name) {
+  return state.data.players.find((p) => p.name === name) || null;
+}
+
+function rowOf(name) {
+  const rows = pyramidRows(state.data.players);
+  for (let i = 0; i < rows.length; i++) {
+    if (rows[i].some((p) => p.name === name)) return { index: i, rows };
+  }
+  return null;
+}
+
+// Reegel: samas reas vasakul + rida ülevalpool.
+function allowedTargets(name) {
+  const loc = rowOf(name);
+  if (!loc) return [];
+  const me = playerByName(name);
+  const sameRowLeft = loc.rows[loc.index].filter((p) => p.pos < me.pos);
+  const rowAbove = loc.index > 0 ? loc.rows[loc.index - 1] : [];
+  return [...rowAbove, ...sameRowLeft].sort((a, b) => a.pos - b.pos);
+}
+
+// Erand: kuni 2 kohta allpool.
+function downwardTargets(name) {
+  const me = playerByName(name);
+  if (!me) return [];
+  return state.data.players
+    .filter((p) => p.pos > me.pos && p.pos <= me.pos + ERAND_MAX_DIST)
+    .sort((a, b) => a.pos - b.pos);
+}
+
+function erandUsed(name) {
+  const inGames = state.data.games.filter(
+    (g) => g.erand && g.challenger === name).length;
+  const pending = (state.data.challenges || []).filter(
+    (c) => c.erand && c.challenger === name).length;
+  return inGames + pending;
+}
+
+// Viimane kohtumine/ootel väljakutse sama paari vahel viimase 14 päeva sees.
+// Vanade mängude segaseid kuupäevi ("15.06") ei loeta — ainult ISO.
+function recentMeeting(a, b) {
+  const isISO = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}/.test(s);
+  const pair = (x, y) =>
+    (x.challenger === a && x.challenged === b) ||
+    (x.challenger === b && x.challenged === a);
+
+  for (const c of state.data.challenges || []) {
+    if (pair(c)) return { type: "ootel väljakutse", date: c.challenge_date };
+  }
+  let latest = null;
+  for (const g of state.data.games) {
+    if (!pair(g)) continue;
+    const d = isISO(g.play_date) ? g.play_date : null;
+    if (!d) continue;
+    if (!latest || d > latest) latest = d;
+  }
+  if (latest) {
+    const age = -daysUntil(latest); // päevi tagasi
+    if (age !== null && age < COOLDOWN_DAYS) {
+      return { type: "mäng", date: latest, daysAgo: age };
+    }
+  }
+  return null;
+}
+
 // ---------- init ----------
 
 async function init() {
@@ -150,12 +222,8 @@ function renderPyramid() {
         <span class="pyr-name">${escapeHtml(p.name)}</span>
         ${p.badge ? `<span class="pyr-badge">${p.badge}</span>` : ""}
       `;
-      card.addEventListener("click", () => {
-        state.gamesSearch = p.name.toLowerCase();
-        $("#games-search").value = p.name;
-        renderGames();
-        switchTab("games");
-      });
+      card.dataset.name = p.name;
+      card.addEventListener("click", () => togglePlayerHighlight(p.name));
       rowEl.appendChild(card);
     });
     wrap.appendChild(rowEl);
@@ -172,6 +240,53 @@ function renderPyramid() {
     if (document.fonts?.ready) document.fonts.ready.then(centre);
     window.addEventListener("load", centre, { once: true });
   }
+}
+
+// ---------- pyramid highlight (kes keda saab kutsuda) ----------
+
+function togglePlayerHighlight(name) {
+  const info = $("#pyramid-info");
+  const cards = $$(".pyr-card");
+  const wasSelected = state.selectedPlayer === name;
+
+  cards.forEach((c) => c.classList.remove("pyr-selected", "pyr-target"));
+
+  if (wasSelected) {
+    state.selectedPlayer = null;
+    info.hidden = true;
+    return;
+  }
+
+  state.selectedPlayer = name;
+  const targets = allowedTargets(name);
+  const targetNames = new Set(targets.map((t) => t.name));
+
+  cards.forEach((c) => {
+    if (c.dataset.name === name) c.classList.add("pyr-selected");
+    else if (targetNames.has(c.dataset.name)) c.classList.add("pyr-target");
+  });
+
+  info.hidden = false;
+  const me = playerByName(name);
+  if (!targets.length) {
+    info.innerHTML = `<b>${escapeHtml(name)}</b> on püramiidi tipus — teda saab ainult välja kutsuda. `;
+  } else {
+    info.innerHTML =
+      `<b>${escapeHtml(name)}</b> (${me.pos}.) saab välja kutsuda: ` +
+      targets.map((t) => `<span class="pyr-target-name">${t.pos}. ${escapeHtml(t.name)}</span>`).join(", ") +
+      `. <span class="dim">Erandiga (2× hooajal) ka kuni 2 kohta allpool.</span> `;
+  }
+  const link = document.createElement("button");
+  link.type = "button";
+  link.className = "linklike";
+  link.textContent = `Vaata ${name} mänge →`;
+  link.addEventListener("click", () => {
+    state.gamesSearch = name.toLowerCase();
+    $("#games-search").value = name;
+    renderGames();
+    switchTab("games");
+  });
+  info.appendChild(link);
 }
 
 // ---------- games ----------
@@ -205,7 +320,8 @@ function renderGames() {
     const tr = document.createElement("tr");
     if (g.type === "arvestusevaline") tr.classList.add("game-off");
     const dates = [g.challenge_date, g.play_date].filter(Boolean).join(" → ");
-    const mvBadge = g.type === "mv" ? ' <span class="type-badge type-mv">MV</span>' : "";
+    const mvBadge = (g.type === "mv" ? ' <span class="type-badge type-mv">MV</span>' : "") +
+      (g.erand ? ' <span class="type-badge type-erand">Erand</span>' : "");
     const chW = g.winner === g.challenger;
     const cdW = g.winner === g.challenged;
     tr.innerHTML = `
@@ -264,6 +380,7 @@ function renderChallenges() {
         <span class="challenge-name">${escapeHtml(c.challenger)}</span>
         <span class="challenge-vs">vs</span>
         <span class="challenge-name">${escapeHtml(c.challenged)}</span>
+        ${c.erand ? '<span class="type-badge type-erand">Erand</span>' : ""}
       </div>
       <div class="challenge-meta">
         <span>Esitatud: ${escapeHtml(fmtDateISO(c.challenge_date) || "—")}</span>
@@ -382,9 +499,55 @@ function setupAdmin() {
 
   // Populate selects
   playerOptions($("#ch-challenger"));
-  playerOptions($("#ch-challenged"));
   playerOptions($("#res-challenger"));
   playerOptions($("#res-challenged"));
+
+  // Väljakutsutava valik sõltub väljakutsujast ja erandi-linnukesest (reegel A/B).
+  const chChallenger = $("#ch-challenger");
+  const chChallenged = $("#ch-challenged");
+  const chErand = $("#ch-erand");
+  const chErandInfo = $("#ch-erand-info");
+  const chAllowedInfo = $("#ch-allowed-info");
+
+  const refreshChallengedOptions = () => {
+    const name = chChallenger.value;
+    const erand = chErand.checked;
+    const targets = erand ? downwardTargets(name) : allowedTargets(name);
+
+    chChallenged.innerHTML = "";
+    targets.forEach((p) => {
+      const opt = document.createElement("option");
+      opt.value = p.name;
+      opt.textContent = `${p.pos}. ${p.name}`;
+      chChallenged.appendChild(opt);
+    });
+
+    if (erand) {
+      const used = erandUsed(name);
+      chErandInfo.hidden = false;
+      chErandInfo.textContent = `Erandeid kasutatud: ${used}/${ERAND_MAX}. ` +
+        (used >= ERAND_MAX ? "Limiit täis — uut erandit ei saa esitada!" :
+         "Võit = 2 boonuspunkti, kohad ei muutu. Kaotus = kohavahetus.");
+      chAllowedInfo.textContent = targets.length
+        ? "Erand: kuni 2 kohta allpool olevad mängijad."
+        : "Sellest positsioonist allpool (kuni 2 kohta) pole kedagi.";
+    } else {
+      chErandInfo.hidden = true;
+      chAllowedInfo.textContent = targets.length
+        ? "Lubatud: samas reas vasakul + rida ülevalpool."
+        : "Püramiidi tipust ei saa kedagi välja kutsuda.";
+    }
+  };
+  chChallenger.addEventListener("change", refreshChallengedOptions);
+  chErand.addEventListener("change", refreshChallengedOptions);
+  refreshChallengedOptions();
+
+  // Erand-mängu puhul kohavahetuse linnuke ei kehti (loogika on teine).
+  const resErand = $("#res-erand");
+  const resSwapLabel = $("#res-swap-label");
+  resErand.addEventListener("change", () => {
+    resSwapLabel.hidden = resErand.checked;
+  });
 
   // Pending-challenge picker fills the result form
   const resChallenge = $("#res-challenge");
@@ -400,6 +563,9 @@ function setupAdmin() {
     const c = state.data.challenges[Number(i)];
     $("#res-challenger").value = c.challenger;
     $("#res-challenged").value = c.challenged;
+    // Ootel väljakutse erandi-staatus kandub tulemuse vormi üle.
+    resErand.checked = !!c.erand;
+    resSwapLabel.hidden = resErand.checked;
     updateWinnerOptions();
   });
 
@@ -436,12 +602,35 @@ function setupAdmin() {
 
   $("#form-challenge").addEventListener("submit", (e) => {
     e.preventDefault();
+    const challenger = chChallenger.value;
+    const challenged = chChallenged.value;
+    const erand = chErand.checked;
     const date = chDate.value;
+
+    if (erand && erandUsed(challenger) >= ERAND_MAX) {
+      alert(`${challenger} on juba kasutanud ${ERAND_MAX} erandit sel hooajal.`);
+      return;
+    }
+
+    // Cooldown-kontroll (reegel C): sama paar viimase 14 päeva sees.
+    let override = false;
+    const recent = recentMeeting(challenger, challenged);
+    if (recent) {
+      const msg = recent.type === "ootel väljakutse"
+        ? `${challenger} ja ${challenged} vahel on juba ootel väljakutse.`
+        : `${challenger} ja ${challenged} mängisid ${recent.daysAgo} päeva tagasi — ` +
+          `reegli järgi saab sama vastast uuesti kutsuda 2 nädala pärast.`;
+      if (!confirm(msg + "\n\nKas lisan väljakutse siiski (erandkorras)?")) return;
+      override = true;
+    }
+
     submitAdmin("add_challenge", {
-      challenger: $("#ch-challenger").value,
-      challenged: $("#ch-challenged").value,
+      challenger,
+      challenged,
       challenge_date: date,
       deadline: chDeadline.value || (date ? addDays(date, CHALLENGE_DAYS) : null),
+      erand,
+      override,
     });
   });
 
@@ -456,6 +645,7 @@ function setupAdmin() {
       play_date: $("#res-date").value || null,
       type: $("#res-type").value,
       swap: $("#res-swap").checked,
+      erand: resErand.checked,
     });
   });
 }

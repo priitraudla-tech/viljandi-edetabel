@@ -742,6 +742,68 @@ footer {
 }
 .pyr-badge { font-size: 15px; }
 
+/* pyramid highlight: valitud mängija + lubatud vastased */
+.pyr-card.pyr-selected {
+  background: var(--text);
+  color: var(--surface);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.pyr-card.pyr-selected .pyr-pos { color: rgba(255, 255, 255, 0.6); }
+.pyr-card.pyr-target {
+  background: rgba(47, 107, 63, 0.10);
+  box-shadow: var(--shadow-inset), rgba(47, 107, 63, 0.35) 0 0 0 1.5px;
+}
+.pyramid-info { font-size: 13px; }
+.pyr-target-name { font-weight: 600; color: var(--up); white-space: nowrap; }
+.linklike {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: 500 13px/1.4 var(--font-body);
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* rules tab */
+.rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+.rules-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+  padding: 18px 20px;
+}
+.rules-card h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.rules-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+}
+.rules-card b { color: var(--text); font-weight: 600; }
+
+/* admin hints */
+.admin-hint {
+  margin: -4px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.14px;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
 /* game type badges + rows */
 .type-badge {
   display: inline-block;
@@ -754,11 +816,14 @@ footer {
   vertical-align: 1px;
 }
 .type-badge.type-mv {
-  background: var(--accent-soft, rgba(29, 78, 216, 0.08));
-  color: #1d4ed8;
   box-shadow: var(--shadow-inset);
   background: rgba(78, 50, 23, 0.07);
   color: #7a5b2f;
+}
+.type-badge.type-erand {
+  box-shadow: var(--shadow-inset);
+  background: rgba(47, 107, 63, 0.10);
+  color: var(--up);
 }
 tr.game-off td { color: var(--text-3); }
 tr.game-off .game-winner { color: var(--text-3); }

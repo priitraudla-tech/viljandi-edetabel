@@ -40,6 +40,7 @@
       <button class="tab" data-tab="games">Mängud</button>
       <button class="tab" data-tab="challenges">Väljakutsed</button>
       <button class="tab" data-tab="stats">Statistika</button>
+      <button class="tab" data-tab="rules">Reeglid</button>
     </nav>
   </div>
 
@@ -49,8 +50,9 @@
       <div id="pyramid-wrap" class="pyramid-wrap">
         <div id="pyramid" class="pyramid" aria-label="Püramiid"></div>
       </div>
+      <p id="pyramid-info" class="footnote pyramid-info" hidden></p>
       <p class="footnote">
-        Klõpsa mängijale, et näha tema mänge. Väljakutsuja võit vahetab kohad.
+        Klõpsa mängijale, et näha keda ta saab välja kutsuda. Väljakutsuja võit vahetab kohad.
         <span class="mobile-hint">Telefonis keri püramiidi külgsuunas.</span>
       </p>
     </section>
@@ -101,6 +103,50 @@
       <p class="footnote">Statistika arvutatakse mängudest automaatselt (arvestusevälised mängud välja jäetud).</p>
     </section>
 
+    <section id="tab-rules" class="tab-panel">
+      <div class="rules">
+        <div class="rules-card">
+          <h3>Keda saab välja kutsuda?</h3>
+          <p>Mängija saab välja kutsuda püramiidis <b>temast vasakul samas reas</b>
+          või <b>rida ülevalpool</b> olevaid mängijaid. Klõpsa Püramiidi vahekaardil
+          oma nimele — lubatud vastased värvitakse roheliseks.</p>
+        </div>
+        <div class="rules-card">
+          <h3>Mis võidust ja kaotusest saab?</h3>
+          <p><b>Väljakutsuja võit</b> — võitja liigub võidetud mängija kohale
+          (kohad vahetuvad). <b>Väljakutsuja kaotus</b> — positsioonid jäävad samaks.</p>
+        </div>
+        <div class="rules-card">
+          <h3>Tähtaeg</h3>
+          <p>Mäng tuleb pidada <b>2 nädala jooksul</b> väljakutse esitamisest.
+          Väljakutsete vahekaardil on iga mängu juures tähtaeg ja järelejäänud päevad.
+          Kui mäng jääb pooleli, leppige kokku, millal see lõpuni mängitakse.</p>
+        </div>
+        <div class="rules-card">
+          <h3>Mängu formaat</h3>
+          <p>Klassikaline <b>2 setti</b> (eduga) võiduni. Seisul 1:1 mängitakse
+          otsustavaks <b>10-punktine kiirelõppmäng</b> (2-punktise vahega).</p>
+        </div>
+        <div class="rules-card">
+          <h3>Sama vastane uuesti</h3>
+          <p>Uue väljakutse <b>samale mängijale</b> saab esitada alles
+          <b>2 nädala pärast</b> eelmisest mängust.</p>
+        </div>
+        <div class="rules-card">
+          <h3>Erand: väljakutse allapoole</h3>
+          <p>Iga mängija võib hooaja jooksul <b>2 korda</b> kutsuda mängima endast
+          madalamal positsioonil olevat mängijat (kuni <b>2 kohta allpool</b>).
+          <b>Võit</b> — 2 boonuspunkti, kohad ei muutu.
+          <b>Kaotus</b> — kohavahetus nõrgemal positsioonil mängijaga.</p>
+        </div>
+        <div class="rules-card">
+          <h3>Korraldus</h3>
+          <p>Mängijad broneerivad ja maksavad väljaku ise. Tulemus tuleb kohe
+          pärast mängu kirja panna (Halda-nupp või teade korraldajale).</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ===== Admin panel (hidden until opened) ===== -->
@@ -127,10 +173,16 @@
           Väljakutsuja
           <select id="ch-challenger" required></select>
         </label>
+        <label class="check admin-check">
+          <input id="ch-erand" type="checkbox" />
+          <span>Erand: väljakutse allapoole (max 2 kohta, 2× hooajal)</span>
+        </label>
+        <p id="ch-erand-info" class="admin-hint" hidden></p>
         <label class="admin-field">
           Väljakutsutav
           <select id="ch-challenged" required></select>
         </label>
+        <p id="ch-allowed-info" class="admin-hint"></p>
         <label class="admin-field">
           Väljakutse kuupäev
           <input id="ch-date" type="date" required />
@@ -181,9 +233,14 @@
           </select>
         </label>
         <label class="check admin-check">
+          <input id="res-erand" type="checkbox" />
+          <span>Erand-mäng (väljakutse oli allapoole)</span>
+        </label>
+        <label class="check admin-check" id="res-swap-label">
           <input id="res-swap" type="checkbox" checked />
           <span>Väljakutsuja võidu korral vaheta kohad</span>
         </label>
+        <p class="admin-hint">Formaat: 2 setti (eduga), otsustav = 10-punktine kiirelõppmäng.</p>
         <button type="submit" class="admin-submit">Salvesta tulemus</button>
       </form>
 
