@@ -47,6 +47,36 @@
         <h3 class="profile-section-title">Rekordid</h3>
         <div id="records-grid" class="stats-grid records-grid"></div>
 
+        <details class="elo-info">
+          <summary>Mis on Elo-reiting?</summary>
+          <div class="elo-info-body">
+            <p>Elo on malest pärit reitingusüsteem, mis hindab mängija tugevust
+            selle järgi, <b>keda</b> ta võidab — mitte ainult mitu mängu või punkti
+            ta kogub. Sama süsteemi loogikat kasutavad ka ATP-reitingu kõrval
+            populaarsed tennise-mudelid (nt UTR).</p>
+            <p><b>Kuidas see töötab:</b></p>
+            <ul>
+              <li>Iga mängija alustab <b>1500 punktiga</b>.</li>
+              <li>Iga mäng liigutab punkte kaotajalt võitjale. Meie süsteemis on
+              maksimaalne liikumine ühe mänguga <b>32 punkti</b>.</li>
+              <li>Palju punkte liigub, sõltub <b>oodatavast tulemusest</b>:
+              kui võidad endast palju kõrgema reitinguga mängijat (üllatus),
+              saad peaaegu täismahus punktid. Kui võidad endast palju nõrgemat
+              (oodatud tulemus), liigub vaid paar punkti.</li>
+              <li>Kaotus favoriidina maksab palju, kaotus autsaiderina peaaegu
+              mitte midagi.</li>
+            </ul>
+            <p><b>Erinevus VÜS punktitabelist:</b> punktitabel premeerib osalemist
+            ja kohti (100 p võidu eest sõltumata vastastest), Elo hindab iga
+            üksiku võidu kvaliteeti. Seepärast võivad tabelid erineda — Elo on
+            omamoodi "tugevuse varjutabel".</p>
+            <p>Arvesse lähevad kõik VÜS turniiride ja püramiidi mängud
+            (arvestusevälised mitte). H2H vaate <b>võiduprognoos</b> tuleb samast
+            valemist: mida suurem Elo-vahe, seda suurem favoriidi
+            võidutõenäosus.</p>
+          </div>
+        </details>
+
         <h3 class="profile-section-title">Kõik mängijad</h3>
         <div class="toolbar">
           <input id="player-search" type="search" placeholder="Otsi mängijat…" autocomplete="off" />
@@ -161,6 +191,8 @@
             <div class="h2h-prob-bar">
               <div id="h2h-prob-fill" class="h2h-prob-fill"></div>
             </div>
+            <p class="h2h-prob-note">Prognoos põhineb Elo-reitingul — selgitus on
+            Mängijad-vahekaardi lõpus ("Mis on Elo-reiting?").</p>
           </div>
         </div>
 

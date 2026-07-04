@@ -1218,6 +1218,50 @@ td.game-winner { font-weight: 600; }
   border-radius: var(--r-pill) 0 0 var(--r-pill);
   transition: width 0.4s ease;
 }
+.h2h-prob-note {
+  margin: 10px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.14px;
+  color: var(--text-3);
+}
+
+/* Elo explainer */
+.elo-info {
+  margin: 18px 0 6px;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+}
+.elo-info summary {
+  cursor: pointer;
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+  list-style: none;
+  user-select: none;
+}
+.elo-info summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--text-3);
+  transition: transform 0.15s;
+}
+.elo-info[open] summary::before { transform: rotate(90deg); }
+.elo-info summary::-webkit-details-marker { display: none; }
+.elo-info-body {
+  padding: 0 20px 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+}
+.elo-info-body p { margin: 0 0 10px; }
+.elo-info-body ul { margin: 0 0 10px; padding-left: 20px; }
+.elo-info-body li { margin-bottom: 5px; }
+.elo-info-body b { color: var(--text); font-weight: 600; }
 
 @media (max-width: 600px) {
   .h2h-name { font-size: 17px; }
