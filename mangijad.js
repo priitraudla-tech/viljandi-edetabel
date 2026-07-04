@@ -780,15 +780,26 @@ function renderH2H() {
   const pa = state.players.get(a);
   const pb = state.players.get(b);
   const prob = $("#h2h-prob");
+  const probNa = $("#h2h-prob-na");
   if (pa?.played && pb?.played) {
     const pA = 1 / (1 + Math.pow(10, (pb.elo - pa.elo) / 400));
     const pctA = Math.round(pA * 100);
     prob.hidden = false;
-    $("#h2h-prob-a").textContent = `${escapeHtml(a)} ${pctA}%`;
-    $("#h2h-prob-b").textContent = `${100 - pctA}% ${escapeHtml(b)}`;
+    probNa.hidden = true;
+    $("#h2h-prob-a").textContent = `${a} ${pctA}%`;
+    $("#h2h-prob-b").textContent = `${100 - pctA}% ${b}`;
     $("#h2h-prob-fill").style.width = `${pctA}%`;
   } else {
+    // Selgita, KELLE tõttu prognoosi pole — mängijal pole ühtegi
+    // kirjendatud mängu (punktid pärinevad etappidelt ilma tabeliteta).
     prob.hidden = true;
+    const missing = [pa, pb].filter((p) => !p || !p.played)
+      .map((p, i) => p ? p.name : (i === 0 ? a : b));
+    probNa.hidden = false;
+    probNa.textContent =
+      `Võiduprognoosi ei saa arvutada: ${missing.join(" ja ")} — ` +
+      `pole ühtegi kirjendatud üksikmängu. Punktid pärinevad etappidelt, ` +
+      `mille mängutabeleid pole veel lisatud (Elo vajab vähemalt üht mängu).`;
   }
   $("#h2h-breakdown").innerHTML = meetings.length
     ? `
