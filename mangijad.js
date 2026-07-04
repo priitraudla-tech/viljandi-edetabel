@@ -758,15 +758,11 @@ function renderH2H() {
   const meetings = state.matches.filter((m) =>
     (m.a === a && m.b === b) || (m.a === b && m.b === a));
 
-  if (!meetings.length) {
-    result.hidden = true;
-    empty.hidden = false;
-    empty.textContent = "Need mängijad pole omavahel mänginud.";
-    return;
-  }
-
+  // Kaart on nähtav ka ilma omavaheliste mängudeta — Elo-prognoos
+  // ei sõltu kohtumistest. Peidame ainult kohtumiste tabeli.
   empty.hidden = true;
   result.hidden = false;
+  $("#h2h-table-wrap").hidden = meetings.length === 0;
 
   const counted = meetings.filter((m) => !m.off);
   const aWins = counted.filter((m) => m.winner === a).length;
@@ -794,11 +790,13 @@ function renderH2H() {
   } else {
     prob.hidden = true;
   }
-  $("#h2h-breakdown").innerHTML = `
-    <span>VÜS turniirid <b>${vusA} : ${vusB}</b></span>
-    <span>Püramiid <b>${pyrA} : ${pyrB}</b></span>
-    ${meetings.length !== counted.length ? `<span class="dim">+ ${meetings.length - counted.length} arvestuseväline</span>` : ""}
-  `;
+  $("#h2h-breakdown").innerHTML = meetings.length
+    ? `
+      <span>VÜS turniirid <b>${vusA} : ${vusB}</b></span>
+      <span>Püramiid <b>${pyrA} : ${pyrB}</b></span>
+      ${meetings.length !== counted.length ? `<span class="dim">+ ${meetings.length - counted.length} arvestuseväline</span>` : ""}
+    `
+    : '<span class="dim">Pole veel omavahel mänginud</span>';
 
   meetings.forEach((m) => {
     const tr = document.createElement("tr");
