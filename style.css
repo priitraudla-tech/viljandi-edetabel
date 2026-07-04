@@ -1187,6 +1187,38 @@ td.game-winner { font-weight: 600; }
 }
 .h2h-breakdown b { color: var(--text); font-weight: 600; }
 
+.h2h-prob { margin-top: 18px; }
+.h2h-prob-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  margin-bottom: 7px;
+}
+.h2h-prob-title {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-3);
+}
+.h2h-prob-bar {
+  height: 10px;
+  border-radius: var(--r-pill);
+  background: rgba(138, 58, 58, 0.18);
+  overflow: hidden;
+  box-shadow: var(--shadow-inset);
+}
+.h2h-prob-fill {
+  height: 100%;
+  background: rgba(47, 107, 63, 0.55);
+  border-radius: var(--r-pill) 0 0 var(--r-pill);
+  transition: width 0.4s ease;
+}
+
 @media (max-width: 600px) {
   .h2h-name { font-size: 17px; }
   .h2h-score { font-size: 30px; padding: 3px 14px; }

@@ -261,6 +261,44 @@ function buildPlayers() {
     });
   });
 
+  // Elo-reiting: kõik arvestuslikud mängud kronoloogiliselt (vanim enne).
+  // Start 1500, K=32. Prognoos H2H vaates põhineb samal valemil.
+  const ELO_START = 1500;
+  const ELO_K = 32;
+  state.players.forEach((pl) => { pl.elo = ELO_START; pl.eloPeak = ELO_START; });
+  state.matches.slice().reverse().forEach((m) => {
+    if (m.off || !m.winner) return;
+    const a = state.players.get(m.a);
+    const b = state.players.get(m.b);
+    if (!a || !b) return;
+    const expA = 1 / (1 + Math.pow(10, (b.elo - a.elo) / 400));
+    const scoreA = m.winner === a.name ? 1 : 0;
+    a.elo += ELO_K * (scoreA - expA);
+    b.elo += ELO_K * ((1 - scoreA) - (1 - expA));
+    a.eloPeak = Math.max(a.eloPeak, a.elo);
+    b.eloPeak = Math.max(b.eloPeak, b.elo);
+  });
+  state.players.forEach((pl) => {
+    pl.elo = Math.round(pl.elo);
+    pl.eloPeak = Math.round(pl.eloPeak);
+  });
+  // Elo-koht (ainult mänginud mängijate seas)
+  const byElo = Array.from(state.players.values())
+    .filter((p) => p.played > 0)
+    .sort((a, b) => b.elo - a.elo);
+  byElo.forEach((p, i) => { p.eloRank = i + 1; });
+
+  // Saavutused: etapivõidud (turniiride lõppjärjestustest), tipukohad.
+  state.players.forEach((pl) => { pl.titles = 0; });
+  state.tournaments.forEach(({ json }) => {
+    (json.loppjarjestus || []).forEach((row) => {
+      if (row.koht === 1) {
+        const pl = state.players.get(norm(row.mangija));
+        if (pl) pl.titles += 1;
+      }
+    });
+  });
+
   // Seeriad: praegune (uusimast tahapoole) + pikim võiduseeria läbi aegade.
   state.players.forEach((pl) => {
     let cur = 0;
@@ -312,6 +350,9 @@ function renderRecords() {
   card("💯 Parim võiduprotsent (≥8 mängu)",
     top3(list.filter((p) => p.played >= 8)
       .sort((a, b) => winPct(b) - winPct(a)), (p) => `${Math.round(winPct(p) * 100)}% (${p.wins}/${p.played})`));
+
+  card("📈 Elo-reiting",
+    top3(list.slice().sort((a, b) => b.elo - a.elo), (p) => `${p.elo}`));
 }
 
 function winPct(p) {
@@ -371,6 +412,7 @@ function renderRegister() {
 
   const sorters = {
     vus: (a, b) => (a.vusRank ?? 999) - (b.vusRank ?? 999) || a.name.localeCompare(b.name, "et"),
+    elo: (a, b) => (a.eloRank ?? 999) - (b.eloRank ?? 999),
     matches: (a, b) => b.played - a.played,
     winpct: (a, b) => winPct(b) - winPct(a) || b.played - a.played,
     name: (a, b) => a.name.localeCompare(b.name, "et"),
@@ -381,13 +423,16 @@ function renderRegister() {
     const card = document.createElement("button");
     card.type = "button";
     card.className = "player-card";
+    const trophies =
+      (p.titles ? " " + "🏆".repeat(Math.min(p.titles, 3)) : "") +
+      (p.pyrPos === 1 ? " 👑" : "");
     card.innerHTML = `
-      <div class="player-card-name">${escapeHtml(p.name)}</div>
+      <div class="player-card-name">${escapeHtml(p.name)}${trophies}</div>
       <div class="player-card-meta">
         ${p.vusRank ? `VÜS: ${p.vusRank}. koht · ${p.vusPoints} p` : "VÜS: —"}
       </div>
       <div class="player-card-meta">
-        ${p.pyrPos ? `Püramiid: ${p.pyrPos}. koht` : "Püramiid: —"}
+        ${p.pyrPos ? `Püramiid: ${p.pyrPos}. koht` : "Püramiid: —"}${p.played ? ` · Elo ${p.elo}` : ""}
       </div>
       <div class="player-card-stats">
         <span>${p.played} mängu</span>
@@ -416,8 +461,12 @@ function openProfile(name) {
   $("#profile-name").textContent = name;
 
   const badges = [];
+  if (p.titles) badges.push(`<span class="profile-badge">🏆 ${p.titles}× etapivõitja</span>`);
+  if (p.pyrPos === 1) badges.push(`<span class="profile-badge">👑 Püramiidi tipp</span>`);
+  if (p.vusRank === 1) badges.push(`<span class="profile-badge">🥇 VÜS liider</span>`);
   if (p.vusRank) badges.push(`<span class="profile-badge">VÜS ${p.vusRank}. koht · ${p.vusPoints} p</span>`);
   if (p.pyrPos) badges.push(`<span class="profile-badge">Püramiid ${p.pyrPos}. koht</span>`);
+  if (p.played) badges.push(`<span class="profile-badge">Elo ${p.elo}${p.eloRank ? ` (${p.eloRank}.)` : ""}</span>`);
   badges.push(`<span class="profile-badge">Vorm: ${formDots(p.form) || "—"}</span>`);
   if (p.curStreakType === "W" && p.curStreakLen >= 3) {
     badges.push(`<span class="profile-badge">🔥 ${p.curStreakLen} võitu järjest</span>`);
@@ -439,6 +488,7 @@ function openProfile(name) {
     `Mänge: <b>${p.played}</b>`,
     `Võite: <b>${p.wins}</b> · Kaotusi: <b>${p.losses}</b>`,
     `Võiduprotsent: <b>${p.played ? Math.round(winPct(p) * 100) + "%" : "—"}</b>`,
+    `Elo: <b>${p.played ? p.elo : "—"}</b>${p.played && p.eloPeak > p.elo ? ` <span class="dim">(tipp ${p.eloPeak})</span>` : ""}`,
   ]));
   stats.appendChild(statCard("VÜS turniirid", [
     `Võite: <b>${p.vusW}</b> · Kaotusi: <b>${p.vusL}</b>`,
@@ -729,6 +779,21 @@ function renderH2H() {
   $("#h2h-name-a").textContent = a;
   $("#h2h-name-b").textContent = b;
   $("#h2h-score").textContent = `${aWins} : ${bWins}`;
+
+  // Elo-põhine võiduprognoos
+  const pa = state.players.get(a);
+  const pb = state.players.get(b);
+  const prob = $("#h2h-prob");
+  if (pa?.played && pb?.played) {
+    const pA = 1 / (1 + Math.pow(10, (pb.elo - pa.elo) / 400));
+    const pctA = Math.round(pA * 100);
+    prob.hidden = false;
+    $("#h2h-prob-a").textContent = `${escapeHtml(a)} ${pctA}%`;
+    $("#h2h-prob-b").textContent = `${100 - pctA}% ${escapeHtml(b)}`;
+    $("#h2h-prob-fill").style.width = `${pctA}%`;
+  } else {
+    prob.hidden = true;
+  }
   $("#h2h-breakdown").innerHTML = `
     <span>VÜS turniirid <b>${vusA} : ${vusB}</b></span>
     <span>Püramiid <b>${pyrA} : ${pyrB}</b></span>

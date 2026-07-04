@@ -54,6 +54,7 @@
             Järjesta:
             <select id="player-sort">
               <option value="vus">VÜS koha järgi</option>
+              <option value="elo">Elo-reitingu järgi</option>
               <option value="matches">Mängude arvu järgi</option>
               <option value="winpct">Võiduprotsendi järgi</option>
               <option value="name">Nime järgi</option>
@@ -151,6 +152,16 @@
             <span id="h2h-name-b" class="h2h-name"></span>
           </div>
           <div id="h2h-breakdown" class="h2h-breakdown"></div>
+          <div id="h2h-prob" class="h2h-prob" hidden>
+            <div class="h2h-prob-labels">
+              <span id="h2h-prob-a"></span>
+              <span class="h2h-prob-title">Võiduprognoos (Elo)</span>
+              <span id="h2h-prob-b"></span>
+            </div>
+            <div class="h2h-prob-bar">
+              <div id="h2h-prob-fill" class="h2h-prob-fill"></div>
+            </div>
+          </div>
         </div>
 
         <div class="table-wrap">
