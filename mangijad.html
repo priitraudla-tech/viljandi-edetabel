@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://rsms.me/" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <script src="mangijad.js" defer></script>
   <script src="install.js" defer></script>
 </head>
@@ -43,6 +44,10 @@
 
       <!-- Register view -->
       <div id="view-register">
+        <h3 class="profile-section-title">Rekordid</h3>
+        <div id="records-grid" class="stats-grid records-grid"></div>
+
+        <h3 class="profile-section-title">Kõik mängijad</h3>
         <div class="toolbar">
           <input id="player-search" type="search" placeholder="Otsi mängijat…" autocomplete="off" />
           <label>
@@ -68,6 +73,18 @@
         </header>
 
         <div id="profile-stats" class="stats-grid profile-stats"></div>
+
+        <div id="profile-challenges-section" hidden>
+          <h3 class="profile-section-title">Ootel väljakutsed</h3>
+          <div id="profile-challenges" class="challenges-list"></div>
+        </div>
+
+        <div id="profile-rank-section" hidden>
+          <h3 class="profile-section-title">VÜS edetabelikoha muutus</h3>
+          <div class="chart-wrap chart-wrap--small">
+            <canvas id="profile-rank-chart"></canvas>
+          </div>
+        </div>
 
         <h3 class="profile-section-title">Mängud</h3>
         <div class="toolbar">

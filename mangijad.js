@@ -10,12 +10,14 @@ const state = {
   vus: null,          // current.json
   puramiid: null,     // puramiid.json
   tournaments: [],    // laaditud turniiri-JSON-id
+  history: [],        // [{date, players:[{name, rank}]}] — edetabeli snapshotid
   matches: [],        // ühtlustatud mängude list
   players: new Map(), // name -> {name, vusRank, vusPoints, pyrPos, stats...}
   sort: "vus",
   search: "",
   profileName: null,
   profileFormat: "",
+  rankChart: null,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -70,6 +72,19 @@ async function init() {
       .catch(() => null)));
   state.tournaments = loaded.filter(Boolean);
 
+  // Edetabeli ajaloo snapshotid (koha graafiku jaoks).
+  try {
+    const histDates = await fetchJSON("data/history.json");
+    const snaps = await Promise.all(histDates.map((d) =>
+      fetchJSON(`data/history/${d}.json`)
+        .then((j) => ({
+          date: d,
+          players: (j.players || []).map((p) => ({ name: norm(p.name), rank: p.rank })),
+        }))
+        .catch(() => null)));
+    state.history = snaps.filter(Boolean);
+  } catch { state.history = []; }
+
   buildMatches();
   buildPlayers();
 
@@ -81,6 +96,7 @@ async function init() {
   setupTabs();
   setupRegister();
   setupH2H();
+  renderRecords();
   renderRegister();
 
   // Hash-route: #p=Nimi avab profiili
@@ -212,7 +228,8 @@ function buildPlayers() {
         vusRank: null, vusPoints: null, pyrPos: null,
         played: 0, wins: 0, losses: 0,
         vusW: 0, vusL: 0, pyrW: 0, pyrL: 0,
-        form: [], // uusim esimesena
+        form: [],      // uusim esimesena
+        results: [],   // kõik tulemused, uusim esimesena (seeriate jaoks)
       });
     }
     return state.players.get(name);
@@ -240,8 +257,61 @@ function buildPlayers() {
       if (match.format === "vus") { won ? pl.vusW++ : pl.vusL++; }
       else { won ? pl.pyrW++ : pl.pyrL++; }
       if (pl.form.length < 5) pl.form.push(won ? "W" : "L");
+      pl.results.push(won ? "W" : "L");
     });
   });
+
+  // Seeriad: praegune (uusimast tahapoole) + pikim võiduseeria läbi aegade.
+  state.players.forEach((pl) => {
+    let cur = 0;
+    const curType = pl.results[0] || null;
+    for (const r of pl.results) {
+      if (r === curType) cur += 1; else break;
+    }
+    pl.curStreakType = curType;
+    pl.curStreakLen = cur;
+
+    let best = 0, run = 0;
+    // results on uusim-enne; seeria pikkuse jaoks suund ei loe
+    for (const r of pl.results) {
+      if (r === "W") { run += 1; best = Math.max(best, run); }
+      else run = 0;
+    }
+    pl.bestWinStreak = best;
+  });
+}
+
+// ---------- records ----------
+
+function renderRecords() {
+  const grid = $("#records-grid");
+  grid.innerHTML = "";
+  const list = Array.from(state.players.values()).filter((p) => p.played > 0);
+  if (!list.length) return;
+
+  const card = (title, rows) => {
+    const el = document.createElement("div");
+    el.className = "stat-card";
+    el.innerHTML = `<h3>${title}</h3>` +
+      rows.map((r) => `<div class="stat-row">${r}</div>`).join("");
+    grid.appendChild(el);
+  };
+  const top3 = (arr, fmt) => arr.slice(0, 3).map((p, i) => `${i + 1}. ${escapeHtml(p.name)} <b>${fmt(p)}</b>`);
+
+  card("🔥 Kuumim seeria praegu",
+    top3(list.filter((p) => p.curStreakType === "W" && p.curStreakLen >= 2)
+      .sort((a, b) => b.curStreakLen - a.curStreakLen), (p) => `${p.curStreakLen} võitu järjest`));
+
+  card("🏆 Pikim võiduseeria",
+    top3(list.filter((p) => p.bestWinStreak >= 2)
+      .sort((a, b) => b.bestWinStreak - a.bestWinStreak), (p) => `${p.bestWinStreak}`));
+
+  card("🎾 Enim mänge",
+    top3(list.slice().sort((a, b) => b.played - a.played), (p) => `${p.played}`));
+
+  card("💯 Parim võiduprotsent (≥8 mängu)",
+    top3(list.filter((p) => p.played >= 8)
+      .sort((a, b) => winPct(b) - winPct(a)), (p) => `${Math.round(winPct(p) * 100)}% (${p.wins}/${p.played})`));
 }
 
 function winPct(p) {
@@ -349,6 +419,12 @@ function openProfile(name) {
   if (p.vusRank) badges.push(`<span class="profile-badge">VÜS ${p.vusRank}. koht · ${p.vusPoints} p</span>`);
   if (p.pyrPos) badges.push(`<span class="profile-badge">Püramiid ${p.pyrPos}. koht</span>`);
   badges.push(`<span class="profile-badge">Vorm: ${formDots(p.form) || "—"}</span>`);
+  if (p.curStreakType === "W" && p.curStreakLen >= 3) {
+    badges.push(`<span class="profile-badge">🔥 ${p.curStreakLen} võitu järjest</span>`);
+  }
+  if (p.bestWinStreak >= 3) {
+    badges.push(`<span class="profile-badge">Pikim seeria: ${p.bestWinStreak}</span>`);
+  }
   $("#profile-badges").innerHTML = badges.join("");
 
   const stats = $("#profile-stats");
@@ -373,9 +449,154 @@ function openProfile(name) {
     p.pyrPos ? `Positsioon: <b>${p.pyrPos}.</b>` : "Püramiidis ei osale",
   ]));
 
+  renderProfileChallenges(name);
+  renderRankChart(name);
   renderProfileMatches();
   renderProfileOpponents();
   window.scrollTo(0, 0);
+}
+
+// A: ootel püramiidiväljakutsed selle mängijaga
+function addDaysISO(isoDate, days) {
+  const d = new Date(isoDate + "T00:00:00");
+  if (isNaN(d)) return null;
+  d.setDate(d.getDate() + days);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${dd}`;
+}
+
+function daysUntilISO(isoDate) {
+  const d = new Date(isoDate + "T00:00:00");
+  if (isNaN(d)) return null;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return Math.round((d - today) / 86400000);
+}
+
+function renderProfileChallenges(name) {
+  const section = $("#profile-challenges-section");
+  const list = $("#profile-challenges");
+  list.innerHTML = "";
+
+  const mine = (state.puramiid.challenges || []).filter((c) =>
+    norm(c.challenger) === name || norm(c.challenged) === name);
+  section.hidden = mine.length === 0;
+
+  mine.forEach((c) => {
+    const deadline = c.deadline ||
+      (c.challenge_date ? addDaysISO(c.challenge_date, 14) : null);
+    let deadlineHtml = "";
+    if (deadline) {
+      const left = daysUntilISO(deadline);
+      let cls = "";
+      let label = `Mängida hiljemalt ${fmtDateISO(deadline)}`;
+      if (left !== null) {
+        if (left < 0) { cls = "is-overdue"; label += ` — tähtaeg möödas ${Math.abs(left)} päeva`; }
+        else if (left <= 3) { cls = "is-soon"; label += left === 0 ? " — täna!" : ` — ${left} päeva jäänud`; }
+        else label += ` — ${left} päeva jäänud`;
+      }
+      deadlineHtml = `<div class="challenge-deadline ${cls}">${label}</div>`;
+    }
+    const card = document.createElement("div");
+    card.className = "challenge-card";
+    card.innerHTML = `
+      <div class="challenge-players">
+        <span class="challenge-name">${escapeHtml(norm(c.challenger))}</span>
+        <span class="challenge-vs">vs</span>
+        <span class="challenge-name">${escapeHtml(norm(c.challenged))}</span>
+        ${c.erand ? '<span class="type-badge type-erand">Erand</span>' : ""}
+      </div>
+      <div class="challenge-meta"><span>Esitatud: ${fmtDateISO(c.challenge_date)}</span></div>
+      ${deadlineHtml}
+    `;
+    list.appendChild(card);
+  });
+}
+
+// B: VÜS edetabelikoha ajaloograafik
+function renderRankChart(name) {
+  const section = $("#profile-rank-section");
+  const snaps = state.history || [];
+
+  const points = snaps.map((s) => {
+    const p = s.players.find((x) => x.name === name);
+    return { date: s.date, rank: p ? p.rank : null };
+  });
+  const known = points.filter((p) => p.rank !== null);
+
+  if (known.length < 2 || typeof Chart === "undefined") {
+    section.hidden = true;
+    if (state.rankChart) { state.rankChart.destroy(); state.rankChart = null; }
+    return;
+  }
+  section.hidden = false;
+
+  const ctx = $("#profile-rank-chart").getContext("2d");
+  if (state.rankChart) state.rankChart.destroy();
+
+  const bodyFont = '"Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif';
+  state.rankChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: points.map((p) => fmtDateISO(p.date)),
+      datasets: [{
+        label: `${name} — VÜS koht`,
+        data: points.map((p) => p.rank),
+        borderColor: "#1a1a1a",
+        borderWidth: 1.5,
+        backgroundColor: "rgba(78, 50, 23, 0.06)",
+        fill: true,
+        tension: 0.3,
+        spanGaps: true,
+        pointRadius: 4,
+        pointBackgroundColor: "#ffffff",
+        pointBorderColor: "#1a1a1a",
+        pointBorderWidth: 1.5,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          grid: { color: "rgba(0,0,0,0.05)", drawTicks: false },
+          border: { display: false },
+          ticks: { color: "#777169", font: { family: bodyFont, size: 11, weight: 500 }, padding: 8 },
+        },
+        y: {
+          reverse: true, // 1. koht üleval
+          grid: { color: "rgba(0,0,0,0.05)", drawTicks: false },
+          border: { display: false },
+          ticks: {
+            color: "#777169",
+            font: { family: bodyFont, size: 11, weight: 500 },
+            padding: 10,
+            precision: 0,
+            callback: (v) => Number.isInteger(v) ? `${v}.` : "",
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          labels: { color: "#4e4e4e", font: { family: bodyFont, size: 13, weight: 500 },
+            usePointStyle: true, pointStyle: "line", boxWidth: 24 },
+        },
+        tooltip: {
+          backgroundColor: "#ffffff",
+          titleColor: "#4e4e4e",
+          bodyColor: "#1a1a1a",
+          borderColor: "rgba(0,0,0,0.06)",
+          borderWidth: 1,
+          padding: 10,
+          cornerRadius: 8,
+          displayColors: false,
+          callbacks: { label: (c) => c.parsed.y === null ? "—" : `${c.parsed.y}. koht` },
+        },
+      },
+    },
+  });
 }
 
 function closeProfile() {
