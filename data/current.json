@@ -1,6 +1,6 @@
 {
   "title": "Viljandi üksikmängu edetabel (28.06.2026 seisuga)",
-  "fetched_at": "2026-07-10T05:41:40+00:00",
+  "fetched_at": "2026-07-10T07:18:54+00:00",
   "stages": [
     {
       "label": "6. etapp 27.07.2025",
@@ -133,8 +133,8 @@
       },
       "tournaments_played": 8,
       "average": 83.0,
-      "prev_rank": 3,
-      "rank_delta": 0
+      "prev_rank": 4,
+      "rank_delta": 1
     },
     {
       "rank": 4,
@@ -155,8 +155,8 @@
       },
       "tournaments_played": 10,
       "average": 75.2,
-      "prev_rank": 4,
-      "rank_delta": 0
+      "prev_rank": 3,
+      "rank_delta": -1
     },
     {
       "rank": 5,
@@ -199,8 +199,8 @@
       },
       "tournaments_played": 11,
       "average": 46.1,
-      "prev_rank": 6,
-      "rank_delta": 0
+      "prev_rank": 7,
+      "rank_delta": 1
     },
     {
       "rank": 7,
@@ -221,8 +221,8 @@
       },
       "tournaments_played": 3,
       "average": 103.3,
-      "prev_rank": 7,
-      "rank_delta": 0
+      "prev_rank": 6,
+      "rank_delta": -1
     },
     {
       "rank": 7,
@@ -243,8 +243,8 @@
       },
       "tournaments_played": 4,
       "average": 77.5,
-      "prev_rank": 7,
-      "rank_delta": 0
+      "prev_rank": 8,
+      "rank_delta": 1
     },
     {
       "rank": 9,
@@ -353,8 +353,8 @@
       },
       "tournaments_played": 6,
       "average": 22.2,
-      "prev_rank": 13,
-      "rank_delta": 0
+      "prev_rank": 16,
+      "rank_delta": 3
     },
     {
       "rank": 14,
@@ -375,8 +375,8 @@
       },
       "tournaments_played": 4,
       "average": 33.0,
-      "prev_rank": 14,
-      "rank_delta": 0
+      "prev_rank": 13,
+      "rank_delta": -1
     },
     {
       "rank": 15,
@@ -419,8 +419,8 @@
       },
       "tournaments_played": 6,
       "average": 19.2,
-      "prev_rank": 16,
-      "rank_delta": 0
+      "prev_rank": 18,
+      "rank_delta": 2
     },
     {
       "rank": 17,
@@ -463,8 +463,8 @@
       },
       "tournaments_played": 3,
       "average": 33.0,
-      "prev_rank": 18,
-      "rank_delta": 0
+      "prev_rank": 14,
+      "rank_delta": -4
     },
     {
       "rank": 19,
@@ -727,8 +727,8 @@
       },
       "tournaments_played": 1,
       "average": 28.0,
-      "prev_rank": 30,
-      "rank_delta": 0
+      "prev_rank": 31,
+      "rank_delta": 1
     },
     {
       "rank": 31,
@@ -749,8 +749,8 @@
       },
       "tournaments_played": 2,
       "average": 11.0,
-      "prev_rank": 31,
-      "rank_delta": 0
+      "prev_rank": 33,
+      "rank_delta": 2
     },
     {
       "rank": 32,
@@ -771,8 +771,8 @@
       },
       "tournaments_played": 1,
       "average": 20.0,
-      "prev_rank": 32,
-      "rank_delta": 0
+      "prev_rank": 34,
+      "rank_delta": 2
     },
     {
       "rank": 33,
@@ -793,8 +793,8 @@
       },
       "tournaments_played": 1,
       "average": 19.0,
-      "prev_rank": 33,
-      "rank_delta": 0
+      "prev_rank": 35,
+      "rank_delta": 2
     }
   ],
   "participants_per_stage": {
@@ -811,5 +811,5 @@
     "6. etapp 28.06.2026": 9
   },
   "snapshot_date": "2026-07-10",
-  "compared_to": "2026-06-29"
+  "compared_to": "2026-06-01"
 }

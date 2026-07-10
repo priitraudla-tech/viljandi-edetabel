@@ -148,10 +148,20 @@ def _strip_deltas(players):
     ]
 
 
+def _norm_stages(stages):
+    """Compare stages by content only — ignore enrichment fields
+    (first_seen, first_run), mis lisatakse update_stage_timeline'is ja
+    mille olemasolu sõltub töötlusjärjekorrast, mitte andmete muutusest."""
+    return [
+        {"label": s.get("label"), "date": s.get("date")}
+        for s in (stages or [])
+    ]
+
+
 def players_equal(a: dict, b: dict) -> bool:
     return (
         a.get("title") == b.get("title")
-        and a.get("stages") == b.get("stages")
+        and _norm_stages(a.get("stages")) == _norm_stages(b.get("stages"))
         and _strip_deltas(a.get("players", [])) == _strip_deltas(b.get("players", []))
         and a.get("participants_per_stage") == b.get("participants_per_stage")
     )
