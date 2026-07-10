@@ -116,6 +116,35 @@ python -m http.server 8000
 
 Kui käivitad lehe otse failina (`file://`), siis brauser keelab JSON-i lugemise.
 
+## Hosting: Cloudflare Pages (soovitatud)
+
+Netlify tasuta plaan läks krediidipõhiseks (300 kr/kuus, deploy = 15 kr) —
+meie sagedaste deploy'dega süsteemile ei sobi. Cloudflare Pages on tasuta
+piiramatu ribalaiuse, 500 deploy/kuus ja 100k funktsioonipäringuga päevas.
+
+Serverifunktsioonid on porditud: `functions/api/refresh.js` ja
+`functions/api/puramiid-update.js` (Pages Functions vorming, teed `/api/*`).
+Sama kood repos töötab mõlemal platvormil — Netlify jaoks on `netlify.toml`-is
+redirect `/api/* → /.netlify/functions/*`.
+
+### Seadistus (ühekordne)
+
+1. Konto: https://dash.cloudflare.com/sign-up (tasuta, e-post + parool)
+2. Dashboard → **Workers & Pages** → **Create** → **Pages** →
+   **Connect to Git** → autoriseeri GitHub → vali repo `viljandi-edetabel`
+3. Build settings:
+   - Framework preset: **None**
+   - Build command: *(tühi)*
+   - Build output directory: `/`
+4. **Save and Deploy** → esimene deploy ~1 min
+5. Settings → **Environment variables** → lisa (Production):
+   - `GITHUB_TOKEN` — sama PAT mis Netlify's
+   - `PYRAMID_ADMIN_PASSWORD` — haldusparool
+6. Deployments → **Retry deployment** (et env-muutujad jõustuksid)
+
+Sait: `https://<projekti-nimi>.pages.dev`. Iga GitHub push deploy'b
+automaatselt, nagu Netlify's.
+
 ## Deploy Netlify-le
 
 1. Lükka see kaust eraldi GitHubi repona üles

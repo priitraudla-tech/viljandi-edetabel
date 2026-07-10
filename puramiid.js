@@ -671,7 +671,7 @@ async function submitAdmin(action, payload) {
   status.className = "admin-status";
 
   try {
-    const res = await fetch("/.netlify/functions/puramiid-update", {
+    const res = await fetch("/api/puramiid-update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password, action, payload }),

@@ -121,7 +121,7 @@ async function triggerRefresh(btn) {
   setState("loading", "Käivitan…");
 
   try {
-    const res = await fetch("/.netlify/functions/refresh", { method: "POST" });
+    const res = await fetch("/api/refresh", { method: "POST" });
     const data = await res.json().catch(() => ({}));
     if (res.ok && data.ok) {
       setState("ok", "Käivitatud — sait uueneb 1–2 min");

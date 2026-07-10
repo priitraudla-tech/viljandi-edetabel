@@ -5,6 +5,13 @@
   publish = "."
   command = ""
 
+# Üleminekuperiood: frontend kasutab /api/* teid (Cloudflare Pages vorming);
+# see redirect hoiab vana Netlify saidi töökorras kuni migratsioon on tehtud.
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
 [[headers]]
   for = "/data/*"
   [headers.values]

@@ -1,0 +1,12 @@
+# Cloudflare Pages (ja Netlify) cache-päised.
+/data/*
+  Cache-Control: public, max-age=300
+
+/index.html
+  Cache-Control: public, max-age=60
+
+/puramiid.html
+  Cache-Control: public, max-age=60
+
+/mangijad.html
+  Cache-Control: public, max-age=60
