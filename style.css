@@ -742,6 +742,24 @@ footer {
 }
 .pyr-badge { font-size: 15px; }
 
+/* Mängus (ootel väljakutse) — soe merevaigutoon, ei ole valitav vastane */
+.pyr-card.pyr-busy {
+  background: rgba(184, 131, 57, 0.12);
+  box-shadow: var(--shadow-inset), rgba(184, 131, 57, 0.38) 0 0 0 1.5px;
+  color: var(--text-2);
+}
+.pyr-card.pyr-busy .pyr-pos { color: #8a5a1d; }
+.pyr-busy-badge { font-size: 12px; }
+.busy-legend { margin-left: 6px; }
+.busy-legend-chip {
+  display: inline-block;
+  background: rgba(184, 131, 57, 0.12);
+  box-shadow: rgba(184, 131, 57, 0.38) 0 0 0 1px;
+  border-radius: var(--r-pill);
+  padding: 1px 8px;
+  font-size: 11px;
+}
+
 /* pyramid highlight: valitud mängija + lubatud vastased */
 .pyr-card.pyr-selected {
   background: var(--text);

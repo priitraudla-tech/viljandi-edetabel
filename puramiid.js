@@ -78,6 +78,16 @@ function playerByName(name) {
   return state.data.players.find((p) => p.name === name) || null;
 }
 
+// Mängijad, kellel on ootel väljakutse — nad on "mängus" ega ole valitavad.
+function busyPlayers() {
+  const busy = new Set();
+  (state.data.challenges || []).forEach((c) => {
+    busy.add(c.challenger);
+    busy.add(c.challenged);
+  });
+  return busy;
+}
+
 function rowOf(name) {
   const rows = pyramidRows(state.data.players);
   for (let i = 0; i < rows.length; i++) {
@@ -209,6 +219,7 @@ function pyramidRows(players) {
 function renderPyramid() {
   const wrap = $("#pyramid");
   wrap.innerHTML = "";
+  const busy = busyPlayers();
   pyramidRows(state.data.players).forEach((row) => {
     const rowEl = document.createElement("div");
     rowEl.className = "pyr-row";
@@ -217,10 +228,16 @@ function renderPyramid() {
       card.type = "button";
       card.className = "pyr-card";
       if (p.pos === 1) card.classList.add("pyr-first");
+      const isBusy = busy.has(p.name);
+      if (isBusy) {
+        card.classList.add("pyr-busy");
+        card.title = "Ootel väljakutse — hetkel ei saa välja kutsuda";
+      }
       card.innerHTML = `
         <span class="pyr-pos">${p.pos}.</span>
         <span class="pyr-name">${escapeHtml(p.name)}</span>
         ${p.badge ? `<span class="pyr-badge">${p.badge}</span>` : ""}
+        ${isBusy ? '<span class="pyr-busy-badge" aria-label="mängus">🎾</span>' : ""}
       `;
       card.dataset.name = p.name;
       card.addEventListener("click", () => togglePlayerHighlight(p.name));
@@ -258,23 +275,35 @@ function togglePlayerHighlight(name) {
   }
 
   state.selectedPlayer = name;
-  const targets = allowedTargets(name);
-  const targetNames = new Set(targets.map((t) => t.name));
+  const busy = busyPlayers();
+  const all = allowedTargets(name);
+  const free = all.filter((t) => !busy.has(t.name));
+  const inPlay = all.filter((t) => busy.has(t.name));
+  const freeNames = new Set(free.map((t) => t.name));
 
   cards.forEach((c) => {
     if (c.dataset.name === name) c.classList.add("pyr-selected");
-    else if (targetNames.has(c.dataset.name)) c.classList.add("pyr-target");
+    else if (freeNames.has(c.dataset.name)) c.classList.add("pyr-target");
   });
 
   info.hidden = false;
   const me = playerByName(name);
-  if (!targets.length) {
+  if (busy.has(name)) {
+    info.innerHTML =
+      `<b>${escapeHtml(name)}</b> on hetkel mängus (ootel väljakutse) — ` +
+      `uue väljakutse saab esitada pärast selle mängimist. `;
+  } else if (!all.length) {
     info.innerHTML = `<b>${escapeHtml(name)}</b> on püramiidi tipus — teda saab ainult välja kutsuda. `;
   } else {
+    const busyNote = inPlay.length
+      ? ` <span class="dim">Hetkel mängus (ei saa kutsuda): ${inPlay.map((t) => escapeHtml(t.name)).join(", ")}.</span>`
+      : "";
     info.innerHTML =
       `<b>${escapeHtml(name)}</b> (${me.pos}.) saab välja kutsuda: ` +
-      targets.map((t) => `<span class="pyr-target-name">${t.pos}. ${escapeHtml(t.name)}</span>`).join(", ") +
-      `. <span class="dim">Erandiga (2× hooajal) ka kuni 2 kohta allpool.</span> `;
+      (free.length
+        ? free.map((t) => `<span class="pyr-target-name">${t.pos}. ${escapeHtml(t.name)}</span>`).join(", ")
+        : '<span class="dim">kedagi mitte — kõik lubatud vastased on mängus</span>') +
+      `.${busyNote} <span class="dim">Erandiga (2× hooajal) ka kuni 2 kohta allpool.</span> `;
   }
   const link = document.createElement("button");
   link.type = "button";
@@ -512,7 +541,20 @@ function setupAdmin() {
   const refreshChallengedOptions = () => {
     const name = chChallenger.value;
     const erand = chErand.checked;
-    const targets = erand ? downwardTargets(name) : allowedTargets(name);
+    const busy = busyPlayers();
+
+    // Väljakutsuja ise on mängus -> uut väljakutset ei saa esitada.
+    if (busy.has(name)) {
+      chChallenged.innerHTML = "";
+      chErandInfo.hidden = true;
+      chAllowedInfo.textContent =
+        `${name} on hetkel mängus (ootel väljakutse) — uue saab esitada pärast selle mängimist.`;
+      return;
+    }
+
+    const allTargets = erand ? downwardTargets(name) : allowedTargets(name);
+    const targets = allTargets.filter((p) => !busy.has(p.name));
+    const busyCount = allTargets.length - targets.length;
 
     chChallenged.innerHTML = "";
     targets.forEach((p) => {
@@ -522,20 +564,21 @@ function setupAdmin() {
       chChallenged.appendChild(opt);
     });
 
+    const busyNote = busyCount ? ` (${busyCount} vastast on hetkel mängus)` : "";
     if (erand) {
       const used = erandUsed(name);
       chErandInfo.hidden = false;
       chErandInfo.textContent = `Erandeid kasutatud: ${used}/${ERAND_MAX}. ` +
         (used >= ERAND_MAX ? "Limiit täis — uut erandit ei saa esitada!" :
          "Võit = 2 boonuspunkti, kohad ei muutu. Kaotus = kohavahetus.");
-      chAllowedInfo.textContent = targets.length
+      chAllowedInfo.textContent = (targets.length
         ? "Erand: kuni 2 kohta allpool olevad mängijad."
-        : "Sellest positsioonist allpool (kuni 2 kohta) pole kedagi.";
+        : "Vabu vastaseid pole (kuni 2 kohta allpool).") + busyNote;
     } else {
       chErandInfo.hidden = true;
-      chAllowedInfo.textContent = targets.length
+      chAllowedInfo.textContent = (targets.length
         ? "Lubatud: samas reas vasakul + rida ülevalpool."
-        : "Püramiidi tipust ei saa kedagi välja kutsuda.";
+        : "Vabu vastaseid hetkel pole.") + busyNote;
     }
   };
   chChallenger.addEventListener("change", refreshChallengedOptions);

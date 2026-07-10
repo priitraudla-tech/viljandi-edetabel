@@ -104,6 +104,19 @@ function applyAddChallenge(data, p) {
   const challenged = data.players.find((x) => x.name === p.challenged);
   if (!challenger || !challenged) throw new Error("Mängijat pole püramiidis.");
 
+  // Üks aktiivne väljakutse mängija kohta korraga.
+  const busy = new Set();
+  (data.challenges || []).forEach((c) => {
+    busy.add(c.challenger);
+    busy.add(c.challenged);
+  });
+  if (busy.has(p.challenger)) {
+    throw new Error(`${p.challenger} on juba ootel väljakutses — uue saab esitada pärast selle mängimist.`);
+  }
+  if (busy.has(p.challenged)) {
+    throw new Error(`${p.challenged} on juba ootel väljakutses — teda ei saa hetkel välja kutsuda.`);
+  }
+
   if (p.erand) {
     const dist = challenged.pos - challenger.pos;
     if (dist < 1 || dist > ERAND_MAX_DIST) {
