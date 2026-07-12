@@ -68,6 +68,22 @@ function daysUntil(isoDate) {
   return Math.round((d - today) / 86400000);
 }
 
+// "2026-07-18T19:00" -> "L, 18.07.2026 kell 19:00"
+function fmtAgreed(dt) {
+  const m = String(dt || "").match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+  if (!m) return dt || "";
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  const wd = ["P", "E", "T", "K", "N", "R", "L"][d.getDay()];
+  return `${wd}, ${m[3]}.${m[2]}.${m[1]} kell ${m[4]}:${m[5]}`;
+}
+
+function agreedInPast(dt) {
+  const m = String(dt || "").match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+  if (!m) return false;
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), Number(m[4]), Number(m[5]));
+  return d < new Date();
+}
+
 // ---------- rules helpers ----------
 
 const ERAND_MAX = 2;        // allapoole-väljakutseid hooajal mängija kohta
@@ -404,6 +420,15 @@ function renderChallenges() {
       deadlineHtml = `<div class="challenge-deadline ${cls}">${label}</div>`;
     }
 
+    // Kokkulepitud mänguaeg (kui on)
+    let agreedHtml = "";
+    if (c.agreed_time) {
+      const past = agreedInPast(c.agreed_time);
+      agreedHtml = `<div class="challenge-agreed ${past ? "is-past" : ""}">🕐 Mäng: ${escapeHtml(fmtAgreed(c.agreed_time))}${past ? " — kas tulemus on sisestamata?" : ""}</div>`;
+    } else {
+      agreedHtml = '<div class="challenge-agreed is-unset">🕐 Mänguaeg kokku leppimata</div>';
+    }
+
     card.innerHTML = `
       <div class="challenge-players">
         <span class="challenge-name">${escapeHtml(c.challenger)}</span>
@@ -414,6 +439,7 @@ function renderChallenges() {
       <div class="challenge-meta">
         <span>Esitatud: ${escapeHtml(fmtDateISO(c.challenge_date) || "—")}</span>
       </div>
+      ${agreedHtml}
       ${deadlineHtml}
     `;
     list.appendChild(card);
@@ -523,6 +549,7 @@ function setupAdmin() {
       $$(".admin-tab").forEach((b) => b.classList.toggle("active", b === btn));
       $("#form-challenge").hidden = state.adminTab !== "challenge";
       $("#form-result").hidden = state.adminTab !== "result";
+      $("#form-time").hidden = state.adminTab !== "time";
     });
   });
 
@@ -600,6 +627,36 @@ function setupAdmin() {
     opt.textContent = `${c.challenger} vs ${c.challenged}`;
     resChallenge.appendChild(opt);
   });
+
+  // Mänguaja vorm: ootel väljakutsete valik + olemasoleva aja eeltäide
+  const timeChallenge = $("#time-challenge");
+  const timeAgreed = $("#time-agreed");
+  timeChallenge.innerHTML = "";
+  (state.data.challenges || []).forEach((c, i) => {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    opt.textContent = `${c.challenger} vs ${c.challenged}` +
+      (c.agreed_time ? ` (${fmtAgreed(c.agreed_time)})` : "");
+    timeChallenge.appendChild(opt);
+  });
+  const prefillAgreed = () => {
+    const c = state.data.challenges?.[Number(timeChallenge.value)];
+    timeAgreed.value = c?.agreed_time || "";
+  };
+  timeChallenge.addEventListener("change", prefillAgreed);
+  if (timeChallenge.options.length) prefillAgreed();
+
+  $("#form-time").addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (timeChallenge.value === "") {
+      alert("Ootel väljakutseid pole.");
+      return;
+    }
+    submitAdmin("set_agreed_time", {
+      challenge_index: Number(timeChallenge.value),
+      agreed_time: timeAgreed.value,
+    });
+  });
   resChallenge.addEventListener("change", () => {
     const i = resChallenge.value;
     if (i === "") return;
@@ -672,6 +729,7 @@ function setupAdmin() {
       challenged,
       challenge_date: date,
       deadline: chDeadline.value || (date ? addDays(date, CHALLENGE_DAYS) : null),
+      agreed_time: $("#ch-agreed").value || null,
       erand,
       override,
     });

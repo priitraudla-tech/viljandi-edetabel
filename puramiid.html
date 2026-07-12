@@ -177,6 +177,7 @@
       <div class="admin-tabs">
         <button class="admin-tab active" data-admin-tab="challenge">Uus väljakutse</button>
         <button class="admin-tab" data-admin-tab="result">Sisesta tulemus</button>
+        <button class="admin-tab" data-admin-tab="time">Mänguaeg</button>
       </div>
 
       <!-- New challenge form -->
@@ -203,7 +204,26 @@
           Mängimise tähtaeg (automaatselt +14 päeva, saab muuta)
           <input id="ch-deadline" type="date" />
         </label>
+        <label class="admin-field">
+          Kokkulepitud mänguaeg (valikuline — saab hiljem lisada)
+          <input id="ch-agreed" type="datetime-local" />
+        </label>
         <button type="submit" class="admin-submit">Lisa väljakutse</button>
+      </form>
+
+      <!-- Agreed time form -->
+      <form id="form-time" class="admin-form" hidden>
+        <label class="admin-field">
+          Ootel väljakutse
+          <select id="time-challenge" required></select>
+        </label>
+        <label class="admin-field">
+          Kokkulepitud mänguaeg
+          <input id="time-agreed" type="datetime-local" required />
+        </label>
+        <p class="admin-hint">Aeg kuvatakse väljakutse kaardil Väljakutsete vahekaardil
+        ja mängijate profiilides.</p>
+        <button type="submit" class="admin-submit">Salvesta mänguaeg</button>
       </form>
 
       <!-- Result form -->

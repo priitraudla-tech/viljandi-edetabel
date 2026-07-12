@@ -549,6 +549,14 @@ function renderProfileChallenges(name) {
       }
       deadlineHtml = `<div class="challenge-deadline ${cls}">${label}</div>`;
     }
+    let agreedHtml = "";
+    const am = String(c.agreed_time || "").match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    if (am) {
+      const wd = ["P", "E", "T", "K", "N", "R", "L"][
+        new Date(Number(am[1]), Number(am[2]) - 1, Number(am[3])).getDay()];
+      agreedHtml = `<div class="challenge-agreed">🕐 Mäng: ${wd}, ${am[3]}.${am[2]}.${am[1]} kell ${am[4]}:${am[5]}</div>`;
+    }
+
     const card = document.createElement("div");
     card.className = "challenge-card";
     card.innerHTML = `
@@ -559,6 +567,7 @@ function renderProfileChallenges(name) {
         ${c.erand ? '<span class="type-badge type-erand">Erand</span>' : ""}
       </div>
       <div class="challenge-meta"><span>Esitatud: ${fmtDateISO(c.challenge_date)}</span></div>
+      ${agreedHtml}
       ${deadlineHtml}
     `;
     list.appendChild(card);

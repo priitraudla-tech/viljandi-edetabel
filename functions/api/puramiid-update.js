@@ -148,10 +148,21 @@ function applyAddChallenge(data, p) {
     challenged: p.challenged,
     challenge_date: p.challenge_date || null,
     deadline,
+    agreed_time: p.agreed_time || null,
     erand: !!p.erand,
     created_at: new Date().toISOString(),
   });
   return `puramiid: väljakutse ${p.challenger} → ${p.challenged}${p.erand ? " (erand)" : ""}`;
+}
+
+function applySetAgreedTime(data, p) {
+  const c = (data.challenges || [])[p.challenge_index];
+  if (!c) throw new Error("Sellist ootel väljakutset ei leitud.");
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(String(p.agreed_time || ""))) {
+    throw new Error("Mänguaeg peab olema kujul YYYY-MM-DDTHH:MM.");
+  }
+  c.agreed_time = p.agreed_time;
+  return `puramiid: mänguaeg ${c.challenger} vs ${c.challenged} → ${p.agreed_time}`;
 }
 
 function applyAddResult(data, p) {
@@ -276,6 +287,8 @@ export async function onRequestPost(context) {
       message = applyAddChallenge(data, body.payload || {});
     } else if (body.action === "add_result") {
       message = applyAddResult(data, body.payload || {});
+    } else if (body.action === "set_agreed_time") {
+      message = applySetAgreedTime(data, body.payload || {});
     } else {
       return Response.json({ ok: false, error: "Tundmatu tegevus." }, { status: 400 });
     }
