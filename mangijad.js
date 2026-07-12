@@ -551,10 +551,13 @@ function renderProfileChallenges(name) {
     }
     let agreedHtml = "";
     const am = String(c.agreed_time || "").match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    const venuePart = c.venue ? ` · 📍 ${escapeHtml(c.venue)}` : "";
     if (am) {
       const wd = ["P", "E", "T", "K", "N", "R", "L"][
         new Date(Number(am[1]), Number(am[2]) - 1, Number(am[3])).getDay()];
-      agreedHtml = `<div class="challenge-agreed">🕐 Mäng: ${wd}, ${am[3]}.${am[2]}.${am[1]} kell ${am[4]}:${am[5]}</div>`;
+      agreedHtml = `<div class="challenge-agreed">🕐 Mäng: ${wd}, ${am[3]}.${am[2]}.${am[1]} kell ${am[4]}:${am[5]}${venuePart}</div>`;
+    } else if (c.venue) {
+      agreedHtml = `<div class="challenge-agreed">📍 ${escapeHtml(c.venue)}</div>`;
     }
 
     const card = document.createElement("div");

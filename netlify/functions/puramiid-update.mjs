@@ -157,6 +157,7 @@ function applyAddChallenge(data, p) {
     challenge_date: p.challenge_date || null,
     deadline,
     agreed_time: p.agreed_time || null,
+    venue: (typeof p.venue === "string" && p.venue.trim()) ? p.venue.trim().slice(0, 120) : null,
     erand: !!p.erand,
     created_at: new Date().toISOString(),
   });
@@ -170,7 +171,12 @@ function applySetAgreedTime(data, p) {
     throw new Error("Mänguaeg peab olema kujul YYYY-MM-DDTHH:MM.");
   }
   c.agreed_time = p.agreed_time;
-  return `puramiid: mänguaeg ${c.challenger} vs ${c.challenged} → ${p.agreed_time}`;
+  if (p.venue !== undefined) {
+    c.venue = (typeof p.venue === "string" && p.venue.trim())
+      ? p.venue.trim().slice(0, 120) : null;
+  }
+  return `puramiid: mänguaeg ${c.challenger} vs ${c.challenged} → ${p.agreed_time}` +
+    (c.venue ? ` @ ${c.venue}` : "");
 }
 
 function applyAddResult(data, p) {
@@ -206,6 +212,7 @@ function applyAddResult(data, p) {
     if (c && c.challenger === p.challenger && c.challenged === p.challenged) {
       data.challenges.splice(p.challenge_index, 1);
       game.challenge_date = c.challenge_date;
+      if (c.venue) game.venue = c.venue; // koht kandub mängu ajalukku
     }
   }
 

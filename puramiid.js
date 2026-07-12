@@ -77,6 +77,32 @@ function fmtAgreed(dt) {
   return `${wd}, ${m[3]}.${m[2]}.${m[1]} kell ${m[4]}:${m[5]}`;
 }
 
+// Varem kasutatud mängukohad (väljakutsetest ja mängudest) — soovitusteks.
+function knownVenues() {
+  const seen = new Set();
+  const out = [];
+  const add = (v) => {
+    const s = String(v || "").trim();
+    if (!s) return;
+    const key = s.toLowerCase();
+    if (!seen.has(key)) { seen.add(key); out.push(s); }
+  };
+  (state.data.challenges || []).forEach((c) => add(c.venue));
+  (state.data.games || []).forEach((g) => add(g.venue));
+  return out;
+}
+
+function refreshVenueDatalist() {
+  const dl = $("#venue-list");
+  if (!dl) return;
+  dl.innerHTML = "";
+  knownVenues().forEach((v) => {
+    const opt = document.createElement("option");
+    opt.value = v;
+    dl.appendChild(opt);
+  });
+}
+
 function agreedInPast(dt) {
   const m = String(dt || "").match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
   if (!m) return false;
@@ -420,11 +446,14 @@ function renderChallenges() {
       deadlineHtml = `<div class="challenge-deadline ${cls}">${label}</div>`;
     }
 
-    // Kokkulepitud mänguaeg (kui on)
+    // Kokkulepitud mänguaeg ja koht (kui on)
     let agreedHtml = "";
+    const venuePart = c.venue ? ` · 📍 ${escapeHtml(c.venue)}` : "";
     if (c.agreed_time) {
       const past = agreedInPast(c.agreed_time);
-      agreedHtml = `<div class="challenge-agreed ${past ? "is-past" : ""}">🕐 Mäng: ${escapeHtml(fmtAgreed(c.agreed_time))}${past ? " — kas tulemus on sisestamata?" : ""}</div>`;
+      agreedHtml = `<div class="challenge-agreed ${past ? "is-past" : ""}">🕐 Mäng: ${escapeHtml(fmtAgreed(c.agreed_time))}${venuePart}${past ? " — kas tulemus on sisestamata?" : ""}</div>`;
+    } else if (c.venue) {
+      agreedHtml = `<div class="challenge-agreed is-unset">🕐 Aeg kokku leppimata${venuePart}</div>`;
     } else {
       agreedHtml = '<div class="challenge-agreed is-unset">🕐 Mänguaeg kokku leppimata</div>';
     }
@@ -628,9 +657,11 @@ function setupAdmin() {
     resChallenge.appendChild(opt);
   });
 
-  // Mänguaja vorm: ootel väljakutsete valik + olemasoleva aja eeltäide
+  // Mänguaja vorm: ootel väljakutsete valik + olemasoleva aja/koha eeltäide
   const timeChallenge = $("#time-challenge");
   const timeAgreed = $("#time-agreed");
+  const timeVenue = $("#time-venue");
+  refreshVenueDatalist();
   timeChallenge.innerHTML = "";
   (state.data.challenges || []).forEach((c, i) => {
     const opt = document.createElement("option");
@@ -642,6 +673,7 @@ function setupAdmin() {
   const prefillAgreed = () => {
     const c = state.data.challenges?.[Number(timeChallenge.value)];
     timeAgreed.value = c?.agreed_time || "";
+    timeVenue.value = c?.venue || "";
   };
   timeChallenge.addEventListener("change", prefillAgreed);
   if (timeChallenge.options.length) prefillAgreed();
@@ -655,6 +687,7 @@ function setupAdmin() {
     submitAdmin("set_agreed_time", {
       challenge_index: Number(timeChallenge.value),
       agreed_time: timeAgreed.value,
+      venue: timeVenue.value.trim() || null,
     });
   });
   resChallenge.addEventListener("change", () => {
@@ -730,6 +763,7 @@ function setupAdmin() {
       challenge_date: date,
       deadline: chDeadline.value || (date ? addDays(date, CHALLENGE_DAYS) : null),
       agreed_time: $("#ch-agreed").value || null,
+      venue: $("#ch-venue").value.trim() || null,
       erand,
       override,
     });

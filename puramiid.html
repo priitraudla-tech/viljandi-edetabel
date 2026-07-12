@@ -208,6 +208,11 @@
           Kokkulepitud mänguaeg (valikuline — saab hiljem lisada)
           <input id="ch-agreed" type="datetime-local" />
         </label>
+        <label class="admin-field">
+          Mängukoht (valikuline)
+          <input id="ch-venue" type="text" list="venue-list"
+                 placeholder="nt Viljandi järveäärne tenniseplats nr 3" />
+        </label>
         <button type="submit" class="admin-submit">Lisa väljakutse</button>
       </form>
 
@@ -221,10 +226,17 @@
           Kokkulepitud mänguaeg
           <input id="time-agreed" type="datetime-local" required />
         </label>
-        <p class="admin-hint">Aeg kuvatakse väljakutse kaardil Väljakutsete vahekaardil
-        ja mängijate profiilides.</p>
-        <button type="submit" class="admin-submit">Salvesta mänguaeg</button>
+        <label class="admin-field">
+          Mängukoht (valikuline — hakka kirjutama, varem kasutatud kohad tulevad soovitustena)
+          <input id="time-venue" type="text" list="venue-list"
+                 placeholder="nt Viljandi järveäärne tenniseplats nr 3" />
+        </label>
+        <p class="admin-hint">Aeg ja koht kuvatakse väljakutse kaardil Väljakutsete
+        vahekaardil ja mängijate profiilides.</p>
+        <button type="submit" class="admin-submit">Salvesta mänguaeg ja koht</button>
       </form>
+
+      <datalist id="venue-list"></datalist>
 
       <!-- Result form -->
       <form id="form-result" class="admin-form" hidden>
