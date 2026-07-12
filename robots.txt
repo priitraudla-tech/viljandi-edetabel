@@ -1,0 +1,28 @@
+# Viljandi tennise üksikmängu edetabel — kõik robotid on teretulnud,
+# sh AI-otsingu robotid (soovime nähtavust ka AI-vastustes).
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://viljandi-edetabel.pages.dev/sitemap.xml
