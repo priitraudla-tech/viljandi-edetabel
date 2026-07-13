@@ -82,6 +82,13 @@ button { font-family: inherit; }
   padding: 0 24px;
 }
 
+/* CLS-kaitse: andmed laetakse JS-iga parast esmast renderdust — reserveerime
+   sisualadele koha, et jalus/allmarkused ei hyppaks laadimisel (Core Web Vitals). */
+main.container { min-height: calc(100vh - 260px); }
+#tab-standings .table-wrap { min-height: 62vh; }
+.pyramid-wrap { min-height: 440px; }
+#view-register { min-height: 62vh; }
+
 /* ---------- topbar ---------- */
 .topbar {
   background: var(--surface);
@@ -1071,6 +1078,7 @@ td.game-winner { font-weight: 600; }
   /* Preserve the pyramid SHAPE on phones: fixed min-width + sideways scroll
      (same pattern as tournament brackets). */
   .pyramid { min-width: 700px; }
+  .pyramid-wrap { min-height: 350px; } /* CLS: mobiilis on kaardid madalamad */
   .pyr-card { font-size: 12px; padding: 7px 11px; gap: 5px; }
   .pyr-row { gap: 6px; }
   .pyramid { gap: 7px; }
