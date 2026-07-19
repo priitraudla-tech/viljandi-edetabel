@@ -191,9 +191,59 @@ main.container { min-height: calc(100vh - 260px); }
 }
 .meta a:hover { color: var(--text); border-color: var(--text-3); text-decoration: none; }
 
+/* ---------- site nav (3 lehe vahel, suured ikoonidega nupud) ---------- */
+.site-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.site-nav-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 18px;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s, color 0.15s;
+}
+.site-nav-link:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-inset), var(--shadow-card);
+  color: var(--text);
+  text-decoration: none;
+}
+.site-nav-link.is-active {
+  background: var(--text);
+  color: var(--surface);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+.site-nav-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .site-nav { gap: 8px; margin-top: 16px; }
+  .site-nav-link {
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px 6px;
+    font-size: 13px;
+  }
+  .site-nav-icon { font-size: 24px; }
+}
+
 /* ---------- tabs (warm pill) ---------- */
 .tabs-wrap {
-  margin-top: 32px;
+  margin-top: 22px;
   margin-bottom: 8px;
 }
 .tabs {
