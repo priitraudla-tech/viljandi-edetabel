@@ -1356,9 +1356,13 @@ td.game-winner { font-weight: 600; }
   color: var(--text-2);
 }
 .elo-info-body p { margin: 0 0 10px; }
-.elo-info-body ul { margin: 0 0 10px; padding-left: 20px; }
+.elo-info-body ul,
+.elo-info-body ol { margin: 0 0 10px; padding-left: 20px; }
 .elo-info-body li { margin-bottom: 5px; }
 .elo-info-body b { color: var(--text); font-weight: 600; }
+.elo-table-wrap { margin: 12px 0 14px; }
+.elo-table-wrap table { font-size: 13px; }
+.elo-table-wrap thead th { cursor: default; }
 
 @media (max-width: 600px) {
   .h2h-name { font-size: 17px; }

@@ -90,6 +90,39 @@
             ja kohti (100 p võidu eest sõltumata vastastest), Elo hindab iga
             üksiku võidu kvaliteeti. Seepärast võivad tabelid erineda — Elo on
             omamoodi "tugevuse varjutabel".</p>
+            <p><b>Kuidas punkte arvutatakse — lihtsustatult:</b></p>
+            <ol>
+              <li>Enne mängu vaadatakse kahe mängija <b>reitingute vahet</b> —
+              sellest tuleb favoriidi võidutõenäosus.</li>
+              <li>Võitja saab punkte valemiga <b>32 × (1 − võiduootus)</b>.
+              Kaotaja kaotab täpselt sama palju — punktid liiguvad ühelt teisele.</li>
+              <li>Mida üllatavam võit, seda rohkem punkte liigub.</li>
+            </ol>
+            <p><b>Näide:</b> mängija A (Elo 1660) vs mängija B (Elo 1610).
+            Vahe 50 punkti → A võiduootus on ~57%.</p>
+            <ul>
+              <li>Kui võidab A (favoriit): A <b>+14</b>, B −14</li>
+              <li>Kui võidab B (üllatus): B <b>+18</b>, A −18</li>
+            </ul>
+            <div class="table-wrap elo-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sinu reiting vs vastane</th>
+                    <th class="num">Võiduootus</th>
+                    <th class="num">Võit annab</th>
+                    <th class="num">Kaotus võtab</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Võrdsed</td><td class="num">50%</td><td class="num">+16</td><td class="num">−16</td></tr>
+                  <tr><td>Sina 100 võrra kõrgem</td><td class="num">64%</td><td class="num">+12</td><td class="num">−20</td></tr>
+                  <tr><td>Sina 200 võrra kõrgem</td><td class="num">76%</td><td class="num">+8</td><td class="num">−24</td></tr>
+                  <tr><td>Sina 100 võrra madalam</td><td class="num">36%</td><td class="num">+20</td><td class="num">−12</td></tr>
+                  <tr><td>Sina 200 võrra madalam</td><td class="num">24%</td><td class="num">+24</td><td class="num">−8</td></tr>
+                </tbody>
+              </table>
+            </div>
             <p>Arvesse lähevad kõik VÜS turniiride ja püramiidi mängud
             (arvestusevälised mitte). H2H vaate <b>võiduprognoos</b> tuleb samast
             valemist: mida suurem Elo-vahe, seda suurem favoriidi
