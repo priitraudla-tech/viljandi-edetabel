@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-07-17T11:37:41.268Z",
+  "updated_at": "2026-07-22T04:05:51.958Z",
   "players": [
     {
       "pos": 1,
@@ -104,7 +104,7 @@
     },
     {
       "pos": 21,
-      "name": "Indrek Taukar",
+      "name": "Mikk Kadak",
       "badge": ""
     },
     {
@@ -114,7 +114,7 @@
     },
     {
       "pos": 23,
-      "name": "Mikk Kadak",
+      "name": "Indrek Taukar",
       "badge": ""
     },
     {
@@ -892,6 +892,17 @@
       "challenge_date": "2026-07-17",
       "play_date": "2026-07-17",
       "venue": "Viljandi järveäärne tenniseväljak nr 4"
+    },
+    {
+      "nr": 77,
+      "challenger": "Mikk Kadak",
+      "challenged": "Indrek Taukar",
+      "score": "7/6 6/2",
+      "winner": "Mikk Kadak",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2027-07-21"
     }
   ],
   "challenges": [
