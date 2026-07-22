@@ -103,6 +103,17 @@ function refreshVenueDatalist() {
   });
 }
 
+// Skoor, mis on tegelikult seletustekst (nt "Ei mängitud, kuna ...") —
+// kuvatakse kompaktse margisena, taistekst avaneb klopsuga.
+// Paris skoorid (sh "3/6 7/6(5) 7/10", "katkestus"-lisandiga) jaavad puutumata.
+function scoreNote(score) {
+  const s = String(score || "").trim();
+  if (s.length <= 12) return null;
+  if (/\d\s*[\/:]\s*\d/.test(s)) return null; // sisaldab paris skoori
+  const label = /^ei mängitud/i.test(s) ? "Ei mängitud" : "Märkus";
+  return { label, full: s };
+}
+
 function agreedInPast(dt) {
   const m = String(dt || "").match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
   if (!m) return false;
@@ -395,15 +406,35 @@ function renderGames() {
       (g.erand ? ' <span class="type-badge type-erand">Erand</span>' : "");
     const chW = g.winner === g.challenger;
     const cdW = g.winner === g.challenged;
+
+    // Seletustekstiga "skoor" -> kompaktne margis, taistekst avaneb klopsuga
+    const note = scoreNote(g.score);
+    const scoreCell = note
+      ? `<button type="button" class="score-note-btn" aria-expanded="false">${note.label} ⓘ</button>`
+      : escapeHtml(g.score || "—");
+
     tr.innerHTML = `
       <td class="num dim">${g.nr}</td>
       <td class="dim">${escapeHtml(dates || "—")}</td>
       <td class="${chW ? "game-winner" : ""}">${escapeHtml(g.challenger)}${mvBadge}</td>
-      <td class="num">${escapeHtml(g.score || "—")}</td>
+      <td class="num">${scoreCell}</td>
       <td class="${cdW ? "game-winner" : ""}">${escapeHtml(g.challenged)}</td>
       <td class="game-winner">${escapeHtml(g.winner || "—")}</td>
     `;
     tbody.appendChild(tr);
+
+    if (note) {
+      const noteRow = document.createElement("tr");
+      noteRow.className = "game-note-row";
+      noteRow.hidden = true;
+      noteRow.innerHTML = `<td colspan="6">${escapeHtml(note.full)}</td>`;
+      tbody.appendChild(noteRow);
+      const btn = tr.querySelector(".score-note-btn");
+      btn.addEventListener("click", () => {
+        noteRow.hidden = !noteRow.hidden;
+        btn.setAttribute("aria-expanded", String(!noteRow.hidden));
+      });
+    }
   });
 }
 

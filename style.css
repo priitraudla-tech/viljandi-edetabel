@@ -904,6 +904,41 @@ tr.game-off td { color: var(--text-3); }
 tr.game-off .game-winner { color: var(--text-3); }
 td.game-winner { font-weight: 600; }
 
+/* Seletustekstiga skoor: kompaktne margis + avatav selgitusrida */
+.score-note-btn {
+  background: var(--surface-warm);
+  border: 0;
+  font: 500 12px/1.4 var(--font-body);
+  letter-spacing: 0.14px;
+  color: var(--text-2);
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.score-note-btn:hover { color: var(--text); }
+.score-note {
+  display: inline-block;
+  background: var(--surface-warm);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset);
+  cursor: help;
+  white-space: nowrap;
+}
+tr.game-note-row td {
+  white-space: normal;
+  font-size: 13px;
+  color: var(--text-2);
+  background: rgba(245, 242, 239, 0.6);
+  padding: 10px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
 /* challenges */
 .challenges-list {
   display: grid;

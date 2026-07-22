@@ -44,6 +44,16 @@ function fmtDateISO(iso) {
   return iso;
 }
 
+// Seletustekstiga "skoor" (nt "Ei mängitud, kuna ...") -> kompaktne margis,
+// taistekst title-vihjena. Paris skoorid jaavad puutumata.
+function fmtScore(score) {
+  const s = String(score || "").trim();
+  if (!s) return "—";
+  if (s.length <= 12 || /\d\s*[\/:]\s*\d/.test(s)) return escapeHtml(s);
+  const label = /^ei mängitud/i.test(s) ? "Ei mängitud" : "Märkus";
+  return `<span class="score-note" title="${escapeHtml(s)}">${label} ⓘ</span>`;
+}
+
 async function fetchJSON(path) {
   const res = await fetch(path, { cache: "no-cache" });
   if (!res.ok) throw new Error(`${path}: ${res.status}`);
@@ -688,7 +698,7 @@ function renderProfileMatches() {
       <td class="dim">${escapeHtml(m.display)}</td>
       <td>${escapeHtml(m.event)}</td>
       <td class="player-name"><button type="button">${escapeHtml(opp)}</button></td>
-      <td class="num">${escapeHtml(m.score)}</td>
+      <td class="num">${fmtScore(m.score)}</td>
       <td>${m.off ? '<span class="dim">arvestuseväline</span>'
         : won ? '<span class="res-w">Võit</span>' : '<span class="res-l">Kaotus</span>'}</td>
     `;
@@ -827,7 +837,7 @@ function renderH2H() {
     tr.innerHTML = `
       <td class="dim">${escapeHtml(m.display)}</td>
       <td>${escapeHtml(m.event)}</td>
-      <td class="num">${escapeHtml(m.score)}</td>
+      <td class="num">${fmtScore(m.score)}</td>
       <td class="game-winner">${escapeHtml(m.winner || "—")}${m.off ? ' <span class="dim">(arvestuseväline)</span>' : ""}</td>
     `;
     tbody.appendChild(tr);
