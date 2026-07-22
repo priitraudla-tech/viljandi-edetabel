@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-07-22T07:12:48.665Z",
+  "updated_at": "2026-07-22T10:20:10.153Z",
   "players": [
     {
       "pos": 1,
@@ -932,8 +932,8 @@
       "challenged": "Andri Reiman",
       "challenge_date": "2026-07-22",
       "deadline": "2026-08-05",
-      "agreed_time": null,
-      "venue": null,
+      "agreed_time": "2026-07-22T15:00",
+      "venue": "Viljandi järveäärne tenniseväljak nr 1",
       "erand": false,
       "created_at": "2026-07-22T07:12:01.712Z"
     },
