@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-07-22T10:20:10.153Z",
+  "updated_at": "2026-07-22T13:48:49.771Z",
   "players": [
     {
       "pos": 1,
@@ -914,6 +914,18 @@
       "erand": false,
       "challenge_date": "2026-07-10",
       "play_date": "2026-07-21"
+    },
+    {
+      "nr": 79,
+      "challenger": "Hardi-Sander Luik",
+      "challenged": "Andri Reiman",
+      "score": "5:7 6:1 11:9",
+      "winner": "Andri Reiman",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": "2026-07-22",
+      "play_date": "2026-07-22",
+      "venue": "Viljandi järveäärne tenniseväljak nr 1"
     }
   ],
   "challenges": [
@@ -926,16 +938,6 @@
       "venue": null,
       "erand": false,
       "created_at": "2026-07-13T12:00:02.625Z"
-    },
-    {
-      "challenger": "Hardi-Sander Luik",
-      "challenged": "Andri Reiman",
-      "challenge_date": "2026-07-22",
-      "deadline": "2026-08-05",
-      "agreed_time": "2026-07-22T15:00",
-      "venue": "Viljandi järveäärne tenniseväljak nr 1",
-      "erand": false,
-      "created_at": "2026-07-22T07:12:01.712Z"
     },
     {
       "challenger": "Indrek Taukar",
