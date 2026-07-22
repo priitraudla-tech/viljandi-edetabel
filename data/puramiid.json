@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-07-22T04:08:01.712Z",
+  "updated_at": "2026-07-22T07:12:01.712Z",
   "players": [
     {
       "pos": 1,
@@ -926,6 +926,16 @@
       "venue": null,
       "erand": false,
       "created_at": "2026-07-13T12:00:02.625Z"
+    },
+    {
+      "challenger": "Hardi-Sander Luik",
+      "challenged": "Andri Reiman",
+      "challenge_date": "2026-07-22",
+      "deadline": "2026-08-05",
+      "agreed_time": null,
+      "venue": null,
+      "erand": false,
+      "created_at": "2026-07-22T07:12:01.712Z"
     }
   ]
 }
