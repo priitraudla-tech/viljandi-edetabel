@@ -1,0 +1,80 @@
+{
+  "turniir": {
+    "nimi": "VÜS 2026 7. etapp",
+    "sari": "VÜS",
+    "etapp": 7,
+    "kuupaev": "2026-07-26"
+  },
+  "formaat": "alagrupid",
+  "alagrupid_markus": "Kaks alagruppi mängisid ringsüsteemis. Grupivõitjad ja teiseks tulnud pääsesid ristipidi poolfinaali (A1–B2, A2–B1), kolmandad mängisid 5. koha eest.",
+  "mangijad": [
+    {"id": 1, "nimi": "Priit Raudla",     "asetus": 1},
+    {"id": 2, "nimi": "Andrus Jürgenson", "asetus": 2},
+    {"id": 3, "nimi": "Reevo Kirna",      "asetus": 3},
+    {"id": 4, "nimi": "Eneli Pihl",       "asetus": 4},
+    {"id": 5, "nimi": "Ilja Balabko",     "asetus": 5},
+    {"id": 6, "nimi": "Marcel Mikiver",   "asetus": 6}
+  ],
+  "alagrupid": [
+    {
+      "id": "A",
+      "nimi": "Grupp A",
+      "mangud": [
+        {"voitja": "Priit Raudla",     "kaotaja": "Marcel Mikiver",   "skoor": "6-1"},
+        {"voitja": "Priit Raudla",     "kaotaja": "Andrus Jürgenson", "skoor": "6-0"},
+        {"voitja": "Andrus Jürgenson", "kaotaja": "Marcel Mikiver",   "skoor": "6-1"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Priit Raudla",     "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Andrus Jürgenson", "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Marcel Mikiver",   "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "B",
+      "nimi": "Grupp B",
+      "mangud": [
+        {"voitja": "Reevo Kirna", "kaotaja": "Eneli Pihl",   "skoor": "6-0"},
+        {"voitja": "Reevo Kirna", "kaotaja": "Ilja Balabko", "skoor": "6-2"},
+        {"voitja": "Eneli Pihl",  "kaotaja": "Ilja Balabko", "skoor": "6-2"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Reevo Kirna",  "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Eneli Pihl",   "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Ilja Balabko", "voidud": 0, "kaotused": 2}
+      ]
+    }
+  ],
+  "valjamangud": {
+    "poolfinaalid": [
+      {"match": "SF-1", "voitja": "Priit Raudla",     "kaotaja": "Eneli Pihl",  "skoor": "6-0"},
+      {"match": "SF-2", "voitja": "Andrus Jürgenson", "kaotaja": "Reevo Kirna", "skoor": "6-3"}
+    ],
+    "finaal": {
+      "match": "F",
+      "voitja": "Priit Raudla",
+      "kaotaja": "Andrus Jürgenson",
+      "skoor": "7-5"
+    },
+    "koht_3_4": {
+      "match": "3-4",
+      "voitja": "Reevo Kirna",
+      "kaotaja": "Eneli Pihl",
+      "skoor": "6-0"
+    },
+    "koht_5_6": {
+      "match": "5-6",
+      "voitja": "Ilja Balabko",
+      "kaotaja": "Marcel Mikiver",
+      "skoor": "6-1"
+    }
+  },
+  "loppjarjestus": [
+    {"koht": 1, "mangija": "Priit Raudla",     "punktid": 100, "markus": "Grupp A 1."},
+    {"koht": 2, "mangija": "Andrus Jürgenson", "punktid": 70,  "markus": "Grupp A 2."},
+    {"koht": 3, "mangija": "Reevo Kirna",      "punktid": 50,  "markus": "Grupp B 1."},
+    {"koht": 4, "mangija": "Eneli Pihl",       "punktid": 40,  "markus": "Grupp B 2."},
+    {"koht": 5, "mangija": "Ilja Balabko",     "punktid": 30,  "markus": "Grupp B 3."},
+    {"koht": 6, "mangija": "Marcel Mikiver",   "punktid": 26,  "markus": "Grupp A 3."}
+  ]
+}

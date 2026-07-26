@@ -964,6 +964,38 @@ function buildGroupStageColumns(groups, titleFn) {
   return cols;
 }
 
+// Play-off pärast alagruppe: poolfinaalid + finaal/3. koht ühes mini-bracketis.
+function buildPlayoffBracket(po) {
+  const wrap = document.createElement("div");
+  wrap.className = "br-wrap";
+  const bracket = document.createElement("div");
+  bracket.className = "br-bracket br-bracket--mini";
+
+  if (Array.isArray(po.poolfinaalid) && po.poolfinaalid.length) {
+    bracket.appendChild(bracketRound("Poolfinaal", po.poolfinaalid));
+  }
+
+  const finals = [];
+  if (po.finaal) finals.push([po.finaal, "🏆"]);
+  if (po.koht_3_4) finals.push([po.koht_3_4, "🥉"]);
+  if (finals.length) {
+    const round = document.createElement("div");
+    round.className = "br-round";
+    const t = document.createElement("div");
+    t.className = "br-round-title";
+    t.textContent = po.koht_3_4 ? "Finaal · 3. koht" : "Finaal";
+    round.appendChild(t);
+    const list = document.createElement("div");
+    list.className = "br-matches";
+    finals.forEach(([m, medal]) => list.appendChild(bracketMatch(m, { winnerMedal: medal })));
+    round.appendChild(list);
+    bracket.appendChild(round);
+  }
+
+  wrap.appendChild(bracket);
+  return wrap;
+}
+
 function buildGroupStageView(data) {
   const wrap = document.createElement("div");
   wrap.className = "br-root";
@@ -973,7 +1005,7 @@ function buildGroupStageView(data) {
     wrap.appendChild(bracketSectionTitle("Alagrupid"));
     const note = document.createElement("p");
     note.className = "br-legend";
-    note.textContent =
+    note.textContent = data.alagrupid_markus ||
       "Kõik alagrupid mängiti ringsüsteemis. Grupivõitjad mängisid kohtadele 1.–3., " +
       "teised kohtadele 4.–6. ja kolmandad kohtadele 7.–9.";
     wrap.appendChild(note);
@@ -983,6 +1015,26 @@ function buildGroupStageView(data) {
         (g) => `${g.nimi} · ringsüsteem`,
       ),
     );
+  }
+
+  // Väljamängud (play-off bracket)
+  if (data.valjamangud) {
+    const po = data.valjamangud;
+    wrap.appendChild(bracketSectionTitle("Väljamängud"));
+    if (po.markus) {
+      const note = document.createElement("p");
+      note.className = "br-legend";
+      note.textContent = po.markus;
+      wrap.appendChild(note);
+    }
+    wrap.appendChild(buildPlayoffBracket(po));
+
+    if (po.koht_5_6) {
+      wrap.appendChild(bracketSectionTitle("5.–6. koha mäng", 4));
+      const single = bracketMatch(po.koht_5_6);
+      single.classList.add("br-match--single");
+      wrap.appendChild(single);
+    }
   }
 
   // Positsioonimängud
