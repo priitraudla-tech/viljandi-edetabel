@@ -88,6 +88,10 @@ ja allpool), ja `loppjarjestus`.
 - [ ] Tundmatu skoori asemel `"?"` (mitte tühi)
 - [ ] Test lokaalselt: `python -m http.server 8765`, ava
       `http://localhost:8765`, mine Turniir tab → "Tabel" toggle
+- [ ] **`python scripts/kontrolli_mangud.py`** — kontrollib, et kõik faili
+      mängud jõuavad ka Mängijate lehele (H2H, profiilid, Elo). Kui lisad
+      JSON-i uue sektsiooni, tuleb see lisada nii `mangijad.js` kogujasse
+      kui ka selle skripti `KAETUD` hulka.
 
 ## Struktuur
 

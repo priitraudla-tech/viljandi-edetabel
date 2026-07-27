@@ -215,6 +215,13 @@ function buildMatches() {
     (json.positsioonimangud || []).forEach((g) => {
       (g.mangud || []).forEach((m) => add(m, g.nimi || "kohamäng"));
     });
+    const vm = json.valjamangud;
+    if (vm) {
+      (vm.poolfinaalid || []).forEach((m) => add(m, "poolfinaal"));
+      add(vm.finaal, "finaal");
+      add(vm.koht_3_4, "3.–4. koht");
+      add(vm.koht_5_6, "5.–6. koht");
+    }
   });
 
   // Uusim ees; kuupäevata lõppu.
