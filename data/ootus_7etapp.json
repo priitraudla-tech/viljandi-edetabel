@@ -1,0 +1,313 @@
+{
+  "selgitus": "Oodatav seis PARAST seda, kui Sheetsi lisatakse 7. etapi tulemused",
+  "reegel": "kokku = parima 6 summa; keskmine = koigi summa / turniire",
+  "etapp": "7. etapp 26.07.2026",
+  "lisatavad_tulemused": {
+    "Priit Raudla": 100,
+    "Andrus Jürgenson": 70,
+    "Reevo Kirna": 50,
+    "Eneli Pihl": 40,
+    "Ilja Balabko": 30,
+    "Marcel Mikiver": 26
+  },
+  "baas_fetched_at": "2026-07-26T12:45:28+00:00",
+  "players": [
+    {
+      "name": "Viljar Vahemaa",
+      "total": 680,
+      "tournaments_played": 3,
+      "average": 226.7,
+      "rank_enne": 1,
+      "rank": 1,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Heimar Mirka",
+      "total": 670,
+      "tournaments_played": 7,
+      "average": 98.9,
+      "rank_enne": 2,
+      "rank": 2,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Priit Raudla",
+      "total": 554,
+      "tournaments_played": 8,
+      "average": 83.0,
+      "rank_enne": 3,
+      "rank": 3,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Reevo Kirna",
+      "total": 532,
+      "tournaments_played": 10,
+      "average": 73.2,
+      "rank_enne": 4,
+      "rank": 4,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Ott Ahonen",
+      "total": 400,
+      "tournaments_played": 1,
+      "average": 400.0,
+      "rank_enne": 5,
+      "rank": 5,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Ilja Balabko",
+      "total": 352,
+      "tournaments_played": 11,
+      "average": 44.3,
+      "rank_enne": 6,
+      "rank": 6,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Henri Liiv",
+      "total": 310,
+      "tournaments_played": 4,
+      "average": 77.5,
+      "rank_enne": 7,
+      "rank": 7,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Kert Perkmann",
+      "total": 310,
+      "tournaments_played": 3,
+      "average": 103.3,
+      "rank_enne": 7,
+      "rank": 7,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Andrus Jürgenson",
+      "total": 304,
+      "tournaments_played": 8,
+      "average": 45.0,
+      "rank_enne": 9,
+      "rank": 9,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Sander Loigo",
+      "total": 260,
+      "tournaments_played": 2,
+      "average": 130.0,
+      "rank_enne": 10,
+      "rank": 10,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Gabriel Tralla",
+      "total": 224,
+      "tournaments_played": 4,
+      "average": 56.0,
+      "rank_enne": 11,
+      "rank": 11,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Helmut Hallemaa",
+      "total": 145,
+      "tournaments_played": 9,
+      "average": 21.4,
+      "rank_enne": 12,
+      "rank": 12,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Marcel Mikiver",
+      "total": 141,
+      "tournaments_played": 6,
+      "average": 23.5,
+      "rank_enne": 16,
+      "rank": 13,
+      "rank_muutus": 3
+    },
+    {
+      "name": "Marken Varis",
+      "total": 133,
+      "tournaments_played": 6,
+      "average": 22.2,
+      "rank_enne": 13,
+      "rank": 14,
+      "rank_muutus": -1
+    },
+    {
+      "name": "Indrek Taukar",
+      "total": 132,
+      "tournaments_played": 4,
+      "average": 33.0,
+      "rank_enne": 14,
+      "rank": 15,
+      "rank_muutus": -1
+    },
+    {
+      "name": "Eneli Pihl",
+      "total": 130,
+      "tournaments_played": 5,
+      "average": 26.0,
+      "rank_enne": 15,
+      "rank": 16,
+      "rank_muutus": -1
+    },
+    {
+      "name": "Manfred Mets",
+      "total": 112,
+      "tournaments_played": 3,
+      "average": 37.3,
+      "rank_enne": 17,
+      "rank": 17,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Lauri Tõnisalu",
+      "total": 99,
+      "tournaments_played": 3,
+      "average": 33.0,
+      "rank_enne": 18,
+      "rank": 18,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Kert Kärner",
+      "total": 90,
+      "tournaments_played": 2,
+      "average": 45.0,
+      "rank_enne": 19,
+      "rank": 19,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Lauri Zoova",
+      "total": 83,
+      "tournaments_played": 4,
+      "average": 20.8,
+      "rank_enne": 20,
+      "rank": 20,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Mati Miilen",
+      "total": 70,
+      "tournaments_played": 1,
+      "average": 70.0,
+      "rank_enne": 21,
+      "rank": 21,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Tõnu Roslender",
+      "total": 58,
+      "tournaments_played": 2,
+      "average": 29.0,
+      "rank_enne": 22,
+      "rank": 22,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Hardi-Sander Luik",
+      "total": 56,
+      "tournaments_played": 1,
+      "average": 56.0,
+      "rank_enne": 23,
+      "rank": 23,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Kaur Kesalo",
+      "total": 52,
+      "tournaments_played": 1,
+      "average": 52.0,
+      "rank_enne": 24,
+      "rank": 24,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Danel Rebane",
+      "total": 48,
+      "tournaments_played": 1,
+      "average": 48.0,
+      "rank_enne": 25,
+      "rank": 25,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Henry Aun",
+      "total": 40,
+      "tournaments_played": 1,
+      "average": 40.0,
+      "rank_enne": 26,
+      "rank": 26,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Martin Zahkna",
+      "total": 36,
+      "tournaments_played": 1,
+      "average": 36.0,
+      "rank_enne": 27,
+      "rank": 27,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Ave Veldt",
+      "total": 33,
+      "tournaments_played": 2,
+      "average": 16.5,
+      "rank_enne": 28,
+      "rank": 28,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Rene Puusild",
+      "total": 31,
+      "tournaments_played": 2,
+      "average": 15.5,
+      "rank_enne": 29,
+      "rank": 29,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Herman Haavapuu",
+      "total": 28,
+      "tournaments_played": 1,
+      "average": 28.0,
+      "rank_enne": 30,
+      "rank": 30,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Arne Sammel",
+      "total": 22,
+      "tournaments_played": 1,
+      "average": 22.0,
+      "rank_enne": 31,
+      "rank": 31,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Markus Mutso",
+      "total": 20,
+      "tournaments_played": 1,
+      "average": 20.0,
+      "rank_enne": 32,
+      "rank": 32,
+      "rank_muutus": 0
+    },
+    {
+      "name": "Rain Paju",
+      "total": 19,
+      "tournaments_played": 1,
+      "average": 19.0,
+      "rank_enne": 33,
+      "rank": 33,
+      "rank_muutus": 0
+    }
+  ]
+}
