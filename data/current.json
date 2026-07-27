@@ -1,6 +1,6 @@
 {
   "title": "Viljandi üksikmängu edetabel (28.06.2026 seisuga)",
-  "fetched_at": "2026-07-27T04:00:02+00:00",
+  "fetched_at": "2026-07-27T04:11:31+00:00",
   "stages": [
     {
       "label": "Viljandi maakonna MV 08.2025",
@@ -72,6 +72,7 @@
   "players": [
     {
       "rank": 1,
+      "sheet_rank": 1,
       "name": "Viljar Vahemaa",
       "total": 680,
       "stages": {
@@ -94,6 +95,7 @@
     },
     {
       "rank": 2,
+      "sheet_rank": 2,
       "name": "Heimar Mirka",
       "total": 670,
       "stages": {
@@ -116,6 +118,7 @@
     },
     {
       "rank": 3,
+      "sheet_rank": 3,
       "name": "Priit Raudla",
       "total": 554,
       "stages": {
@@ -138,6 +141,7 @@
     },
     {
       "rank": 4,
+      "sheet_rank": 4,
       "name": "Reevo Kirna",
       "total": 532,
       "stages": {
@@ -160,6 +164,7 @@
     },
     {
       "rank": 5,
+      "sheet_rank": 5,
       "name": "Ott Ahonen",
       "total": 400,
       "stages": {
@@ -182,6 +187,7 @@
     },
     {
       "rank": 6,
+      "sheet_rank": 6,
       "name": "Ilja Balabko",
       "total": 352,
       "stages": {
@@ -204,6 +210,7 @@
     },
     {
       "rank": 7,
+      "sheet_rank": 7,
       "name": "Kert Perkmann",
       "total": 310,
       "stages": {
@@ -226,6 +233,7 @@
     },
     {
       "rank": 7,
+      "sheet_rank": 7,
       "name": "Henri Liiv",
       "total": 310,
       "stages": {
@@ -248,6 +256,7 @@
     },
     {
       "rank": 9,
+      "sheet_rank": 9,
       "name": "Andrus Jürgenson",
       "total": 304,
       "stages": {
@@ -270,6 +279,7 @@
     },
     {
       "rank": 10,
+      "sheet_rank": 10,
       "name": "Sander Loigo",
       "total": 260,
       "stages": {
@@ -292,6 +302,7 @@
     },
     {
       "rank": 11,
+      "sheet_rank": 11,
       "name": "Gabriel Tralla",
       "total": 224,
       "stages": {
@@ -314,6 +325,7 @@
     },
     {
       "rank": 12,
+      "sheet_rank": 12,
       "name": "Helmut Hallemaa",
       "total": 145,
       "stages": {
@@ -336,72 +348,7 @@
     },
     {
       "rank": 13,
-      "name": "Marken Varis",
-      "total": 133,
-      "stages": {
-        "Viljandi maakonna MV 08.2025": null,
-        "8. etapp 25.10.2025": null,
-        "9. etapp 29.11.2025": null,
-        "Masters 27.12.2025": null,
-        "1. etapp 24.01.2026": 20,
-        "2. etapp 21.02.2026": 19,
-        "3. etapp 21.03.2026": 23,
-        "4. etapp 25.04.2026": 22,
-        "5. etapp 31.05.2026": 30,
-        "6. etapp 28.06.2026": 19,
-        "7. etapp 26.07.2026": null
-      },
-      "tournaments_played": 6,
-      "average": 22.2,
-      "prev_rank": 13,
-      "rank_delta": 0
-    },
-    {
-      "rank": 14,
-      "name": "Indrek Taukar",
-      "total": 132,
-      "stages": {
-        "Viljandi maakonna MV 08.2025": 62,
-        "8. etapp 25.10.2025": null,
-        "9. etapp 29.11.2025": null,
-        "Masters 27.12.2025": null,
-        "1. etapp 24.01.2026": 30,
-        "2. etapp 21.02.2026": 22,
-        "3. etapp 21.03.2026": null,
-        "4. etapp 25.04.2026": 18,
-        "5. etapp 31.05.2026": null,
-        "6. etapp 28.06.2026": null,
-        "7. etapp 26.07.2026": null
-      },
-      "tournaments_played": 4,
-      "average": 33.0,
-      "prev_rank": 14,
-      "rank_delta": 0
-    },
-    {
-      "rank": 15,
-      "name": "Eneli Pihl",
-      "total": 130,
-      "stages": {
-        "Viljandi maakonna MV 08.2025": null,
-        "8. etapp 25.10.2025": 22,
-        "9. etapp 29.11.2025": null,
-        "Masters 27.12.2025": 0,
-        "1. etapp 24.01.2026": null,
-        "2. etapp 21.02.2026": null,
-        "3. etapp 21.03.2026": null,
-        "4. etapp 25.04.2026": 16,
-        "5. etapp 31.05.2026": 26,
-        "6. etapp 28.06.2026": 26,
-        "7. etapp 26.07.2026": 40
-      },
-      "tournaments_played": 6,
-      "average": 21.7,
-      "prev_rank": 15,
-      "rank_delta": 0
-    },
-    {
-      "rank": 16,
+      "sheet_rank": 16,
       "name": "Marcel Mikiver",
       "total": 141,
       "stages": {
@@ -420,10 +367,80 @@
       "tournaments_played": 7,
       "average": 20.1,
       "prev_rank": 16,
-      "rank_delta": 0
+      "rank_delta": 3
+    },
+    {
+      "rank": 14,
+      "sheet_rank": 13,
+      "name": "Marken Varis",
+      "total": 133,
+      "stages": {
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": 20,
+        "2. etapp 21.02.2026": 19,
+        "3. etapp 21.03.2026": 23,
+        "4. etapp 25.04.2026": 22,
+        "5. etapp 31.05.2026": 30,
+        "6. etapp 28.06.2026": 19,
+        "7. etapp 26.07.2026": null
+      },
+      "tournaments_played": 6,
+      "average": 22.2,
+      "prev_rank": 13,
+      "rank_delta": -1
+    },
+    {
+      "rank": 15,
+      "sheet_rank": 14,
+      "name": "Indrek Taukar",
+      "total": 132,
+      "stages": {
+        "Viljandi maakonna MV 08.2025": 62,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": 30,
+        "2. etapp 21.02.2026": 22,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 18,
+        "5. etapp 31.05.2026": null,
+        "6. etapp 28.06.2026": null,
+        "7. etapp 26.07.2026": null
+      },
+      "tournaments_played": 4,
+      "average": 33.0,
+      "prev_rank": 14,
+      "rank_delta": -1
+    },
+    {
+      "rank": 16,
+      "sheet_rank": 15,
+      "name": "Eneli Pihl",
+      "total": 130,
+      "stages": {
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": 22,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 0,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 16,
+        "5. etapp 31.05.2026": 26,
+        "6. etapp 28.06.2026": 26,
+        "7. etapp 26.07.2026": 40
+      },
+      "tournaments_played": 6,
+      "average": 21.7,
+      "prev_rank": 15,
+      "rank_delta": -1
     },
     {
       "rank": 17,
+      "sheet_rank": 17,
       "name": "Manfred Mets",
       "total": 112,
       "stages": {
@@ -446,6 +463,7 @@
     },
     {
       "rank": 18,
+      "sheet_rank": 18,
       "name": "Lauri Tõnisalu",
       "total": 99,
       "stages": {
@@ -468,6 +486,7 @@
     },
     {
       "rank": 19,
+      "sheet_rank": 19,
       "name": "Kert Kärner",
       "total": 90,
       "stages": {
@@ -490,6 +509,7 @@
     },
     {
       "rank": 20,
+      "sheet_rank": 20,
       "name": "Lauri Zoova",
       "total": 83,
       "stages": {
@@ -512,6 +532,7 @@
     },
     {
       "rank": 21,
+      "sheet_rank": 21,
       "name": "Mati Miilen",
       "total": 70,
       "stages": {
@@ -534,6 +555,7 @@
     },
     {
       "rank": 22,
+      "sheet_rank": 22,
       "name": "Tõnu Roslender",
       "total": 58,
       "stages": {
@@ -556,6 +578,7 @@
     },
     {
       "rank": 23,
+      "sheet_rank": 23,
       "name": "Hardi-Sander Luik",
       "total": 56,
       "stages": {
@@ -578,6 +601,7 @@
     },
     {
       "rank": 24,
+      "sheet_rank": 24,
       "name": "Kaur Kesalo",
       "total": 52,
       "stages": {
@@ -600,6 +624,7 @@
     },
     {
       "rank": 25,
+      "sheet_rank": 25,
       "name": "Danel Rebane",
       "total": 48,
       "stages": {
@@ -622,6 +647,7 @@
     },
     {
       "rank": 26,
+      "sheet_rank": 26,
       "name": "Henry Aun",
       "total": 40,
       "stages": {
@@ -644,6 +670,7 @@
     },
     {
       "rank": 27,
+      "sheet_rank": 27,
       "name": "Martin Zahkna",
       "total": 36,
       "stages": {
@@ -666,6 +693,7 @@
     },
     {
       "rank": 28,
+      "sheet_rank": 28,
       "name": "Ave Veldt",
       "total": 33,
       "stages": {
@@ -688,6 +716,7 @@
     },
     {
       "rank": 29,
+      "sheet_rank": 29,
       "name": "Rene Puusild",
       "total": 31,
       "stages": {
@@ -710,6 +739,7 @@
     },
     {
       "rank": 30,
+      "sheet_rank": 30,
       "name": "Herman Haavapuu",
       "total": 28,
       "stages": {
@@ -732,6 +762,7 @@
     },
     {
       "rank": 31,
+      "sheet_rank": 31,
       "name": "Arne Sammel",
       "total": 22,
       "stages": {
@@ -754,6 +785,7 @@
     },
     {
       "rank": 32,
+      "sheet_rank": 32,
       "name": "Markus Mutso",
       "total": 20,
       "stages": {
@@ -776,6 +808,7 @@
     },
     {
       "rank": 33,
+      "sheet_rank": 33,
       "name": "Rain Paju",
       "total": 19,
       "stages": {

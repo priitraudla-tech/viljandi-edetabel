@@ -10,6 +10,10 @@ sub-0.1 läbipaistvusega vari, pill-vormis nupud.
 ## Funktsioonid
 
 - **Edetabel** — sorteeritav (klõpsa veerule), otsing, 0-punkti ridade peitmine.
+- **Koht arvutatakse punktidest**, mitte Sheetsi "Koht" veerust — nii püsib tabel
+  järjestuses ka siis, kui Sheetsis jääb mõni rida ümber sorteerimata. Sheetsi oma
+  koht säilib andmetes väljana `sheet_rank` (diagnostikaks). Võrdsed punktid jagavad
+  kohta (1, 2, 2, 4).
 - **Δ veerg** — näitab koha muutust eelmise snapshot'iga võrreldes:
   - `▲ N` (roheline) — tõusis N koha võrra
   - `▼ N` (punane) — langes N koha võrra

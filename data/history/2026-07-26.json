@@ -90,7 +90,8 @@
       "tournaments_played": 3,
       "average": 226.7,
       "prev_rank": 1,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 1
     },
     {
       "rank": 2,
@@ -112,7 +113,8 @@
       "tournaments_played": 7,
       "average": 98.9,
       "prev_rank": 2,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 2
     },
     {
       "rank": 3,
@@ -134,7 +136,8 @@
       "tournaments_played": 8,
       "average": 83.0,
       "prev_rank": 3,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 3
     },
     {
       "rank": 4,
@@ -156,7 +159,8 @@
       "tournaments_played": 10,
       "average": 73.2,
       "prev_rank": 4,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 4
     },
     {
       "rank": 5,
@@ -178,7 +182,8 @@
       "tournaments_played": 1,
       "average": 400.0,
       "prev_rank": 5,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 5
     },
     {
       "rank": 6,
@@ -200,7 +205,8 @@
       "tournaments_played": 11,
       "average": 44.3,
       "prev_rank": 6,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 6
     },
     {
       "rank": 7,
@@ -222,7 +228,8 @@
       "tournaments_played": 3,
       "average": 103.3,
       "prev_rank": 7,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 7
     },
     {
       "rank": 7,
@@ -244,7 +251,8 @@
       "tournaments_played": 4,
       "average": 77.5,
       "prev_rank": 7,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 7
     },
     {
       "rank": 9,
@@ -266,7 +274,8 @@
       "tournaments_played": 8,
       "average": 45.0,
       "prev_rank": 9,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 9
     },
     {
       "rank": 10,
@@ -288,7 +297,8 @@
       "tournaments_played": 2,
       "average": 130.0,
       "prev_rank": 10,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 10
     },
     {
       "rank": 11,
@@ -310,7 +320,8 @@
       "tournaments_played": 4,
       "average": 56.0,
       "prev_rank": 11,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 11
     },
     {
       "rank": 12,
@@ -332,76 +343,11 @@
       "tournaments_played": 9,
       "average": 21.4,
       "prev_rank": 12,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 12
     },
     {
       "rank": 13,
-      "name": "Marken Varis",
-      "total": 133,
-      "stages": {
-        "Viljandi maakonna MV 08.2025": null,
-        "8. etapp 25.10.2025": null,
-        "9. etapp 29.11.2025": null,
-        "Masters 27.12.2025": null,
-        "1. etapp 24.01.2026": 20,
-        "2. etapp 21.02.2026": 19,
-        "3. etapp 21.03.2026": 23,
-        "4. etapp 25.04.2026": 22,
-        "5. etapp 31.05.2026": 30,
-        "6. etapp 28.06.2026": 19,
-        "7. etapp 26.07.2026": null
-      },
-      "tournaments_played": 6,
-      "average": 22.2,
-      "prev_rank": 13,
-      "rank_delta": 0
-    },
-    {
-      "rank": 14,
-      "name": "Indrek Taukar",
-      "total": 132,
-      "stages": {
-        "Viljandi maakonna MV 08.2025": 62,
-        "8. etapp 25.10.2025": null,
-        "9. etapp 29.11.2025": null,
-        "Masters 27.12.2025": null,
-        "1. etapp 24.01.2026": 30,
-        "2. etapp 21.02.2026": 22,
-        "3. etapp 21.03.2026": null,
-        "4. etapp 25.04.2026": 18,
-        "5. etapp 31.05.2026": null,
-        "6. etapp 28.06.2026": null,
-        "7. etapp 26.07.2026": null
-      },
-      "tournaments_played": 4,
-      "average": 33.0,
-      "prev_rank": 14,
-      "rank_delta": 0
-    },
-    {
-      "rank": 15,
-      "name": "Eneli Pihl",
-      "total": 130,
-      "stages": {
-        "Viljandi maakonna MV 08.2025": null,
-        "8. etapp 25.10.2025": 22,
-        "9. etapp 29.11.2025": null,
-        "Masters 27.12.2025": 0,
-        "1. etapp 24.01.2026": null,
-        "2. etapp 21.02.2026": null,
-        "3. etapp 21.03.2026": null,
-        "4. etapp 25.04.2026": 16,
-        "5. etapp 31.05.2026": 26,
-        "6. etapp 28.06.2026": 26,
-        "7. etapp 26.07.2026": 40
-      },
-      "tournaments_played": 6,
-      "average": 21.7,
-      "prev_rank": 15,
-      "rank_delta": 0
-    },
-    {
-      "rank": 16,
       "name": "Marcel Mikiver",
       "total": 141,
       "stages": {
@@ -420,7 +366,77 @@
       "tournaments_played": 7,
       "average": 20.1,
       "prev_rank": 16,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 16
+    },
+    {
+      "rank": 14,
+      "name": "Marken Varis",
+      "total": 133,
+      "stages": {
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": 20,
+        "2. etapp 21.02.2026": 19,
+        "3. etapp 21.03.2026": 23,
+        "4. etapp 25.04.2026": 22,
+        "5. etapp 31.05.2026": 30,
+        "6. etapp 28.06.2026": 19,
+        "7. etapp 26.07.2026": null
+      },
+      "tournaments_played": 6,
+      "average": 22.2,
+      "prev_rank": 13,
+      "rank_delta": 0,
+      "sheet_rank": 13
+    },
+    {
+      "rank": 15,
+      "name": "Indrek Taukar",
+      "total": 132,
+      "stages": {
+        "Viljandi maakonna MV 08.2025": 62,
+        "8. etapp 25.10.2025": null,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": null,
+        "1. etapp 24.01.2026": 30,
+        "2. etapp 21.02.2026": 22,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 18,
+        "5. etapp 31.05.2026": null,
+        "6. etapp 28.06.2026": null,
+        "7. etapp 26.07.2026": null
+      },
+      "tournaments_played": 4,
+      "average": 33.0,
+      "prev_rank": 14,
+      "rank_delta": 0,
+      "sheet_rank": 14
+    },
+    {
+      "rank": 16,
+      "name": "Eneli Pihl",
+      "total": 130,
+      "stages": {
+        "Viljandi maakonna MV 08.2025": null,
+        "8. etapp 25.10.2025": 22,
+        "9. etapp 29.11.2025": null,
+        "Masters 27.12.2025": 0,
+        "1. etapp 24.01.2026": null,
+        "2. etapp 21.02.2026": null,
+        "3. etapp 21.03.2026": null,
+        "4. etapp 25.04.2026": 16,
+        "5. etapp 31.05.2026": 26,
+        "6. etapp 28.06.2026": 26,
+        "7. etapp 26.07.2026": 40
+      },
+      "tournaments_played": 6,
+      "average": 21.7,
+      "prev_rank": 15,
+      "rank_delta": 0,
+      "sheet_rank": 15
     },
     {
       "rank": 17,
@@ -442,7 +458,8 @@
       "tournaments_played": 3,
       "average": 37.3,
       "prev_rank": 17,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 17
     },
     {
       "rank": 18,
@@ -464,7 +481,8 @@
       "tournaments_played": 3,
       "average": 33.0,
       "prev_rank": 18,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 18
     },
     {
       "rank": 19,
@@ -486,7 +504,8 @@
       "tournaments_played": 2,
       "average": 45.0,
       "prev_rank": 19,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 19
     },
     {
       "rank": 20,
@@ -508,7 +527,8 @@
       "tournaments_played": 5,
       "average": 16.6,
       "prev_rank": 20,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 20
     },
     {
       "rank": 21,
@@ -530,7 +550,8 @@
       "tournaments_played": 1,
       "average": 70.0,
       "prev_rank": 21,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 21
     },
     {
       "rank": 22,
@@ -552,7 +573,8 @@
       "tournaments_played": 2,
       "average": 29.0,
       "prev_rank": 22,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 22
     },
     {
       "rank": 23,
@@ -574,7 +596,8 @@
       "tournaments_played": 1,
       "average": 56.0,
       "prev_rank": 23,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 23
     },
     {
       "rank": 24,
@@ -596,7 +619,8 @@
       "tournaments_played": 1,
       "average": 52.0,
       "prev_rank": 24,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 24
     },
     {
       "rank": 25,
@@ -618,7 +642,8 @@
       "tournaments_played": 1,
       "average": 48.0,
       "prev_rank": 25,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 25
     },
     {
       "rank": 26,
@@ -640,7 +665,8 @@
       "tournaments_played": 1,
       "average": 40.0,
       "prev_rank": 26,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 26
     },
     {
       "rank": 27,
@@ -662,7 +688,8 @@
       "tournaments_played": 1,
       "average": 36.0,
       "prev_rank": 27,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 27
     },
     {
       "rank": 28,
@@ -684,7 +711,8 @@
       "tournaments_played": 2,
       "average": 16.5,
       "prev_rank": 28,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 28
     },
     {
       "rank": 29,
@@ -706,7 +734,8 @@
       "tournaments_played": 2,
       "average": 15.5,
       "prev_rank": 29,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 29
     },
     {
       "rank": 30,
@@ -728,7 +757,8 @@
       "tournaments_played": 1,
       "average": 28.0,
       "prev_rank": 30,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 30
     },
     {
       "rank": 31,
@@ -750,7 +780,8 @@
       "tournaments_played": 2,
       "average": 11.0,
       "prev_rank": 31,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 31
     },
     {
       "rank": 32,
@@ -772,7 +803,8 @@
       "tournaments_played": 1,
       "average": 20.0,
       "prev_rank": 32,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 32
     },
     {
       "rank": 33,
@@ -794,7 +826,8 @@
       "tournaments_played": 1,
       "average": 19.0,
       "prev_rank": 33,
-      "rank_delta": 0
+      "rank_delta": 0,
+      "sheet_rank": 33
     }
   ],
   "participants_per_stage": {

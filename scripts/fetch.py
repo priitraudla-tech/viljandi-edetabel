@@ -64,6 +64,27 @@ def extract_iso_date(label: str):
     return f"{int(y):04d}-{int(mo):02d}-{int(d):02d}"
 
 
+def assign_ranks(players):
+    """Arvuta koht punktide järgi, mitte Sheetsi 'Koht' veerust.
+
+    Sheetsis võib read jääda ümber sorteerimata (nt kui mängija punktid
+    kasvavad, aga rida ei liigu), mistõttu tabel näeb välja järjestusest
+    väljas. Punktidest arvutatud koht on alati kooskõlas.
+
+    Võrdsete punktidega mängijad jagavad kohta (1, 2, 2, 4); nende omavaheline
+    järjekord jääb selliseks, nagu Sheetsis (sort on stabiilne).
+    """
+    players.sort(key=lambda p: -p["total"])
+    prev_total = None
+    prev_rank = 0
+    for i, p in enumerate(players, start=1):
+        if p["total"] != prev_total:
+            prev_rank = i
+            prev_total = p["total"]
+        p["rank"] = prev_rank
+    return players
+
+
 def parse(csv_text: str) -> dict:
     rows = list(csv.reader(io.StringIO(csv_text)))
     title = (rows[0][0] or "").strip() if rows else ""
@@ -117,13 +138,16 @@ def parse(csv_text: str) -> dict:
             v = r[s["index"]] if s["index"] < len(r) else ""
             stage_results[s["label"]] = parse_int(v)
         players.append({
-            "rank": rank,
+            "rank": rank,          # esialgu Sheetsi Koht-veerg; arvutatakse ule
+            "sheet_rank": rank,    # Sheetsi oma koht (diagnostikaks)
             "name": name,
             "total": parse_int(r[total_idx]) or 0,
             "stages": stage_results,
             "tournaments_played": parse_int(r[played_idx]) or 0,
             "average": parse_float(r[avg_idx]) or 0.0,
         })
+
+    assign_ranks(players)
 
     participants_per_stage = {}
     if participants_row:
