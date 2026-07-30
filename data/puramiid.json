@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-07-23T03:14:24.835Z",
+  "updated_at": "2026-07-30T05:17:18.871Z",
   "players": [
     {
       "pos": 1,
@@ -944,7 +944,7 @@
       "challenged": "Rain Paju",
       "challenge_date": "2026-07-22",
       "deadline": "2026-08-05",
-      "agreed_time": null,
+      "agreed_time": "2026-07-30T10:00",
       "venue": null,
       "erand": false,
       "created_at": "2026-07-22T07:12:48.665Z"
