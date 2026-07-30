@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-07-30T05:17:18.871Z",
+  "updated_at": "2026-07-30T11:38:16.889Z",
   "players": [
     {
       "pos": 1,
@@ -926,6 +926,17 @@
       "challenge_date": "2026-07-22",
       "play_date": "2026-07-22",
       "venue": "Viljandi järveäärne tenniseväljak nr 1"
+    },
+    {
+      "nr": 80,
+      "challenger": "Indrek Taukar",
+      "challenged": "Rain Paju",
+      "score": "6/3 6/1",
+      "winner": "Rain Paju",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": "2026-07-22",
+      "play_date": "2026-07-30"
     }
   ],
   "challenges": [
@@ -938,16 +949,6 @@
       "venue": null,
       "erand": false,
       "created_at": "2026-07-13T12:00:02.625Z"
-    },
-    {
-      "challenger": "Indrek Taukar",
-      "challenged": "Rain Paju",
-      "challenge_date": "2026-07-22",
-      "deadline": "2026-08-05",
-      "agreed_time": "2026-07-30T10:00",
-      "venue": null,
-      "erand": false,
-      "created_at": "2026-07-22T07:12:48.665Z"
     },
     {
       "challenger": "Ilja Balabko",
