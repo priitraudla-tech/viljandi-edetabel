@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-07-30T11:38:16.889Z",
+  "updated_at": "2026-07-30T12:51:07.681Z",
   "players": [
     {
       "pos": 1,
@@ -955,7 +955,7 @@
       "challenged": "Andri Reiman",
       "challenge_date": "2026-07-22",
       "deadline": "2026-08-05",
-      "agreed_time": null,
+      "agreed_time": "2026-07-31T10:30",
       "venue": null,
       "erand": false,
       "created_at": "2026-07-23T03:14:24.835Z"
