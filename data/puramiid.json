@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-05T17:03:56.187Z",
+  "updated_at": "2026-08-05T17:04:13.277Z",
   "players": [
     {
       "pos": 1,
@@ -948,19 +948,20 @@
       "erand": false,
       "challenge_date": "2026-08-03",
       "play_date": "2026-08-05"
+    },
+    {
+      "nr": 82,
+      "challenger": "Priit Raudla",
+      "challenged": "Kert Perkmann",
+      "score": "6/3 6/3",
+      "winner": "Kert Perkmann",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": "2026-07-13",
+      "play_date": "2026-08-05"
     }
   ],
   "challenges": [
-    {
-      "challenger": "Priit Raudla",
-      "challenged": "Kert Perkmann",
-      "challenge_date": "2026-07-13",
-      "deadline": "2026-07-27",
-      "agreed_time": null,
-      "venue": null,
-      "erand": false,
-      "created_at": "2026-07-13T12:00:02.625Z"
-    },
     {
       "challenger": "Ilja Balabko",
       "challenged": "Andri Reiman",
