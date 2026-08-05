@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-05T17:04:13.277Z",
+  "updated_at": "2026-08-05T17:05:04.217Z",
   "players": [
     {
       "pos": 1,
@@ -959,6 +959,17 @@
       "erand": false,
       "challenge_date": "2026-07-13",
       "play_date": "2026-08-05"
+    },
+    {
+      "nr": 83,
+      "challenger": "Ilja Balabko",
+      "challenged": "Andri Reiman",
+      "score": "1/6 6/1 10-1",
+      "winner": "Andri Reiman",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-07-31"
     }
   ],
   "challenges": [
