@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-05T04:23:01.405Z",
+  "updated_at": "2026-08-05T17:03:56.187Z",
   "players": [
     {
       "pos": 1,
@@ -937,6 +937,17 @@
       "erand": false,
       "challenge_date": "2026-07-22",
       "play_date": "2026-07-30"
+    },
+    {
+      "nr": 81,
+      "challenger": "Indrek Taukar",
+      "challenged": "Lauri Tõnisalu",
+      "score": "6/3 6/1",
+      "winner": "Lauri Tõnisalu",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": "2026-08-03",
+      "play_date": "2026-08-05"
     }
   ],
   "challenges": [
@@ -959,16 +970,6 @@
       "venue": null,
       "erand": false,
       "created_at": "2026-07-23T03:14:24.835Z"
-    },
-    {
-      "challenger": "Indrek Taukar",
-      "challenged": "Lauri Tõnisalu",
-      "challenge_date": "2026-08-03",
-      "deadline": "2026-08-17",
-      "agreed_time": "2026-08-05T17:00",
-      "venue": null,
-      "erand": false,
-      "created_at": "2026-08-05T04:23:01.405Z"
     }
   ]
 }
