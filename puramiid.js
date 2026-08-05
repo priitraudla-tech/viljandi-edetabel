@@ -203,6 +203,21 @@ function recentMeeting(a, b) {
   return null;
 }
 
+// Topeltsisestuse kaitse: sama paar + kattuv kuupäev on juba mängude all.
+// (Server kontrollib sama asja üle — see siin annab lihtsalt varasema hoiatuse.)
+function leiaDuplikaatMang(a, b, paevad) {
+  const uued = (paevad || []).filter(Boolean);
+  if (!uued.length) return null;
+  return (state.data.games || []).find((g) => {
+    const samaPaar =
+      (g.challenger === a && g.challenged === b) ||
+      (g.challenger === b && g.challenged === a);
+    if (!samaPaar) return false;
+    const olemas = [g.play_date, g.challenge_date].filter(Boolean);
+    return uued.some((d) => olemas.includes(d));
+  }) || null;
+}
+
 // ---------- init ----------
 
 async function init() {
@@ -802,16 +817,36 @@ function setupAdmin() {
 
   $("#form-result").addEventListener("submit", (e) => {
     e.preventDefault();
+    const challengeIndex = $("#res-challenge").value === "" ? null : Number($("#res-challenge").value);
+    const challenger = $("#res-challenger").value;
+    const challenged = $("#res-challenged").value;
+    const playDate = $("#res-date").value || null;
+    const seotud = challengeIndex === null ? null : (state.data.challenges || [])[challengeIndex];
+
+    // Topeltsisestuse kaitse: sama paar samal päeval juba kirjas.
+    let override = false;
+    const dup = leiaDuplikaatMang(challenger, challenged, [playDate, seotud && seotud.challenge_date]);
+    if (dup) {
+      const paev = fmtDateISO(dup.play_date || dup.challenge_date);
+      if (!confirm(
+        `Sama mäng tundub juba kirjas olevat:\n\n` +
+        `#${dup.nr} ${dup.challenger} vs ${dup.challenged} (${paev})\n` +
+        `Skoor: ${dup.score || "—"}\n\n` +
+        `Kas lisan ikkagi teise mänguna?`)) return;
+      override = true;
+    }
+
     submitAdmin("add_result", {
-      challenge_index: $("#res-challenge").value === "" ? null : Number($("#res-challenge").value),
-      challenger: $("#res-challenger").value,
-      challenged: $("#res-challenged").value,
+      challenge_index: challengeIndex,
+      challenger,
+      challenged,
       score: $("#res-score").value.trim(),
       winner: $("#res-winner").value,
-      play_date: $("#res-date").value || null,
+      play_date: playDate,
       type: $("#res-type").value,
       swap: $("#res-swap").checked,
       erand: resErand.checked,
+      override,
     });
   });
 }

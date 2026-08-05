@@ -179,18 +179,45 @@ function applySetAgreedTime(data, p) {
     (c.venue ? ` @ ${c.venue}` : "");
 }
 
+// Duplikaadikaitse: sama mängijapaar + kattuv kuupäev = tõenäoliselt
+// teistkordne sisestus (nt kui tulemus pannakse kirja kaks korda).
+function leiaDuplikaatMang(data, p, challengeDate) {
+  const uuedPaevad = [p.play_date, challengeDate].filter(Boolean);
+  if (!uuedPaevad.length) return null;
+  return (data.games || []).find((g) => {
+    const samaPaar =
+      (g.challenger === p.challenger && g.challenged === p.challenged) ||
+      (g.challenger === p.challenged && g.challenged === p.challenger);
+    if (!samaPaar) return false;
+    const olemas = [g.play_date, g.challenge_date].filter(Boolean);
+    return uuedPaevad.some((d) => olemas.includes(d));
+  }) || null;
+}
+
 function applyAddResult(data, p) {
   if (!p.challenger || !p.challenged || !p.winner) throw new Error("Väljad puudu.");
   if (![p.challenger, p.challenged].includes(p.winner)) {
     throw new Error("Võitja peab olema üks kahest mängijast.");
   }
 
+  const seotud = (p.challenge_index !== null && p.challenge_index !== undefined)
+    ? (data.challenges || [])[p.challenge_index]
+    : null;
+
+  if (!p.override) {
+    const dup = leiaDuplikaatMang(data, p, seotud && seotud.challenge_date);
+    if (dup) {
+      const paev = dup.play_date || dup.challenge_date;
+      throw new Error(
+        `Sama mäng on juba kirjas: #${dup.nr} ${dup.challenger} vs ${dup.challenged} ` +
+        `(${paev}, ${dup.score || "skoor puudu"}). Kui tegu on siiski eraldi mänguga, ` +
+        `värskenda leht ja kinnita hoiatusaken.`);
+    }
+  }
+
   // Erand-staatus: kliendi linnuke või seotud ootel väljakutse küljest.
   let erand = !!p.erand;
-  if (p.challenge_index !== null && p.challenge_index !== undefined) {
-    const c = (data.challenges || [])[p.challenge_index];
-    if (c && c.erand) erand = true;
-  }
+  if (seotud && seotud.erand) erand = true;
 
   const nr = data.games.reduce((m, g) => Math.max(m, g.nr || 0), 0) + 1;
   const game = {
