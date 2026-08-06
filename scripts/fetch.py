@@ -164,10 +164,16 @@ def parse(csv_text: str) -> dict:
     }
 
 
+# Väljad, mis EI ole edetabeli sisu: tuletatud nooled ja Sheetsi enda
+# Koht-veerg (meie arvutame koha punktidest — Sheetsi oma on ainult
+# diagnostika ja seal võidakse read ümber sortida ilma et miski muutuks).
+_MITTE_SISU = ("prev_rank", "rank_delta", "sheet_rank")
+
+
 def _strip_deltas(players):
-    """Compare players ignoring delta-related fields."""
+    """Compare players ignoring delta-related / diagnostic fields."""
     return [
-        {k: v for k, v in p.items() if k not in ("prev_rank", "rank_delta")}
+        {k: v for k, v in p.items() if k not in _MITTE_SISU}
         for p in players
     ]
 
@@ -182,13 +188,24 @@ def _norm_stages(stages):
     ]
 
 
-def players_equal(a: dict, b: dict) -> bool:
+def standings_equal(a: dict, b: dict) -> bool:
+    """Kas edetabel ise on sama? Pealkirja siin EI vaadata.
+
+    Sheetsi pealkiri sisaldab "(… seisuga)" kuupäeva, mida omanik uuendab
+    eraldi, tihti päevi pärast turniiri. Kui lugeda seda muutuseks, nihkub
+    noolte võrdlusbaas viimasele snapshot'ile, kus tabel oli juba uus —
+    ja kõik nooled kaovad. Nooled peavad võrdlema eelmise TURNIIRI seisuga.
+    """
     return (
-        a.get("title") == b.get("title")
-        and _norm_stages(a.get("stages")) == _norm_stages(b.get("stages"))
+        _norm_stages(a.get("stages")) == _norm_stages(b.get("stages"))
         and _strip_deltas(a.get("players", [])) == _strip_deltas(b.get("players", []))
         and a.get("participants_per_stage") == b.get("participants_per_stage")
     )
+
+
+def players_equal(a: dict, b: dict) -> bool:
+    """Kas snapshot on igas mõttes sama? Otsustab, kas salvestada uus fail."""
+    return a.get("title") == b.get("title") and standings_equal(a, b)
 
 
 def annotate_deltas(parsed: dict, prior: dict | None) -> None:
@@ -275,15 +292,16 @@ def main():
         most_recent_prior = json.loads(p.read_text(encoding="utf-8"))
         break
 
-    # Find the most recent snapshot that DIFFERS from parsed.
+    # Find the most recent snapshot whose STANDINGS differ from parsed.
     # Deltas are computed against this — so the up/down arrows persist
-    # across days where the data hasn't changed (between tournaments).
+    # across days where the data hasn't changed (between tournaments)
+    # and näitavad alati liikumist eelmise turniiri seisuga võrreldes.
     prior_different = None
     for p in reversed(existing):
         if p.name == snapshot_path.name:
             continue
         candidate = json.loads(p.read_text(encoding="utf-8"))
-        if not players_equal(candidate, parsed):
+        if not standings_equal(candidate, parsed):
             prior_different = candidate
             break
 

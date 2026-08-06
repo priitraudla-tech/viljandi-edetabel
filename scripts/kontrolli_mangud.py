@@ -82,10 +82,10 @@ def main():
 
     print(f"\nKokku {kokku} mängu, kogumata {kogumata}")
     if kogumata:
-        print("\n✗ Osa mänge ei jõua Mängijate lehele.")
+        print("\nVIGA: osa mange ei joua Mangijate lehele.")
         print("  Lisa puuduv sektsioon mangijad.js buildMatches() sisse JA siia KAETUD hulka.")
         return 1
-    print("✓ Kõik turniirimängud jõuavad Mängijate lehele.")
+    print("KORRAS: koik turniirimangud jouavad Mangijate lehele.")
     return 0
 
 

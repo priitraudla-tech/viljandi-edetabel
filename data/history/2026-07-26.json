@@ -366,7 +366,7 @@
       "tournaments_played": 7,
       "average": 20.1,
       "prev_rank": 16,
-      "rank_delta": 0,
+      "rank_delta": 3,
       "sheet_rank": 16
     },
     {
@@ -389,7 +389,7 @@
       "tournaments_played": 6,
       "average": 22.2,
       "prev_rank": 13,
-      "rank_delta": 0,
+      "rank_delta": -1,
       "sheet_rank": 13
     },
     {
@@ -412,7 +412,7 @@
       "tournaments_played": 4,
       "average": 33.0,
       "prev_rank": 14,
-      "rank_delta": 0,
+      "rank_delta": -1,
       "sheet_rank": 14
     },
     {
@@ -435,7 +435,7 @@
       "tournaments_played": 6,
       "average": 21.7,
       "prev_rank": 15,
-      "rank_delta": 0,
+      "rank_delta": -1,
       "sheet_rank": 15
     },
     {
