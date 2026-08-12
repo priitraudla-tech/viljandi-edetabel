@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-07T14:22:41.563Z",
+  "updated_at": "2026-08-12T08:30:33.014Z",
   "players": [
     {
       "pos": 1,
@@ -94,7 +94,7 @@
     },
     {
       "pos": 19,
-      "name": "Peeter Matson",
+      "name": "Indrek Taukar",
       "badge": ""
     },
     {
@@ -114,7 +114,7 @@
     },
     {
       "pos": 23,
-      "name": "Indrek Taukar",
+      "name": "Peeter Matson",
       "badge": ""
     },
     {
@@ -970,6 +970,17 @@
       "erand": false,
       "challenge_date": "2026-07-22",
       "play_date": "2026-07-31"
+    },
+    {
+      "nr": 84,
+      "challenger": "Indrek Taukar",
+      "challenged": "Peeter Matson",
+      "score": "6/3 6/2",
+      "winner": "Indrek Taukar",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": "2026-08-06",
+      "play_date": "2026-08-12"
     }
   ],
   "challenges": [
@@ -982,16 +993,6 @@
       "venue": null,
       "erand": false,
       "created_at": "2026-08-05T18:24:26.669Z"
-    },
-    {
-      "challenger": "Indrek Taukar",
-      "challenged": "Peeter Matson",
-      "challenge_date": "2026-08-06",
-      "deadline": "2026-08-20",
-      "agreed_time": null,
-      "venue": null,
-      "erand": false,
-      "created_at": "2026-08-07T14:22:41.563Z"
     }
   ]
 }
