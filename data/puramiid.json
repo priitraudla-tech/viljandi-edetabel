@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-17T16:25:13.162Z",
+  "updated_at": "2026-08-17T17:52:52.477Z",
   "players": [
     {
       "pos": 1,
@@ -29,7 +29,7 @@
     },
     {
       "pos": 6,
-      "name": "Heimar Mirka",
+      "name": "Karl Valter Elmaste",
       "badge": ""
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "pos": 9,
-      "name": "Karl Valter Elmaste",
+      "name": "Heimar Mirka",
       "badge": ""
     },
     {
@@ -1004,6 +1004,19 @@
       "challenge_date": null,
       "play_date": "2026-08-17",
       "mv_match_id": 1246007,
+      "mv_round": "Põhitabel · 2. ring"
+    },
+    {
+      "nr": 87,
+      "challenger": "Karl Valter Elmaste",
+      "challenged": "Heimar Mirka",
+      "score": "6:4 7:6(8:6)",
+      "winner": "Karl Valter Elmaste",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-17",
+      "mv_match_id": 1246006,
       "mv_round": "Põhitabel · 2. ring"
     }
   ],
