@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-17T16:25:13+00:00",
+  "fetched_at": "2026-08-17T16:52:33+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -49,9 +49,9 @@
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": "2026-08-17",
-              "time": "19:00",
-              "court": "Court 2"
+              "date": null,
+              "time": null,
+              "court": null
             },
             {
               "id": 1246005,
@@ -68,9 +68,9 @@
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": "2026-08-17",
-              "time": "19:00",
-              "court": "Court 3"
+              "date": null,
+              "time": null,
+              "court": null
             },
             {
               "id": 1246006,
@@ -125,9 +125,9 @@
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": "2026-08-17",
-              "time": "18:00",
-              "court": "Court 1"
+              "date": null,
+              "time": null,
+              "court": null
             },
             {
               "id": 1246009,
@@ -144,9 +144,9 @@
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": "2026-08-17",
-              "time": "18:00",
-              "court": "Court 3"
+              "date": null,
+              "time": null,
+              "court": null
             },
             {
               "id": 1246010,
@@ -157,12 +157,12 @@
               "index": 7,
               "p1": "Henri Liiv",
               "p2": "Manfred Mets",
-              "score": null,
+              "score": "5:4",
               "winner": null,
               "loser": null,
               "walkover": false,
               "disqualified": false,
-              "in_progress": false,
+              "in_progress": true,
               "date": "2026-08-17",
               "time": "17:00",
               "court": "Court 5"
@@ -182,9 +182,9 @@
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": "2026-08-17",
-              "time": "19:00",
-              "court": "Court 1"
+              "date": null,
+              "time": null,
+              "court": null
             }
           ]
         },
@@ -685,12 +685,12 @@
       "index": 7,
       "p1": "Henri Liiv",
       "p2": "Manfred Mets",
-      "score": null,
+      "score": "5:4",
       "winner": null,
       "loser": null,
       "walkover": false,
       "disqualified": false,
-      "in_progress": false,
+      "in_progress": true,
       "date": "2026-08-17",
       "time": "17:00",
       "court": "Court 5"
@@ -715,44 +715,6 @@
       "court": "Court 2"
     },
     {
-      "id": 1246008,
-      "bracket": "main",
-      "round": "R2",
-      "round_title": "2. ring",
-      "round_nr": null,
-      "index": 5,
-      "p1": "kert perkmann",
-      "p2": "Daniel Snegirjov",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-17",
-      "time": "18:00",
-      "court": "Court 1"
-    },
-    {
-      "id": 1246009,
-      "bracket": "main",
-      "round": "R2",
-      "round_title": "2. ring",
-      "round_nr": null,
-      "index": 6,
-      "p1": "Gennadi Lepp",
-      "p2": "Priit Raudla",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-17",
-      "time": "18:00",
-      "court": "Court 3"
-    },
-    {
       "id": 1246004,
       "bracket": "main",
       "round": "R2",
@@ -767,9 +729,9 @@
       "walkover": false,
       "disqualified": false,
       "in_progress": false,
-      "date": "2026-08-17",
-      "time": "19:00",
-      "court": "Court 2"
+      "date": null,
+      "time": null,
+      "court": null
     },
     {
       "id": 1246005,
@@ -786,9 +748,47 @@
       "walkover": false,
       "disqualified": false,
       "in_progress": false,
-      "date": "2026-08-17",
-      "time": "19:00",
-      "court": "Court 3"
+      "date": null,
+      "time": null,
+      "court": null
+    },
+    {
+      "id": 1246008,
+      "bracket": "main",
+      "round": "R2",
+      "round_title": "2. ring",
+      "round_nr": null,
+      "index": 5,
+      "p1": "kert perkmann",
+      "p2": "Daniel Snegirjov",
+      "score": null,
+      "winner": null,
+      "loser": null,
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": null,
+      "time": null,
+      "court": null
+    },
+    {
+      "id": 1246009,
+      "bracket": "main",
+      "round": "R2",
+      "round_title": "2. ring",
+      "round_nr": null,
+      "index": 6,
+      "p1": "Gennadi Lepp",
+      "p2": "Priit Raudla",
+      "score": null,
+      "winner": null,
+      "loser": null,
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": null,
+      "time": null,
+      "court": null
     },
     {
       "id": 1246011,
@@ -805,9 +805,9 @@
       "walkover": false,
       "disqualified": false,
       "in_progress": false,
-      "date": "2026-08-17",
-      "time": "19:00",
-      "court": "Court 1"
+      "date": null,
+      "time": null,
+      "court": null
     },
     {
       "id": 1246038,
