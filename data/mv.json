@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-17T16:16:57+00:00",
+  "fetched_at": "2026-08-17T16:25:13+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -100,9 +100,9 @@
               "index": 4,
               "p1": "Andrus Jürgenson",
               "p2": "Ilja Balabko",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:1 6:4",
+              "winner": "Andrus Jürgenson",
+              "loser": "Ilja Balabko",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -185,6 +185,31 @@
               "date": "2026-08-17",
               "time": "19:00",
               "court": "Court 1"
+            }
+          ]
+        },
+        {
+          "round": "Quarter-Final",
+          "title": "Veerandfinaal",
+          "matches": [
+            {
+              "id": 1246013,
+              "bracket": "main",
+              "round": "Quarter-Final",
+              "round_title": "Veerandfinaal",
+              "round_nr": null,
+              "index": 2,
+              "p1": null,
+              "p2": "Andrus Jürgenson",
+              "score": null,
+              "winner": null,
+              "loser": null,
+              "walkover": false,
+              "disqualified": false,
+              "in_progress": false,
+              "date": null,
+              "time": null,
+              "court": null
             }
           ]
         },
@@ -508,7 +533,33 @@
     {
       "type": "9-16",
       "title": "Kohamängud 9.–16.",
-      "rounds": []
+      "rounds": [
+        {
+          "round": "R1",
+          "title": "1. ring",
+          "matches": [
+            {
+              "id": 1246024,
+              "bracket": "9-16",
+              "round": "R1",
+              "round_title": "1. ring",
+              "round_nr": null,
+              "index": 2,
+              "p1": null,
+              "p2": "Ilja Balabko",
+              "score": null,
+              "winner": null,
+              "loser": null,
+              "walkover": false,
+              "disqualified": false,
+              "in_progress": false,
+              "date": null,
+              "time": null,
+              "court": null
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "17-32",
@@ -625,25 +676,6 @@
     }
   ],
   "upcoming": [
-    {
-      "id": 1246007,
-      "bracket": "main",
-      "round": "R2",
-      "round_title": "2. ring",
-      "round_nr": null,
-      "index": 4,
-      "p1": "Andrus Jürgenson",
-      "p2": "Ilja Balabko",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-17",
-      "time": "17:00",
-      "court": "Court 4"
-    },
     {
       "id": 1246010,
       "bracket": "main",
@@ -799,6 +831,25 @@
   ],
   "results": [
     {
+      "id": 1246007,
+      "bracket": "main",
+      "round": "R2",
+      "round_title": "2. ring",
+      "round_nr": null,
+      "index": 4,
+      "p1": "Andrus Jürgenson",
+      "p2": "Ilja Balabko",
+      "score": "6:1 6:4",
+      "winner": "Andrus Jürgenson",
+      "loser": "Ilja Balabko",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-17",
+      "time": "17:00",
+      "court": "Court 4"
+    },
+    {
       "id": 1246002,
       "bracket": "main",
       "round": "R1",
@@ -857,9 +908,9 @@
     }
   ],
   "counts": {
-    "matches": 29,
-    "played": 3,
-    "upcoming": 9,
+    "matches": 31,
+    "played": 4,
+    "upcoming": 8,
     "players": 19
   }
 }

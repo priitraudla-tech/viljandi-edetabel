@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-12T16:47:52.291Z",
+  "updated_at": "2026-08-17T16:25:13.162Z",
   "players": [
     {
       "pos": 1,
@@ -54,7 +54,7 @@
     },
     {
       "pos": 11,
-      "name": "Ilja Balabko",
+      "name": "Andrus Jürgenson",
       "badge": ""
     },
     {
@@ -64,7 +64,7 @@
     },
     {
       "pos": 13,
-      "name": "Andrus Jürgenson",
+      "name": "Ilja Balabko",
       "badge": ""
     },
     {
@@ -992,6 +992,19 @@
       "erand": false,
       "challenge_date": "2026-08-05",
       "play_date": "2026-08-12"
+    },
+    {
+      "nr": 86,
+      "challenger": "Andrus Jürgenson",
+      "challenged": "Ilja Balabko",
+      "score": "6:1 6:4",
+      "winner": "Andrus Jürgenson",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-17",
+      "mv_match_id": 1246007,
+      "mv_round": "Põhitabel · 2. ring"
     }
   ],
   "challenges": []
