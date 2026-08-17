@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-17T15:17:08+00:00",
+  "fetched_at": "2026-08-17T15:47:20+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -60,7 +60,7 @@
               "round_title": "2. ring",
               "round_nr": null,
               "index": 2,
-              "p1": null,
+              "p1": "Andri Reiman",
               "p2": "Reevo Kirna",
               "score": null,
               "winner": null,
@@ -239,9 +239,9 @@
               "index": 3,
               "p1": "Marcel Mikiver",
               "p2": "Andri Reiman",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:0 6:1",
+              "winner": "Andri Reiman",
+              "loser": "Marcel Mikiver",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -513,7 +513,58 @@
     {
       "type": "17-32",
       "title": "Kohamängud 17.–32.",
-      "rounds": []
+      "rounds": [
+        {
+          "round": "R1",
+          "title": "1. ring",
+          "matches": [
+            {
+              "id": 1246031,
+              "bracket": "17-32",
+              "round": "R1",
+              "round_title": "1. ring",
+              "round_nr": null,
+              "index": 2,
+              "p1": "Marcel Mikiver",
+              "p2": null,
+              "score": null,
+              "winner": null,
+              "loser": null,
+              "walkover": false,
+              "disqualified": false,
+              "in_progress": false,
+              "date": null,
+              "time": null,
+              "court": null
+            }
+          ]
+        },
+        {
+          "round": "R2",
+          "title": "2. ring",
+          "matches": [
+            {
+              "id": 1246038,
+              "bracket": "17-32",
+              "round": "R2",
+              "round_title": "2. ring",
+              "round_nr": null,
+              "index": 1,
+              "p1": null,
+              "p2": "Marcel Mikiver",
+              "score": null,
+              "winner": null,
+              "loser": null,
+              "walkover": false,
+              "disqualified": false,
+              "in_progress": false,
+              "date": null,
+              "time": null,
+              "court": null
+            }
+          ]
+        }
+      ]
     }
   ],
   "upcoming": [
@@ -535,25 +586,6 @@
       "date": "2026-08-17",
       "time": "17:00",
       "court": "Court 1"
-    },
-    {
-      "id": 1245990,
-      "bracket": "main",
-      "round": "R1",
-      "round_title": "1. ring",
-      "round_nr": 1,
-      "index": 3,
-      "p1": "Marcel Mikiver",
-      "p2": "Andri Reiman",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-17",
-      "time": "17:00",
-      "court": "Court 2"
     },
     {
       "id": 1246002,
@@ -668,12 +700,51 @@
       "date": "2026-08-17",
       "time": "18:00",
       "court": "Court 3"
+    },
+    {
+      "id": 1246005,
+      "bracket": "main",
+      "round": "R2",
+      "round_title": "2. ring",
+      "round_nr": null,
+      "index": 2,
+      "p1": "Andri Reiman",
+      "p2": "Reevo Kirna",
+      "score": null,
+      "winner": null,
+      "loser": null,
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-17",
+      "time": "19:00",
+      "court": "Court 3"
     }
   ],
-  "results": [],
+  "results": [
+    {
+      "id": 1245990,
+      "bracket": "main",
+      "round": "R1",
+      "round_title": "1. ring",
+      "round_nr": 1,
+      "index": 3,
+      "p1": "Marcel Mikiver",
+      "p2": "Andri Reiman",
+      "score": "6:0 6:1",
+      "winner": "Andri Reiman",
+      "loser": "Marcel Mikiver",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-17",
+      "time": "17:00",
+      "court": "Court 2"
+    }
+  ],
   "counts": {
-    "matches": 24,
-    "played": 0,
+    "matches": 26,
+    "played": 1,
     "upcoming": 8,
     "players": 19
   }
