@@ -178,6 +178,55 @@ Actions vajab `contents: write` õigust, et commit + push teha. See on workflow
 failis juba seadistatud, aga repo settings'is võib olla vaja:
 **Settings → Actions → General → Workflow permissions → "Read and write permissions"**.
 
+## Viljandimaa MV — otseühendus tournated.com-iga
+
+`MV` vahekaart edetabeli lehel näitab Viljandimaa meistrivõistluste kava,
+tulemusi ja tabelit. Andmed tulevad **tournated.com avalikust GraphQL
+otspunktist** (`/api/graphql`, päring `drawsDetailPublic`) — samast, mida
+nende enda leht kasutab. Autentimist ei vaja.
+
+| Fail | Roll |
+|---|---|
+| `scripts/mv_fetch.py` | tõmbab loosi + tulemused, kirjutab `data/mv.json`, kannab tulemused püramiidi |
+| `scripts/test_mv_puramiid.py` | testib püramiidi-loogikat päris andmete koopial |
+| `.github/workflows/mv.yml` | cron iga 30 min turniiripäevadel |
+| `mv.js` | lehe pool: Kava / Tulemused / Tabel |
+
+### Püramiidi reeglid MV mängude puhul
+
+Kokku lepitud 17.08.2026:
+
+- arvesse lähevad ainult mängud, kus **mõlemad mängijad on püramiidis**;
+- **võitja saab parema koha** — kui võitja oli allpool, vahetuvad kohad;
+  kui ülalpool olev võitis, ei muutu midagi;
+- **loobumisvõit loeb** tavalise tulemusena;
+- arvesse lähevad **kõik MV mängud** — nii põhitabel kui kohamängud;
+- iga mäng rakendub **täpselt üks kord**: mäng seotakse tournatedi mängu
+  ID-ga (`mv_match_id`), nii et korduv jooks ei liiguta kohti uuesti;
+- mäng läheb püramiidi kirja tüübiga `"mv"` ja kuvatakse **MV** märgisega.
+
+Kroon (👑) kuulub 1. kohale, mitte mängijale — liider vahetudes liigub kaasa.
+
+### Uue aasta turniir
+
+Muuda kaks kohta:
+
+1. `scripts/mv_fetch.py` — `TOURNAMENT_ID` ja `CATEGORY_ID`. Need on
+   turniiri URL-is: `/tournament/<TOURNAMENT_ID>/draws?category=<CATEGORY_ID>`.
+2. `.github/workflows/mv.yml` — croni kuupäevavahemik (`*/30 * 17-21 8 *`
+   = iga 30 min 17.–21. augustil). Vahemik hoiab ära 48 tühikäiku päevas
+   ülejäänud aastaringi.
+
+Kontrolli enne turniiri: `python scripts/mv_fetch.py` peab lõppema ilma veata.
+
+### Kui tournated API muutub
+
+Tegemist on nende **sisemise** liidesega, mitte dokumenteeritud API-ga.
+Kui see muutub, kukub `mv_fetch.py` veaga läbi ja Action jääb punaseks —
+vigaseid andmeid see üle ei kirjuta. Päringu leiab uuesti nii: ava turniiri
+Draws-leht, DevTools → Network → filtreeri `graphql`, vaheta segmenti
+(Main/Consolation) ja vaata päringu keha.
+
 ## Ajaloo loogika
 
 `fetch.py` võrdleb uut tulemust eelneva snapshot'iga (mängijate nimekiri,

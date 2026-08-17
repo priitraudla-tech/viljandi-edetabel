@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="mv.js" defer></script>
   <script src="install.js" defer></script>
 </head>
 <body>
@@ -78,6 +79,7 @@
     <nav class="tabs">
       <button class="tab active" data-tab="standings">Edetabel</button>
       <button class="tab" data-tab="tournament">Turniir</button>
+      <button class="tab" data-tab="mv">MV</button>
       <button class="tab" data-tab="trend">Trend</button>
       <button class="tab" data-tab="history">Ajalugu</button>
     </nav>
@@ -144,6 +146,33 @@
       </div>
 
       <div id="tournament-view-tabel" class="tournament-view" hidden></div>
+    </section>
+
+    <section id="tab-mv" class="tab-panel">
+      <header class="tournament-header">
+        <h2 id="mv-title" class="tournament-title">Viljandimaa meistrivõistlused</h2>
+        <p id="mv-meta" class="meta tournament-meta"></p>
+      </header>
+
+      <div id="mv-view-toggle" class="view-toggle" role="tablist">
+        <button class="view-toggle-btn active" type="button" role="tab" data-mvview="kava">Kava</button>
+        <button class="view-toggle-btn" type="button" role="tab" data-mvview="tulemused">Tulemused</button>
+        <button class="view-toggle-btn" type="button" role="tab" data-mvview="tabel">Tabel</button>
+      </div>
+
+      <div id="mv-view-kava" class="mv-view active"></div>
+      <div id="mv-view-tulemused" class="mv-view" hidden></div>
+      <div id="mv-view-tabel" class="mv-view" hidden></div>
+
+      <p id="mv-empty" class="footnote" hidden>
+        Turniiri andmeid ei õnnestunud laadida.
+      </p>
+      <p class="footnote">
+        Andmed tulevad <a id="mv-source" href="#" target="_blank" rel="noopener">tournated.com</a>
+        turniirisüsteemist ja uuenevad turniiripäevadel iga 30 minuti järel.
+        Püramiidi kohti liigutavad ainult need MV-mängud, kus mõlemad mängijad
+        on püramiidi tabelis.
+      </p>
     </section>
 
     <section id="tab-trend" class="tab-panel">

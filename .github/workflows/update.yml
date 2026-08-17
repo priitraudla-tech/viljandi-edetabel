@@ -39,5 +39,8 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "data: $(date -u +%Y-%m-%d) snapshot"
+            # MV-töö kirjutab samasse data/ kausta iga 30 min — rebase hoiab
+            # ära selle, et üks push teise üle kirjutaks.
+            git pull --rebase --autostash
             git push
           fi

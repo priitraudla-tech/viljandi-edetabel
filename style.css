@@ -1803,3 +1803,109 @@ tr.game-note-row td {
   .br-standings { grid-template-columns: 1fr; }
   .view-toggle-btn { padding: 6px 14px; font-size: 12px; }
 }
+
+/* ===== Viljandimaa MV (live tournated) ===== */
+
+.mv-view[hidden] { display: none; }
+
+.mv-day {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: var(--text);
+  margin: 22px 0 10px;
+}
+.mv-view > .mv-day:first-child { margin-top: 6px; }
+
+.mv-round-head {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 14px 0 8px;
+}
+
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.mv-match {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-ring);
+  padding: 11px 13px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.mv-match.is-done { background: var(--surface-warm-solid); }
+.mv-match.is-live { box-shadow: var(--shadow-ring), 0 0 0 1.5px var(--highlight-bar); }
+
+.mv-match-top,
+.mv-match-bot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 14px;
+}
+.mv-round,
+.mv-when {
+  font-size: 11px;
+  letter-spacing: 0.2px;
+  color: var(--text-3);
+}
+.mv-when { font-family: var(--font-mono); }
+
+.mv-pair {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+.mv-player { color: var(--text-2); }
+.mv-player.is-winner { color: var(--text); font-weight: 600; }
+.mv-vs { color: var(--text-3); }
+.mv-tbd { color: var(--text-3); font-style: italic; }
+
+/* Püramiidi koht mängija nime ees */
+.mv-pyr {
+  display: inline-block;
+  min-width: 18px;
+  margin-right: 5px;
+  padding: 0 4px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset);
+  background: var(--surface-warm-solid);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+  text-align: center;
+  vertical-align: 1px;
+}
+.mv-match.is-done .mv-pyr { background: var(--surface); }
+
+.mv-score {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+}
+.mv-live {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--highlight-bar);
+}
+
+@media (max-width: 640px) {
+  .mv-grid { grid-template-columns: 1fr; }
+  .mv-match { padding: 10px 12px 9px; }
+  .mv-pair { font-size: 13.5px; }
+}

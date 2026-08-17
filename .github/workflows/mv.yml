@@ -1,0 +1,52 @@
+name: Viljandimaa MV (iga 30 min)
+
+on:
+  schedule:
+    # Iga 30 minuti järel turniiripäevadel 17.-21. august.
+    # Kuupäevavahemik hoiab ära 48 tühikäiku päevas ülejäänud aastaringi.
+    # JÄRGMISEKS AASTAKS: muuda siin kuupäevad ja scripts/mv_fetch.py-s
+    # TOURNAMENT_ID / CATEGORY_ID.
+    - cron: "*/30 * 17-21 8 *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  # Kaks korraga jooksvat tõmbamist kirjutaksid teineteise commiti üle.
+  group: mv-fetch
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Kontrolli püramiidi-loogikat
+        run: python scripts/test_mv_puramiid.py
+
+      - name: Tõmba MV loos ja tulemused
+        run: python scripts/mv_fetch.py
+
+      - name: Commit
+        run: |
+          git config user.name "edetabel-bot"
+          git config user.email "actions@github.com"
+          git add data/mv.json data/puramiid.json
+          if git diff --cached --quiet; then
+            echo "Muudatusi ei ole."
+          else
+            git commit -m "mv: seis $(date -u +'%Y-%m-%d %H:%M') UTC"
+            git pull --rebase --autostash
+            git push
+          fi
