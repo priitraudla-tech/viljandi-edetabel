@@ -140,24 +140,144 @@
     box.appendChild(grid);
   }
 
+  // ---------- kahvel ----------
+  //
+  // Mängud paigutatakse absoluutselt, arvutatud koordinaatidele. Nii tuleb
+  // kahvli kuju täpselt välja ka siis, kui osa kohti on veel täitmata.
+  //
+  // Ringis r (0-põhine) on mängul k (1-põhine) keskpunkt
+  //     y = SLOT * 2^r * (k - 0.5)
+  // Sellest järeldub, et mängu k ja k+1 keskpunktide keskkoht langeb TÄPSELT
+  // kokku järgmise ringi mängu (k+1)/2 keskpunktiga — seega ühendusjooned
+  // klapivad ilma järelkohendamiseta.
+
+  function moodud() {
+    const kitsas = window.innerWidth < 700;
+    return {
+      MATCH_H: kitsas ? 46 : 52,
+      SLOT: kitsas ? 56 : 62,
+      COL_W: kitsas ? 150 : 178,
+      GAP: kitsas ? 22 : 30,
+      HEAD_H: 26,
+    };
+  }
+
+  function kahvliMang(m, mo) {
+    const el = document.createElement("div");
+    el.className = "brk-match";
+    if (!m || (!m.p1 && !m.p2)) el.classList.add("is-empty");
+    if (m && m.in_progress) el.classList.add("is-live");
+
+    const rida = (nimi, onVoitja, skoor) => {
+      const r = document.createElement("div");
+      r.className = "brk-row";
+      if (onVoitja) r.classList.add("is-winner");
+      if (!nimi) r.classList.add("is-tbd");
+      const koht = nimi ? pyrKoht(nimi) : null;
+      r.innerHTML =
+        `<span class="brk-name">${koht ? `<span class="mv-pyr">${koht}.</span>` : ""}` +
+        `${nimi ? esc(kuvaNimi(nimi)) : "—"}</span>` +
+        `<span class="brk-score">${esc(skoor || "")}</span>`;
+      return r;
+    };
+
+    const v = m && m.winner;
+    const p1Voitis = !!(v && normNimi(v) === normNimi(m.p1));
+    const p2Voitis = !!(v && normNimi(v) === normNimi(m.p2));
+    // Skoor käib võitja reale; kui võitjat pole, näita kellaaega.
+    const skoor = m && (m.score || (m.walkover ? "loob." : ""));
+    const ootel = m && !v && m.p1 && m.p2 ? (m.time || "") : "";
+
+    el.appendChild(rida(m && m.p1, p1Voitis, p1Voitis ? skoor : (p2Voitis ? "" : ootel)));
+    el.appendChild(rida(m && m.p2, p2Voitis, p2Voitis ? skoor : ""));
+    if (m && m.p1 && m.p2 && moldabPyramiidi(m)) el.classList.add("is-pyr");
+    return el;
+  }
+
+  function buildKahvel(bracket) {
+    const mo = moodud();
+    const rounds = bracket.rounds || [];
+    const n0 = rounds.length ? rounds[0].matches.length : 0;
+    if (!n0) return null;
+
+    const laius = rounds.length * mo.COL_W + (rounds.length - 1) * mo.GAP;
+    const korgus = mo.SLOT * n0;
+
+    const scroll = document.createElement("div");
+    scroll.className = "brk-scroll";
+    const canvas = document.createElement("div");
+    canvas.className = "brk-canvas";
+    canvas.style.width = `${laius}px`;
+    canvas.style.height = `${korgus + mo.HEAD_H}px`;
+
+    const colX = (r) => r * (mo.COL_W + mo.GAP);
+    const keskY = (r, k) => mo.HEAD_H + mo.SLOT * Math.pow(2, r) * (k - 0.5);
+
+    const joon = (kl, css) => {
+      const d = document.createElement("div");
+      d.className = `brk-line ${kl}`;
+      Object.assign(d.style, css);
+      canvas.appendChild(d);
+    };
+
+    rounds.forEach((r, ri) => {
+      const h = document.createElement("div");
+      h.className = "brk-head";
+      h.style.left = `${colX(ri)}px`;
+      h.style.width = `${mo.COL_W}px`;
+      h.textContent = r.title;
+      canvas.appendChild(h);
+
+      // Ühendusjooned järgmisesse ringi
+      const jargmine = rounds[ri + 1];
+      if (jargmine) {
+        for (let k = 1; k + 1 <= r.matches.length; k += 2) {
+          const j = (k + 1) / 2;
+          if (j > jargmine.matches.length) break;
+          const y1 = keskY(ri, k);
+          const y2 = keskY(ri, k + 1);
+          const xOut = colX(ri) + mo.COL_W;
+          const xMid = xOut + mo.GAP / 2;
+          joon("brk-line--h", { left: `${xOut}px`, top: `${y1}px`, width: `${mo.GAP / 2}px` });
+          joon("brk-line--h", { left: `${xOut}px`, top: `${y2}px`, width: `${mo.GAP / 2}px` });
+          joon("brk-line--v", { left: `${xMid}px`, top: `${y1}px`, height: `${y2 - y1}px` });
+          joon("brk-line--h", {
+            left: `${xMid}px`, top: `${keskY(ri + 1, j)}px`, width: `${mo.GAP / 2}px`,
+          });
+        }
+      }
+
+      r.matches.forEach((m, mi) => {
+        const el = kahvliMang(m, mo);
+        el.style.left = `${colX(ri)}px`;
+        el.style.top = `${keskY(ri, mi + 1) - mo.MATCH_H / 2}px`;
+        el.style.width = `${mo.COL_W}px`;
+        el.style.height = `${mo.MATCH_H}px`;
+        canvas.appendChild(el);
+      });
+    });
+
+    scroll.appendChild(canvas);
+    return scroll;
+  }
+
   function renderTabel() {
     const box = $("#mv-view-tabel");
     box.innerHTML = "";
+    const legend = document.createElement("p");
+    legend.className = "br-legend";
+    legend.textContent = "Number nime ees on mängija koht püramiidis. " +
+      "Kollasel taustal mängud liigutavad püramiidi kohti. Tabel on külgsuunas keritav.";
+    box.appendChild(legend);
+
     (state.data.brackets || []).forEach((b) => {
+      const kahvel = buildKahvel(b);
+      if (!kahvel) return;
       const h = document.createElement("h3");
       h.className = "mv-day";
       h.textContent = b.title;
       box.appendChild(h);
-      b.rounds.forEach((r) => {
-        const rh = document.createElement("h4");
-        rh.className = "mv-round-head";
-        rh.textContent = r.title;
-        box.appendChild(rh);
-        const grid = document.createElement("div");
-        grid.className = "mv-grid";
-        r.matches.forEach((m) => grid.appendChild(mangKaart(m, { naitaRingi: false })));
-        box.appendChild(grid);
-      });
+      box.appendChild(kahvel);
     });
   }
 
@@ -225,6 +345,21 @@
     nupp.addEventListener("click", laadi);
     $$("#mv-view-toggle .view-toggle-btn").forEach((b) =>
       b.addEventListener("click", () => setVaade(b.dataset.mvview)));
+
+    // Kahvli koordinaadid on pikslites — laiuse murdepunkti ületamisel
+    // tuleb see uuesti joonistada.
+    let kitsasEnne = window.innerWidth < 700;
+    let ootel;
+    window.addEventListener("resize", () => {
+      clearTimeout(ootel);
+      ootel = setTimeout(() => {
+        const kitsasNyyd = window.innerWidth < 700;
+        if (kitsasNyyd !== kitsasEnne && state.data) {
+          kitsasEnne = kitsasNyyd;
+          renderTabel();
+        }
+      }, 200);
+    });
     if (location.hash === "#mv") {
       avaVahekaart();
       laadi();

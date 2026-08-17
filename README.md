@@ -190,7 +190,19 @@ nende enda leht kasutab. Autentimist ei vaja.
 | `scripts/mv_fetch.py` | tõmbab loosi + tulemused, kirjutab `data/mv.json`, kannab tulemused püramiidi |
 | `scripts/test_mv_puramiid.py` | testib püramiidi-loogikat päris andmete koopial |
 | `.github/workflows/mv.yml` | cron iga 30 min turniiripäevadel |
-| `mv.js` | lehe pool: Kava / Tulemused / Tabel |
+| `mv.js` | lehe pool: Kava / Tulemused / Tabel (kahvel) |
+
+**Tabel** on päris kahvel: mängud paigutatakse arvutatud koordinaatidele
+(`buildKahvel`), ühendusjooned joonistatakse eraldi elementidena. Ringis `r`
+on mängul `k` keskpunkt `SLOT · 2^r · (k − 0,5)` — sellest tuleneb, et kahe
+kõrvutise mängu keskpunktide keskkoht langeb täpselt kokku järgmise ringi
+mängu keskpunktiga, nii et jooned klapivad ilma järelkohendamiseta.
+Tühjad kohad (veel selgumata poolfinaal, finaal) jäävad tabelisse alles —
+muidu kaoks kahvli kuju ära.
+
+NB! API täidab `roundNumber` välja **ainult 1. ringil**, mujal on see `null`.
+Ringide järjekord tuleb võtta sellest, mis järjekorras API need annab —
+`roundNumber` järgi sortimine ajab tabeli sassi.
 
 ### Püramiidi reeglid MV mängude puhul
 

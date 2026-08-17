@@ -1909,3 +1909,91 @@ tr.game-note-row td {
   .mv-match { padding: 10px 12px 9px; }
   .mv-pair { font-size: 13.5px; }
 }
+
+/* ===== MV kahvel (bracket) ===== */
+
+.brk-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 2px 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.brk-canvas {
+  position: relative;
+}
+
+.brk-head {
+  position: absolute;
+  top: 0;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-align: center;
+}
+
+/* Ühendusjooned */
+.brk-line {
+  position: absolute;
+  background: var(--border-strong);
+}
+.brk-line--h { height: 1px; }
+.brk-line--v { width: 1px; }
+
+.brk-match {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-inset), var(--shadow-ring);
+  overflow: hidden;
+}
+.brk-match.is-empty {
+  background: transparent;
+  box-shadow: var(--shadow-inset);
+}
+.brk-match.is-pyr { background: var(--highlight); }
+.brk-match.is-live { box-shadow: var(--shadow-inset), 0 0 0 1.5px var(--highlight-bar); }
+
+.brk-row {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 0 8px;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.1;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+}
+.brk-row:last-child { border-bottom: 0; }
+.brk-row.is-winner { color: var(--text); font-weight: 600; }
+.brk-row.is-tbd { color: var(--text-3); }
+
+.brk-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.brk-score {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+.brk-row.is-winner .brk-score { color: var(--text-2); }
+
+.brk-match .mv-pyr {
+  min-width: 15px;
+  margin-right: 4px;
+  padding: 0 3px;
+  font-size: 9px;
+}

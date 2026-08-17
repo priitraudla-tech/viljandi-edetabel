@@ -121,12 +121,10 @@ def entry_name(entry):
     return nimi or None
 
 
-def parse_match(seed, bracket_type):
+def parse_match(seed, bracket_type, round_nr):
+    """Tee seemnest mäng. Tühje kohti EI visata ära — kahvli kuju vajab neid
+    (poolfinaal ja finaal on tabelis olemas ammu enne, kui mängijad selguvad)."""
     p1, p2 = entry_name(seed.get("entry1")), entry_name(seed.get("entry2"))
-    if not p1 and not p2:
-        return None
-    if seed.get("isBye"):
-        return None
 
     voitja_id = seed.get("winnerEntryId")
     winner = loser = None
@@ -144,7 +142,9 @@ def parse_match(seed, bracket_type):
         "bracket": bracket_type,
         "round": seed.get("round"),
         "round_title": ROUND_TITLES.get(seed.get("round"), seed.get("round")),
-        "round_nr": seed.get("roundNumber"),
+        # NB! API täidab roundNumber ainult 1. ringil, mujal on None —
+        # järjekorranumber tuleb ringi asukohast tabelis, mitte sellest väljast.
+        "round_nr": round_nr,
         "index": seed.get("matchIndex"),
         "p1": p1,
         "p2": p2,
@@ -172,6 +172,8 @@ def sort_key(m):
 
 
 def collect():
+    """Ringid jäävad SELLESSE järjekorda, mille API annab (R1, R2, QF, SF, Final).
+    Sisuliselt on see ainus usaldusväärne allikas — roundNumber on tühi."""
     brackets = {}
     for segment in SEGMENTS:
         detail = graphql(segment)
@@ -179,29 +181,30 @@ def collect():
             for b in draw.get("brackets") or []:
                 btype = b.get("type") or segment
                 bucket = brackets.setdefault(btype, {})
-                for r in b.get("rounds") or []:
-                    matches = []
-                    for seed in r.get("seeds") or []:
-                        m = parse_match(seed, btype)
-                        if m:
-                            matches.append(m)
-                    if not matches:
+                for jrk, r in enumerate(b.get("rounds") or [], start=1):
+                    seeds = r.get("seeds") or []
+                    if not seeds:
                         continue
-                    key = r.get("title") or matches[0]["round"]
-                    bucket.setdefault(key, []).extend(matches)
+                    key = r.get("title") or f"R{jrk}"
+                    kirje = bucket.setdefault(key, {"order": jrk, "matches": []})
+                    for seed in seeds:
+                        kirje["matches"].append(parse_match(seed, btype, kirje["order"]))
 
     out = []
     for btype in sorted(brackets, key=lambda t: BRACKET_ORDER.index(t)
                         if t in BRACKET_ORDER else 99):
         rounds = []
-        for rtitle, matches in brackets[btype].items():
-            matches.sort(key=lambda m: (m["round_nr"] or 0, m["index"] or 0))
+        for rtitle, kirje in brackets[btype].items():
+            kirje["matches"].sort(key=lambda m: m["index"] or 0)
             rounds.append({
                 "round": rtitle,
                 "title": ROUND_TITLES.get(rtitle, rtitle),
-                "matches": matches,
+                "order": kirje["order"],
+                "matches": kirje["matches"],
             })
-        rounds.sort(key=lambda r: r["matches"][0]["round_nr"] or 0)
+        rounds.sort(key=lambda r: r["order"])
+        if not any(r["matches"] for r in rounds):
+            continue
         out.append({
             "type": btype,
             "title": BRACKET_TITLES.get(btype, btype),
@@ -211,7 +214,9 @@ def collect():
 
 
 def flatten(brackets):
-    return [m for b in brackets for r in b["rounds"] for m in r["matches"]]
+    """Kõik mängud, kus vähemalt üks mängija on teada (tühjad kohad välja)."""
+    return [m for b in brackets for r in b["rounds"] for m in r["matches"]
+            if m["p1"] or m["p2"]]
 
 
 # ---------- püramiid ----------
