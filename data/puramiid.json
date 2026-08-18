@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-18T16:45:01.093Z",
+  "updated_at": "2026-08-18T17:30:52.192Z",
   "players": [
     {
       "pos": 1,
@@ -1057,6 +1057,19 @@
       "play_date": "2026-08-18",
       "mv_match_id": 1246005,
       "mv_round": "Põhitabel · 2. ring"
+    },
+    {
+      "nr": 91,
+      "challenger": "Andrus Jürgenson",
+      "challenged": "Karl Valter Elmaste",
+      "score": "6:3 6:2",
+      "winner": "Karl Valter Elmaste",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-18",
+      "mv_match_id": 1246013,
+      "mv_round": "Põhitabel · Veerandfinaal"
     }
   ],
   "challenges": []
