@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-18T15:30:52.846Z",
+  "updated_at": "2026-08-18T16:30:49.747Z",
   "players": [
     {
       "pos": 1,
@@ -9,7 +9,7 @@
     },
     {
       "pos": 2,
-      "name": "Kert Perkmann",
+      "name": "Daniel Snegirjov",
       "badge": ""
     },
     {
@@ -24,7 +24,7 @@
     },
     {
       "pos": 5,
-      "name": "Daniel Snegirjov",
+      "name": "Kert Perkmann",
       "badge": ""
     },
     {
@@ -1030,6 +1030,19 @@
       "challenge_date": null,
       "play_date": "2026-08-18",
       "mv_match_id": 1246009,
+      "mv_round": "Põhitabel · 2. ring"
+    },
+    {
+      "nr": 89,
+      "challenger": "Daniel Snegirjov",
+      "challenged": "Kert Perkmann",
+      "score": "6:7(2:7) 6:2 [10:6]",
+      "winner": "Daniel Snegirjov",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-18",
+      "mv_match_id": 1246008,
       "mv_round": "Põhitabel · 2. ring"
     }
   ],
