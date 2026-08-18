@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-17T17:52:52.477Z",
+  "updated_at": "2026-08-18T15:30:52.846Z",
   "players": [
     {
       "pos": 1,
@@ -1017,6 +1017,19 @@
       "challenge_date": null,
       "play_date": "2026-08-17",
       "mv_match_id": 1246006,
+      "mv_round": "Põhitabel · 2. ring"
+    },
+    {
+      "nr": 88,
+      "challenger": "Gennadi Lepp",
+      "challenged": "Priit Raudla",
+      "score": "6:0 6:1",
+      "winner": "Priit Raudla",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-18",
+      "mv_match_id": 1246009,
       "mv_round": "Põhitabel · 2. ring"
     }
   ],
