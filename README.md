@@ -236,7 +236,7 @@ Kontrolli enne turniiri: `python scripts/mv_fetch.py` peab lõppema ilma veata.
 
 GitHubi enda cron on tasuta plaanil **„mitte varem kui"**, mitte täpne aeg.
 17.–18.08.2026 mõõdetud vahed kahe jooksu vahel: `30, 57, 88, 63, 49, 55, 33,
-53, 46, 47, 60` minutit — keskmine ~53, halvim 88. Croni nihutamine täistunnilt
+53, 46, 47, 60, 100` minutit — keskmine ~57, halvim **100**. Croni nihutamine täistunnilt
 eemale (`7,37`) lühendab ootust, aga ei kaota seda.
 
 Seetõttu on peamine käivitaja **Cloudflare Worker** ([`worker/`](worker/)):
