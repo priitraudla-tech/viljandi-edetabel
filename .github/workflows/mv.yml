@@ -4,9 +4,17 @@ on:
   schedule:
     # Iga 30 minuti järel turniiripäevadel 17.-21. august.
     # Kuupäevavahemik hoiab ära 48 tühikäiku päevas ülejäänud aastaringi.
+    #
+    # NB! Miks 7 ja 37, mitte */30: GitHub paneb ajastatud tööd tasuta plaanil
+    # järjekorda ja cron on "mitte varem kui", mitte täpne aeg. Täistunni ümber
+    # on järjekord kõige pikem — 17.-18.08 mõõdetud vahed olid 30...88 min
+    # (keskmine ~53). Täistunnilt eemale nihutamine lühendab ootust, aga ei
+    # kaota seda päriselt. Kui on vaja garanteeritud 30 min, tuleb ajastus viia
+    # GitHubist välja (nt Cloudflare Worker cron trigger).
+    #
     # JÄRGMISEKS AASTAKS: muuda siin kuupäevad ja scripts/mv_fetch.py-s
     # TOURNAMENT_ID / CATEGORY_ID.
-    - cron: "*/30 * 17-21 8 *"
+    - cron: "7,37 * 17-21 8 *"
   workflow_dispatch: {}
 
 permissions:
