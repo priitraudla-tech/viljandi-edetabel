@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-18T07:13:39+00:00",
+  "fetched_at": "2026-08-18T08:00:43+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -539,9 +539,9 @@
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": null,
-              "time": null,
-              "court": null
+              "date": "2026-08-18",
+              "time": "19:00",
+              "court": "Court 1"
             },
             {
               "id": 1246014,
@@ -1362,9 +1362,9 @@
       "walkover": false,
       "disqualified": false,
       "in_progress": false,
-      "date": null,
-      "time": null,
-      "court": null
+      "date": "2026-08-18",
+      "time": "19:00",
+      "court": "Court 1"
     },
     {
       "id": 1246024,
