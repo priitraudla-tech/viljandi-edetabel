@@ -1,8 +1,8 @@
 # Cloudflare Worker: äratab MV-uuenduse täpsel ajal.
 #
 # Miks see olemas on: GitHubi enda cron on tasuta plaanil "mitte varem kui",
-# mitte täpne aeg — 17.-18.08.2026 mõõdetud vahed olid 30...88 min (keskmine
-# ~53). Cloudflare'i cron käivitub minutipealt ja workflow_dispatch'iga
+# mitte täpne aeg — 17.-18.08.2026 mõõdetud vahed olid 30...100 min (keskmine
+# ~57, halvim 100). Cloudflare'i cron käivitub minutipealt ja workflow_dispatch'iga
 # käivitatud jooks ei lähe GitHubi ajastusjärjekorda, vaid startib sekunditega.
 #
 # See Worker EI dubleeri tõmbamise loogikat — see ainult vajutab nuppu.

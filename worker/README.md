@@ -8,7 +8,7 @@ GitHubi enda cron on tasuta plaanil „mitte varem kui", mitte täpne aeg.
 17.–18.08.2026 mõõdetud vahed kahe jooksu vahel:
 
 ```
-30, 57, 88, 63, 49, 55, 33, 53, 46, 47, 60 min   → keskmine ~53, halvim 88
+30, 57, 88, 63, 49, 55, 33, 53, 46, 47, 60, 100 min  → keskmine ~57, halvim 100
 ```
 
 Cloudflare'i cron käivitub minutipealt, ja `workflow_dispatch`'iga käivitatud

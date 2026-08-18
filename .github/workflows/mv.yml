@@ -4,7 +4,7 @@ on:
   schedule:
     # VARUVARIANT. Peamine käivitaja on Cloudflare Worker (worker/),
     # mis kutsub workflow_dispatch'i täpsel ajal — GitHubi enda cron on
-    # tasuta plaanil 'mitte varem kui', vahed olid 30...88 min.
+    # tasuta plaanil 'mitte varem kui', vahed olid 30...100 min.
     # Kaks käivitajat ei tee kahju: concurrency hoiab ära kattumise ja
     # muutumata andmete korral commiti ei tehta.
     # Iga 30 minuti järel turniiripäevadel 17.-21. august.
@@ -12,8 +12,8 @@ on:
     #
     # NB! Miks 7 ja 37, mitte */30: GitHub paneb ajastatud tööd tasuta plaanil
     # järjekorda ja cron on "mitte varem kui", mitte täpne aeg. Täistunni ümber
-    # on järjekord kõige pikem — 17.-18.08 mõõdetud vahed olid 30...88 min
-    # (keskmine ~53). Täistunnilt eemale nihutamine lühendab ootust, aga ei
+    # on järjekord kõige pikem — 17.-18.08 mõõdetud vahed olid 30...100 min
+    # (keskmine ~57). Täistunnilt eemale nihutamine lühendab ootust, aga ei
     # kaota seda päriselt. Kui on vaja garanteeritud 30 min, tuleb ajastus viia
     # GitHubist välja (nt Cloudflare Worker cron trigger).
     #
