@@ -1997,3 +1997,19 @@ tr.game-note-row td {
   padding: 0 3px;
   font-size: 9px;
 }
+
+/* Mängukaardil: millise tabeli ring see on. Ilma selleta on "1. ring"
+   mitmemõtteline — igal tabelil on oma esimene ring. */
+.mv-bracket {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 1px 6px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset);
+  background: var(--surface-warm-solid);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--text-2);
+}
+.mv-match.is-done .mv-bracket { background: var(--surface); }

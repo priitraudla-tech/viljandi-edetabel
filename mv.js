@@ -52,6 +52,22 @@
   const moldabPyramiidi = (m) =>
     !!(m.winner && m.loser && pyrNimi(m.winner) && pyrNimi(m.loser));
 
+  // Lühinimed kaardile. Ilma nendeta on "1. ring" mitmemõtteline — igal
+  // tabelil (põhitabel, 5.-8., 9.-16., 17.-32.) on oma esimene ring.
+  const TABELI_LYHINIMED = {
+    main: "Põhitabel",
+    "5-8": "5.–8. koht",
+    "9-16": "9.–16. koht",
+    "17-32": "17.–32. koht",
+    consolation: "Lohutus",
+  };
+
+  function tabeliNimi(tyyp) {
+    if (TABELI_LYHINIMED[tyyp]) return TABELI_LYHINIMED[tyyp];
+    const b = (state.data.brackets || []).find((x) => x.type === tyyp);
+    return b ? b.title : tyyp || "";
+  }
+
   // ---------- ühe mängu kaart ----------
 
   function mangKaart(m, { naitaRingi = true } = {}) {
@@ -68,7 +84,10 @@
     };
 
     const aeg = [m.time, m.court].filter(Boolean).join(" · ");
-    const ring = naitaRingi ? `<span class="mv-round">${esc(m.round_title || "")}</span>` : "";
+    const ring = naitaRingi
+      ? `<span class="mv-round"><span class="mv-bracket">${esc(tabeliNimi(m.bracket))}</span>`
+        + `${esc(m.round_title || "")}</span>`
+      : "";
     const staatus = m.in_progress
       ? `<span class="mv-live">käib</span>`
       : m.score
