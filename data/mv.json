@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-18T06:27:18+00:00",
+  "fetched_at": "2026-08-18T07:13:39+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -362,8 +362,8 @@
               "disqualified": false,
               "in_progress": false,
               "date": "2026-08-18",
-              "time": "17:00",
-              "court": "Court 2"
+              "time": "18:00",
+              "court": "Court 3"
             },
             {
               "id": 1246005,
@@ -1215,25 +1215,6 @@
   ],
   "upcoming": [
     {
-      "id": 1246004,
-      "bracket": "main",
-      "round": "R2",
-      "round_title": "2. ring",
-      "round_nr": 2,
-      "index": 1,
-      "p1": "Ott Ahonen",
-      "p2": "Mikk Kadak",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-18",
-      "time": "17:00",
-      "court": "Court 2"
-    },
-    {
       "id": 1246008,
       "bracket": "main",
       "round": "R2",
@@ -1289,6 +1270,25 @@
       "date": "2026-08-18",
       "time": "17:00",
       "court": "Court 5"
+    },
+    {
+      "id": 1246004,
+      "bracket": "main",
+      "round": "R2",
+      "round_title": "2. ring",
+      "round_nr": 2,
+      "index": 1,
+      "p1": "Ott Ahonen",
+      "p2": "Mikk Kadak",
+      "score": null,
+      "winner": null,
+      "loser": null,
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-18",
+      "time": "18:00",
+      "court": "Court 3"
     },
     {
       "id": 1246005,
