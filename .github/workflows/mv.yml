@@ -35,6 +35,9 @@ jobs:
       - name: Kontrolli püramiidi-loogikat
         run: python scripts/test_mv_puramiid.py
 
+      - name: Kontrolli päringu veataluvust
+        run: python scripts/test_mv_paring.py
+
       - name: Tõmba MV loos ja tulemused
         run: python scripts/mv_fetch.py
 
@@ -45,8 +48,24 @@ jobs:
           git add data/mv.json data/puramiid.json
           if git diff --cached --quiet; then
             echo "Muudatusi ei ole."
-          else
-            git commit -m "mv: seis $(date -u +'%Y-%m-%d %H:%M') UTC"
-            git pull --rebase --autostash
-            git push
+            exit 0
+          fi
+          git commit -m "mv: seis $(date -u +'%Y-%m-%d %H:%M') UTC"
+
+          # data/ kaustal on mitu kirjutajat: see töö, laupäevane edetabeli-töö
+          # ja püramiidi halduspaneel (kirjutab GitHubi API kaudu suvalisel ajal).
+          # Kui rebase satub konflikti, EI lahenda me seda automaatselt — muidu
+          # võiks halduri käsitsi sisestatud mäng vaikselt kaduma minna. Jätame
+          # jooksu vahele; järgmine jooks 30 min pärast loeb värske seisu ja teeb
+          # kõik uuesti. Andmeid ei lähe kaotsi, sest mv.json genereeritakse iga
+          # kord nullist ja püramiid loetakse jooksu alguses uuesti sisse.
+          if ! git pull --rebase --autostash; then
+            git rebase --abort || true
+            echo "::warning::Rebase konflikt — jätan selle jooksu vahele, järgmine teeb uuesti."
+            exit 0
+          fi
+
+          if ! git push; then
+            echo "::warning::Push ebaõnnestus (tõenäoliselt võistlev push) — järgmine jooks proovib uuesti."
+            exit 0
           fi

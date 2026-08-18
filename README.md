@@ -189,6 +189,7 @@ nende enda leht kasutab. Autentimist ei vaja.
 |---|---|
 | `scripts/mv_fetch.py` | tõmbab loosi + tulemused, kirjutab `data/mv.json`, kannab tulemused püramiidi |
 | `scripts/test_mv_puramiid.py` | testib püramiidi-loogikat päris andmete koopial |
+| `scripts/test_mv_paring.py` | testib, et ajutine tõrge tournatedis ei võta jooksu maha |
 | `.github/workflows/mv.yml` | cron iga 30 min turniiripäevadel |
 | `mv.js` | lehe pool: Kava / Tulemused / Tabel (kahvel) |
 
@@ -230,6 +231,24 @@ Muuda kaks kohta:
    ülejäänud aastaringi.
 
 Kontrolli enne turniiri: `python scripts/mv_fetch.py` peab lõppema ilma veata.
+
+### Ajutised tõrked
+
+tournated on võõras teenus, mida pärime iga 30 min — juhuslikke ajalõppe ja
+5xx-e tuleb ette. 18.08.2026 kell 09:01 UTC kukkus jooks läbi, kuigi kaheksa
+eelmist olid õnnestunud ja kümme minutit hiljem töötas kõik jälle.
+
+Seetõttu proovib `graphql()` iga segmenti **kuni 3 korda** (paus 3 s ja 9 s).
+Korratakse võrguvea, ajalõpu, 5xx, 429 ja GraphQL-vea puhul; **4xx-i ei korrata**,
+sest see on päris viga. Kui kõik katsed kukuvad läbi, jääb Action punaseks ja
+vana `mv.json` jääb alles — vigaseid andmeid head seisu üle ei kirjutata.
+
+Commit-samm ei lahenda rebase-konflikti automaatselt, vaid jätab jooksu vahele
+(`::warning::`, mitte viga). Põhjus: `data/` kaustal on mitu kirjutajat —
+see töö, laupäevane edetabeli-töö ja püramiidi halduspaneel, mis kirjutab
+GitHubi API kaudu suvalisel ajal. Automaatne lahendus võiks halduri käsitsi
+sisestatud mängu vaikselt kaotada. Järgmine jooks 30 min pärast loeb värske
+seisu ja teeb kõik uuesti.
 
 ### Kui tournated API muutub
 

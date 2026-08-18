@@ -18,6 +18,7 @@ mitte ei kirjuta vigaseid andmeid üle. Vt kontrolli_mv.py.
 import json
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -89,7 +90,11 @@ def norm_name(s: str) -> str:
     return " ".join((s or "").split()).lower()
 
 
-def graphql(segment: str) -> dict:
+KATSEID = 3
+OOTEAJAD = (3, 9)          # sekundites, katsete vahel
+
+
+def _paring(segment: str) -> dict:
     body = json.dumps({
         "operationName": "D",
         "variables": {"filter": {
@@ -105,11 +110,47 @@ def graphql(segment: str) -> dict:
         "user-agent": "viljandi-edetabel (github.com/priitraudla-tech/viljandi-edetabel)",
     })
     with urllib.request.urlopen(req, timeout=45) as resp:
-        payload = json.loads(resp.read().decode("utf-8"))
-    if payload.get("errors"):
-        msgs = "; ".join(e.get("message", "?") for e in payload["errors"])
-        raise RuntimeError(f"GraphQL viga segmendil {segment}: {msgs}")
-    return payload["data"]["drawsDetail"]
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def graphql(segment: str) -> dict:
+    """Küsi ühe segmendi loos. Ajutise tõrke korral proovi uuesti.
+
+    Tegemist on võõra teenusega, mida pärime iga 30 min — juhuslikke
+    ajalõppe, 5xx-e ja päringupiiranguid tuleb ette (nii juhtus 18.08.2026
+    kell 09:01 UTC, kui kaheksa eelmist jooksu olid õnnestunud). Ühekordne
+    tõrge ei tohi tervet jooksu maha võtta; püsiv tõrge peab.
+    """
+    viimane = None
+    for katse in range(1, KATSEID + 1):
+        try:
+            payload = _paring(segment)
+        except urllib.error.HTTPError as e:
+            keha = ""
+            try:
+                keha = e.read().decode("utf-8", "replace")[:300]
+            except Exception:
+                pass
+            viimane = f"HTTP {e.code} {e.reason}: {keha}"
+            # 4xx (v.a 429) on päris viga — kordamine ei aita.
+            if 400 <= e.code < 500 and e.code != 429:
+                break
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError) as e:
+            viimane = f"{type(e).__name__}: {e}"
+        else:
+            if payload.get("errors"):
+                msgs = "; ".join(x.get("message", "?") for x in payload["errors"])
+                viimane = f"GraphQL: {msgs}"
+            else:
+                return payload["data"]["drawsDetail"]
+
+        if katse < KATSEID:
+            paus = OOTEAJAD[katse - 1]
+            print(f"  segment {segment}: katse {katse}/{KATSEID} ebaonnestus "
+                  f"({viimane}) — proovin {paus} s parast uuesti", file=sys.stderr)
+            time.sleep(paus)
+
+    raise RuntimeError(f"Segment {segment} ei vastanud {KATSEID} katsega: {viimane}")
 
 
 def entry_name(entry):
