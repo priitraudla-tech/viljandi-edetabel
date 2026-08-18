@@ -3,3 +3,7 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+
+# Cloudflare Workeri kohalik olek (wrangler dev / dry-run)
+worker/.wrangler/
+.wrangler/

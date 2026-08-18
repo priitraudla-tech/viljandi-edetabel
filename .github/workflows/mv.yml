@@ -2,6 +2,11 @@ name: Viljandimaa MV (iga 30 min)
 
 on:
   schedule:
+    # VARUVARIANT. Peamine käivitaja on Cloudflare Worker (worker/),
+    # mis kutsub workflow_dispatch'i täpsel ajal — GitHubi enda cron on
+    # tasuta plaanil 'mitte varem kui', vahed olid 30...88 min.
+    # Kaks käivitajat ei tee kahju: concurrency hoiab ära kattumise ja
+    # muutumata andmete korral commiti ei tehta.
     # Iga 30 minuti järel turniiripäevadel 17.-21. august.
     # Kuupäevavahemik hoiab ära 48 tühikäiku päevas ülejäänud aastaringi.
     #

@@ -232,6 +232,24 @@ Muuda kaks kohta:
 
 Kontrolli enne turniiri: `python scripts/mv_fetch.py` peab lõppema ilma veata.
 
+### Ajastus: Cloudflare Worker
+
+GitHubi enda cron on tasuta plaanil **„mitte varem kui"**, mitte täpne aeg.
+17.–18.08.2026 mõõdetud vahed kahe jooksu vahel: `30, 57, 88, 63, 49, 55, 33,
+53, 46, 47, 60` minutit — keskmine ~53, halvim 88. Croni nihutamine täistunnilt
+eemale (`7,37`) lühendab ootust, aga ei kaota seda.
+
+Seetõttu on peamine käivitaja **Cloudflare Worker** ([`worker/`](worker/)):
+selle cron käivitub minutipealt ja `workflow_dispatch`'iga käivitatud jooks ei
+lähe GitHubi ajastusjärjekorda. Worker **ei dubleeri** tõmbamise loogikat —
+ta ainult vajutab nuppu.
+
+Seadistus ja kontroll: [`worker/README.md`](worker/README.md).
+
+GitHubi enda `schedule:` on varuvariandiks alles. Kaks käivitajat ei tee kahju:
+`concurrency: mv-fetch` ei luba kahel jooksul korraga käia ja muutumata andmete
+korral commiti ei tehta.
+
 ### Ajutised tõrked
 
 tournated on võõras teenus, mida pärime iga 30 min — juhuslikke ajalõppe ja
