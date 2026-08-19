@@ -54,6 +54,12 @@ jobs:
       - name: Tõmba MV loos ja tulemused
         run: python scripts/mv_fetch.py
 
+      - name: Kontrolli kahvlite struktuuri
+        # Jookseb PÄRAST tõmbamist: kui tournatedi struktuur muutub nii, et
+        # kahvel läheb katki (nt uus lisaloos seguneb põhitabelisse), kukub
+        # jooks läbi ENNE commiti ja vigane tabel ei jõua lehele.
+        run: python scripts/test_mv_tabel.py
+
       - name: Commit
         run: |
           git config user.name "edetabel-bot"

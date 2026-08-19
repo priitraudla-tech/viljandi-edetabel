@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-19T18:00:54+00:00",
+  "fetched_at": "2026-08-19T18:04:43+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -608,25 +608,6 @@
               "court": "Court 1"
             },
             {
-              "id": 1250070,
-              "bracket": "main",
-              "round": "Semi-Final",
-              "round_title": "Poolfinaal",
-              "round_nr": 4,
-              "index": 1,
-              "p1": "Mikk Kadak",
-              "p2": "Ilja Balabko",
-              "score": null,
-              "winner": null,
-              "loser": null,
-              "walkover": false,
-              "disqualified": false,
-              "in_progress": false,
-              "date": "2026-08-20",
-              "time": "10:00",
-              "court": "Court 5"
-            },
-            {
               "id": 1246017,
               "bracket": "main",
               "round": "Semi-Final",
@@ -643,25 +624,6 @@
               "in_progress": false,
               "date": "2026-08-20",
               "time": "12:30",
-              "court": "Court 1"
-            },
-            {
-              "id": 1250071,
-              "bracket": "main",
-              "round": "Semi-Final",
-              "round_title": "Poolfinaal",
-              "round_nr": 4,
-              "index": 2,
-              "p1": "Gennadi Lepp",
-              "p2": "Manfred Mets",
-              "score": null,
-              "winner": null,
-              "loser": null,
-              "walkover": false,
-              "disqualified": false,
-              "in_progress": false,
-              "date": "2026-08-20",
-              "time": "16:00",
               "court": "Court 1"
             }
           ]
@@ -689,29 +651,12 @@
               "date": null,
               "time": null,
               "court": null
-            },
-            {
-              "id": 1250072,
-              "bracket": "main",
-              "round": "Final",
-              "round_title": "Finaal",
-              "round_nr": 5,
-              "index": 1,
-              "p1": null,
-              "p2": null,
-              "score": null,
-              "winner": null,
-              "loser": null,
-              "walkover": false,
-              "disqualified": false,
-              "in_progress": false,
-              "date": null,
-              "time": null,
-              "court": null
             }
           ]
         }
-      ]
+      ],
+      "draw_id": 16221,
+      "draw_title": "M üksik"
     },
     {
       "type": "5-8",
@@ -788,7 +733,9 @@
             }
           ]
         }
-      ]
+      ],
+      "draw_id": 16221,
+      "draw_title": "M üksik"
     },
     {
       "type": "9-16",
@@ -948,7 +895,88 @@
             }
           ]
         }
-      ]
+      ],
+      "draw_id": 16221,
+      "draw_title": "M üksik"
+    },
+    {
+      "type": "13-16",
+      "title": "Kohamängud 13.–16.",
+      "rounds": [
+        {
+          "round": "Semi-Final",
+          "title": "Poolfinaal",
+          "order": 1,
+          "matches": [
+            {
+              "id": 1250070,
+              "bracket": "13-16",
+              "round": "Semi-Final",
+              "round_title": "Poolfinaal",
+              "round_nr": 1,
+              "index": 1,
+              "p1": "Mikk Kadak",
+              "p2": "Ilja Balabko",
+              "score": null,
+              "winner": null,
+              "loser": null,
+              "walkover": false,
+              "disqualified": false,
+              "in_progress": false,
+              "date": "2026-08-20",
+              "time": "10:00",
+              "court": "Court 5"
+            },
+            {
+              "id": 1250071,
+              "bracket": "13-16",
+              "round": "Semi-Final",
+              "round_title": "Poolfinaal",
+              "round_nr": 1,
+              "index": 2,
+              "p1": "Gennadi Lepp",
+              "p2": "Manfred Mets",
+              "score": null,
+              "winner": null,
+              "loser": null,
+              "walkover": false,
+              "disqualified": false,
+              "in_progress": false,
+              "date": "2026-08-20",
+              "time": "16:00",
+              "court": "Court 1"
+            }
+          ]
+        },
+        {
+          "round": "Final",
+          "title": "Finaal",
+          "order": 2,
+          "matches": [
+            {
+              "id": 1250072,
+              "bracket": "13-16",
+              "round": "Final",
+              "round_title": "Finaal",
+              "round_nr": 2,
+              "index": 1,
+              "p1": null,
+              "p2": null,
+              "score": null,
+              "winner": null,
+              "loser": null,
+              "walkover": false,
+              "disqualified": false,
+              "in_progress": false,
+              "date": null,
+              "time": null,
+              "court": null
+            }
+          ]
+        }
+      ],
+      "draw_id": 16318,
+      "draw_title": "13-16"
     },
     {
       "type": "17-32",
@@ -1267,16 +1295,18 @@
             }
           ]
         }
-      ]
+      ],
+      "draw_id": 16221,
+      "draw_title": "M üksik"
     }
   ],
   "upcoming": [
     {
       "id": 1250070,
-      "bracket": "main",
+      "bracket": "13-16",
       "round": "Semi-Final",
       "round_title": "Poolfinaal",
-      "round_nr": 4,
+      "round_nr": 1,
       "index": 1,
       "p1": "Mikk Kadak",
       "p2": "Ilja Balabko",
@@ -1349,10 +1379,10 @@
     },
     {
       "id": 1250071,
-      "bracket": "main",
+      "bracket": "13-16",
       "round": "Semi-Final",
       "round_title": "Poolfinaal",
-      "round_nr": 4,
+      "round_nr": 1,
       "index": 2,
       "p1": "Gennadi Lepp",
       "p2": "Manfred Mets",

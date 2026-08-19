@@ -64,7 +64,11 @@
 
   function tabeliNimi(tyyp) {
     if (TABELI_LYHINIMED[tyyp]) return TABELI_LYHINIMED[tyyp];
+    // Lisaloosid ("13-16", "7-8") — kuvanimi tuleb mv.json-ist; kaardile
+    // lühike kuju "13.–16. koht", nagu teistel.
     const b = (state.data.brackets || []).find((x) => x.type === tyyp);
+    const m = /^(\d+)-(\d+)$/.exec(tyyp || "");
+    if (m) return `${m[1]}.–${m[2]}. koht`;
     return b ? b.title : tyyp || "";
   }
 

@@ -206,22 +206,68 @@ def sort_key(m):
     return (
         m["date"] or "9999-99-99",
         m["time"] or "99:99",
-        BRACKET_ORDER.index(m["bracket"]) if m["bracket"] in BRACKET_ORDER else 99,
+        BRACKET_ORDER.index(m["bracket"]) if m["bracket"] in BRACKET_ORDER
+        else 50 + _place_lo(m["bracket"]),
         m["round_nr"] or 99,
         m["index"] or 99,
     )
 
 
+# Lisaloosid, mille korraldaja tournatedis juurde teeb (nt "7-8", "13-16").
+# Võti = loosi pealkiri tournatedis. Tundmatu pealkiri kuvatakse muutmata.
+DRAW_TITLES = {
+    "7-8": "Kohamäng 7.–8.",
+    "13-16": "Kohamängud 13.–16.",
+    "5-6": "Kohamäng 5.–6.",
+    "9-12": "Kohamängud 9.–12.",
+    "15-16": "Kohamäng 15.–16.",
+}
+
+
+def bracket_title(tyyp):
+    """Kahvli kuvanimi ükskõik millise tüübi jaoks: 'main' -> Põhitabel,
+    '9-16' -> Kohamängud 9.–16., '13-16' (lisaloos) -> Kohamängud 13.–16.,
+    '13-16/5-8' -> Kohamängud 13.–16. · Kohamängud 5.–8."""
+    if tyyp in BRACKET_TITLES:
+        return BRACKET_TITLES[tyyp]
+    pea, _, ala = str(tyyp or "").partition("/")
+    nimi = DRAW_TITLES.get(pea, f"Kohamängud {pea}")
+    if ala:
+        nimi = f"{nimi} · {BRACKET_TITLES.get(ala, ala)}"
+    return nimi
+
+
+def _place_lo(label):
+    """'13-16' -> 13, '7-8' -> 7, 'main' -> 0, muu -> 999. Järjestamiseks."""
+    m = re.match(r"^\s*(\d+)", str(label or ""))
+    return int(m.group(1)) if m else (0 if label == "main" else 999)
+
+
 def collect():
-    """Ringid jäävad SELLESSE järjekorda, mille API annab (R1, R2, QF, SF, Final).
-    Sisuliselt on see ainus usaldusväärne allikas — roundNumber on tühi."""
-    brackets = {}
+    """Kogu loosid tournatedist kahvlitena.
+
+    GRUPEERIMINE KÄIB LOOSI KAUPA, mitte bracket-tüübi kaupa. Põhjus: korraldaja
+    võib lisada turniirile eraldi loose (nt "7-8", "13-16"), millel on OMA
+    'main' bracket ja OMA poolfinaal/finaal. 19.08.2026 tegi ta seda ja meie
+    vana kood liitis 13.-16. koha loosi poolfinaali põhitabeli poolfinaali
+    sisse — tabelis ilmus põhitabeli SF kohale Mikk Kadak - Ilja Balabko.
+
+    Ringid jäävad SELLESSE järjekorda, mille API annab (R1, R2, QF, SF, Final) —
+    roundNumber on API-s tühi, see on ainus usaldusväärne allikas.
+    """
+    loosid = {}   # (draw_id) -> {"title":..., "brackets": {btype: {rtitle: kirje}}}
     for segment in SEGMENTS:
         detail = graphql(segment)
         for draw in detail.get("draws") or []:
+            did = draw.get("id")
+            kirje_loos = loosid.setdefault(did, {
+                "id": did,
+                "title": (draw.get("title") or "").strip(),
+                "brackets": {},
+            })
             for b in draw.get("brackets") or []:
                 btype = b.get("type") or segment
-                bucket = brackets.setdefault(btype, {})
+                bucket = kirje_loos["brackets"].setdefault(btype, {})
                 for jrk, r in enumerate(b.get("rounds") or [], start=1):
                     seeds = r.get("seeds") or []
                     if not seeds:
@@ -231,26 +277,54 @@ def collect():
                     for seed in seeds:
                         kirje["matches"].append(parse_match(seed, btype, kirje["order"]))
 
+    # Pealoos = see, millel on kõige rohkem mänge (põhitabel 32 kohaga).
+    # Kõik teised on lisaloosid: nende 'main' bracket nimetatakse loosi järgi.
+    if not loosid:
+        return []
+    pea_id = max(loosid, key=lambda k: sum(
+        len(kr["matches"]) for bt in loosid[k]["brackets"].values() for kr in bt.values()))
+
     out = []
-    for btype in sorted(brackets, key=lambda t: BRACKET_ORDER.index(t)
-                        if t in BRACKET_ORDER else 99):
-        rounds = []
-        for rtitle, kirje in brackets[btype].items():
-            kirje["matches"].sort(key=lambda m: m["index"] or 0)
-            rounds.append({
-                "round": rtitle,
-                "title": ROUND_TITLES.get(rtitle, rtitle),
-                "order": kirje["order"],
-                "matches": kirje["matches"],
-            })
-        rounds.sort(key=lambda r: r["order"])
-        if not any(r["matches"] for r in rounds):
-            continue
-        out.append({
-            "type": btype,
-            "title": BRACKET_TITLES.get(btype, btype),
-            "rounds": rounds,
-        })
+    for did, loos in loosid.items():
+        on_pea = did == pea_id
+        for btype, rounds_raw in loos["brackets"].items():
+            rounds = []
+            for rtitle, kirje in rounds_raw.items():
+                kirje["matches"].sort(key=lambda m: m["index"] or 0)
+                rounds.append({
+                    "round": rtitle,
+                    "title": ROUND_TITLES.get(rtitle, rtitle),
+                    "order": kirje["order"],
+                    "matches": kirje["matches"],
+                })
+            rounds.sort(key=lambda r: r["order"])
+            if not any(r["matches"] for r in rounds):
+                continue
+
+            if on_pea:
+                tyyp, title = btype, BRACKET_TITLES.get(btype, btype)
+            else:
+                # Lisaloos: tüübiks loosi pealkiri (nt "13-16"), et see ei
+                # seguneks pealoosi 'main'-iga; kuvanimi loosi järgi.
+                tyyp = loos["title"] or f"draw-{did}"
+                if btype != "main":
+                    tyyp = f"{tyyp}/{btype}"
+                title = bracket_title(tyyp)
+            # bracket-välja igal mängul peab kattuma kahvli tüübiga (mv.js
+            # otsib selle järgi kuvanime)
+            for r in rounds:
+                for m in r["matches"]:
+                    m["bracket"] = tyyp
+            out.append({"type": tyyp, "title": title, "rounds": rounds,
+                        "draw_id": did, "draw_title": loos["title"]})
+
+    # Järjestus: põhitabel, siis kohamängud kasvavas kohajärjekorras
+    def jrk(b):
+        t = b["type"]
+        if t == "main":
+            return (0, 0)
+        return (1, _place_lo(t))
+    out.sort(key=jrk)
     return out
 
 
@@ -311,7 +385,7 @@ def apply_to_pyramid(matches, pyr):
             "challenge_date": None,
             "play_date": m["date"],
             "mv_match_id": m["id"],
-            "mv_round": f'{BRACKET_TITLES.get(m["bracket"], m["bracket"])} · {m["round_title"]}',
+            "mv_round": f'{bracket_title(m["bracket"])} · {m["round_title"]}',
         })
         lisatud.append({
             "nr": nr,
