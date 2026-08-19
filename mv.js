@@ -379,7 +379,18 @@
         }
       }, 200);
     });
-    if (location.hash === "#mv") {
+    // Turniiri ajal on MV avaekraan. Pärast MV_AVAEKRAAN_KUNI keskööd
+    // (Eesti aja järgi) läheb leht ise tagasi Edetabelile — midagi ei pea
+    // käsitsi ümber lülitama. #mv link ja otsene vahekaardi klikk töötavad
+    // igal ajal edasi.
+    const MV_AVAEKRAAN_KUNI = "2026-08-23";
+    const nyyd = new Date();
+    const taana = `${nyyd.getFullYear()}-${String(nyyd.getMonth() + 1).padStart(2, "0")}-` +
+      `${String(nyyd.getDate()).padStart(2, "0")}`;
+    const mvOnAvaekraan = taana <= MV_AVAEKRAAN_KUNI;
+    const kasutajaValisMuu = /^#(standings|tournament|trend|history)$/.test(location.hash);
+
+    if (location.hash === "#mv" || (mvOnAvaekraan && !kasutajaValisMuu)) {
       avaVahekaart();
       laadi();
     }
