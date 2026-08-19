@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-19T14:48:05+00:00",
+  "fetched_at": "2026-08-19T15:00:51+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -571,9 +571,9 @@
               "index": 4,
               "p1": "Henri Liiv",
               "p2": "Priit Pihl",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:0 6:0",
+              "winner": "Priit Pihl",
+              "loser": "Henri Liiv",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -634,7 +634,7 @@
               "round_nr": 4,
               "index": 2,
               "p1": null,
-              "p2": null,
+              "p2": "Priit Pihl",
               "score": null,
               "winner": null,
               "loser": null,
@@ -749,7 +749,7 @@
               "round_nr": 1,
               "index": 2,
               "p1": null,
-              "p2": null,
+              "p2": "Henri Liiv",
               "score": null,
               "winner": null,
               "loser": null,
@@ -1272,25 +1272,6 @@
   ],
   "upcoming": [
     {
-      "id": 1246015,
-      "bracket": "main",
-      "round": "Quarter-Final",
-      "round_title": "Veerandfinaal",
-      "round_nr": 3,
-      "index": 4,
-      "p1": "Henri Liiv",
-      "p2": "Priit Pihl",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-19",
-      "time": "17:00",
-      "court": "Court 2"
-    },
-    {
       "id": 1246025,
       "bracket": "9-16",
       "round": "R1",
@@ -1443,6 +1424,25 @@
       "date": "2026-08-19",
       "time": "17:00",
       "court": "Court 3"
+    },
+    {
+      "id": 1246015,
+      "bracket": "main",
+      "round": "Quarter-Final",
+      "round_title": "Veerandfinaal",
+      "round_nr": 3,
+      "index": 4,
+      "p1": "Henri Liiv",
+      "p2": "Priit Pihl",
+      "score": "6:0 6:0",
+      "winner": "Priit Pihl",
+      "loser": "Henri Liiv",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-19",
+      "time": "17:00",
+      "court": "Court 2"
     },
     {
       "id": 1246012,
@@ -1712,9 +1712,9 @@
     }
   ],
   "counts": {
-    "matches": 43,
-    "played": 16,
-    "upcoming": 7,
+    "matches": 45,
+    "played": 17,
+    "upcoming": 6,
     "players": 19
   }
 }
