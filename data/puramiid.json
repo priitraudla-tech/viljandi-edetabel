@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-19T15:41:30.488Z",
+  "updated_at": "2026-08-19T16:42:57.144Z",
   "players": [
     {
       "pos": 1,
@@ -9,7 +9,7 @@
     },
     {
       "pos": 2,
-      "name": "Daniel Snegirjov",
+      "name": "Priit Raudla",
       "badge": ""
     },
     {
@@ -19,7 +19,7 @@
     },
     {
       "pos": 4,
-      "name": "Priit Raudla",
+      "name": "Daniel Snegirjov",
       "badge": ""
     },
     {
@@ -1095,6 +1095,32 @@
       "challenge_date": null,
       "play_date": "2026-08-19",
       "mv_match_id": 1246024,
+      "mv_round": "Kohamängud 9.–16. · 1. ring"
+    },
+    {
+      "nr": 94,
+      "challenger": "Priit Raudla",
+      "challenged": "Daniel Snegirjov",
+      "score": "7:6(8:6) 1:6 [10:6]",
+      "winner": "Priit Raudla",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-19",
+      "mv_match_id": 1246014,
+      "mv_round": "Põhitabel · Veerandfinaal"
+    },
+    {
+      "nr": 95,
+      "challenger": "Mikk Kadak",
+      "challenged": "Andri Reiman",
+      "score": "6:2 6:1",
+      "winner": "Andri Reiman",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-19",
+      "mv_match_id": 1246023,
       "mv_round": "Kohamängud 9.–16. · 1. ring"
     }
   ],
