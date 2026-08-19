@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-19T15:00:51+00:00",
+  "fetched_at": "2026-08-19T15:30:53+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -846,9 +846,9 @@
               "index": 3,
               "p1": "kert perkmann",
               "p2": "Gennadi Lepp",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:1 6:1",
+              "winner": "kert perkmann",
+              "loser": "Gennadi Lepp",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -908,7 +908,7 @@
               "round_title": "2. ring",
               "round_nr": 2,
               "index": 2,
-              "p1": null,
+              "p1": "kert perkmann",
               "p2": "Gabriel Tralla",
               "score": null,
               "winner": null,
@@ -1272,25 +1272,6 @@
   ],
   "upcoming": [
     {
-      "id": 1246025,
-      "bracket": "9-16",
-      "round": "R1",
-      "round_title": "1. ring",
-      "round_nr": 1,
-      "index": 3,
-      "p1": "kert perkmann",
-      "p2": "Gennadi Lepp",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-19",
-      "time": "17:00",
-      "court": "Court 6"
-    },
-    {
       "id": 1246014,
       "bracket": "main",
       "round": "Quarter-Final",
@@ -1384,6 +1365,25 @@
       "date": "2026-08-19",
       "time": "19:00",
       "court": "Court 2"
+    },
+    {
+      "id": 1246028,
+      "bracket": "9-16",
+      "round": "R2",
+      "round_title": "2. ring",
+      "round_nr": 2,
+      "index": 2,
+      "p1": "kert perkmann",
+      "p2": "Gabriel Tralla",
+      "score": null,
+      "winner": null,
+      "loser": null,
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": null,
+      "time": null,
+      "court": null
     }
   ],
   "results": [
@@ -1424,6 +1424,25 @@
       "date": "2026-08-19",
       "time": "17:00",
       "court": "Court 3"
+    },
+    {
+      "id": 1246025,
+      "bracket": "9-16",
+      "round": "R1",
+      "round_title": "1. ring",
+      "round_nr": 1,
+      "index": 3,
+      "p1": "kert perkmann",
+      "p2": "Gennadi Lepp",
+      "score": "6:1 6:1",
+      "winner": "kert perkmann",
+      "loser": "Gennadi Lepp",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-19",
+      "time": "17:00",
+      "court": "Court 6"
     },
     {
       "id": 1246015,
@@ -1713,7 +1732,7 @@
   ],
   "counts": {
     "matches": 45,
-    "played": 17,
+    "played": 18,
     "upcoming": 6,
     "players": 19
   }
