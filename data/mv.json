@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-19T15:30:53+00:00",
+  "fetched_at": "2026-08-19T15:41:30+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -827,9 +827,9 @@
               "index": 2,
               "p1": "Heimar Mirka",
               "p2": "Ilja Balabko",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "7:6(7:5) 6:3",
+              "winner": "Heimar Mirka",
+              "loser": "Ilja Balabko",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -890,7 +890,7 @@
               "round_nr": 2,
               "index": 1,
               "p1": null,
-              "p2": null,
+              "p2": "Heimar Mirka",
               "score": null,
               "winner": null,
               "loser": null,
@@ -1310,25 +1310,6 @@
       "court": "Court 5"
     },
     {
-      "id": 1246024,
-      "bracket": "9-16",
-      "round": "R1",
-      "round_title": "1. ring",
-      "round_nr": 1,
-      "index": 2,
-      "p1": "Heimar Mirka",
-      "p2": "Ilja Balabko",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-19",
-      "time": "18:00",
-      "court": "Court 3"
-    },
-    {
       "id": 1246016,
       "bracket": "main",
       "round": "Semi-Final",
@@ -1405,6 +1386,25 @@
       "date": null,
       "time": null,
       "court": null
+    },
+    {
+      "id": 1246024,
+      "bracket": "9-16",
+      "round": "R1",
+      "round_title": "1. ring",
+      "round_nr": 1,
+      "index": 2,
+      "p1": "Heimar Mirka",
+      "p2": "Ilja Balabko",
+      "score": "7:6(7:5) 6:3",
+      "winner": "Heimar Mirka",
+      "loser": "Ilja Balabko",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-19",
+      "time": "18:00",
+      "court": "Court 3"
     },
     {
       "id": 1246026,
@@ -1731,9 +1731,9 @@
     }
   ],
   "counts": {
-    "matches": 45,
-    "played": 18,
-    "upcoming": 6,
+    "matches": 46,
+    "played": 19,
+    "upcoming": 5,
     "players": 19
   }
 }

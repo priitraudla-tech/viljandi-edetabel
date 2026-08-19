@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-19T15:30:53.838Z",
+  "updated_at": "2026-08-19T15:41:30.488Z",
   "players": [
     {
       "pos": 1,
@@ -1082,6 +1082,19 @@
       "challenge_date": null,
       "play_date": "2026-08-19",
       "mv_match_id": 1246025,
+      "mv_round": "Kohamängud 9.–16. · 1. ring"
+    },
+    {
+      "nr": 93,
+      "challenger": "Ilja Balabko",
+      "challenged": "Heimar Mirka",
+      "score": "7:6(7:5) 6:3",
+      "winner": "Heimar Mirka",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-19",
+      "mv_match_id": 1246024,
       "mv_round": "Kohamängud 9.–16. · 1. ring"
     }
   ],
