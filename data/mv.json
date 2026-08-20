@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-20T14:30:53+00:00",
+  "fetched_at": "2026-08-20T15:00:51+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -648,9 +648,9 @@
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": null,
-              "time": null,
-              "court": null
+              "date": "2026-08-21",
+              "time": "17:00",
+              "court": "Court 1"
             }
           ]
         }
@@ -889,9 +889,9 @@
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": null,
-              "time": null,
-              "court": null
+              "date": "2026-08-21",
+              "time": "15:00",
+              "court": "Court 1"
             }
           ]
         }
@@ -936,9 +936,9 @@
               "index": 2,
               "p1": "Gennadi Lepp",
               "p2": "Manfred Mets",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:1 7:5",
+              "winner": "Manfred Mets",
+              "loser": "Gennadi Lepp",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -961,16 +961,16 @@
               "round_nr": 2,
               "index": 1,
               "p1": "Mikk Kadak",
-              "p2": null,
+              "p2": "Manfred Mets",
               "score": null,
               "winner": null,
               "loser": null,
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
-              "date": null,
-              "time": null,
-              "court": null
+              "date": "2026-08-21",
+              "time": "17:00",
+              "court": "Court 3"
             }
           ]
         }
@@ -1302,22 +1302,22 @@
   ],
   "upcoming": [
     {
-      "id": 1250071,
-      "bracket": "13-16",
-      "round": "Semi-Final",
-      "round_title": "Poolfinaal",
-      "round_nr": 1,
-      "index": 2,
-      "p1": "Gennadi Lepp",
-      "p2": "Manfred Mets",
+      "id": 1246029,
+      "bracket": "9-16",
+      "round": "R3",
+      "round_title": "3. ring",
+      "round_nr": 3,
+      "index": 1,
+      "p1": "Andri Reiman",
+      "p2": "Gabriel Tralla",
       "score": null,
       "winner": null,
       "loser": null,
       "walkover": false,
       "disqualified": false,
       "in_progress": false,
-      "date": "2026-08-20",
-      "time": "16:00",
+      "date": "2026-08-21",
+      "time": "15:00",
       "court": "Court 1"
     },
     {
@@ -1335,28 +1335,28 @@
       "walkover": false,
       "disqualified": false,
       "in_progress": false,
-      "date": null,
-      "time": null,
-      "court": null
+      "date": "2026-08-21",
+      "time": "17:00",
+      "court": "Court 1"
     },
     {
-      "id": 1246029,
-      "bracket": "9-16",
-      "round": "R3",
-      "round_title": "3. ring",
-      "round_nr": 3,
+      "id": 1250072,
+      "bracket": "13-16",
+      "round": "Final",
+      "round_title": "Finaal",
+      "round_nr": 2,
       "index": 1,
-      "p1": "Andri Reiman",
-      "p2": "Gabriel Tralla",
+      "p1": "Mikk Kadak",
+      "p2": "Manfred Mets",
       "score": null,
       "winner": null,
       "loser": null,
       "walkover": false,
       "disqualified": false,
       "in_progress": false,
-      "date": null,
-      "time": null,
-      "court": null
+      "date": "2026-08-21",
+      "time": "17:00",
+      "court": "Court 3"
     }
   ],
   "results": [
@@ -1397,6 +1397,25 @@
       "date": null,
       "time": null,
       "court": null
+    },
+    {
+      "id": 1250071,
+      "bracket": "13-16",
+      "round": "Semi-Final",
+      "round_title": "Poolfinaal",
+      "round_nr": 1,
+      "index": 2,
+      "p1": "Gennadi Lepp",
+      "p2": "Manfred Mets",
+      "score": "6:1 7:5",
+      "winner": "Manfred Mets",
+      "loser": "Gennadi Lepp",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-20",
+      "time": "16:00",
+      "court": "Court 1"
     },
     {
       "id": 1246027,
@@ -1914,7 +1933,7 @@
   ],
   "counts": {
     "matches": 52,
-    "played": 29,
+    "played": 30,
     "upcoming": 3,
     "players": 19
   }
