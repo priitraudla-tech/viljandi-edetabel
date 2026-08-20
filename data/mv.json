@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-20T10:00:50+00:00",
+  "fetched_at": "2026-08-20T10:30:52+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -616,9 +616,9 @@
               "index": 2,
               "p1": "Priit Raudla",
               "p2": "Priit Pihl",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:0 6:0",
+              "winner": "Priit Pihl",
+              "loser": "Priit Raudla",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -641,7 +641,7 @@
               "round_nr": 5,
               "index": 1,
               "p1": "Ott Ahonen",
-              "p2": null,
+              "p2": "Priit Pihl",
               "score": null,
               "winner": null,
               "loser": null,
@@ -1302,25 +1302,6 @@
   ],
   "upcoming": [
     {
-      "id": 1246017,
-      "bracket": "main",
-      "round": "Semi-Final",
-      "round_title": "Poolfinaal",
-      "round_nr": 4,
-      "index": 2,
-      "p1": "Priit Raudla",
-      "p2": "Priit Pihl",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-20",
-      "time": "12:30",
-      "court": "Court 1"
-    },
-    {
       "id": 1246022,
       "bracket": "5-8",
       "round": "R2",
@@ -1376,6 +1357,25 @@
       "date": "2026-08-20",
       "time": "16:00",
       "court": "Court 1"
+    },
+    {
+      "id": 1246018,
+      "bracket": "main",
+      "round": "Final",
+      "round_title": "Finaal",
+      "round_nr": 5,
+      "index": 1,
+      "p1": "Ott Ahonen",
+      "p2": "Priit Pihl",
+      "score": null,
+      "winner": null,
+      "loser": null,
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": null,
+      "time": null,
+      "court": null
     }
   ],
   "results": [
@@ -1416,6 +1416,25 @@
       "date": null,
       "time": null,
       "court": null
+    },
+    {
+      "id": 1246017,
+      "bracket": "main",
+      "round": "Semi-Final",
+      "round_title": "Poolfinaal",
+      "round_nr": 4,
+      "index": 2,
+      "p1": "Priit Raudla",
+      "p2": "Priit Pihl",
+      "score": "6:0 6:0",
+      "winner": "Priit Pihl",
+      "loser": "Priit Raudla",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-20",
+      "time": "12:30",
+      "court": "Court 1"
     },
     {
       "id": 1250070,
@@ -1876,7 +1895,7 @@
   ],
   "counts": {
     "matches": 52,
-    "played": 26,
+    "played": 27,
     "upcoming": 4,
     "players": 19
   }
