@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-20T09:30:53.940Z",
+  "updated_at": "2026-08-20T11:30:51.915Z",
   "players": [
     {
       "pos": 1,
@@ -44,12 +44,12 @@
     },
     {
       "pos": 9,
-      "name": "Heimar Mirka",
+      "name": "Andri Reiman",
       "badge": ""
     },
     {
       "pos": 10,
-      "name": "Andri Reiman",
+      "name": "Heimar Mirka",
       "badge": ""
     },
     {
@@ -1148,6 +1148,19 @@
       "play_date": "2026-08-20",
       "mv_match_id": 1250070,
       "mv_round": "Kohamängud 13.–16. · Poolfinaal"
+    },
+    {
+      "nr": 98,
+      "challenger": "Andri Reiman",
+      "challenged": "Heimar Mirka",
+      "score": "6:3 4:6 [10:5]",
+      "winner": "Andri Reiman",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-20",
+      "mv_match_id": 1246027,
+      "mv_round": "Kohamängud 9.–16. · 2. ring"
     }
   ],
   "challenges": []
