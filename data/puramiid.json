@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-19T17:30:49.732Z",
+  "updated_at": "2026-08-20T09:30:53.940Z",
   "players": [
     {
       "pos": 1,
@@ -64,7 +64,7 @@
     },
     {
       "pos": 13,
-      "name": "Ilja Balabko",
+      "name": "Mikk Kadak",
       "badge": ""
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "pos": 21,
-      "name": "Mikk Kadak",
+      "name": "Ilja Balabko",
       "badge": ""
     },
     {
@@ -1135,6 +1135,19 @@
       "play_date": "2026-08-19",
       "mv_match_id": 1246020,
       "mv_round": "Kohamängud 5.–8. · 1. ring"
+    },
+    {
+      "nr": 97,
+      "challenger": "Mikk Kadak",
+      "challenged": "Ilja Balabko",
+      "score": "3:6 6:4 [10:2]",
+      "winner": "Mikk Kadak",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-20",
+      "mv_match_id": 1250070,
+      "mv_round": "Kohamängud 13.–16. · Poolfinaal"
     }
   ],
   "challenges": []
