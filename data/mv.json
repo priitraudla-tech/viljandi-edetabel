@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-21T15:44:30+00:00",
+  "fetched_at": "2026-08-21T16:00:51+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -642,9 +642,9 @@
               "index": 1,
               "p1": "Ott Ahonen",
               "p2": "Priit Pihl",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:3 1:6 [12:10]",
+              "winner": "Priit Pihl",
+              "loser": "Ott Ahonen",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -962,9 +962,9 @@
               "index": 1,
               "p1": "Mikk Kadak",
               "p2": "Manfred Mets",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:3 6:3",
+              "winner": "Manfred Mets",
+              "loser": "Mikk Kadak",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -1300,46 +1300,7 @@
       "draw_title": "M üksik"
     }
   ],
-  "upcoming": [
-    {
-      "id": 1246018,
-      "bracket": "main",
-      "round": "Final",
-      "round_title": "Finaal",
-      "round_nr": 5,
-      "index": 1,
-      "p1": "Ott Ahonen",
-      "p2": "Priit Pihl",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-21",
-      "time": "17:00",
-      "court": "Court 1"
-    },
-    {
-      "id": 1250072,
-      "bracket": "13-16",
-      "round": "Final",
-      "round_title": "Finaal",
-      "round_nr": 2,
-      "index": 1,
-      "p1": "Mikk Kadak",
-      "p2": "Manfred Mets",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-21",
-      "time": "17:00",
-      "court": "Court 3"
-    }
-  ],
+  "upcoming": [],
   "results": [
     {
       "id": 1246044,
@@ -1378,6 +1339,44 @@
       "date": null,
       "time": null,
       "court": null
+    },
+    {
+      "id": 1250072,
+      "bracket": "13-16",
+      "round": "Final",
+      "round_title": "Finaal",
+      "round_nr": 2,
+      "index": 1,
+      "p1": "Mikk Kadak",
+      "p2": "Manfred Mets",
+      "score": "6:3 6:3",
+      "winner": "Manfred Mets",
+      "loser": "Mikk Kadak",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-21",
+      "time": "17:00",
+      "court": "Court 3"
+    },
+    {
+      "id": 1246018,
+      "bracket": "main",
+      "round": "Final",
+      "round_title": "Finaal",
+      "round_nr": 5,
+      "index": 1,
+      "p1": "Ott Ahonen",
+      "p2": "Priit Pihl",
+      "score": "6:3 1:6 [12:10]",
+      "winner": "Priit Pihl",
+      "loser": "Ott Ahonen",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-21",
+      "time": "17:00",
+      "court": "Court 1"
     },
     {
       "id": 1246029,
@@ -1933,8 +1932,8 @@
   ],
   "counts": {
     "matches": 52,
-    "played": 31,
-    "upcoming": 2,
+    "played": 33,
+    "upcoming": 0,
     "players": 19
   }
 }
