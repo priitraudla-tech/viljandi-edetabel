@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-21T13:06:09+00:00",
+  "fetched_at": "2026-08-21T13:30:52+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -883,9 +883,9 @@
               "index": 1,
               "p1": "Andri Reiman",
               "p2": "Gabriel Tralla",
-              "score": null,
-              "winner": null,
-              "loser": null,
+              "score": "6:3 6:0",
+              "winner": "Gabriel Tralla",
+              "loser": "Andri Reiman",
               "walkover": false,
               "disqualified": false,
               "in_progress": false,
@@ -1302,25 +1302,6 @@
   ],
   "upcoming": [
     {
-      "id": 1246029,
-      "bracket": "9-16",
-      "round": "R3",
-      "round_title": "3. ring",
-      "round_nr": 3,
-      "index": 1,
-      "p1": "Andri Reiman",
-      "p2": "Gabriel Tralla",
-      "score": null,
-      "winner": null,
-      "loser": null,
-      "walkover": false,
-      "disqualified": false,
-      "in_progress": false,
-      "date": "2026-08-21",
-      "time": "15:00",
-      "court": "Court 1"
-    },
-    {
       "id": 1246018,
       "bracket": "main",
       "round": "Final",
@@ -1397,6 +1378,25 @@
       "date": null,
       "time": null,
       "court": null
+    },
+    {
+      "id": 1246029,
+      "bracket": "9-16",
+      "round": "R3",
+      "round_title": "3. ring",
+      "round_nr": 3,
+      "index": 1,
+      "p1": "Andri Reiman",
+      "p2": "Gabriel Tralla",
+      "score": "6:3 6:0",
+      "winner": "Gabriel Tralla",
+      "loser": "Andri Reiman",
+      "walkover": false,
+      "disqualified": false,
+      "in_progress": false,
+      "date": "2026-08-21",
+      "time": "15:00",
+      "court": "Court 1"
     },
     {
       "id": 1250071,
@@ -1933,8 +1933,8 @@
   ],
   "counts": {
     "matches": 52,
-    "played": 30,
-    "upcoming": 3,
+    "played": 31,
+    "upcoming": 2,
     "players": 19
   }
 }
