@@ -231,6 +231,38 @@ DRAW_TITLES = {
 }
 
 
+def place_range(tyyp):
+    """Mis kohtade peale see tabel mängib? 'main' -> (1, None) (lahtine),
+    '5-8' -> (5, 8), '13-16' (lisaloos) -> (13, 16), '13-16/5-8' -> loosi oma."""
+    pea = str(tyyp or "").partition("/")[0]
+    m = re.match(r"^\s*(\d+)\s*-\s*(\d+)\s*$", pea)
+    if m:
+        return int(m.group(1)), int(m.group(2))
+    return (1, None) if pea == "main" else (None, None)
+
+
+def round_title_for(rtitle, tyyp, on_viimane=False):
+    """Ringi kuvanimi KOHTADE keeles, kui tabel on kohamängude tabel.
+
+    Tournated nimetab iga tabeli viimase ringi 'Final' ja kohamängu '3-4 place'
+    — ka 13.-16. koha tabelis. Lugejale on '3.-4. koha mäng' seal eksitav:
+    tegelikult mängitakse 15.-16. kohale. Põhitabelis jäävad nimed samaks.
+
+    on_viimane: kas see on tabeli viimane tavaline ring (mitte kohamäng).
+    Pealoosi kohamängutabelites (5-8, 9-16) pole 'Final' nime — viimane
+    ring on lihtsalt 'R2'/'R3', aga sisuliselt on see lo.-(lo+1). koha mäng.
+    """
+    lo, hi = place_range(tyyp)
+    kohamang = lo is not None and hi is not None     # nt 13-16, 5-8, 9-16
+    if not kohamang:
+        return ROUND_TITLES.get(rtitle, rtitle)
+    if rtitle == "Final" or (on_viimane and rtitle != "3-4 place"):
+        return f"{lo}.–{lo + 1}. koha mäng"
+    if rtitle == "3-4 place":
+        return f"{lo + 2}.–{lo + 3}. koha mäng"
+    return ROUND_TITLES.get(rtitle, rtitle)
+
+
 def bracket_title(tyyp):
     """Kahvli kuvanimi ükskõik millise tüübi jaoks: 'main' -> Põhitabel,
     '9-16' -> Kohamängud 9.–16., '13-16' (lisaloos) -> Kohamängud 13.–16.,
@@ -328,10 +360,15 @@ def collect():
                     tyyp = f"{tyyp}/{btype}"
                 title = bracket_title(tyyp)
             # bracket-välja igal mängul peab kattuma kahvli tüübiga (mv.js
-            # otsib selle järgi kuvanime)
+            # otsib selle järgi kuvanime). Ringi nimi kohtade keeles, kui on
+            # kohamängude tabel (nt 13-16 "Final" -> "13.-14. koha mäng").
+            tavalised = [r for r in rounds if not r["place_match"]]
+            viimane = tavalised[-1] if tavalised else None
             for r in rounds:
+                r["title"] = round_title_for(r["round"], tyyp, on_viimane=(r is viimane))
                 for m in r["matches"]:
                     m["bracket"] = tyyp
+                    m["round_title"] = r["title"]
             out.append({"type": tyyp, "title": title, "rounds": rounds,
                         "draw_id": did, "draw_title": loos["title"]})
 

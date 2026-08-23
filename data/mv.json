@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-23T13:52:37+00:00",
+  "fetched_at": "2026-08-23T14:10:44+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -742,14 +742,14 @@
         },
         {
           "round": "R2",
-          "title": "2. ring",
+          "title": "5.–6. koha mäng",
           "order": 2,
           "matches": [
             {
               "id": 1246022,
               "bracket": "5-8",
               "round": "R2",
-              "round_title": "2. ring",
+              "round_title": "5.–6. koha mäng",
               "round_nr": 2,
               "index": 1,
               "p1": "Reevo Kirna",
@@ -907,14 +907,14 @@
         },
         {
           "round": "R3",
-          "title": "3. ring",
+          "title": "9.–10. koha mäng",
           "order": 3,
           "matches": [
             {
               "id": 1246029,
               "bracket": "9-16",
               "round": "R3",
-              "round_title": "3. ring",
+              "round_title": "9.–10. koha mäng",
               "round_nr": 3,
               "index": 1,
               "p1": "Andri Reiman",
@@ -988,14 +988,14 @@
         },
         {
           "round": "Final",
-          "title": "Finaal",
+          "title": "13.–14. koha mäng",
           "order": 2,
           "matches": [
             {
               "id": 1250072,
               "bracket": "13-16",
               "round": "Final",
-              "round_title": "Finaal",
+              "round_title": "13.–14. koha mäng",
               "round_nr": 2,
               "index": 1,
               "p1": "Mikk Kadak",
@@ -1015,14 +1015,14 @@
         },
         {
           "round": "3-4 place",
-          "title": "3.–4. koha mäng",
+          "title": "15.–16. koha mäng",
           "order": 3,
           "matches": [
             {
               "id": 1250073,
               "bracket": "13-16",
               "round": "3-4 place",
-              "round_title": "3.–4. koha mäng",
+              "round_title": "15.–16. koha mäng",
               "round_nr": 3,
               "index": null,
               "p1": "Ilja Balabko",
@@ -1340,14 +1340,14 @@
         },
         {
           "round": "R4",
-          "title": "4. ring",
+          "title": "17.–18. koha mäng",
           "order": 4,
           "matches": [
             {
               "id": 1246044,
               "bracket": "17-32",
               "round": "R4",
-              "round_title": "4. ring",
+              "round_title": "17.–18. koha mäng",
               "round_nr": 4,
               "index": 1,
               "p1": "Toivo Teng",
@@ -1376,7 +1376,7 @@
       "id": 1246044,
       "bracket": "17-32",
       "round": "R4",
-      "round_title": "4. ring",
+      "round_title": "17.–18. koha mäng",
       "round_nr": 4,
       "index": 1,
       "p1": "Toivo Teng",
@@ -1414,7 +1414,7 @@
       "id": 1250073,
       "bracket": "13-16",
       "round": "3-4 place",
-      "round_title": "3.–4. koha mäng",
+      "round_title": "15.–16. koha mäng",
       "round_nr": 3,
       "index": null,
       "p1": "Ilja Balabko",
@@ -1433,7 +1433,7 @@
       "id": 1250072,
       "bracket": "13-16",
       "round": "Final",
-      "round_title": "Finaal",
+      "round_title": "13.–14. koha mäng",
       "round_nr": 2,
       "index": 1,
       "p1": "Mikk Kadak",
@@ -1490,7 +1490,7 @@
       "id": 1246029,
       "bracket": "9-16",
       "round": "R3",
-      "round_title": "3. ring",
+      "round_title": "9.–10. koha mäng",
       "round_nr": 3,
       "index": 1,
       "p1": "Andri Reiman",
@@ -1547,7 +1547,7 @@
       "id": 1246022,
       "bracket": "5-8",
       "round": "R2",
-      "round_title": "2. ring",
+      "round_title": "5.–6. koha mäng",
       "round_nr": 2,
       "index": 1,
       "p1": "Reevo Kirna",

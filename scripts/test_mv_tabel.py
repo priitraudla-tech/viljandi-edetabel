@@ -65,6 +65,19 @@ def main():
             chk(f"{r['title']}: iga mängija ühes ringis korra", not topelt,
                 ", ".join(topelt) if topelt else "")
 
+    # 4. Kohamängude tabelites ei tohi olla "3.-4. koha mäng" ega "Finaal" —
+    #    need nimed kehtivad ainult põhitabelis. 13.-16. tabeli "3-4 place" on
+    #    tegelikult 15.-16. koha mäng (23.08.2026 tagasiside).
+    print("
+Kohamängude nimed:")
+    for b in brackets:
+        if b["type"] == "main":
+            continue
+        halvad = [r["title"] for r in b["rounds"]
+                  if r["title"] in ("Finaal", "3.–4. koha mäng")]
+        chk(f"{b['type']}: ringinimed kohtade keeles", not halvad,
+            ", ".join(halvad) if halvad else "")
+
     print()
     if vigu:
         print(f"VIGA: {vigu} kontrolli kukkus labi. Vaata mv_fetch.py collect().")
