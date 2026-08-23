@@ -406,7 +406,9 @@
     // (Eesti aja järgi) läheb leht ise tagasi Edetabelile — midagi ei pea
     // käsitsi ümber lülitama. #mv link ja otsene vahekaardi klikk töötavad
     // igal ajal edasi.
-    const MV_AVAEKRAAN_KUNI = "2026-08-23";
+    // MV 2026 lõppes 21.08; 23.08 lülitati avaekraan Edetabelile tagasi.
+    // JÄRGMISEKS AASTAKS: pane siia turniiri viimane päev.
+    const MV_AVAEKRAAN_KUNI = "2026-08-21";
     const nyyd = new Date();
     const taana = `${nyyd.getFullYear()}-${String(nyyd.getMonth() + 1).padStart(2, "0")}-` +
       `${String(nyyd.getDate()).padStart(2, "0")}`;
