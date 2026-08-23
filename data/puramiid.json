@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-20T11:30:51.915Z",
+  "updated_at": "2026-08-23T13:52:37.224Z",
   "players": [
     {
       "pos": 1,
@@ -89,7 +89,7 @@
     },
     {
       "pos": 18,
-      "name": "Gennadi Lepp",
+      "name": "Ilja Balabko",
       "badge": ""
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "pos": 21,
-      "name": "Ilja Balabko",
+      "name": "Gennadi Lepp",
       "badge": ""
     },
     {
@@ -1161,6 +1161,32 @@
       "play_date": "2026-08-20",
       "mv_match_id": 1246027,
       "mv_round": "Kohamängud 9.–16. · 2. ring"
+    },
+    {
+      "nr": 99,
+      "challenger": "Karl Valter Elmaste",
+      "challenged": "Priit Raudla",
+      "score": "6:2 6:3",
+      "winner": "Priit Raudla",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-21",
+      "mv_match_id": 1246019,
+      "mv_round": "Põhitabel · 3.–4. koha mäng"
+    },
+    {
+      "nr": 100,
+      "challenger": "Ilja Balabko",
+      "challenged": "Gennadi Lepp",
+      "score": "",
+      "winner": "Ilja Balabko",
+      "type": "mv",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-21",
+      "mv_match_id": 1250073,
+      "mv_round": "Kohamängud 13.–16. · 3.–4. koha mäng"
     }
   ],
   "challenges": []

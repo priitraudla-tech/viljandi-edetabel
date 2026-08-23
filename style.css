@@ -2013,3 +2013,6 @@ tr.game-note-row td {
   color: var(--text-2);
 }
 .mv-match.is-done .mv-bracket { background: var(--surface); }
+
+/* Üksik kaart kahvli all (3.–4. koha mäng) — ei veni üle kogu laiuse */
+.mv-grid--single { grid-template-columns: minmax(260px, 360px); }

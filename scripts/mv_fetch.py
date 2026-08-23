@@ -35,6 +35,9 @@ SOURCE_URL = (f"https://www.tournated.com/tournament/{TOURNAMENT_ID}"
               f"/draws?category={CATEGORY_ID}&segment=MD")
 TITLE = "Viljandimaa meistrivõistlused 2026 — meeste üksikmäng"
 
+# NB! 3.-4. koha mäng on API-s bracket.lowerPlaceMatch, MITTE ringide seas.
+# 21.08.2026 jäi see seetõttu lehelt puudu (Priit Raudla d. Karl Valter
+# Elmaste 6:2 6:3), kuigi tournatedi oma leht näitas seda "3-4 place" all.
 QUERY = """query D($filter: ListDrawInput) {
   drawsDetail: drawsDetailPublic(filter: $filter) {
     total
@@ -44,19 +47,22 @@ QUERY = """query D($filter: ListDrawInput) {
         type
         rounds {
           title
-          seeds {
-            id round roundNumber matchIndex bracketType
-            score status matchStatus date time
-            isBye isWalkover isDisqualified isMatchInProgress isScoreConfirmed
-            winnerEntryId
-            court { name }
-            entry1 { id users { user { id name surname } } }
-            entry2 { id users { user { id name surname } } }
-          }
+          seeds { ...Seed }
         }
+        lowerPlaceMatch { ...Seed }
       }
     }
   }
+}
+
+fragment Seed on DrawDetailSeedPublic {
+  id round roundNumber matchIndex bracketType
+  score status matchStatus date time
+  isBye isWalkover isDisqualified isMatchInProgress isScoreConfirmed
+  winnerEntryId
+  court { name }
+  entry1 { id users { user { id name surname } } }
+  entry2 { id users { user { id name surname } } }
 }"""
 
 # Kuvatavad nimed. Tundmatu võti kuvatakse muutmata kujul.
@@ -77,6 +83,7 @@ ROUND_TITLES = {
     "Quarter-Final": "Veerandfinaal",
     "Semi-Final": "Poolfinaal",
     "Final": "Finaal",
+    "3-4 place": "3.–4. koha mäng",
 }
 
 
@@ -268,7 +275,8 @@ def collect():
             for b in draw.get("brackets") or []:
                 btype = b.get("type") or segment
                 bucket = kirje_loos["brackets"].setdefault(btype, {})
-                for jrk, r in enumerate(b.get("rounds") or [], start=1):
+                rounds_api = b.get("rounds") or []
+                for jrk, r in enumerate(rounds_api, start=1):
                     seeds = r.get("seeds") or []
                     if not seeds:
                         continue
@@ -276,6 +284,14 @@ def collect():
                     kirje = bucket.setdefault(key, {"order": jrk, "matches": []})
                     for seed in seeds:
                         kirje["matches"].append(parse_match(seed, btype, kirje["order"]))
+                # 3.-4. koha mäng: eraldi "ring" pärast finaali. Kahvlisse see ei
+                # joonistu (pole poolitus), mv.js kuvab selle eraldi kaardina.
+                lpm = b.get("lowerPlaceMatch")
+                if lpm and (lpm.get("entry1") or lpm.get("entry2")):
+                    jrk = len(rounds_api) + 1
+                    key = lpm.get("round") or "3-4 place"
+                    kirje = bucket.setdefault(key, {"order": jrk, "matches": [], "place_match": True})
+                    kirje["matches"].append(parse_match(lpm, btype, jrk))
 
     # Pealoos = see, millel on kõige rohkem mänge (põhitabel 32 kohaga).
     # Kõik teised on lisaloosid: nende 'main' bracket nimetatakse loosi järgi.
@@ -296,6 +312,7 @@ def collect():
                     "title": ROUND_TITLES.get(rtitle, rtitle),
                     "order": kirje["order"],
                     "matches": kirje["matches"],
+                    "place_match": bool(kirje.get("place_match")),
                 })
             rounds.sort(key=lambda r: r["order"])
             if not any(r["matches"] for r in rounds):

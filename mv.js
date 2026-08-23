@@ -97,7 +97,9 @@
       : m.score
         ? `<span class="mv-score">${esc(m.score)}</span>`
         : m.winner
-          ? `<span class="mv-score">${m.walkover ? "loobumine" : "võit"}</span>`
+          // Võitja on, aga skoori pole: tournated ei pane alati isWalkover
+          // linnukest (nt Ilja-Gennadi 21.08) — ilma skoorita võit ON loobumine.
+          ? `<span class="mv-score">loobumine</span>`
           : "";
 
     el.innerHTML = `
@@ -219,7 +221,9 @@
 
   function buildKahvel(bracket) {
     const mo = moodud();
-    const rounds = bracket.rounds || [];
+    // 3.-4. koha mäng (place_match) ei ole kahvli osa — see pole poolitus,
+    // valem y = SLOT·2^r·(k−½) ei kehti. Kuvatakse kahvli all eraldi kaardina.
+    const rounds = (bracket.rounds || []).filter((r) => !r.place_match);
     const n0 = rounds.length ? rounds[0].matches.length : 0;
     if (!n0) return null;
 
@@ -301,6 +305,21 @@
       h.textContent = b.title;
       box.appendChild(h);
       box.appendChild(kahvel);
+
+      // 3.-4. koha mäng — sama kaart mis Kava/Tulemuste vaates
+      (b.rounds || []).filter((r) => r.place_match).forEach((r) => {
+        r.matches.forEach((m) => {
+          if (!m.p1 && !m.p2) return;
+          const rh = document.createElement("h4");
+          rh.className = "mv-round-head";
+          rh.textContent = r.title;
+          box.appendChild(rh);
+          const grid = document.createElement("div");
+          grid.className = "mv-grid mv-grid--single";
+          grid.appendChild(mangKaart(m, { naitaRingi: false }));
+          box.appendChild(grid);
+        });
+      });
     });
   }
 

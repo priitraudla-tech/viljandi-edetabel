@@ -44,7 +44,9 @@ def main():
     nahtud_id = {}
     for b in brackets:
         print(f"\n{b['type']} — {b['title']}")
-        kohad = [len(r["matches"]) for r in b["rounds"]]
+        # 3.-4. koha mäng (place_match) ei ole kahvli osa — ei loe poolitusse.
+        ringid = [r for r in b["rounds"] if not r.get("place_match")]
+        kohad = [len(r["matches"]) for r in ringid]
         # 1. Kahanev ja pooleks
         pooleks = all(kohad[i] == 2 * kohad[i + 1] for i in range(len(kohad) - 1))
         chk("ringid poolituvad (n -> n/2)", pooleks, " -> ".join(map(str, kohad)))
