@@ -468,6 +468,105 @@ def write_json(path: Path, obj):
     path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def compute_standings(brackets):
+    """Lõppjärjestus (või turniiri ajal hetkeseis) kahvlitest.
+
+    Iga mängija koht määratakse tema VIIMASE tabeli järgi (suurima 'lo'-ga
+    tabel, kus ta mängib — kaotaja liigub alati halvemate kohtade tabelisse)
+    ja selles tabelis selle järgi, kui kaugele ta jõudis:
+      finaali võit -> lo, finaali kaotus -> lo+1, kohamängu võit/kaotus ->
+      lo+2 / lo+3, muidu kaotuse ring (mida hiljem, seda parem). Võrdsed
+      jagavad kohti (nt 11.-12., kui 11.-12. mängu ei peetud).
+    Mängijad, kes pole veel kaotanud ("alive"), saavad vahemiku.
+    """
+    per = {}   # norm nimi -> {nimi, brackets: {lo: {...}}, w, l}
+
+    for b in brackets:
+        lo, hi = place_range(b["type"])
+        if lo is None:
+            continue
+        normal = [r for r in b["rounds"] if not r.get("place_match")]
+        R = len(normal)
+        for ri, r in enumerate(normal):
+            for m in r["matches"]:
+                for nimi in (m["p1"], m["p2"]):
+                    if not nimi:
+                        continue
+                    e = per.setdefault(norm_name(nimi), {"nimi": nimi, "brackets": {}, "w": 0, "l": 0})
+                    bk = e["brackets"].setdefault(lo, {"R": R, "reached": -1, "won": None, "pending": False, "pm": None})
+                    if ri >= bk["reached"]:
+                        bk["reached"] = ri
+                        if m["winner"]:
+                            bk["won"] = norm_name(m["winner"]) == norm_name(nimi)
+                            bk["pending"] = False
+                        else:
+                            bk["won"] = None
+                            bk["pending"] = True          # mäng ees või vastane selgumata
+                if m["winner"] and m["loser"]:
+                    per[norm_name(m["winner"])]["w"] += 1
+                    per[norm_name(m["loser"])]["l"] += 1
+        for r in b["rounds"]:
+            if not r.get("place_match"):
+                continue
+            for m in r["matches"]:
+                for nimi in (m["p1"], m["p2"]):
+                    if not nimi:
+                        continue
+                    e = per.setdefault(norm_name(nimi), {"nimi": nimi, "brackets": {}, "w": 0, "l": 0})
+                    bk = e["brackets"].setdefault(lo, {"R": R, "reached": -1, "won": None, "pending": False, "pm": None})
+                    if m["winner"]:
+                        bk["pm"] = "won" if norm_name(m["winner"]) == norm_name(nimi) else "lost"
+                    else:
+                        bk["pm"] = "pending"
+                if m["winner"] and m["loser"]:
+                    per[norm_name(m["winner"])]["w"] += 1
+                    per[norm_name(m["loser"])]["l"] += 1
+
+    # Iga mängija: viimane tabel + sorteerimisvõti selles
+    rida = []
+    for e in per.values():
+        lo = max(e["brackets"])
+        bk = e["brackets"][lo]
+        R, reached = bk["R"], bk["reached"]
+        alive = False
+        if bk["pm"] == "won":
+            key = 2
+        elif bk["pm"] == "lost":
+            key = 3
+        elif bk["pm"] == "pending":
+            key = 2.5
+        elif bk["won"] is True and reached == R - 1:
+            key = 0                       # võitis finaali
+        elif bk["won"] is False and reached == R - 1:
+            key = 1                       # kaotas finaali
+        elif bk["won"] is False:
+            key = 4 + (R - 1 - reached)   # kaotas varasemas ringis
+        else:
+            key = 0                       # pole kaotanud, mäng ees
+            alive = True
+        rida.append({"name": e["nimi"], "lo": lo, "key": key, "alive": alive,
+                     "wins": e["w"], "losses": e["l"]})
+
+    # Kohad: tabelite kaupa, võtme järgi; võrdsed jagavad
+    out = []
+    for lo in sorted({x["lo"] for x in rida}):
+        grupp = sorted((x for x in rida if x["lo"] == lo), key=lambda x: x["key"])
+        koht = lo
+        i = 0
+        while i < len(grupp):
+            j = i
+            while j < len(grupp) and grupp[j]["key"] == grupp[i]["key"]:
+                j += 1
+            n = j - i
+            for x in grupp[i:j]:
+                out.append({"place_lo": koht, "place_hi": koht + n - 1, "name": x["name"],
+                            "wins": x["wins"], "losses": x["losses"], "alive": x["alive"]})
+            koht += n
+            i = j
+    out.sort(key=lambda x: (x["place_lo"], x["place_hi"], x["name"]))
+    return out
+
+
 def main():
     brackets = collect()
     koik = flatten(brackets)
@@ -490,6 +589,7 @@ def main():
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "players": mangijad,
         "brackets": brackets,
+        "standings": compute_standings(brackets),
         "upcoming": tulevased,
         "results": lopetatud,
         "counts": {

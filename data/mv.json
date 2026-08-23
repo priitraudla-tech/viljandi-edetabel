@@ -3,7 +3,7 @@
   "source_url": "https://www.tournated.com/tournament/11202/draws?category=62084&segment=MD",
   "tournament_id": 11202,
   "category_id": 62084,
-  "fetched_at": "2026-08-23T14:10:44+00:00",
+  "fetched_at": "2026-08-23T14:19:30+00:00",
   "players": [
     "Andri Reiman",
     "Andrus Jürgenson",
@@ -1368,6 +1368,160 @@
       ],
       "draw_id": 16221,
       "draw_title": "M üksik"
+    }
+  ],
+  "standings": [
+    {
+      "place_lo": 1,
+      "place_hi": 1,
+      "name": "Priit Pihl",
+      "wins": 4,
+      "losses": 0,
+      "alive": false
+    },
+    {
+      "place_lo": 2,
+      "place_hi": 2,
+      "name": "Ott Ahonen",
+      "wins": 3,
+      "losses": 1,
+      "alive": false
+    },
+    {
+      "place_lo": 3,
+      "place_hi": 3,
+      "name": "Priit Raudla",
+      "wins": 3,
+      "losses": 1,
+      "alive": false
+    },
+    {
+      "place_lo": 4,
+      "place_hi": 4,
+      "name": "Karl Valter Elmaste",
+      "wins": 2,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 5,
+      "place_hi": 5,
+      "name": "Reevo Kirna",
+      "wins": 3,
+      "losses": 1,
+      "alive": false
+    },
+    {
+      "place_lo": 6,
+      "place_hi": 6,
+      "name": "Henri Liiv",
+      "wins": 2,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 7,
+      "place_hi": 8,
+      "name": "Andrus Jürgenson",
+      "wins": 1,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 7,
+      "place_hi": 8,
+      "name": "Daniel Snegirjov",
+      "wins": 1,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 9,
+      "place_hi": 9,
+      "name": "Gabriel Tralla",
+      "wins": 4,
+      "losses": 1,
+      "alive": false
+    },
+    {
+      "place_lo": 10,
+      "place_hi": 10,
+      "name": "Andri Reiman",
+      "wins": 3,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 11,
+      "place_hi": 12,
+      "name": "Heimar Mirka",
+      "wins": 1,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 11,
+      "place_hi": 12,
+      "name": "kert perkmann",
+      "wins": 1,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 13,
+      "place_hi": 13,
+      "name": "Manfred Mets",
+      "wins": 2,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 14,
+      "place_hi": 14,
+      "name": "Mikk Kadak",
+      "wins": 2,
+      "losses": 3,
+      "alive": false
+    },
+    {
+      "place_lo": 15,
+      "place_hi": 15,
+      "name": "Ilja Balabko",
+      "wins": 1,
+      "losses": 3,
+      "alive": false
+    },
+    {
+      "place_lo": 16,
+      "place_hi": 16,
+      "name": "Gennadi Lepp",
+      "wins": 0,
+      "losses": 4,
+      "alive": false
+    },
+    {
+      "place_lo": 17,
+      "place_hi": 17,
+      "name": "Henry Aun",
+      "wins": 1,
+      "losses": 1,
+      "alive": false
+    },
+    {
+      "place_lo": 18,
+      "place_hi": 18,
+      "name": "Toivo Teng",
+      "wins": 1,
+      "losses": 2,
+      "alive": false
+    },
+    {
+      "place_lo": 19,
+      "place_hi": 19,
+      "name": "Marcel Mikiver",
+      "wins": 0,
+      "losses": 2,
+      "alive": false
     }
   ],
   "upcoming": [],

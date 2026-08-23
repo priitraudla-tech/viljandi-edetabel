@@ -288,13 +288,59 @@
     return scroll;
   }
 
+  // ---------- üldtabel (lõppjärjestus) ----------
+
+  function buildStandings(standings) {
+    const wrap = document.createElement("div");
+    wrap.className = "mv-standings";
+    const koik = standings || [];
+    if (!koik.length) return null;
+    const lopetatud = !koik.some((s) => s.alive);
+
+    const h = document.createElement("h3");
+    h.className = "mv-day";
+    h.textContent = lopetatud ? "Lõppjärjestus" : "Hetkeseis";
+    wrap.appendChild(h);
+
+    const tw = document.createElement("div");
+    tw.className = "table-wrap mv-standings-wrap";
+    const medal = { 1: "🥇", 2: "🥈", 3: "🥉" };
+    const rows = koik.map((s) => {
+      const koht = s.place_lo === s.place_hi
+        ? `${s.place_lo}.`
+        : `${s.place_lo}.–${s.place_hi}.`;
+      const pk = pyrKoht(s.name);
+      const marge = pk ? `<span class="mv-pyr" title="Püramiidis ${pk}. kohal">${pk}.</span>` : "";
+      const m = s.place_lo === s.place_hi ? (medal[s.place_lo] || "") : "";
+      const cls = [s.place_lo === 1 && s.place_hi === 1 ? "highlight" : "",
+                   s.alive ? "is-alive" : ""].filter(Boolean).join(" ");
+      return `<tr class="${cls}">
+        <td class="num mv-st-place">${m ? `<span class="mv-st-medal">${m}</span>` : ""}${koht}</td>
+        <td class="player-name">${marge}${esc(kuvaNimi(s.name))}${s.alive ? ' <span class="mv-live">mängus</span>' : ""}</td>
+        <td class="num">${s.wins}–${s.losses}</td>
+      </tr>`;
+    }).join("");
+    tw.innerHTML = `<table class="mv-standings-table">
+      <thead><tr><th class="num">Koht</th><th>Mängija</th><th class="num">V–K</th></tr></thead>
+      <tbody>${rows}</tbody></table>`;
+    wrap.appendChild(tw);
+    return wrap;
+  }
+
   function renderTabel() {
     const box = $("#mv-view-tabel");
     box.innerHTML = "";
+
+    // 1. Üldtabel (lõppjärjestus) ...
+    const st = buildStandings(state.data.standings);
+    if (st) box.appendChild(st);
+
+    // 2. ... ja selle all kahvlid
     const legend = document.createElement("p");
     legend.className = "br-legend";
     legend.textContent = "Number nime ees on mängija koht püramiidis. " +
-      "Kollasel taustal mängud liigutavad püramiidi kohti. Tabel on külgsuunas keritav.";
+      "Kollasel taustal mängud liigutavad püramiidi kohti. Kahvel on külgsuunas keritav.";
+    if (st) legend.style.marginTop = "26px";
     box.appendChild(legend);
 
     (state.data.brackets || []).forEach((b) => {

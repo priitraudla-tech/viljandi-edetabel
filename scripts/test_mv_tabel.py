@@ -77,6 +77,34 @@ def main():
         chk(f"{b['type']}: ringinimed kohtade keeles", not halvad,
             ", ".join(halvad) if halvad else "")
 
+    # 5. Loppjarjestus (standings): iga turniiril mangija on tapselt uks kord,
+    #    kohad algavad 1-st ja on jarjestikused (jagatud kohad lubatud).
+    print("\nLoppjarjestus:")
+    st = mv.get("standings") or []
+    mangijad = set()
+    for b in brackets:
+        for r in b["rounds"]:
+            for m in r["matches"]:
+                for n in (m["p1"], m["p2"]):
+                    if n:
+                        mangijad.add(" ".join(n.split()).lower())
+    st_nimed = [" ".join(s["name"].split()).lower() for s in st]
+    chk("iga mangija on jarjestuses tapselt korra",
+        sorted(st_nimed) == sorted(mangijad) and len(st_nimed) == len(set(st_nimed)),
+        f"{len(st_nimed)} jarjestuses / {len(mangijad)} tabelites")
+    kohad = sorted((s["place_lo"], s["place_hi"]) for s in st)
+    ok = bool(kohad) and kohad[0][0] == 1
+    oodatud = 1
+    for lo, hi in kohad:
+        if lo < oodatud:            # jagatud koht: sama vahemik korduda voib
+            continue
+        if lo != oodatud:
+            ok = False
+            break
+        oodatud = hi + 1
+    chk("kohad on jarjestikused alates 1-st", ok,
+        ", ".join(f"{lo}" if lo == hi else f"{lo}-{hi}" for lo, hi in kohad[:8]) + " ...")
+
     print()
     if vigu:
         print(f"VIGA: {vigu} kontrolli kukkus labi. Vaata mv_fetch.py collect().")

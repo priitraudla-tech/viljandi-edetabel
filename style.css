@@ -2016,3 +2016,12 @@ tr.game-note-row td {
 
 /* Üksik kaart kahvli all (3.–4. koha mäng) — ei veni üle kogu laiuse */
 .mv-grid--single { grid-template-columns: minmax(260px, 360px); }
+
+/* ===== MV üldtabel (lõppjärjestus) ===== */
+.mv-standings-wrap { max-width: 520px; }
+.mv-standings-table th.num,
+.mv-standings-table td.num { width: 72px; }
+.mv-st-place { white-space: nowrap; }
+.mv-st-medal { margin-right: 4px; }
+.mv-standings-table tr.is-alive td { color: var(--text-2); }
+.mv-standings-table .mv-live { margin-left: 6px; }
