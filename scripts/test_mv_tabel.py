@@ -68,8 +68,7 @@ def main():
     # 4. Kohamängude tabelites ei tohi olla "3.-4. koha mäng" ega "Finaal" —
     #    need nimed kehtivad ainult põhitabelis. 13.-16. tabeli "3-4 place" on
     #    tegelikult 15.-16. koha mäng (23.08.2026 tagasiside).
-    print("
-Kohamängude nimed:")
+    print("\nKohamängude nimed:")
     for b in brackets:
         if b["type"] == "main":
             continue
