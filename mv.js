@@ -72,6 +72,19 @@
     return b ? b.title : tyyp || "";
   }
 
+  // Selgitus väikese numbri kohta nime ees — sama rida igas vaates,
+  // et tähendus oleks alati käepärast.
+  function pyrSelgitus(lisatekst) {
+    const el = document.createElement("p");
+    el.className = "br-legend";
+    el.innerHTML =
+      `Väike number nime ees (nt <span class="mv-pyr">2.</span>Priit Raudla) ` +
+      `on mängija praegune koht <a href="puramiid.html">püramiidis</a>. ` +
+      `Ilma numbrita mängija püramiidis ei osale.` +
+      (lisatekst ? " " + lisatekst : "");
+    return el;
+  }
+
   // ---------- ühe mängu kaart ----------
 
   function mangKaart(m, { naitaRingi = true } = {}) {
@@ -123,7 +136,10 @@
 
     // Üldtabel kõige ees: turniiri ajal "Hetkeseis", lõpus "Lõppjärjestus".
     const st = buildStandings(state.data.standings);
-    if (st) box.appendChild(st);
+    if (st) {
+      box.appendChild(st);
+      box.appendChild(pyrSelgitus("V–K = võidud–kaotused sellel turniiril."));
+    }
 
     const tulevased = state.data.upcoming || [];
     if (!tulevased.length) {
@@ -161,13 +177,10 @@
       return;
     }
     const pyrArv = tehtud.filter(moldabPyramiidi).length;
-    if (pyrArv) {
-      const n = document.createElement("p");
-      n.className = "br-legend";
-      n.textContent = `Püramiidi kohti liigutab ${pyrArv} mäng${pyrArv === 1 ? "" : "u"} ` +
-        `${tehtud.length}-st — need on püramiidi mängijate omavahelised.`;
-      box.appendChild(n);
-    }
+    box.appendChild(pyrSelgitus(pyrArv
+      ? `Märgisega „püramiid" mängud (${pyrArv} tk ${tehtud.length}-st) on ` +
+        `püramiidi mängijate omavahelised — need liigutavad püramiidi kohti.`
+      : ""));
     const grid = document.createElement("div");
     grid.className = "mv-grid";
     tehtud.forEach((m) => grid.appendChild(mangKaart(m)));
@@ -339,11 +352,8 @@
   function renderTabel() {
     const box = $("#mv-view-tabel");
     box.innerHTML = "";
-    const legend = document.createElement("p");
-    legend.className = "br-legend";
-    legend.textContent = "Number nime ees on mängija koht püramiidis. " +
-      "Kollasel taustal mängud liigutavad püramiidi kohti. Kahvel on külgsuunas keritav.";
-    box.appendChild(legend);
+    box.appendChild(pyrSelgitus(
+      "Kollasel taustal mängud liigutavad püramiidi kohti. Kahvel on külgsuunas keritav."));
 
     (state.data.brackets || []).forEach((b) => {
       const kahvel = buildKahvel(b);
