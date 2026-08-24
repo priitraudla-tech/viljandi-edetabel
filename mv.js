@@ -120,11 +120,20 @@
   function renderKava() {
     const box = $("#mv-view-kava");
     box.innerHTML = "";
+
+    // Üldtabel kõige ees: turniiri ajal "Hetkeseis", lõpus "Lõppjärjestus".
+    const st = buildStandings(state.data.standings);
+    if (st) box.appendChild(st);
+
     const tulevased = state.data.upcoming || [];
     if (!tulevased.length) {
-      box.innerHTML = `<p class="footnote">Ees ootavaid mänge pole — kõik paarid on selgumisel või mängitud.</p>`;
+      if (!st) box.innerHTML = `<p class="footnote">Ees ootavaid mänge pole — kõik paarid on selgumisel või mängitud.</p>`;
       return;
     }
+    const kavaPealkiri = document.createElement("h3");
+    kavaPealkiri.className = "mv-day";
+    kavaPealkiri.textContent = "Tulemas";
+    if (st) box.appendChild(kavaPealkiri);
     const paevade = new Map();
     tulevased.forEach((m) => {
       const k = m.date || "";
@@ -330,17 +339,10 @@
   function renderTabel() {
     const box = $("#mv-view-tabel");
     box.innerHTML = "";
-
-    // 1. Üldtabel (lõppjärjestus) ...
-    const st = buildStandings(state.data.standings);
-    if (st) box.appendChild(st);
-
-    // 2. ... ja selle all kahvlid
     const legend = document.createElement("p");
     legend.className = "br-legend";
     legend.textContent = "Number nime ees on mängija koht püramiidis. " +
       "Kollasel taustal mängud liigutavad püramiidi kohti. Kahvel on külgsuunas keritav.";
-    if (st) legend.style.marginTop = "26px";
     box.appendChild(legend);
 
     (state.data.brackets || []).forEach((b) => {
@@ -408,6 +410,12 @@
         (aeg ? ` · uuendatud ${aeg}` : "");
       const src = $("#mv-source");
       if (src && mv.source_url) src.href = mv.source_url;
+
+      // Esimese vaate nimi: turniiri ajal "Kava", lõpus "Lõppjärjestus".
+      const lopetatud = !(mv.upcoming || []).length &&
+        !(mv.standings || []).some((x) => x.alive);
+      const kavaNupp = $('#mv-view-toggle [data-mvview="kava"]');
+      if (kavaNupp) kavaNupp.textContent = lopetatud ? "Lõppjärjestus" : "Kava";
 
       renderKava();
       renderTulemused();
