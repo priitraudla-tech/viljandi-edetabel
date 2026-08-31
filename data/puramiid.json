@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-23T13:52:37.224Z",
+  "updated_at": "2026-08-31T16:04:22.586Z",
   "players": [
     {
       "pos": 1,
@@ -1187,6 +1187,17 @@
       "play_date": "2026-08-21",
       "mv_match_id": 1250073,
       "mv_round": "Kohamängud 13.–16. · 3.–4. koha mäng"
+    },
+    {
+      "nr": 101,
+      "challenger": "Elar Kurvits",
+      "challenged": "Rain Paju",
+      "score": "3:6 7:5 10/3",
+      "winner": "Rain Paju",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-08-31"
     }
   ],
   "challenges": []
