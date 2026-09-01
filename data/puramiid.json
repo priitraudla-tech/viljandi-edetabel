@@ -1,6 +1,6 @@
 {
   "title": "Püramiid",
-  "updated_at": "2026-08-31T16:04:22.586Z",
+  "updated_at": "2026-09-01T10:37:35.253Z",
   "players": [
     {
       "pos": 1,
@@ -1198,6 +1198,17 @@
       "erand": false,
       "challenge_date": null,
       "play_date": "2026-08-31"
+    },
+    {
+      "nr": 102,
+      "challenger": "Hardi-Sander Luik",
+      "challenged": "Reevo Kirna",
+      "score": "6/2 6/2",
+      "winner": "Reevo Kirna",
+      "type": "tavaline",
+      "erand": false,
+      "challenge_date": null,
+      "play_date": "2026-09-01"
     }
   ],
   "challenges": []
