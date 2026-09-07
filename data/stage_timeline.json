@@ -50,5 +50,9 @@
   "7. etapp 26.07.2026": {
     "first_seen": "2026-07-26T12:45:28+00:00",
     "first_run": false
+  },
+  "Viljandi maakonna MV 08.2026": {
+    "first_seen": "2026-09-07T02:50:19+00:00",
+    "first_run": false
   }
 }
