@@ -1,6 +1,6 @@
 {
   "title": "Viljandi üksikmängu edetabel (31.08.2026 seisuga)",
-  "fetched_at": "2026-09-07T02:50:19+00:00",
+  "fetched_at": "2026-09-08T14:37:41+00:00",
   "stages": [
     {
       "label": "8. etapp 25.10.2025",
@@ -866,6 +866,6 @@
     "7. etapp 26.07.2026": 6,
     "Viljandi maakonna MV 08.2026": 19
   },
-  "snapshot_date": "2026-09-07",
+  "snapshot_date": "2026-09-08",
   "compared_to": "2026-08-01"
 }
