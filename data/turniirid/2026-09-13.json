@@ -1,0 +1,122 @@
+{
+  "turniir": {
+    "nimi": "VÜS 2026 9. etapp",
+    "sari": "VÜS",
+    "etapp": 9,
+    "kuupaev": "2026-09-13",
+    "asukoht": "TK Fellin",
+    "tarkvara": "etl.tournamentsoftware.com"
+  },
+  "formaat": "alagrupid",
+  "mangijad": [
+    {"id": 1, "nimi": "Priit Raudla",     "asetus": 1},
+    {"id": 2, "nimi": "Reevo Kirna",      "asetus": 2},
+    {"id": 3, "nimi": "Ilja Balabko",     "asetus": 3},
+    {"id": 4, "nimi": "Eneli Pihl",       "asetus": 4},
+    {"id": 5, "nimi": "Marcel Mikiver",   "asetus": 5},
+    {"id": 6, "nimi": "Manfred Mets",     "asetus": 6},
+    {"id": 7, "nimi": "Lauri Tõnisalu",   "asetus": 7},
+    {"id": 8, "nimi": "Arne Sammel",      "asetus": 8},
+    {"id": 9, "nimi": "Indrek Tirmaste",  "asetus": null}
+  ],
+  "alagrupid": [
+    {
+      "id": "A",
+      "nimi": "Grupp A",
+      "mangud": [
+        {"voitja": "Priit Raudla", "kaotaja": "Manfred Mets", "skoor": "6-0"},
+        {"voitja": "Priit Raudla", "kaotaja": "Arne Sammel",  "skoor": "6-0"},
+        {"voitja": "Manfred Mets", "kaotaja": "Arne Sammel",  "skoor": "6-2"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Priit Raudla", "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Manfred Mets", "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Arne Sammel",  "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "B",
+      "nimi": "Grupp B",
+      "mangud": [
+        {"voitja": "Reevo Kirna",    "kaotaja": "Marcel Mikiver", "skoor": "6-2"},
+        {"voitja": "Reevo Kirna",    "kaotaja": "Lauri Tõnisalu", "skoor": "6-4"},
+        {"voitja": "Lauri Tõnisalu", "kaotaja": "Marcel Mikiver", "skoor": "6-2"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Reevo Kirna",    "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Lauri Tõnisalu", "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Marcel Mikiver", "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "C",
+      "nimi": "Grupp C",
+      "mangud": [
+        {"voitja": "Eneli Pihl",   "kaotaja": "Ilja Balabko",    "skoor": "6-3"},
+        {"voitja": "Ilja Balabko", "kaotaja": "Indrek Tirmaste", "skoor": "6-0"},
+        {"voitja": "Eneli Pihl",   "kaotaja": "Indrek Tirmaste", "skoor": "6-0"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Eneli Pihl",      "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Ilja Balabko",    "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Indrek Tirmaste", "voidud": 0, "kaotused": 2}
+      ]
+    }
+  ],
+  "alagrupid_markus": "Ajakava PDF-is oli Grupp A-s ka Deivis Rebane ja play-off (poolfinaalid + finaal), kuid tegelikult mängiti 3 × 3 alagrupid ja kohamängud ringsüsteemis. Deivis Rebane ei osalenud.",
+  "positsioonimangud": [
+    {
+      "id": "1-3",
+      "nimi": "Kohamäng 1.–3. · grupivõitjate vahel",
+      "mangud": [
+        {"voitja": "Priit Raudla", "kaotaja": "Eneli Pihl",  "skoor": "6-2"},
+        {"voitja": "Priit Raudla", "kaotaja": "Reevo Kirna", "skoor": "6-4"},
+        {"voitja": "Reevo Kirna",  "kaotaja": "Eneli Pihl",  "skoor": "6-3"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Priit Raudla", "voidud": 2, "kaotused": 0},
+        {"koht": 2, "mangija": "Reevo Kirna",  "voidud": 1, "kaotused": 1},
+        {"koht": 3, "mangija": "Eneli Pihl",   "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "4-6",
+      "nimi": "Kohamäng 4.–6. · gruppide 2. kohad",
+      "mangud": [
+        {"voitja": "Manfred Mets",   "kaotaja": "Ilja Balabko",   "skoor": "6-1"},
+        {"voitja": "Manfred Mets",   "kaotaja": "Lauri Tõnisalu", "skoor": "6-1"},
+        {"voitja": "Lauri Tõnisalu", "kaotaja": "Ilja Balabko",   "skoor": "6-2"}
+      ],
+      "tabel": [
+        {"koht": 4, "mangija": "Manfred Mets",   "voidud": 2, "kaotused": 0},
+        {"koht": 5, "mangija": "Lauri Tõnisalu", "voidud": 1, "kaotused": 1},
+        {"koht": 6, "mangija": "Ilja Balabko",   "voidud": 0, "kaotused": 2}
+      ]
+    },
+    {
+      "id": "7-9",
+      "nimi": "Kohamäng 7.–9. · gruppide 3. kohad",
+      "mangud": [
+        {"voitja": "Arne Sammel",    "kaotaja": "Indrek Tirmaste", "skoor": "6-0"},
+        {"voitja": "Arne Sammel",    "kaotaja": "Marcel Mikiver",  "skoor": "6-4"},
+        {"voitja": "Marcel Mikiver", "kaotaja": "Indrek Tirmaste", "skoor": "6-4"}
+      ],
+      "tabel": [
+        {"koht": 7, "mangija": "Arne Sammel",     "voidud": 2, "kaotused": 0},
+        {"koht": 8, "mangija": "Marcel Mikiver",  "voidud": 1, "kaotused": 1},
+        {"koht": 9, "mangija": "Indrek Tirmaste", "voidud": 0, "kaotused": 2}
+      ]
+    }
+  ],
+  "loppjarjestus": [
+    {"koht": 1, "mangija": "Priit Raudla",    "punktid": 100, "markus": "Grupp A 1."},
+    {"koht": 2, "mangija": "Reevo Kirna",     "punktid": 70,  "markus": "Grupp B 1."},
+    {"koht": 3, "mangija": "Eneli Pihl",      "punktid": 50,  "markus": "Grupp C 1."},
+    {"koht": 4, "mangija": "Manfred Mets",    "punktid": 40,  "markus": "Grupp A 2."},
+    {"koht": 5, "mangija": "Lauri Tõnisalu",  "punktid": 30,  "markus": "Grupp B 2."},
+    {"koht": 6, "mangija": "Ilja Balabko",    "punktid": 26,  "markus": "Grupp C 2."},
+    {"koht": 7, "mangija": "Arne Sammel",     "punktid": 23,  "markus": "Grupp A 3."},
+    {"koht": 8, "mangija": "Marcel Mikiver",  "punktid": 21,  "markus": "Grupp B 3."},
+    {"koht": 9, "mangija": "Indrek Tirmaste", "punktid": 19,  "markus": "Grupp C 3."}
+  ]
+}
