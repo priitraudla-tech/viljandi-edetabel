@@ -74,8 +74,14 @@ async function init() {
     return;
   }
 
-  // Turniirifailid: proovi iga etapi kuupäeva (404 = pole bracketit).
-  const dates = (state.vus.stages || []).map((s) => s.date).filter(Boolean);
+  // Turniirifailid: Sheetsi etappide kuupäevad + data/turniirid/index.json
+  // (etapid, mida Sheetsis veel pole — nende mängud jõuavad H2H-sse ja Elo
+  // arvutusse kohe, mitte alles Sheetsi uuendusega). 404 = pole bracketit.
+  const indeks = await fetchJSON("data/turniirid/index.json").catch(() => []);
+  const dates = [...new Set([
+    ...(state.vus.stages || []).map((s) => s.date),
+    ...(Array.isArray(indeks) ? indeks : []).map((t) => t.date),
+  ].filter(Boolean))];
   const loaded = await Promise.all(dates.map((d) =>
     fetchJSON(`data/turniirid/${d}.json`)
       .then((j) => ({ date: d, json: j }))

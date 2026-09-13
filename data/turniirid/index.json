@@ -1,0 +1,37 @@
+[
+  {
+    "date": "2026-04-25",
+    "label": "4. etapp 25.04.2026",
+    "nimi": "VÜS 2026 4. etapp",
+    "etapp": 4,
+    "osalejaid": 15
+  },
+  {
+    "date": "2026-05-31",
+    "label": "5. etapp 31.05.2026",
+    "nimi": "VÜS 2026 5. etapp",
+    "etapp": 5,
+    "osalejaid": 9
+  },
+  {
+    "date": "2026-06-28",
+    "label": "6. etapp 28.06.2026",
+    "nimi": "VÜS 2026 6. etapp",
+    "etapp": 6,
+    "osalejaid": 9
+  },
+  {
+    "date": "2026-07-26",
+    "label": "7. etapp 26.07.2026",
+    "nimi": "VÜS 2026 7. etapp",
+    "etapp": 7,
+    "osalejaid": 6
+  },
+  {
+    "date": "2026-09-13",
+    "label": "9. etapp 13.09.2026",
+    "nimi": "VÜS 2026 9. etapp",
+    "etapp": 9,
+    "osalejaid": 9
+  }
+]

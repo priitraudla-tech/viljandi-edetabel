@@ -55,7 +55,9 @@ def leia_mangud(node, path, out):
 
 
 def main():
-    failid = sorted(TURNIIRID.glob("*.json"))
+    # Ainult kuupäevanimelised failid — index.json ei ole turniir.
+    failid = sorted(f for f in TURNIIRID.glob("*.json")
+                    if len(f.stem) == 10 and f.stem[4] == "-" and f.stem[7] == "-")
     if not failid:
         print("Turniirifaile ei leitud.")
         return 1

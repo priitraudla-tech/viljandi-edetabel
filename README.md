@@ -83,6 +83,10 @@ ja allpool), ja `loppjarjestus`.
 ### Kontroll-checklist uue bracketi-faili lisamisel
 
 - [ ] Failinimi vastab Sheetsi kuupäevale (`YYYY-MM-DD.json`)
+- [ ] **`python scripts/turniirid_index.py`** — uuendab `data/turniirid/index.json`.
+      Selle kaudu ilmub etapp Turniir-vahekaardile ja Mängijate lehele **kohe**,
+      ka enne kui Sheetsis on etapi veerg olemas (punktid märgitakse siis
+      esialgseteks). `update.yml` jooksutab seda ka ise.
 - [ ] `loppjarjestus` punktid vastavad Google Sheetsi väärtustele
 - [ ] Kõik mängijate nimed identsed Sheetsis kasutatavatega (sh täpitähed)
 - [ ] Tundmatu skoori asemel `"?"` (mitte tühi)

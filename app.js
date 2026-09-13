@@ -68,6 +68,8 @@ async function init() {
   try {
     state.current = await fetchJSON("data/current.json");
     state.historyDates = await fetchJSON("data/history.json").catch(() => []);
+    // Turniirifailid, mida Sheetsis veel pole (vt scripts/turniirid_index.py).
+    state.turniirid = await fetchJSON("data/turniirid/index.json").catch(() => []);
   } catch (e) {
     document.body.innerHTML = `<div style="padding:32px;font-family:sans-serif">
       <h2>Viga andmete laadimisel</h2>
@@ -428,18 +430,9 @@ function buildDetail(player) {
 // ---------- tournament (latest stage podium + list) ----------
 
 function findLatestStageWithResults() {
-  // Stages are pre-sorted chronologically (asc) in current.json.
-  // Iterate from newest backward, return the first stage where any player
-  // has a non-null score.
-  const stages = state.current.stages.slice().reverse();
-  for (const s of stages) {
-    const hasResults = state.current.players.some((p) => {
-      const v = p.stages?.[s.label];
-      return v !== null && v !== undefined && v !== "";
-    });
-    if (hasResults) return s;
-  }
-  return null;
+  // Uusim etapp — kas Sheetsist või turniirifailist (stagesWithResults on
+  // juba uusim-ees järjestatud).
+  return stagesWithResults()[0] || null;
 }
 
 function buildTournamentResults(stageLabel) {
@@ -464,17 +457,36 @@ function buildTournamentResults(stageLabel) {
   return participants;
 }
 
+// Sheetsis veel puuduva etapi tulemused turniirifaili lõppjärjestusest.
+// Koht võib failis olla ka "5-6" kujul (jagatud koht) — parseInt annab 5.
+function resultsFromBracket(bracket) {
+  const lj = (bracket && bracket.loppjarjestus) || [];
+  return lj
+    .filter((e) => e.mangija)
+    .map((e) => ({
+      name: e.mangija,
+      points: e.punktid ?? "—",
+      rank: parseInt(String(e.koht), 10) || 0,
+    }))
+    .sort((a, b) => a.rank - b.rank);
+}
+
 function stagesWithResults() {
-  // Newest first; only stages where at least one player has a score.
-  return state.current.stages
-    .slice()
-    .reverse()
-    .filter((s) =>
-      state.current.players.some((p) => {
-        const v = p.stages?.[s.label];
-        return v !== null && v !== undefined && v !== "";
-      }),
-    );
+  // Uusim ees. Sheetsi etapid, kus kellelgi on tulemus, PLUSS turniirifailid
+  // (data/turniirid/index.json), mille kuupäeva Sheetsis veel pole — nii ilmub
+  // etapi tabel lehele kohe, kui fail on repos, mitte alles Sheetsi uuendusega.
+  const fromSheet = state.current.stages.filter((s) =>
+    state.current.players.some((p) => {
+      const v = p.stages?.[s.label];
+      return v !== null && v !== undefined && v !== "";
+    }),
+  );
+  const sheetDates = new Set(fromSheet.map((s) => s.date).filter(Boolean));
+  const fromFiles = (state.turniirid || [])
+    .filter((t) => t.date && !sheetDates.has(t.date))
+    .map((t) => ({ label: t.label, date: t.date, fromFile: true }));
+  return [...fromSheet, ...fromFiles].sort((a, b) =>
+    String(b.date || "").localeCompare(String(a.date || "")));
 }
 
 function setupTournamentStagePicker() {
@@ -493,7 +505,7 @@ function setupTournamentStagePicker() {
 
 async function renderTournament(stageLabel) {
   const stage = stageLabel
-    ? state.current.stages.find((s) => s.label === stageLabel)
+    ? stagesWithResults().find((s) => s.label === stageLabel)
     : findLatestStageWithResults();
   const sel = $("#tournament-stage");
   if (sel && stage && sel.value !== stage.label) sel.value = stage.label;
@@ -524,17 +536,23 @@ async function renderTournament(stageLabel) {
 
   titleEl.textContent = stage.label;
 
+  // Sheetsis veel puuduv etapp: tulemused tulevad turniirifaili lõppjärjestusest.
+  const fileBracket = stage.fromFile ? await loadBracketIfExists(stage.date) : null;
+  const results = stage.fromFile
+    ? resultsFromBracket(fileBracket)
+    : buildTournamentResults(stage.label);
+
   // Participant count from per-stage tally (more accurate than counting non-null).
-  const participantsCount =
-    state.current.participants_per_stage?.[stage.label] ??
-    buildTournamentResults(stage.label).length;
+  const participantsCount = stage.fromFile
+    ? results.length
+    : (state.current.participants_per_stage?.[stage.label] ?? results.length);
 
   const metaParts = [];
   if (stage.date) metaParts.push(fmtDate(stage.date));
   metaParts.push(`${participantsCount} osalejat`);
+  if (stage.fromFile) metaParts.push("punktid esialgsed — edetabelisse jõuavad Sheetsi uuendusega");
   metaEl.textContent = metaParts.join(" · ");
 
-  const results = buildTournamentResults(stage.label);
   if (!results.length) {
     empty.hidden = false;
     return;
@@ -596,7 +614,7 @@ async function renderTournament(stageLabel) {
 
   // Try loading the bracket JSON for this stage's date. Surfaces the toggle
   // only if a JSON exists; otherwise the tab stays at "Punktid" alone.
-  const bracket = await loadBracketIfExists(stage.date);
+  const bracket = fileBracket || await loadBracketIfExists(stage.date);
   if (bracket) {
     state.bracket = bracket;
     $("#tournament-view-tabel").innerHTML = "";

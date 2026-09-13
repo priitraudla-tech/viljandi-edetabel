@@ -30,6 +30,10 @@ jobs:
       - name: Fetch & parse Google Sheet
         run: python scripts/fetch.py
 
+      - name: Turniirifailide indeks
+        # Leht leiab Sheetsis veel puuduvad etapid selle indeksi kaudu.
+        run: python scripts/turniirid_index.py
+
       - name: Commit changes
         run: |
           git config user.name "edetabel-bot"
