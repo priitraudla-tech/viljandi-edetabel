@@ -127,11 +127,30 @@
             Elo-vahe, seda suurem favoriidi võidutõenäosus.</p>
           </div>
         </details>
+        <details class="elo-info">
+          <summary>Mis on tugevus?</summary>
+          <div class="elo-info-body">
+            <p><b>Tugevus</b> hindab mängijat <b>geimide</b> järgi, mitte ainult
+            võitude järgi. Võit 6:0 6:0 annab rohkem kui võit 7:6 7:6.</p>
+            <ul>
+              <li><b>1500</b> on keskmine tase. <b>+200</b> tähendab, et mängija
+              võidab keskmise vastu umbes 76% geimidest.</li>
+              <li>Vastase tase loeb: geimid tugevama vastu kaaluvad rohkem.</li>
+              <li>Mängude järjekord ei loe, vana ja uus mäng on sama kaaluga.</li>
+              <li>Vähese mänguga mängija hinnang tõmmatakse keskmise poole.
+              Profiilil on <b>95% vahemik</b>: mida laiem, seda ebakindlam.</li>
+              <li>Loobumised ja skoorita mängud jäävad välja.</li>
+            </ul>
+            <p><b>Elo vs tugevus:</b> Elo näitab, keda ja kui palju on võidetud,
+            ning premeerib ka mängude hulka. Tugevus näitab, kui domineerivalt
+            mängitakse.</p>
+          </div>
+        </details>
         <p class="footnote elo-basis">
-          <b>Mille põhjal Elo on arvutatud:</b> kõik mängud kolmest allikast —
-          VÜS etapid (alates 4. etapist 2026), püramiid (hooaja algusest) ja
-          Viljandimaa MV 2026. Loeb ainult võit või kaotus ning vastase tugevus,
-          mitte skoor. Mida vähem mänge, seda ebakindlam reiting.
+          <b>Mille põhjal Elo ja tugevus on arvutatud:</b> kõik mängud kolmest
+          allikast — VÜS etapid (alates 4. etapist 2026), püramiid (hooaja
+          algusest) ja Viljandimaa MV 2026. Elo loeb võitu ja kaotust, tugevus
+          ka geime. Mida vähem mänge, seda ebakindlam hinnang.
         </p>
 
         <h3 class="profile-section-title">Kõik mängijad</h3>
@@ -142,6 +161,7 @@
             <select id="player-sort">
               <option value="vus">VÜS koha järgi</option>
               <option value="elo">Elo-reitingu järgi</option>
+              <option value="strength">Tugevuse järgi</option>
               <option value="matches">Mängude arvu järgi</option>
               <option value="winpct">Võiduprotsendi järgi</option>
               <option value="name">Nime järgi</option>

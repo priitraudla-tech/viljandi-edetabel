@@ -280,6 +280,111 @@ function buildMatches() {
   });
 }
 
+// ---------- tugevus (geimipõhine) ----------
+//
+// Elo vaatab ainult võitu/kaotust. Tugevus kasutab iga geimi: 6:0 6:0 annab
+// rohkem kui 7:6 7:6. Mudel: Bradley–Terry geimide peal, MAP-hinnang eeldusega,
+// et igaüks on mänginud 12 geimi "keskmise" vastu 6:6 — see hoiab vähese
+// mänguga mängijad tagasihoidlikuna. Järjekorrast sõltumatu.
+// Skaala on Elo-laadne: 1500 = keskmine, +200 ≈ võidab keskmise vastu 76% geime.
+
+const STR_PRIOR = 12;
+
+// Skoor -> [võitja geimid, kaotaja geimid] või null (loobumine, skoor puudub).
+// Setid orienteeritakse nii, et võitjal on rohkem võidetud sette — püramiidis
+// on skoor väljakutsuja poolt, turniirides võitja poolt kirjas.
+function parseGames(score) {
+  const s = String(score || "").trim();
+  if (!s || s === "—" || s === "?" || /w\/?o|loob|ret|katkest|vigast|ei m/i.test(s)) return null;
+  // Tiebreaki punktid sulgudes välja: 7:6(8:6), 7/6(5), 6/7 (9)
+  const puhas = s.replace(/\(\s*\d+(?:\s*[:\-/]\s*\d+)?\s*\)/g, " ");
+  const sets = [];
+  puhas.split(/[\s,;]+/).forEach((tok) => {
+    const t = tok.replace(/[\[\]]/g, "").replace(/^[:\-/]+|[:\-/]+$/g, "");   // "4/6/" -> "4/6"
+    const m = t.match(/^(\d+)[:\-/](\d+)$/);
+    if (m) sets.push([Number(m[1]), Number(m[2])]);
+  });
+  if (!sets.length) return null;
+  let x = 0, y = 0, sx = 0, sy = 0;
+  sets.forEach(([a, b]) => {
+    if (a > b) sx++; else if (b > a) sy++;
+    // Kõik andmetes olevad >=10 setid on otsustavad supertiebreakid
+    // (kontrollitud 09.2026, pro-sette pole) -> loeb 1 geimiks.
+    if (Math.max(a, b) >= 10) { if (a > b) x += 1; else y += 1; }
+    else { x += a; y += b; }
+  });
+  return sx >= sy ? [x, y] : [y, x];
+}
+
+function computeStrength() {
+  const won = new Map();   // nimi -> võidetud geimid
+  const opp = new Map();   // nimi -> Map(vastane -> geime kokku)
+  const add = (map, k, v) => map.set(k, (map.get(k) || 0) + v);
+  state.players.forEach((pl) => {
+    pl.strength = null; pl.strengthLo = null; pl.strengthHi = null; pl.strengthRank = null;
+    pl.scoredMatches = 0; pl.gamesW = 0; pl.gamesL = 0;
+  });
+
+  state.matches.forEach((m) => {
+    if (m.off || !m.winner) return;
+    const g = parseGames(m.score);
+    if (!g) return;
+    const w = m.winner;
+    const l = m.winner === m.a ? m.b : m.a;
+    const pw = state.players.get(w);
+    const pl = state.players.get(l);
+    if (!pw || !pl) return;
+    add(won, w, g[0]); add(won, l, g[1]);
+    if (!opp.has(w)) opp.set(w, new Map());
+    if (!opp.has(l)) opp.set(l, new Map());
+    add(opp.get(w), l, g[0] + g[1]); add(opp.get(l), w, g[0] + g[1]);
+    pw.scoredMatches++; pl.scoredMatches++;
+    pw.gamesW += g[0]; pw.gamesL += g[1]; pl.gamesW += g[1]; pl.gamesL += g[0];
+  });
+
+  const names = Array.from(opp.keys());
+  if (!names.length) return;
+  let s = new Map(names.map((n) => [n, 0]));
+  for (let it = 0; it < 3000; it++) {
+    const uus = new Map();
+    names.forEach((i) => {
+      const ei = Math.exp(s.get(i));
+      let den = STR_PRIOR / (ei + 1);
+      opp.get(i).forEach((k, j) => { den += k / (ei + Math.exp(s.get(j))); });
+      uus.set(i, Math.log(((won.get(i) || 0) + STR_PRIOR / 2) / den));
+    });
+    const kesk = names.reduce((t, n) => t + uus.get(n), 0) / names.length;
+    let muutus = 0;
+    names.forEach((n) => {
+      const v = uus.get(n) - kesk;
+      muutus = Math.max(muutus, Math.abs(v - s.get(n)));
+      uus.set(n, v);
+    });
+    s = uus;
+    if (muutus < 1e-9) break;
+  }
+
+  // 95% vahemik Fisheri informatsiooni diagonaalist
+  const SKAALA = 400 / Math.LN10;
+  names.forEach((i) => {
+    const ei = Math.exp(s.get(i));
+    let info = STR_PRIOR * ei / ((ei + 1) ** 2);
+    opp.get(i).forEach((k, j) => {
+      const e = ei / (ei + Math.exp(s.get(j)));
+      info += k * e * (1 - e);
+    });
+    const se = 1 / Math.sqrt(info);
+    const p = state.players.get(i);
+    p.strength = Math.round(1500 + SKAALA * s.get(i));
+    p.strengthLo = Math.round(1500 + SKAALA * (s.get(i) - 1.96 * se));
+    p.strengthHi = Math.round(1500 + SKAALA * (s.get(i) + 1.96 * se));
+  });
+  Array.from(state.players.values())
+    .filter((p) => p.strength !== null)
+    .sort((a, b) => b.strength - a.strength)
+    .forEach((p, i) => { p.strengthRank = i + 1; });
+}
+
 // ---------- players ----------
 
 function buildPlayers() {
@@ -354,6 +459,9 @@ function buildPlayers() {
     .sort((a, b) => b.elo - a.elo);
   byElo.forEach((p, i) => { p.eloRank = i + 1; });
 
+  // Geimipõhine tugevus (vt computeStrength)
+  computeStrength();
+
   // Saavutused: etapivõidud (turniiride lõppjärjestustest), tipukohad.
   state.players.forEach((pl) => { pl.titles = 0; });
   state.tournaments.forEach(({ json }) => {
@@ -419,6 +527,9 @@ function renderRecords() {
 
   card("📈 Elo-reiting",
     top3(list.slice().sort((a, b) => b.elo - a.elo), (p) => `${p.elo}`));
+  card("💪 Tugevus (geimipõhine)",
+    top3(list.filter((p) => p.strength !== null && p.scoredMatches >= 3)
+      .sort((a, b) => b.strength - a.strength), (p) => `${p.strength}`));
 }
 
 function winPct(p) {
@@ -479,6 +590,7 @@ function renderRegister() {
   const sorters = {
     vus: (a, b) => (a.vusRank ?? 999) - (b.vusRank ?? 999) || a.name.localeCompare(b.name, "et"),
     elo: (a, b) => (a.eloRank ?? 999) - (b.eloRank ?? 999),
+    strength: (a, b) => (a.strengthRank ?? 999) - (b.strengthRank ?? 999),
     matches: (a, b) => b.played - a.played,
     winpct: (a, b) => winPct(b) - winPct(a) || b.played - a.played,
     name: (a, b) => a.name.localeCompare(b.name, "et"),
@@ -498,7 +610,7 @@ function renderRegister() {
         ${p.vusRank ? `VÜS: ${p.vusRank}. koht · ${p.vusPoints} p` : "VÜS: —"}
       </div>
       <div class="player-card-meta">
-        ${p.pyrPos ? `Püramiid: ${p.pyrPos}. koht` : "Püramiid: —"}${p.played ? ` · Elo ${p.elo}` : ""}
+        ${p.pyrPos ? `Püramiid: ${p.pyrPos}. koht` : "Püramiid: —"}${p.played ? ` · Elo ${p.elo}` : ""}${p.strength ? ` · Tugevus ${p.strength}` : ""}
       </div>
       <div class="player-card-stats">
         <span>${p.played} mängu</span>
@@ -533,6 +645,7 @@ function openProfile(name) {
   if (p.vusRank) badges.push(`<span class="profile-badge">VÜS ${p.vusRank}. koht · ${p.vusPoints} p</span>`);
   if (p.pyrPos) badges.push(`<span class="profile-badge">Püramiid ${p.pyrPos}. koht</span>`);
   if (p.played) badges.push(`<span class="profile-badge">Elo ${p.elo}${p.eloRank ? ` (${p.eloRank}.)` : ""}</span>`);
+  if (p.strength) badges.push(`<span class="profile-badge">Tugevus ${p.strength}${p.strengthRank ? ` (${p.strengthRank}.)` : ""}</span>`);
   badges.push(`<span class="profile-badge">Vorm: ${formDots(p.form) || "—"}</span>`);
   if (p.curStreakType === "W" && p.curStreakLen >= 3) {
     badges.push(`<span class="profile-badge">🔥 ${p.curStreakLen} võitu järjest</span>`);
@@ -555,6 +668,9 @@ function openProfile(name) {
     `Võite: <b>${p.wins}</b> · Kaotusi: <b>${p.losses}</b>`,
     `Võiduprotsent: <b>${p.played ? Math.round(winPct(p) * 100) + "%" : "—"}</b>`,
     `Elo: <b>${p.played ? p.elo : "—"}</b>${p.played && p.eloPeak > p.elo ? ` <span class="dim">(tipp ${p.eloPeak})</span>` : ""}`,
+    p.strength
+      ? `Tugevus: <b>${p.strength}</b> <span class="dim">(95%: ${p.strengthLo}–${p.strengthHi} · geimid ${p.gamesW}–${p.gamesL})</span>`
+      : `Tugevus: <b>—</b>`,
   ]));
   stats.appendChild(statCard("VÜS turniirid", [
     `Võite: <b>${p.vusW}</b> · Kaotusi: <b>${p.vusL}</b>`,
