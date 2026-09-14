@@ -4,7 +4,19 @@
 // Nimede ühtlustamine: turniiripaberitel esinevad variandid.
 const NAME_ALIASES = {
   "Helmar Mirka": "Heimar Mirka",
+  "Gen Lepp": "Gennadi Lepp",   // Sheetsis lühinimi, püramiidis ja MV-l täisnimi
 };
+
+// Kanooniline kirjapilt: võti = väiketähed + ühekordsed tühikud.
+// tournatedis on nimed käsitsi sisestatud ("kert perkmann"), püramiidis ja
+// Sheetsis korrektselt — ilma selleta tekiks samast inimesest kaks mängijat.
+const CANON = new Map();
+function registerCanon(name) {
+  if (!name) return;
+  const n = String(name).trim().split(/\s+/).join(" ");
+  const a = NAME_ALIASES[n] || n;
+  if (!CANON.has(a.toLowerCase())) CANON.set(a.toLowerCase(), a);
+}
 
 const state = {
   vus: null,          // current.json
@@ -25,8 +37,9 @@ const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
 function norm(name) {
   if (!name) return null;
-  const n = String(name).trim();
-  return NAME_ALIASES[n] || n;
+  const n = String(name).trim().split(/\s+/).join(" ");
+  const a = NAME_ALIASES[n] || n;
+  return CANON.get(a.toLowerCase()) || a;
 }
 
 function escapeHtml(s) {
@@ -64,10 +77,13 @@ async function fetchJSON(path) {
 
 async function init() {
   try {
-    [state.vus, state.puramiid] = await Promise.all([
+    [state.vus, state.puramiid, state.mv] = await Promise.all([
       fetchJSON("data/current.json"),
       fetchJSON("data/puramiid.json"),
+      fetchJSON("data/mv.json").catch(() => null),
     ]);
+    (state.puramiid.players || []).forEach((p) => registerCanon(p.name));
+    (state.vus.players || []).forEach((p) => registerCanon(p.name));
   } catch (e) {
     document.body.innerHTML = `<div style="padding:32px;font-family:sans-serif">
       <h2>Viga andmete laadimisel</h2><pre>${escapeHtml(e.message)}</pre></div>`;
@@ -107,7 +123,8 @@ async function init() {
   $("#meta-counts").textContent =
     `${state.players.size} mängijat · ${state.matches.length} mängu ` +
     `(${state.matches.filter((m) => m.format === "vus").length} turniiridel, ` +
-    `${state.matches.filter((m) => m.format === "puramiid").length} püramiidis)`;
+    `${state.matches.filter((m) => m.format === "puramiid").length} püramiidis, ` +
+    `${state.matches.filter((m) => m.format === "mv").length} maakonna MV-l)`;
 
   setupTabs();
   setupRegister();
@@ -174,6 +191,30 @@ function buildMatches() {
       off: g.type === "arvestusevaline",
     });
   });
+
+  // --- Viljandimaa MV (data/mv.json) ---
+  // Püramiidi mängijate omavahelised MV mängud on juba püramiidis
+  // (mv_match_id) — need jäetakse vahele, et Elo neid topelt ei loeks.
+  if (state.mv && Array.isArray(state.mv.results)) {
+    const pyrIds = new Set((state.puramiid.games || []).map((g) => g.mv_match_id).filter(Boolean));
+    const aasta = (state.mv.title || "").match(/\d{4}/)?.[0] || "";
+    state.mv.results.forEach((m) => {
+      if (!m.winner || !m.loser || pyrIds.has(m.id)) return;
+      const tabel = m.bracket === "main" ? "põhitabel"
+        : `${String(m.bracket || "").split("/")[0].replace("-", ".–")}. koht`;
+      pushMatch({
+        date: m.date || null,
+        display: m.date ? fmtDateISO(m.date) : "—",
+        event: `Maakonna MV ${aasta} · ${tabel} · ${m.round_title || "mäng"}`,
+        format: "mv",
+        a: norm(m.winner),
+        b: norm(m.loser),
+        winner: norm(m.winner),
+        score: m.score || (m.walkover ? "w/o" : "—"),
+        off: false,
+      });
+    });
+  }
 
   // --- VÜS turniirid ---
   state.tournaments.forEach(({ date, json }) => {
@@ -250,7 +291,7 @@ function buildPlayers() {
         name,
         vusRank: null, vusPoints: null, pyrPos: null,
         played: 0, wins: 0, losses: 0,
-        vusW: 0, vusL: 0, pyrW: 0, pyrL: 0,
+        vusW: 0, vusL: 0, pyrW: 0, pyrL: 0, mvW: 0, mvL: 0,
         form: [],      // uusim esimesena
         results: [],   // kõik tulemused, uusim esimesena (seeriate jaoks)
       });
@@ -278,13 +319,15 @@ function buildPlayers() {
       pl.played += 1;
       if (won) pl.wins += 1; else pl.losses += 1;
       if (match.format === "vus") { won ? pl.vusW++ : pl.vusL++; }
+      else if (match.format === "mv") { won ? pl.mvW++ : pl.mvL++; }
       else { won ? pl.pyrW++ : pl.pyrL++; }
       if (pl.form.length < 5) pl.form.push(won ? "W" : "L");
       pl.results.push(won ? "W" : "L");
     });
   });
 
-  // Elo-reiting: kõik arvestuslikud mängud kronoloogiliselt (vanim enne).
+  // Elo-reiting: kõik arvestuslikud mängud kronoloogiliselt (vanim enne) —
+  // VÜS etapid + püramiid + maakonna MV (mv.json, ilma püramiidis olevate topeltmängudeta).
   // Start 1500, K=32. Prognoos H2H vaates põhineb samal valemil.
   const ELO_START = 1500;
   const ELO_K = 32;
@@ -521,6 +564,13 @@ function openProfile(name) {
     `Võite: <b>${p.pyrW}</b> · Kaotusi: <b>${p.pyrL}</b>`,
     p.pyrPos ? `Positsioon: <b>${p.pyrPos}.</b>` : "Püramiidis ei osale",
   ]));
+  if (p.mvW + p.mvL > 0) {
+    // Ainult need MV mängud, mida püramiidis pole (seal loetakse püramiidi alla).
+    stats.appendChild(statCard("Maakonna MV", [
+      `Võite: <b>${p.mvW}</b> · Kaotusi: <b>${p.mvL}</b>`,
+      `<span class="dim">püramiidi mängijate omavahelised on püramiidi all</span>`,
+    ]));
+  }
 
   renderProfileChallenges(name);
   renderRankChart(name);
@@ -806,6 +856,8 @@ function renderH2H() {
   const vusB = counted.filter((m) => m.format === "vus" && m.winner === b).length;
   const pyrA = counted.filter((m) => m.format === "puramiid" && m.winner === a).length;
   const pyrB = counted.filter((m) => m.format === "puramiid" && m.winner === b).length;
+  const mvA = counted.filter((m) => m.format === "mv" && m.winner === a).length;
+  const mvB = counted.filter((m) => m.format === "mv" && m.winner === b).length;
 
   $("#h2h-name-a").textContent = a;
   $("#h2h-name-b").textContent = b;
@@ -840,6 +892,7 @@ function renderH2H() {
     ? `
       <span>VÜS turniirid <b>${vusA} : ${vusB}</b></span>
       <span>Püramiid <b>${pyrA} : ${pyrB}</b></span>
+      ${mvA + mvB > 0 ? `<span>Maakonna MV <b>${mvA} : ${mvB}</b></span>` : ""}
       ${meetings.length !== counted.length ? `<span class="dim">+ ${meetings.length - counted.length} arvestuseväline</span>` : ""}
     `
     : '<span class="dim">Pole veel omavahel mänginud</span>';
