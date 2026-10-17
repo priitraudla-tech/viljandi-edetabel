@@ -58,5 +58,9 @@
   "9. etapp 13.09.2026": {
     "first_seen": "2026-09-13T14:17:10+00:00",
     "first_run": false
+  },
+  "10. etapp 17.10.2026": {
+    "first_seen": "2026-10-17T17:44:49+00:00",
+    "first_run": false
   }
 }
