@@ -1,0 +1,51 @@
+{
+  "turniir": {
+    "nimi": "VÜS 2026 10. etapp",
+    "sari": "VÜS",
+    "etapp": 10,
+    "kuupaev": "2026-10-15",
+    "asukoht": "TK Fellin",
+    "tarkvara": "etl.tournamentsoftware.com"
+  },
+  "formaat": "alagrupid",
+  "alagrupid_markus": "5 mängijat mängisid ühes grupis ringsüsteemis (igaüks igaühega).",
+  "mangijad": [
+    {"id": 1, "nimi": "Reevo Kirna",      "asetus": 1},
+    {"id": 2, "nimi": "Lauri Tõnisalu",   "asetus": 2},
+    {"id": 3, "nimi": "Heimar Mirka",     "asetus": 3},
+    {"id": 4, "nimi": "Ilja Balabko",     "asetus": 4},
+    {"id": 5, "nimi": "Toivo Teng",       "asetus": 5}
+  ],
+  "alagrupid": [
+    {
+      "nimi": "Grupp A",
+      "formaat": "ringsüsteem",
+      "mangud": [
+        {"voitja": "Lauri Tõnisalu", "kaotaja": "Reevo Kirna",    "skoor": "6-4"},
+        {"voitja": "Heimar Mirka",   "kaotaja": "Reevo Kirna",    "skoor": "7-6(4)"},
+        {"voitja": "Reevo Kirna",    "kaotaja": "Ilja Balabko",   "skoor": "6-0"},
+        {"voitja": "Reevo Kirna",    "kaotaja": "Toivo Teng",     "skoor": "6-3"},
+        {"voitja": "Heimar Mirka",   "kaotaja": "Lauri Tõnisalu", "skoor": "6-2"},
+        {"voitja": "Lauri Tõnisalu", "kaotaja": "Ilja Balabko",   "skoor": "6-2"},
+        {"voitja": "Lauri Tõnisalu", "kaotaja": "Toivo Teng",     "skoor": "6-0"},
+        {"voitja": "Heimar Mirka",   "kaotaja": "Ilja Balabko",   "skoor": "6-3"},
+        {"voitja": "Heimar Mirka",   "kaotaja": "Toivo Teng",     "skoor": "6-1"},
+        {"voitja": "Toivo Teng",     "kaotaja": "Ilja Balabko",   "skoor": "6-3"}
+      ],
+      "tabel": [
+        {"koht": 1, "mangija": "Heimar Mirka",     "voidud": 4, "kaotused": 0},
+        {"koht": 2, "mangija": "Lauri Tõnisalu",   "voidud": 3, "kaotused": 1},
+        {"koht": 3, "mangija": "Reevo Kirna",      "voidud": 2, "kaotused": 2},
+        {"koht": 4, "mangija": "Toivo Teng",       "voidud": 1, "kaotused": 3},
+        {"koht": 5, "mangija": "Ilja Balabko",     "voidud": 0, "kaotused": 4}
+      ]
+    }
+  ],
+  "loppjarjestus": [
+    {"koht": 1, "mangija": "Heimar Mirka",     "punktid": 100},
+    {"koht": 2, "mangija": "Lauri Tõnisalu",   "punktid": 70},
+    {"koht": 3, "mangija": "Reevo Kirna",      "punktid": 50},
+    {"koht": 4, "mangija": "Toivo Teng",       "punktid": 40},
+    {"koht": 5, "mangija": "Ilja Balabko",     "punktid": 30}
+  ]
+}
