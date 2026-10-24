@@ -1,6 +1,6 @@
 {
-  "title": "Viljandi üksikmängu edetabel (13.09.2026 seisuga)",
-  "fetched_at": "2026-10-17T22:51:48+00:00",
+  "title": "Viljandi üksikmängu edetabel (17.10.2026 seisuga)",
+  "fetched_at": "2026-10-24T17:48:20+00:00",
   "stages": [
     {
       "label": "9. etapp 29.11.2025",
@@ -78,7 +78,7 @@
   "players": [
     {
       "rank": 1,
-      "sheet_rank": 2,
+      "sheet_rank": 1,
       "name": "Heimar Mirka",
       "total": 602,
       "stages": {
@@ -102,7 +102,7 @@
     },
     {
       "rank": 2,
-      "sheet_rank": 1,
+      "sheet_rank": 2,
       "name": "Priit Raudla",
       "total": 580,
       "stages": {
@@ -294,7 +294,7 @@
     },
     {
       "rank": 9,
-      "sheet_rank": 10,
+      "sheet_rank": 9,
       "name": "Eneli Pihl",
       "total": 158,
       "stages": {
@@ -318,7 +318,7 @@
     },
     {
       "rank": 11,
-      "sheet_rank": 18,
+      "sheet_rank": 11,
       "name": "Lauri Tõnisalu",
       "total": 155,
       "stages": {
@@ -342,7 +342,7 @@
     },
     {
       "rank": 12,
-      "sheet_rank": 11,
+      "sheet_rank": 12,
       "name": "Ott Ahonen",
       "total": 140,
       "stages": {
@@ -366,7 +366,7 @@
     },
     {
       "rank": 12,
-      "sheet_rank": 11,
+      "sheet_rank": 12,
       "name": "Kert Perkmann",
       "total": 140,
       "stages": {
@@ -390,7 +390,7 @@
     },
     {
       "rank": 14,
-      "sheet_rank": 13,
+      "sheet_rank": 14,
       "name": "Helmut Hallemaa",
       "total": 138,
       "stages": {
@@ -414,7 +414,7 @@
     },
     {
       "rank": 15,
-      "sheet_rank": 14,
+      "sheet_rank": 15,
       "name": "Marken Varis",
       "total": 133,
       "stages": {
@@ -438,7 +438,7 @@
     },
     {
       "rank": 16,
-      "sheet_rank": 15,
+      "sheet_rank": 16,
       "name": "Marcel Mikiver",
       "total": 132,
       "stages": {
@@ -486,7 +486,7 @@
     },
     {
       "rank": 18,
-      "sheet_rank": 16,
+      "sheet_rank": 18,
       "name": "Manfred Mets",
       "total": 90,
       "stages": {
@@ -630,7 +630,7 @@
     },
     {
       "rank": 24,
-      "sheet_rank": 35,
+      "sheet_rank": 24,
       "name": "Toivo Teng",
       "total": 58,
       "stages": {
@@ -774,7 +774,7 @@
     },
     {
       "rank": 30,
-      "sheet_rank": 24,
+      "sheet_rank": 30,
       "name": "Tõnu Roslender",
       "total": 30,
       "stages": {
@@ -894,7 +894,7 @@
     },
     {
       "rank": 35,
-      "sheet_rank": 30,
+      "sheet_rank": 35,
       "name": "Rene Puusild",
       "total": 13,
       "stages": {
@@ -931,6 +931,6 @@
     "9. etapp 13.09.2026": 9,
     "10. etapp 17.10.2026": 5
   },
-  "snapshot_date": "2026-10-17",
+  "snapshot_date": "2026-10-24",
   "compared_to": "2026-09-13"
 }
