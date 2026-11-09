@@ -481,11 +481,25 @@ function stagesWithResults() {
       return v !== null && v !== undefined && v !== "";
     }),
   );
-  const sheetDates = new Set(fromSheet.map((s) => s.date).filter(Boolean));
-  const fromFiles = (state.turniirid || [])
-    .filter((t) => t.date && !sheetDates.has(t.date))
-    .map((t) => ({ label: t.label, date: t.date, fromFile: true }));
-  return [...fromSheet, ...fromFiles].sort((a, b) =>
+  // Sama etapp võib Sheetsis ja turniirifailis olla eri kuupäevaga (nt 10. etapp:
+  // Sheets 17.10, fail 15.10). Seome need kokku sama aasta ja etapinumbri järgi,
+  // et valikus poleks üks etapp kaks korda; turniiritabel laetakse faili kuupäevaga.
+  const aasta = (d) => String(d || "").slice(0, 4);
+  const etapiNr = (label) => { const m = /^(\d+)\.\s*etapp/i.exec(label || ""); return m ? Number(m[1]) : null; };
+  const stages = fromSheet.map((s) => ({ ...s }));
+  const fromFiles = [];
+  (state.turniirid || []).forEach((t) => {
+    if (!t.date) return;
+    const nr = t.etapp ?? etapiNr(t.label);
+    const vaste = stages.find((s) => s.date === t.date)
+      || (nr != null && stages.find((s) => etapiNr(s.label) === nr && aasta(s.date) === aasta(t.date)));
+    if (vaste) {
+      if (vaste.date !== t.date) vaste.fileDate = t.date;
+    } else {
+      fromFiles.push({ label: t.label, date: t.date, fromFile: true });
+    }
+  });
+  return [...stages, ...fromFiles].sort((a, b) =>
     String(b.date || "").localeCompare(String(a.date || "")));
 }
 
@@ -614,7 +628,7 @@ async function renderTournament(stageLabel) {
 
   // Try loading the bracket JSON for this stage's date. Surfaces the toggle
   // only if a JSON exists; otherwise the tab stays at "Punktid" alone.
-  const bracket = fileBracket || await loadBracketIfExists(stage.date);
+  const bracket = fileBracket || await loadBracketIfExists(stage.fileDate || stage.date);
   if (bracket) {
     state.bracket = bracket;
     $("#tournament-view-tabel").innerHTML = "";
