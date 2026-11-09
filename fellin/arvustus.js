@@ -173,7 +173,8 @@
     bar.className = "wrap rv-bar";
     bar.innerHTML = `<button type="button" class="rv-pin" data-osa-pin="${esc(o.id)}"
       aria-label="Kommenteeri osa: ${esc(o.nimi)}">💬 Kommenteeri</button>`;
-    o.el.prepend(bar);
+    // Täislaiusega plokkides (nt jalus) joonda nupp sisu laiusega.
+    (o.el.querySelector(":scope > .shell") || o.el).prepend(bar);
   });
 
   const fab = document.createElement("button");
