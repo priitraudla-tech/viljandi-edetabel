@@ -45,6 +45,19 @@
         "Uksekoodi probleemi korral on näha keskuse telefon; kaardi juures on selgitatud, et kolmas märk on klubi kontor.",
         "Parandused kitsastel ekraanidel (leht ei kerinud enam külgsuunas) ja kommentaaride akna klaviatuurikasutuses."
       ]
+    },
+    {
+      "nr": 5,
+      "kuupaev": "2026-11-09",
+      "muudatused": [
+        "Treenerid, KKK ja edetabeli viimane seis on nüüd lehe tekstis endas — Google ja tehisaru otsingud loevad need ka ilma skriptita.",
+        "„Tahan mängida / õppida / võistelda“ kaartidel pole enam logosid; klubi kolm logo (Klubi · Keskus · Kool) on nüüd Klubi osas.",
+        "Mängukohtade kaartidel on tunnihind, link hinnakirjale ja otse Matchi broneerima.",
+        "Avaplokis ei korrata enam lahtiolekuaega kolm korda; olekurida ütleb, kas sisehall on praegu avatud ja et sisse saab uksekoodiga.",
+        "Hinnatabelites on sildid „Tavaaeg“, „Tipptund“ ja „Nädalavahetus“; klubiliikme paketi juures arvutus, mitme tunniga pakett end ära tasub.",
+        "Trenni e-posti nupu all on aadress ott@fellinrackets.ee ka tekstina koos „Kopeeri aadress“ nupuga.",
+        "Menüüs on KKK (01–07); koostööpartnerid on eespool ja EL-i toetuse plokid kompaktsemad, EL-i embleem jääb selgelt nähtavaks."
+      ]
     }
   ],
   "kommentaarid": []

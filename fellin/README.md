@@ -37,10 +37,11 @@ Testid: `node scripts/test_fellin_kommentaar.mjs`
 
 ## Avatud küsimused klubile (sisu, mida ei tohi oletada)
 
-Seis 09.11.2026 (versioon 4). Kuni vastuseni on lehel ainult kinnitatud info.
+Seis 09.11.2026 (versioon 5). Kuni vastuseni on lehel ainult kinnitatud info.
 
 1. **Hinnad:** kas hind on „€ väljaku kohta tunnis“? Siis lisame selle tabelite juurde.
-2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad.
+2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad. Praegu on teada ainult „maist oktoobrini
+   iga päev“; 2026. a hinnaridadest tuleneb E–R 6–23, nädalavahetuse kellaajad pole kirjas — seetõttu kaardil kellaaegu pole.
 3. **Eratreening:** kas pakute, kellele ja mis hinnaga?
 4. **Trenni registreerimine:** kas soovite veebivormi? Selleks on vaja päris vastuvõtjat
    (nt e-posti saatmisteenus). Praegu avab nupp e-kirja valmis küsimustega.
@@ -52,5 +53,13 @@ Seis 09.11.2026 (versioon 4). Kuni vastuseni on lehel ainult kinnitatud info.
 8. **Tulevased võistlused:** kuupäevad, tase ja registreerimislink.
 9. **Treenerid:** Anelle Luik ei ole spordiregistris klubi treenerite hulgas — kas treenib klubis?
    Diana Klavan ja Priscilla Õmblus on registris padelitreenerid ilma kutseta — kas nii jääb?
-10. **Liikmelisus:** kas Matchi liikmelisuse leht müüb just 49 € aastapaketti?
+10. **Liikmelisus:** kas Matchi liikmelisuse leht müüb just 49 € aastapaketti? Kas lause „pakett tasub end ära
+    13 padeli- või 25 tennisetunniga aastas“ sobib (arvutatud hinnakirjast: soodustus 4 € / 2 € tunnilt;
+    kehtib liikme enda broneeringutel)?
 11. **Kaart:** „Viljandi Tennis“ kaardil on kolmas märk „Kontor“ — kas see jääb kaardile?
+
+## Sisu hooldus
+
+- KKK tekst on nii lehel (`#faq-list`) kui päise FAQPage JSON-LD-s — muuda mõlemas sõna-sõnalt ühtemoodi.
+- Edetabeli varuandmed (`#vus-list`, `#pyr-list`, `data-asof`) on HTML-is; värske seis laaditakse edetabelist peale.
+- EL-i toetuse embleem peab jääma vähemalt sama suureks kui suurim partnerilogo (praegu EL-i logo laius 260 px ≈ 84 px kõrge sisu; partnerilogod kuni 72 px kõrged).
