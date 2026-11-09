@@ -105,7 +105,9 @@
   .rv-pin:hover { background:#ffe98a; }
   .rv-pin .n { background:#d9ad00; color:#fff; border-radius:999px; padding:1px 8px; font-size:12.5px; }
   footer .rv-pin { background:#3a3420; color:#ffe98a; border-color:#8a7414; }
-  .rv-on { box-shadow: inset 0 0 0 3px #f2c500; }
+  .hero > .rv-bar { position:absolute; top:14px; left:0; right:0; z-index:2; margin:0; }
+  header > .rv-bar { margin:0; padding-top:8px; padding-bottom:8px; background:var(--mist, #f4f7f1); }
+  .rv-on { outline:3px solid #f2c500; outline-offset:-3px; }
   .rv-fab { position:fixed; right:18px; bottom:18px; z-index:60; padding:13px 18px; border-radius:999px;
     background:#ffd83d; color:#2b2200; box-shadow:0 6px 22px rgba(0,0,0,.22); display:flex; gap:8px; align-items:center; }
   .rv-fab .n { background:#2b2200; color:#ffd83d; border-radius:999px; padding:1px 8px; font-size:12.5px; }
