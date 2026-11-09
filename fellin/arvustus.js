@@ -106,6 +106,9 @@
   // ---------- stiil ----------
   const css = `
   .rv-bar { display:flex; justify-content:flex-end; margin-bottom:12px; }
+  /* Kui osa ülemises vahes on ruumi, istub nupp seal ega lükka sisu allapoole */
+  .rv-host { position:relative; }
+  .rv-bar.rv-abs { position:absolute; top:4px; right:0; margin:0; z-index:5; }
   .rv-pin, .rv-fab, .rv-btn, .rv-link, .rv-toggle { font:600 14px/1.2 var(--font, system-ui); cursor:pointer; border:0; }
   .rv-pin { display:inline-flex; gap:7px; align-items:center; min-height:36px; padding:0 13px; border-radius:999px;
     background:#fff3b8; color:#5b4800; border:1.5px dashed #b88f00; }
@@ -185,6 +188,10 @@
       @keyframes rv-ules { from { transform:translateY(40px); opacity:0; } }
     }
     .rv-fab { padding:0 15px; }
+    /* Telefonis ainult ikoon — nupu nimi tuleb aria-label'ist */
+    .rv-pin { padding:0 11px; }
+    .rv-pin .rv-txt, .proto .rv-long { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    .rv-hint { font-size:14px; padding:8px 12px; }
   }
   @media print { .rv-bar, .rv-fab, .rv-drawer, .rv-backdrop, .rv-hint { display:none !important; } }
   `;
@@ -194,7 +201,7 @@
   const proto = document.getElementById("proto");
   if (proto) {
     proto.innerHTML =
-      `<span><b>Ettepanek<span id="rv-ver"></span></b> · uue fellinrackets.ee avalehe prototüüp — ei ole ametlik leht.</span>` +
+      `<span><b>Ettepanek<span id="rv-ver"></span></b><span class="rv-long"> · uue fellinrackets.ee avalehe prototüüp</span> — ei ole ametlik leht.</span>` +
       `<button type="button" class="rv-link" id="rv-open-all">Kommentaarid<span id="rv-count"></span></button>` +
       `<button type="button" class="rv-toggle" id="rv-toggle"></button>`;
   }
@@ -204,8 +211,8 @@
     const hint = document.createElement("div");
     hint.className = "rv-hint";
     hint.setAttribute("role", "note");
-    hint.innerHTML = `<p><b>Tere! See on uue kodulehe ettepanek.</b> Vaata leht läbi ja vajuta kollasele
-      „Kommenteeri“ nupule selle osa juures, mida tahad muuta. Kõik kommentaarid näed ülal nupust „Kommentaarid“.</p>
+    hint.innerHTML = `<p><b>Tere! See on uue kodulehe ettepanek.</b> Vajuta kollasele 💬 nupule selle osa juures,
+      mida tahad muuta. Kõik kommentaarid on ülal nupus „Kommentaarid“.</p>
       <button type="button" class="rv-hint-x" aria-label="Sulge juhis">×</button>`;
     proto.after(hint);
     hint.querySelector("button").addEventListener("click", () => {
@@ -221,10 +228,23 @@
     const bar = document.createElement("div");
     bar.className = "wrap rv-bar";
     bar.innerHTML = `<button type="button" class="rv-pin" data-osa-pin="${esc(o.id)}"
-      aria-label="Kommenteeri osa: ${esc(o.nimi)}">💬 Kommenteeri</button>`;
+      aria-label="Kommenteeri osa: ${esc(o.nimi)}">💬<span class="rv-txt"> Kommenteeri</span></button>`;
     // Täislaiusega plokkides (nt jalus) joonda nupp sisu laiusega.
     (o.el.querySelector(":scope > .shell") || o.el).prepend(bar);
   });
+
+  // Nupp osa ülemisse vahesse, kui seal on ruumi (≥ 40 px); muidu tavalises reas.
+  function paigutaNupud() {
+    OSAD.filter((o) => o.el).forEach((o) => {
+      const bar = o.el.querySelector(":scope > .rv-bar");
+      const abs = !!bar && parseFloat(getComputedStyle(o.el).paddingTop) >= 40;
+      o.el.classList.toggle("rv-host", abs);
+      if (bar) bar.classList.toggle("rv-abs", abs);
+    });
+  }
+  paigutaNupud();
+  let paigutusOotel = 0;
+  addEventListener("resize", () => { clearTimeout(paigutusOotel); paigutusOotel = setTimeout(paigutaNupud, 150); });
 
   const fab = document.createElement("button");
   fab.type = "button";
@@ -275,7 +295,7 @@
   function uuendaLoendureid() {
     document.querySelectorAll("[data-osa-pin]").forEach((b) => {
       const n = osaJuured(b.dataset.osaPin).length;
-      b.innerHTML = `💬 Kommenteeri${n ? ` <span class="n">${n}</span>` : ""}`;
+      b.innerHTML = `💬<span class="rv-txt"> Kommenteeri</span>${n ? ` <span class="n">${n}</span>` : ""}`;
     });
     const n = juured().length;
     fab.innerHTML = `💬 Kommentaarid${n ? ` <span class="n">${n}</span>` : ""}`;

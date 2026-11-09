@@ -138,20 +138,12 @@
             "acceptedAnswer": { "@type": "Answer", "text": "Fellin Rackets keskuses: sisehall Kaalu 2 on avatud aastaringselt iga päev 6–24 (2 tennise- ja 3 padeliväljakut). Hooajal mai–oktoober lisanduvad järveäärsed väliväljakud Ranna puiestee 3 (6 tennise- ja 5 padeliväljakut)." } },
           { "@type": "Question", "name": "Kui palju maksab väljaku rent Viljandis?",
             "acceptedAnswer": { "@type": "Answer", "text": "Alates 01.09.2026: sisetennis 28–36 € tund, sisepadel 36–44 € tund, väliväljakud 24–28 € tund (2026. a hooaeg). Klubiliikmetele 2–4 € soodsam." } },
-          { "@type": "Question", "name": "Kuidas väljakut broneerida?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Broneeri Matchi keskkonnas (matchi.se/facilities/viljanditennis). Vajalik on Matchi kasutajakonto. Maksta saab kaardiga või tunnipangast. Uksekood kehtib 20 minutit enne kuni 20 minutit pärast broneeritud aega." } },
           { "@type": "Question", "name": "Kas keskuses on personal?",
             "acceptedAnswer": { "@type": "Answer", "text": "Ei. Viljandi tennise- ja padelikeskus on automaatkeskus. Sisse pääseb broneeringuga saadud uksekoodiga. Probleemi korral helista keskuse telefonil +372 5036 425." } },
-          { "@type": "Question", "name": "Mis vanusest saab tennise- või padelitrenni tulla?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Ott Ahoneni tennise- ja padelikool võtab lapsi alates 4. eluaastast. Trennid on ka täiskasvanutele, algajatele ja edasijõudnutele. Kuutasu alates 56 € (1× nädalas)." } },
-          { "@type": "Question", "name": "Kas treeneritel on treenerikutse?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Jah. Peatreener Ott Ahonen ja Priit Pihl on vanemtreenerid (EKR tase 6, tennis), Timo Kirsimäe on abitreener (EKR tase 3, tennis). Kutsed on avalikult kontrollitavad Eesti spordiregistris." } },
           { "@type": "Question", "name": "Kas broneeringut saab tühistada?",
             "acceptedAnswer": { "@type": "Answer", "text": "Jah, tasuta kuni 24 tundi enne algust. Hilisemat tühistamist ei hüvitata." } },
-          { "@type": "Question", "name": "Mida annab klubiliikme pakett?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Pakett maksab 49 € aastas: soodsam tunnihind, broneerimine 14 päeva ette (teistel 7), eelisjärjekord püsiaegadele ja valitud võistlustele ning soodustused üritustel. Liituda saab Matchi keskkonnas." } },
-          { "@type": "Question", "name": "Kas Viljandis toimuvad tenniseturniirid?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Jah. Viljandi üksikmängu sari (VÜS) peab etappe läbi hooaja, lisaks käib püramiidimäng ja toimuvad Viljandimaa meistrivõistlused. Edetabel ja tulemused uuenevad automaatselt." } }
+          { "@type": "Question", "name": "Mis vanusest saab tennise- või padelitrenni tulla?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ott Ahoneni tennise- ja padelikool võtab lapsi alates 4. eluaastast. Trennid on ka täiskasvanutele, algajatele ja edasijõudnutele. Kuutasu alates 56 € (1× nädalas)." } }
         ]
       },
       {
@@ -233,7 +225,7 @@
 
     @media (prefers-reduced-motion: no-preference) {
       html { scroll-behavior: smooth; }
-      .btn, .task, .atlas-nav a, .faq summary::after { transition: background-color .15s, color .15s, border-color .15s, transform .2s; }
+      .btn, .task, .atlas-nav a, .faq summary::after, .more > summary::after { transition: background-color .15s, color .15s, border-color .15s, transform .2s; }
     }
 
     /* Mono ainult lühikestes siltides (kicker, olek). Abitekstid ja tabelipäised on tavakirjas. */
@@ -307,7 +299,7 @@
       -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 71%); mask-image: radial-gradient(circle, #000 58%, transparent 71%); }
 
     /* Nummerdatud menüü: ploki all ja kerides kleepuv päise all (P1 p 3) */
-    .atlas-nav { position: sticky; top: var(--head-h); z-index: 15; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
+    .atlas-nav { position: sticky; top: var(--head-h); z-index: 15; display: grid; grid-template-columns: 1.5fr repeat(5, minmax(0, 1fr));
       gap: 1px; padding: 1px; background: var(--border); border-radius: 0 0 var(--r) var(--r); overflow: hidden;
       box-shadow: 0 0 0 100vmax var(--base); clip-path: inset(0 -100vmax); }
     .atlas-nav a { min-height: calc(var(--nav-h) - 2px); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 4px;
@@ -331,7 +323,7 @@
     h3 { margin: 0 0 .5rem; font-size: var(--fs-h3); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
     /* Kaardi pealkiri: tavakirjas, mitte suurtähtedes monokirjas */
     h3.card-h { font-size: 1.0625rem; color: var(--ink); margin: 0 0 .75rem; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 1.375rem; min-width: 0; }
+    .card { --pad: 1.375rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: var(--pad); min-width: 0; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
     .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .muted { color: var(--muted); }
@@ -347,43 +339,34 @@
     .task p { margin: 0; color: var(--muted); font-size: .9375rem; line-height: 1.45; }
     .task .go { font-weight: 600; color: var(--accent); font-size: .9375rem; }
 
-    /* mängukohad */
-    .photo { position: relative; margin: 0 0 10px; border-radius: var(--r); overflow: hidden; border: 1px solid var(--border); background: var(--panel); }
-    .photo img { width: 100%; aspect-ratio: 21 / 8; object-fit: cover; }
-    .photo figcaption { position: absolute; left: 14px; bottom: 12px; font-size: var(--fs-small); font-weight: 600;
-      background: rgba(16,18,15,.88); color: var(--ink); padding: 6px 10px; border-radius: 6px; }
-    .loc { position: relative; }
-    .loc h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; padding-right: 7.5rem; }
+    /* väljakud ja hinnad: iga mängukoha kaardil tema hinnatabel */
+    .loc { display: flex; flex-direction: column; }
+    .loc h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
     .loc h3 .loc-type { display: block; color: var(--muted); margin-bottom: .35rem; font-size: var(--fs-small); letter-spacing: 0; font-weight: 600; }
-    .loc-tag { position: absolute; top: 1.25rem; right: 1.25rem; font: 600 var(--fs-label)/1 var(--mono); letter-spacing: .06em; text-transform: uppercase;
-      padding: 6px 9px; border-radius: 5px; background: var(--accent-dim); color: var(--accent); }
-    .loc-tag.off { background: var(--panel); color: var(--muted); }
-    .loc .addr { color: var(--muted); margin: 0 0 1rem; font-size: var(--fs-small); }
-    .courts { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 8px; }
-    .courts li { display: flex; gap: 12px; align-items: baseline; }
-    .courts .n { font-weight: 800; font-size: 1.75rem; letter-spacing: -.03em; min-width: 26px; color: var(--accent); }
-    .loc-note { font-size: .9375rem; color: var(--muted); background: var(--panel); border-radius: 6px; padding: 10px 12px; margin: 0 0 .5rem; max-width: none; }
+    .loc .addr { color: var(--muted); margin: .35rem 0 .75rem; font-size: .9375rem; }
+    .loc .addr .off { color: var(--warn); }
+    .loc-photo { width: calc(100% + 2 * var(--pad)); max-width: none; margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 1rem;
+      aspect-ratio: 21 / 9; object-fit: cover; border-radius: var(--r) var(--r) 0 0; }
+    .loc-note { font-size: .9375rem; color: var(--muted); background: var(--panel); border-radius: 6px; padding: 10px 12px; margin: .75rem 0 0; max-width: none; }
     .loc-note a { color: var(--ink); }
-    .loc-price { margin: .9rem 0 0; padding-top: .9rem; border-top: 1px solid var(--border); font-weight: 600; max-width: none; }
-    .loc-price .num { color: var(--accent); }
-    .loc-links { display: flex; flex-wrap: wrap; gap: 0 20px; }
+    .loc > .link-arrow { margin-top: auto; padding-top: .5rem; align-self: flex-start; }
 
-    /* hinnad: kolm tabelit kõrvuti */
-    .prices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-    /* Väga suure teksti korral keritakse tabelit tema enda kaardis, mitte kogu lehte */
-    .prices .card { overflow-x: auto; }
+    /* tabelid */
     table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; padding: .7rem .25rem; border-bottom: 1px solid var(--border); }
-    th { font-size: var(--fs-small); font-weight: 600; color: var(--muted); }
-    td.p, th.p, td.m, th.m { text-align: right; white-space: nowrap; }
-    td.p { font-weight: 800; font-size: 1.125rem; }
-    td.m { color: var(--accent); font-weight: 600; }
-    tr:last-child td { border-bottom: 0; }
+    th, td { text-align: left; padding: .7rem .25rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    thead th { font-size: var(--fs-small); font-weight: 600; color: var(--muted); vertical-align: bottom; }
+    tbody th { font-weight: 400; }
+    tr:last-child td, tr:last-child th { border-bottom: 0; }
+    .pr { text-align: right; }
+    td.pr b { display: block; font-weight: 800; font-size: 1.125rem; white-space: nowrap; }
+    td.pr .mem { display: block; font-size: var(--fs-small); font-weight: 600; color: var(--accent); }
+    td.p { text-align: right; white-space: nowrap; font-weight: 800; font-size: 1.125rem; }
     .tier { display: block; font-size: var(--fs-small); font-weight: 600; color: var(--muted); }
     .tier.peak { color: var(--warn); }
-    .season { margin: -.4rem 0 .5rem; font-size: var(--fs-small); color: var(--muted); }
-    .season.off { color: var(--warn); }
-    .member { margin-top: 10px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem 2.5rem; align-items: center;
+    .book-row { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; margin: 1.25rem 0 0; }
+    .book-row p { margin: 0; }
+
+    .member { margin-top: 1.25rem; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem 2.5rem; align-items: center;
       background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
     .member h3.card-h { color: var(--on-accent); margin: 0; }
     .member .big { font-size: 3.5rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; margin: .4rem 0 .25rem; }
@@ -392,83 +375,95 @@
     .member li { margin-bottom: .35rem; break-inside: avoid; }
     .member-cta { display: flex; flex-direction: column; align-items: flex-start; gap: .4rem; }
     .member-cta .small { color: #3a4a20; }
-    .steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.75rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+
+    /* lahtiklõpsatavad plokid: KKK ja teisejärguline info („rohkem“) */
+    .faq-list { max-width: 56rem; border-top: 1px solid var(--border); }
+    .faq details, .more { border-bottom: 1px solid var(--border); }
+    .more { margin-top: 1.25rem; border-top: 1px solid var(--border); }
+    .card .more { margin-top: 1rem; border-bottom: 0; }
+    .faq summary, .more > summary { cursor: pointer; list-style: none; min-height: 56px; padding: .9rem 0; font-weight: 600; font-size: 1.0625rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq summary::-webkit-details-marker, .more > summary::-webkit-details-marker { display: none; }
+    .faq summary::after, .more > summary::after { content: "+"; font: 600 1.5rem/1 var(--mono); color: var(--accent); flex: none; }
+    .faq details[open] summary::after, .more[open] > summary::after { transform: rotate(45deg); }
+    .faq details p { margin: 0; padding: 0 0 1.1rem; color: var(--muted); }
+    .more-body { padding: 0 0 1.25rem; }
+    .steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.75rem; margin: 0; padding: 0; list-style: none; }
     .step { border-top: 1px solid var(--border); padding-top: 1rem; }
     .step::before { counter-increment: s; content: "0" counter(s); display: block; font: 600 var(--fs-label)/1 var(--mono); color: var(--accent); letter-spacing: .06em; margin-bottom: .75rem; }
     .step h4 { margin: 0 0 .4rem; font-size: 1.0625rem; font-weight: 600; }
     .step p { margin: 0; color: var(--muted); }
-    .row-links { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 4px 20px; align-items: center; }
+    .facts-list { margin: 1.25rem 0 0; display: grid; gap: .5rem; }
+    .facts-list div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; }
+    .facts-list dt { font-weight: 600; }
+    .facts-list dd { margin: 0; color: var(--muted); }
+    .row-links { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 4px 20px; align-items: center; }
+    .plain { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+    .plain li { margin-bottom: .4rem; }
 
     /* treeningud */
-    .audience { margin-bottom: 10px; }
-    .aud h3 { font-size: 1.1875rem; font-weight: 800; }
-    .aud p { margin: 0; color: var(--muted); }
-    .ask { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin: 1.25rem 0 0; }
+    .train { align-items: start; }
+    .aud-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0 0 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+    .aud-row h3 { font-size: 1.1875rem; font-weight: 800; margin: 0 0 .25rem; }
+    .aud-row p { margin: 0; color: var(--muted); font-size: .9375rem; }
+    .ask { display: flex; flex-direction: column; align-items: flex-start; gap: .75rem; }
+    .ask h3 { margin: 0; font-size: 1.1875rem; font-weight: 800; }
     .ask p { margin: 0; color: var(--muted); font-size: .9375rem; max-width: 48ch; }
-    .ask .addr-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: .4rem; color: var(--ink); }
+    .ask .addr-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0 12px; }
     .ask .addr-line a { color: var(--ink); font-weight: 600; display: inline-flex; align-items: center; min-height: 44px; }
     .copy-btn { min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--border); background: transparent;
       color: var(--ink); font: 600 var(--fs-small)/1 var(--font); cursor: pointer; }
     .copy-btn:hover { border-color: var(--border-hover); }
     .copy-ok { color: var(--accent); font-size: var(--fs-small); font-weight: 600; }
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 1rem; padding: 0; list-style: none; }
-    .chip { font-size: var(--fs-small); padding: 5px 10px; border-radius: 5px; background: var(--panel); color: var(--muted); border: 1px solid var(--border); }
+    .sub-h { margin: 2.25rem 0 0; }
+    .sub-h .small { font-weight: 400; letter-spacing: 0; }
     .coaches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: .75rem 0 0; padding: 0; list-style: none; }
-    .coach { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border); min-width: 0; }
-    .avatar { width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid; place-items: center;
-      font: 600 .8125rem/1 var(--mono); color: var(--accent); background: var(--accent-dim); }
+    .coach { padding: 12px 14px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border); min-width: 0; }
     .coach b { display: block; font-weight: 600; font-size: 1.0625rem; line-height: 1.3; }
     .coach .role { display: block; font-size: var(--fs-small); color: var(--muted); }
-    .kutse { margin-top: .5rem; font-size: var(--fs-small); font-weight: 600; color: var(--accent); }
+    .kutse { margin-top: .4rem; font-size: var(--fs-small); font-weight: 600; color: var(--accent); }
     .kutse .kuni { display: block; color: var(--muted); font-weight: 400; }
     .kutse a { display: inline-flex; align-items: center; min-height: 32px; color: var(--muted); }
     .kutse a:hover { color: var(--ink); }
 
-    /* võistlused */
-    .comp { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; }
-    .rank-list { list-style: none; padding: 0; margin: 0 0 .5rem; }
+    /* võistlused: üks kaart — VÜS esiviisik + lingid */
+    .comp { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 1rem 2.25rem; }
+    .rank-list { list-style: none; padding: 0; margin: 0; }
     .rank-list li { display: grid; grid-template-columns: 34px 1fr auto 52px; gap: 10px; align-items: center; padding: .6rem 0; border-bottom: 1px solid var(--border); }
     .rank-list li:last-child { border-bottom: 0; }
     .rank-list .empty { display: block; color: var(--muted); }
     /* Ruum on reserveeritud ka enne värskete andmete saabumist — leht ei hüppa */
     #vus-list { min-height: 14.5rem; }
-    #pyr-list { min-height: 8.7rem; }
-    .rank-list li.pyr { grid-template-columns: 34px 1fr; }
     .rk { font: 600 .8125rem/1 var(--mono); color: var(--muted); }
     .rank-list li:first-child .rk { color: var(--accent); }
     .pts { font-weight: 800; }
     .dl { font: 600 .8125rem/1 var(--mono); text-align: right; }
     .dl.up { color: var(--accent); } .dl.down { color: var(--down); } .dl.eq { color: var(--muted); }
+    .comp-links { list-style: none; margin: 0; padding: 0; align-self: center; border-top: 1px solid var(--border); }
+    .comp-links li { border-bottom: 1px solid var(--border); }
+    .comp-links a { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: center; min-height: 56px;
+      padding: .7rem 0; text-decoration: none; color: var(--ink); }
+    .comp-links b { font-weight: 600; }
+    .comp-links span { grid-column: 1; font-size: var(--fs-small); color: var(--muted); }
+    .comp-links .arr { grid-column: 2; grid-row: 1 / span 2; color: var(--accent); font-size: 1rem; font-weight: 600; }
+    .comp-links a:hover b { color: var(--accent); text-decoration: underline; }
     .data-status { display: flex; align-items: center; gap: 8px; margin: 0; font-size: var(--fs-small); color: var(--muted); max-width: 46ch; }
     .data-status i { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--accent); box-shadow: 0 0 0 4px rgba(211,252,103,.15); }
     .data-status.error { color: var(--warn); }
-    .side-stack { display: grid; gap: 10px; }
-    .podium { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 0 0 .5rem; padding: 0; list-style: none; text-align: center; }
-    .podium li { background: var(--panel); border-radius: 7px; padding: 12px 6px; font-size: var(--fs-small); }
-    .podium b { display: block; font-size: 1.5rem; font-weight: 800; letter-spacing: -.03em; }
-    .podium li:first-child b { color: var(--accent); }
-
-    /* KKK */
-    .faq-list { max-width: 56rem; border-top: 1px solid var(--border); }
-    .faq details { border-bottom: 1px solid var(--border); }
-    .faq summary { cursor: pointer; list-style: none; min-height: 56px; padding: .9rem 0; font-weight: 600; font-size: 1.0625rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after { content: "+"; font: 600 1.5rem/1 var(--mono); color: var(--accent); flex: none; }
-    .faq details[open] summary::after { transform: rotate(45deg); }
-    .faq details p { margin: 0; padding: 0 0 1.1rem; color: var(--muted); }
 
     /* klubi */
+    .brands { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .brands li { display: flex; flex-direction: column; justify-content: space-between; gap: .6rem; padding: 1rem 1.1rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); min-width: 0; }
+    .brands img { height: 44px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; filter: brightness(0) invert(.96); }
+    .brands span { font-size: var(--fs-small); color: var(--muted); font-weight: 600; }
+    #klubi .more-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem 2.5rem; align-items: start; }
+    #klubi .more-body p { margin: 0; color: var(--muted); }
+    #klubi .more-body p b { color: var(--ink); font-weight: 600; }
+    #klubi > .link-arrow { margin-top: .5rem; }
     .timeline { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--border); }
     .timeline li { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 14px; padding: .75rem 0; border-bottom: 1px solid var(--border); }
     .timeline b { font: 600 .9375rem/1.6 var(--mono); color: var(--accent); }
-    /* Klubi · Keskus · Kool — klubi kolm logo */
-    .brands { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1.5rem 0 0; padding: 0; list-style: none; }
-    .brands li { display: flex; flex-direction: column; justify-content: space-between; gap: .75rem; padding: 1.1rem 1.25rem;
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); min-width: 0; }
-    .brands img { height: 46px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; filter: brightness(0) invert(.96); }
-    .brands span { font-size: var(--fs-small); color: var(--muted); }
-    .brands b { display: block; color: var(--ink); font-weight: 600; font-size: 1rem; }
 
     /* koostööpartnerid ja EL-i toetus — üks hele riba; EL-i embleem jääb partnerite logodest suuremaks */
     .band { background: var(--paper); color: var(--paper-ink); border-radius: var(--r); padding: clamp(1.25rem, 3vw, 2rem); display: grid; gap: 1.5rem; }
@@ -520,30 +515,45 @@
       .atlas-nav { display: none; }
       .menu-btn { display: inline-flex; }
       .intro { border-radius: var(--r); }
-      .prices, .comp, .grid-3, .grid-2, .steps, .contact-grid, .eu-list { grid-template-columns: minmax(0, 1fr); }
+      .comp, .grid-3, .grid-2, .steps, .contact-grid, #klubi .more-body { grid-template-columns: minmax(0, 1fr); }
       .member { grid-template-columns: minmax(0, 1fr); }
       .coaches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .intro-art { width: 42%; opacity: .4; }
-      .photo img { aspect-ratio: 4 / 3; }
-      .partners { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       section { padding-top: 3rem; }
     }
-    /* --- telefon: lühike esimene ekraan, rahulik tekstiala --- */
+    /* --- telefon: lühike esimene ekraan, ainult põhiinfo nähtaval --- */
     @media (max-width: 640px) {
+      .card { --pad: 1.1rem; }
       .intro { min-height: 0; }
-      .intro-art { display: none; }
-      .intro-facts { display: none; }
+      .intro-art, .intro-facts, .book-extra { display: none; }
       .intro h1 { max-width: none; }
-      .book-extra { display: none; }
       .brand img { height: 28px; }
-      .coaches { grid-template-columns: minmax(0, 1fr); }
-      .card { padding: 1.1rem; }
+      section { padding-top: 2.5rem; }
+      .grid-3, .grid-2 { gap: 8px; }
+      /* tegevuskaardid ühel real: pealkiri + nool (lingi nimi jääb terviklikuks) */
+      .task { flex-direction: row; justify-content: space-between; align-items: center; padding: .8rem 1.1rem; min-height: 56px; }
+      .task p { display: none; }
+      .task .go-txt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .task .go { font-size: 1.25rem; }
+      /* kutsega treenerid täislaiuses, teised kahekaupa */
+      .coaches { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+      .coach { padding: 10px 12px; }
+      .coach.full { grid-column: 1 / -1; }
+      .member { gap: .75rem; }
+      .member .big { margin: .2rem 0; }
       .rank-list li { grid-template-columns: 28px 1fr auto 44px; }
-      .loc-tag { position: static; display: inline-block; margin-bottom: .75rem; }
-      .loc h3 { padding-right: 0; }
-      .brands { grid-template-columns: minmax(0, 1fr); }
+      .member .big { font-size: 2.5rem; }
+      .member ul { columns: 1; }
+      .facts-list div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+      .brands { gap: 6px; }
+      .brands li { padding: .75rem; }
+      .brands img { height: 28px; }
+      .partners { gap: .5rem; }
+      .partner img { max-height: 52px; }
+      .partner span { display: none; }
       .eu-item { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
       .eu-item img { width: min(260px, 100%); }
+      .map { min-height: 0; padding: 1.1rem; }
     }
     @media (max-width: 480px) {
       .intro-cta .btn { flex: 1 1 100%; }
@@ -571,13 +581,12 @@
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Lehe sisukord" hidden>
       <ul>
-        <li><a href="#keskus"><span aria-hidden="true">01</span>Keskus</a></li>
-        <li><a href="#hinnad"><span aria-hidden="true">02</span>Hinnad</a></li>
-        <li><a href="#kool"><span aria-hidden="true">03</span>Treeningud</a></li>
-        <li><a href="#voistlused"><span aria-hidden="true">04</span>Võistlused</a></li>
-        <li><a href="#kkk"><span aria-hidden="true">05</span>KKK</a></li>
-        <li><a href="#klubi"><span aria-hidden="true">06</span>Klubi</a></li>
-        <li><a href="#kontakt"><span aria-hidden="true">07</span>Kontakt</a></li>
+        <li><a href="#keskus"><span aria-hidden="true">01</span>Väljakud ja hinnad</a></li>
+        <li><a href="#kool"><span aria-hidden="true">02</span>Treeningud</a></li>
+        <li><a href="#voistlused"><span aria-hidden="true">03</span>Võistlused</a></li>
+        <li><a href="#kkk"><span aria-hidden="true">04</span>KKK</a></li>
+        <li><a href="#klubi"><span aria-hidden="true">05</span>Klubi</a></li>
+        <li><a href="#kontakt"><span aria-hidden="true">06</span>Kontakt</a></li>
       </ul>
     </nav>
   </header>
@@ -615,13 +624,12 @@
       </div>
     </section>
     <nav class="atlas-nav" id="atlas-nav" aria-label="Lehe sisukord">
-      <a href="#keskus"><span aria-hidden="true">01</span>Keskus</a>
-      <a href="#hinnad"><span aria-hidden="true">02</span>Hinnad</a>
-      <a href="#kool"><span aria-hidden="true">03</span>Treeningud</a>
-      <a href="#voistlused"><span aria-hidden="true">04</span>Võistlused</a>
-      <a href="#kkk"><span aria-hidden="true">05</span>KKK</a>
-      <a href="#klubi"><span aria-hidden="true">06</span>Klubi</a>
-      <a href="#kontakt"><span aria-hidden="true">07</span>Kontakt</a>
+      <a href="#keskus"><span aria-hidden="true">01</span>Väljakud ja hinnad</a>
+      <a href="#kool"><span aria-hidden="true">02</span>Treeningud</a>
+      <a href="#voistlused"><span aria-hidden="true">03</span>Võistlused</a>
+      <a href="#kkk"><span aria-hidden="true">04</span>KKK</a>
+      <a href="#klubi"><span aria-hidden="true">05</span>Klubi</a>
+      <a href="#kontakt"><span aria-hidden="true">06</span>Kontakt</a>
     </nav>
 
     <!-- ===== 2. KASUTAJAÜLESANDED ===== -->
@@ -631,119 +639,70 @@
         <a class="card task" href="#keskus">
           <h3>Tahan mängida</h3>
           <p>Broneeri tennise- või padeliväljak — sisehallis aastaringselt, järve ääres suvel.</p>
-          <span class="go">Mängukohad ja hinnad <span aria-hidden="true">→</span></span>
+          <span class="go"><span class="go-txt">Väljakud ja hinnad </span><span aria-hidden="true">→</span></span>
         </a>
         <a class="card task" href="#kool">
           <h3>Tahan õppida</h3>
           <p>Tennise- ja padelitrennid lastele alates 4. eluaastast ning täiskasvanutele.</p>
-          <span class="go">Treeningud <span aria-hidden="true">→</span></span>
+          <span class="go"><span class="go-txt">Treeningud </span><span aria-hidden="true">→</span></span>
         </a>
         <a class="card task" href="#voistlused">
           <h3>Tahan võistelda</h3>
           <p>Viljandi üksikmängu sari, püramiid ja maakonna meistrivõistlused.</p>
-          <span class="go">Võistlused <span aria-hidden="true">→</span></span>
+          <span class="go"><span class="go-txt">Võistlused </span><span aria-hidden="true">→</span></span>
         </a>
       </div>
     </section>
 
-    <!-- ===== 3. MÄNGUKOHAD ===== -->
-    <section id="keskus" data-osa="asukohad" data-osa-nimi="Mängukohad" aria-labelledby="h-keskus">
+    <!-- ===== 3. VÄLJAKUD JA HINNAD (iga koha kaardil tema hinnad) ===== -->
+    <section id="keskus" data-osa="asukohad" data-osa-nimi="Väljakud ja hinnad" aria-labelledby="h-keskus">
       <div class="sec-head">
         <div>
-          <span class="label">01 / Keskus</span>
+          <span class="label">01 / Väljakud ja hinnad</span>
           <h2 id="h-keskus">Kaks mängukohta. Üks broneerimiskeskkond.</h2>
-          <p class="sec-sub">Mõlemas kohas broneerid Matchi kaudu. Sisehallis personali pole — sisse pääsed broneeringuga saadud uksekoodiga.</p>
+          <p class="sec-sub">Mõlemas kohas broneerid Matchis. Tunnihinnad alates 01.09.2026.</p>
         </div>
       </div>
-      <figure class="photo">
-        <img src="img/viljandi-jarv-1280.webp"
-             srcset="img/viljandi-jarv-640.webp 640w, img/viljandi-jarv-1280.webp 1280w, img/viljandi-jarv-1920.webp 1920w"
-             sizes="(max-width: 1240px) 100vw, 1240px" width="1920" height="1079" loading="lazy" decoding="async"
-             alt="Õhtune Viljandi järv ja järveäärne spordipark valgustatud väljakutega, linnulennult" />
-        <figcaption>Viljandi järv · Ranna pst 3</figcaption>
-      </figure>
       <div class="grid-2">
-        <article class="card loc">
-          <span class="loc-tag">Aastaringselt</span>
-          <h3><span class="loc-type">Sisehall</span><span class="vh"> — </span>Kaalu 2</h3>
-          <p class="addr">Viljandi · avatud iga päev 6–24</p>
-          <ul class="courts">
-            <li><span class="n">2</span><span>tennise siseväljakut <span class="muted small">· Schöpp Classic vaipkate</span></span></li>
-            <li><span class="n">3</span><span>padeli siseväljakut <span class="muted small">· Mondo Supercourt XN</span></span></li>
-          </ul>
-          <p class="loc-note">Saun, riietus- ja pesuruumid. Uksekood kehtib 20 min enne kuni 20 min pärast broneeritud aega.
-            Probleem uksekoodiga? Helista keskusele <a href="tel:+3725036425">+372 5036 425</a>.</p>
-          <p class="loc-price">Tunnihind: tennis alates <span class="num">28 €</span>, padel alates <span class="num">36 €</span></p>
-          <div class="loc-links">
-            <a class="link-arrow" href="#hinnad">Vaata hinnakirja <span aria-hidden="true">↓</span></a>
-            <a class="link-arrow" href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">Broneeri Matchis <span aria-hidden="true">↗</span></a>
-            <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Kaalu+2+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (sisehall Kaalu 2, Google Maps)</span></a>
-          </div>
+        <article class="card loc" aria-labelledby="h-sise">
+          <h3 id="h-sise"><span class="loc-type">Sisehall</span><span class="vh"> — </span>Kaalu 2</h3>
+          <p class="addr">Avatud iga päev 6–24 · 2 tennise- ja 3 padeliväljakut</p>
+          <table class="ptable">
+            <caption class="vh">Sisehalli tunnihinnad, tavahind ja liikmehind</caption>
+            <thead><tr><th scope="col">Aeg</th><th scope="col" class="pr">Tennis</th><th scope="col" class="pr">Padel</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="tier">Tavaaeg</span>E–R 6–17, 21–24</th><td class="pr"><b>28 €</b><span class="mem">liikmele 26 €</span></td><td class="pr"><b>36 €</b><span class="mem">liikmele 32 €</span></td></tr>
+              <tr><th scope="row"><span class="tier peak">Tipptund</span>E–R 17–21</th><td class="pr"><b>36 €</b><span class="mem">liikmele 34 €</span></td><td class="pr"><b>44 €</b><span class="mem">liikmele 40 €</span></td></tr>
+              <tr><th scope="row"><span class="tier">Nädalavahetus</span>L–P 6–24</th><td class="pr"><b>28 €</b><span class="mem">liikmele 26 €</span></td><td class="pr"><b>40 €</b><span class="mem">liikmele 36 €</span></td></tr>
+            </tbody>
+          </table>
+          <p class="loc-note">Personali pole: sisse pääsed broneeringuga saadud uksekoodiga (kehtib 20 min enne kuni 20 min pärast).
+            Probleem uksekoodiga? Helista <a href="tel:+3725036425">+372 5036 425</a>.</p>
+          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Kaalu+2+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (sisehall Kaalu 2, Google Maps)</span></a>
         </article>
-        <article class="card loc">
-          <span class="loc-tag" id="out-tag">Mai–okt</span>
-          <h3><span class="loc-type">Väliväljakud järve ääres</span><span class="vh"> — </span>Ranna puiestee 3</h3>
-          <p class="addr">Viljandi · hooaeg mai–oktoober</p>
-          <ul class="courts">
-            <li><span class="n">6</span><span>tennise väliväljakut <span class="muted small">· Top Clay</span></span></li>
-            <li><span class="n">5</span><span>padeli väliväljakut <span class="muted small">· 4 Top Velour + 1 kunstmuru</span></span></li>
-          </ul>
-          <p class="loc-note" id="out-note">Avatud hooajal maist oktoobrini iga päev.</p>
-          <p class="loc-price">Tunnihind: tennis ja padel alates <span class="num">24 €</span> <span class="muted small">· 2026. aasta hinnad</span></p>
-          <div class="loc-links">
-            <a class="link-arrow" href="#hinnad">Vaata hinnakirja <span aria-hidden="true">↓</span></a>
-            <a class="link-arrow" href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">Broneeri Matchis <span aria-hidden="true">↗</span></a>
-            <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Ranna+puiestee+3+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (väliväljakud Ranna puiestee 3, Google Maps)</span></a>
-          </div>
+        <article class="card loc" aria-labelledby="h-valjas">
+          <img class="loc-photo" src="img/viljandi-jarv-640.webp"
+               srcset="img/viljandi-jarv-640.webp 640w, img/viljandi-jarv-1280.webp 1280w"
+               sizes="(max-width: 900px) 100vw, 620px" width="1920" height="1079" loading="lazy" decoding="async"
+               alt="Õhtune Viljandi järv ja järveäärne spordipark valgustatud väljakutega, linnulennult" />
+          <h3 id="h-valjas"><span class="loc-type">Väliväljakud järve ääres</span><span class="vh"> — </span>Ranna puiestee 3</h3>
+          <p class="addr">6 tennise- ja 5 padeliväljakut · <span id="out-season">hooaeg mai–oktoober</span></p>
+          <table class="ptable">
+            <caption class="vh">Väliväljakute tunnihinnad 2026. aasta hooajal, tavahind ja liikmehind</caption>
+            <thead><tr><th scope="col">Aeg · 2026. a hinnad</th><th scope="col" class="pr">Tennis ja padel</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="tier">Tavaaeg</span>E–R 6–17, 20–23</th><td class="pr"><b>24 €</b><span class="mem">liikmele 22 €</span></td></tr>
+              <tr><th scope="row"><span class="tier peak">Tipptund ja nädalavahetus</span>E–R 17–20, L–P</th><td class="pr"><b>28 €</b><span class="mem">liikmele 26 €</span></td></tr>
+            </tbody>
+          </table>
+          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Ranna+puiestee+3+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (väliväljakud Ranna puiestee 3, Google Maps)</span></a>
         </article>
       </div>
-    </section>
 
-    <!-- ===== 4. HINNAD, BRONEERIMINE, LIIKMELISUS ===== -->
-    <section id="hinnad" data-osa="hinnad" data-osa-nimi="Hinnad ja broneerimine" aria-labelledby="h-hinnad">
-      <div class="sec-head">
-        <div>
-          <span class="label">02 / Hinnad</span>
-          <h2 id="h-hinnad">Hinnad.</h2>
-          <p class="sec-sub">Tunnihinnad alates 01.09.2026. Tasuta tühistamine kuni 24 tundi enne algust.</p>
-        </div>
+      <div class="book-row">
+        <a class="btn btn-accent" href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">Broneeri väljak<span aria-hidden="true"> ↗</span></a>
+        <p class="small muted">Vajalik Matchi konto. Tasuta tühistamine kuni 24 tundi enne algust.</p>
       </div>
-      <div class="prices">
-        <div class="card">
-          <h3 class="card-h" id="h-tennis">Tennis · sisehall</h3>
-          <table aria-labelledby="h-tennis">
-            <thead><tr><th scope="col">Aeg</th><th scope="col" class="p">Tavahind</th><th scope="col" class="m">Liikmele</th></tr></thead>
-            <tbody>
-              <tr><td><span class="tier">Tavaaeg</span>E–R 6–17, 21–24</td><td class="p num">28 €</td><td class="m num">26 €</td></tr>
-              <tr><td><span class="tier peak">Tipptund</span>E–R 17–21</td><td class="p num">36 €</td><td class="m num">34 €</td></tr>
-              <tr><td><span class="tier">Nädalavahetus</span>L–P 6–24</td><td class="p num">28 €</td><td class="m num">26 €</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card">
-          <h3 class="card-h" id="h-padel">Padel · sisehall</h3>
-          <table aria-labelledby="h-padel">
-            <thead><tr><th scope="col">Aeg</th><th scope="col" class="p">Tavahind</th><th scope="col" class="m">Liikmele</th></tr></thead>
-            <tbody>
-              <tr><td><span class="tier">Tavaaeg</span>E–R 6–17, 21–24</td><td class="p num">36 €</td><td class="m num">32 €</td></tr>
-              <tr><td><span class="tier peak">Tipptund</span>E–R 17–21</td><td class="p num">44 €</td><td class="m num">40 €</td></tr>
-              <tr><td><span class="tier">Nädalavahetus</span>L–P 6–24</td><td class="p num">40 €</td><td class="m num">36 €</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card">
-          <h3 class="card-h" id="h-valjas">Väljas · tennis ja padel</h3>
-          <p class="season" id="out-season">Hooaeg mai–oktoober · 2026. aasta hinnad</p>
-          <table aria-labelledby="h-valjas">
-            <thead><tr><th scope="col">Aeg</th><th scope="col" class="p">Tavahind</th><th scope="col" class="m">Liikmele</th></tr></thead>
-            <tbody>
-              <tr><td><span class="tier">Tavaaeg</span>E–R 6–17, 20–23</td><td class="p num">24 €</td><td class="m num">22 €</td></tr>
-              <tr><td><span class="tier peak">Tipptund ja nädalavahetus</span>E–R 17–20, L–P</td><td class="p num">28 €</td><td class="m num">26 €</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <p class="muted small" style="margin: .75rem 0 0;">Hinnad tunni kohta. Püsiaja broneerija peab ise olema regulaarne kasutaja.</p>
 
       <div class="card member">
         <div>
@@ -754,7 +713,6 @@
         <div>
           <p class="payback">Liikmele on iga tund 2–4 € soodsam — pakett tasub end ära 13 padeli- või 25 tennisetunniga aastas.</p>
           <ul>
-            <li>Soodsam tunnihind igal broneeringul</li>
             <li>Broneeri 14 päeva ette (teistel 7)</li>
             <li>Eelisjärjekord püsiaegadele ja valitud võistlustele</li>
             <li>Soodustused üritustel, teenustel ja kaupadel</li>
@@ -762,46 +720,47 @@
         </div>
         <div class="member-cta">
           <a class="btn btn-ink" href="https://www.matchi.se/facilities/membership/viljanditennis" rel="noopener">Liitu klubiga<span aria-hidden="true"> ↗</span></a>
-          <span class="small">Liitumine ja makse Matchi keskkonnas, vajalik Matchi konto.</span>
+          <span class="small">Matchi keskkonnas, vajalik Matchi konto.</span>
         </div>
       </div>
 
-      <h3 id="broneeri" style="margin: 2.5rem 0 0;">Kuidas broneerida</h3>
-      <ol class="steps">
-        <li class="step"><h4>Loo Matchi konto</h4><p>Registreerimata klient väljakut broneerida ei saa. Konto loomine võtab minuti.</p></li>
-        <li class="step"><h4>Vali väljak ja aeg</h4><p>Maksa kaardiga või tunnipangast. Püsiaegade arve tuleb kuu alguses e-postiga.</p></li>
-        <li class="step"><h4>Tule kohale</h4><p>Uksekood kehtib 20 minutit enne kuni 20 minutit pärast broneeritud aega.</p></li>
-      </ol>
-      <div class="row-links">
-        <a class="btn btn-accent" href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">Broneeri väljak<span aria-hidden="true"> ↗</span></a>
-        <a class="link-arrow" href="https://www.fellinrackets.ee/keskus/klienditingimused/">Klienditingimused <span aria-hidden="true">↗</span></a>
-        <a class="link-arrow" href="https://www.fellinrackets.ee/keskus/sisekorra-eeskiri/">Sisekorra eeskiri <span aria-hidden="true">↗</span></a>
-        <a class="link-arrow" href="https://www.fellinrackets.ee/keskus/tennise-etikett/">Tennise etikett <span aria-hidden="true">↗</span></a>
-      </div>
+      <details class="more">
+        <summary>Kuidas broneerida, väljakute katted ja tingimused</summary>
+        <div class="more-body">
+          <ol class="steps">
+            <li class="step"><h4>Loo Matchi konto</h4><p>Registreerimata klient väljakut broneerida ei saa. Konto loomine võtab minuti.</p></li>
+            <li class="step"><h4>Vali väljak ja aeg</h4><p>Maksa kaardiga või tunnipangast. Püsiaegade arve tuleb kuu alguses e-postiga.</p></li>
+            <li class="step"><h4>Tule kohale</h4><p>Uksekood kehtib 20 minutit enne kuni 20 minutit pärast broneeritud aega.</p></li>
+          </ol>
+          <dl class="facts-list">
+            <div><dt>Sisehall</dt><dd>Tennis: Schöpp Classic vaipkate · padel: Mondo Supercourt XN · saun, riietus- ja pesuruumid</dd></div>
+            <div><dt>Väliväljakud</dt><dd>Tennis: Top Clay · padel: 4 Top Velour + 1 kunstmuru</dd></div>
+            <div><dt>Püsiaeg</dt><dd>Püsiaja broneerija peab ise olema regulaarne kasutaja.</dd></div>
+          </dl>
+          <div class="row-links">
+            <a class="link-arrow" href="https://www.fellinrackets.ee/keskus/klienditingimused/">Klienditingimused <span aria-hidden="true">↗</span></a>
+            <a class="link-arrow" href="https://www.fellinrackets.ee/keskus/sisekorra-eeskiri/">Sisekorra eeskiri <span aria-hidden="true">↗</span></a>
+            <a class="link-arrow" href="https://www.fellinrackets.ee/keskus/tennise-etikett/">Tennise etikett <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </details>
     </section>
 
-    <!-- ===== 5. TREENINGUD JA TREENERID ===== -->
+    <!-- ===== 4. TREENINGUD JA TREENERID ===== -->
     <section id="kool" data-osa="kool" data-osa-nimi="Treeningud ja treenerid" aria-labelledby="h-kool">
       <div class="sec-head">
         <div>
-          <span class="label">03 / Treeningud</span>
+          <span class="label">02 / Treeningud</span>
           <h2 id="h-kool">Ott Ahoneni tennise- ja padelikool.</h2>
-          <p class="sec-sub">Erahuvikool aastast 2005. Trennid käivad aastaringselt — talvel sisehallis, suvel järve ääres.
-            Peatreenerid on vanemtreenerid (EKR tase 6).</p>
+          <p class="sec-sub">Erahuvikool aastast 2005. Trennid käivad aastaringselt — talvel sisehallis, suvel järve ääres.</p>
         </div>
       </div>
-      <div class="grid-2 audience">
-        <div class="card aud">
-          <h3>Lapsed</h3>
-          <p>Alates 4. eluaastast. Tennis, padel või mõlemad. Reketi saab algul kohapealt.</p>
-        </div>
-        <div class="card aud">
-          <h3>Täiskasvanud</h3>
-          <p>Algajad ja edasijõudnud, tennis ja padel.</p>
-        </div>
-      </div>
-      <div class="grid-2">
+      <div class="grid-2 train">
         <div class="card">
+          <div class="aud-row">
+            <div><h3>Lapsed</h3><p>Alates 4. eluaastast. Reketi saab algul kohapealt.</p></div>
+            <div><h3>Täiskasvanud</h3><p>Algajad ja edasijõudnud.</p></div>
+          </div>
           <h3 class="card-h" id="h-oppemaks">Õppemaks kuus · alates 01.09.2026</h3>
           <table aria-labelledby="h-oppemaks">
             <thead class="vh"><tr><th scope="col">Trennide arv</th><th scope="col">Hind kuus</th></tr></thead>
@@ -813,68 +772,61 @@
               <tr><td>Tennis 1× + padel 1× nädalas</td><td class="p num">72 €</td></tr>
             </tbody>
           </table>
-        </div>
-        <div>
-          <ul class="chips" aria-label="Soodustused ja tingimused">
-            <li class="chip">Õdedele-vendadele −10 %</li>
-            <li class="chip">Haigus ≥ 2 näd (tõend) — kuutasu ei arvestata</li>
-          </ul>
-          <p class="muted">Väljaspool Viljandit elavatele kohamaks 50 € kuus või 600 € aastas.
-            Viljandi linn, Põhja-Sakala ja Mulgi vald tasuvad selle oma elanike eest.</p>
-          <div class="ask">
-            <a class="btn btn-accent" id="trenni-kiri"
-               href="mailto:ott@fellinrackets.ee?subject=Trenni%20kohta&amp;body=Tere!%0A%0ASoovin%20infot%20trenni%20kohta.%0A%0ANimi%3A%20%0ATelefon%20v%C3%B5i%20e-post%3A%20%0ASpordiala%20(tennis%20%2F%20padel)%3A%20%0ALaps%20v%C3%B5i%20t%C3%A4iskasvanu%20(lapse%20vanus)%3A%20%0AKogemus%20(algaja%20%2F%20m%C3%A4nginud%20varem)%3A%20%0ASobivad%20p%C3%A4evad%20ja%20kellaajad%3A%20%0A">Küsi trenni kohta e-postiga</a>
-            <div>
-              <p>Avab sinu e-postiprogrammi valmis küsimustega. See leht andmeid ei salvesta.
-                Kui kasutad veebipostkasti, kirjuta otse aadressile:</p>
-              <p class="addr-line">
-                <a href="mailto:ott@fellinrackets.ee">ott@fellinrackets.ee</a>
-                <button class="copy-btn" type="button" data-copy="ott@fellinrackets.ee" hidden>Kopeeri aadress</button>
-                <span class="copy-ok" role="status"></span>
-              </p>
-              <p>Võid ka helistada: <a href="tel:+37256494381">5649 4381</a> (Ott Ahonen).</p>
+          <details class="more">
+            <summary>Soodustused ja kohamaks</summary>
+            <div class="more-body">
+              <ul class="plain">
+                <li>Õdedele-vendadele −10 %.</li>
+                <li>Haiguse korral alates 2 nädalast (tõendiga) kuutasu ei arvestata.</li>
+                <li>Väljaspool Viljandit elavatele kohamaks 50 € kuus või 600 € aastas. Viljandi linn, Põhja-Sakala ja Mulgi vald tasuvad selle oma elanike eest.</li>
+              </ul>
             </div>
-          </div>
+          </details>
+        </div>
+        <div class="card ask">
+          <h3>Küsi trenni kohta</h3>
+          <a class="btn btn-accent" id="trenni-kiri"
+             href="mailto:ott@fellinrackets.ee?subject=Trenni%20kohta&amp;body=Tere!%0A%0ASoovin%20infot%20trenni%20kohta.%0A%0ANimi%3A%20%0ATelefon%20v%C3%B5i%20e-post%3A%20%0ASpordiala%20(tennis%20%2F%20padel)%3A%20%0ALaps%20v%C3%B5i%20t%C3%A4iskasvanu%20(lapse%20vanus)%3A%20%0AKogemus%20(algaja%20%2F%20m%C3%A4nginud%20varem)%3A%20%0ASobivad%20p%C3%A4evad%20ja%20kellaajad%3A%20%0A">Küsi trenni kohta e-postiga</a>
+          <p>Avab e-kirja valmis küsimustega: spordiala, vanus, kogemus ja sobivad ajad.</p>
+          <p class="addr-line">
+            <span>Veebipostkasti kasutajale:</span>
+            <a href="mailto:ott@fellinrackets.ee">ott@fellinrackets.ee</a>
+            <button class="copy-btn" type="button" data-copy="ott@fellinrackets.ee" hidden>Kopeeri aadress</button>
+            <span class="copy-ok" role="status"></span>
+          </p>
+          <p>Või helista: <a href="tel:+37256494381">5649 4381</a> (Ott Ahonen).</p>
         </div>
       </div>
-      <h3 style="margin: 2.25rem 0 0;">Treenerid</h3>
-      <p class="muted small" style="margin: .25rem 0 0;">Kutsed on kontrollitavad Eesti spordiregistris.</p>
+      <h3 class="sub-h">Treenerid <span class="muted small">· kutsed on kontrollitavad Eesti spordiregistris</span></h3>
       <!-- Kutsed: Eesti spordiregister, seis 09.11.2026 -->
       <ul class="coaches" id="coaches">
-        <li class="coach"><span class="avatar" aria-hidden="true">OA</span>
-          <div><b>Ott Ahonen</b><span class="role">Peatreener · tennis ja padel</span>
-            <div class="kutse">Vanemtreener · EKR tase 6 · tennis<span class="kuni">kehtib kuni 25.09.2029 ·
-              <a href="https://www.spordiregister.ee/et/treener/2972/ott_ahonen" rel="noopener"><span class="vh">Ott Ahoneni kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></div></li>
-        <li class="coach"><span class="avatar" aria-hidden="true">PP</span>
-          <div><b>Priit Pihl</b><span class="role">Treener · õppealajuhataja</span>
-            <div class="kutse">Vanemtreener · EKR tase 6 · tennis<span class="kuni">kehtib kuni 25.09.2029 ·
-              <a href="https://www.spordiregister.ee/et/treener/6853/priit_pihl" rel="noopener"><span class="vh">Priit Pihli kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></div></li>
-        <li class="coach"><span class="avatar" aria-hidden="true">TK</span>
-          <div><b>Timo Kirsimäe</b><span class="role">Tennisetreener</span>
-            <div class="kutse">Abitreener · EKR tase 3 · tennis<span class="kuni">kehtib kuni 02.05.2027 ·
-              <a href="https://www.spordiregister.ee/et/treener/9793/timo_kirsimae" rel="noopener"><span class="vh">Timo Kirsimäe kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></div></li>
-        <li class="coach"><span class="avatar" aria-hidden="true">DK</span>
-          <div><b>Diana Klavan</b><span class="role">Padelitreener</span></div></li>
-        <li class="coach"><span class="avatar" aria-hidden="true">PÕ</span>
-          <div><b>Priscilla Õmblus</b><span class="role">Padelitreener</span></div></li>
-        <li class="coach"><span class="avatar" aria-hidden="true">AL</span>
-          <div><b>Anelle Luik</b><span class="role">Treener</span></div></li>
+        <li class="coach full"><b>Ott Ahonen</b><span class="role">Peatreener · tennis ja padel</span>
+          <div class="kutse">Vanemtreener · EKR tase 6 · tennis<span class="kuni">kehtib kuni 25.09.2029 ·
+            <a href="https://www.spordiregister.ee/et/treener/2972/ott_ahonen" rel="noopener"><span class="vh">Ott Ahoneni kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></li>
+        <li class="coach full"><b>Priit Pihl</b><span class="role">Treener · õppealajuhataja</span>
+          <div class="kutse">Vanemtreener · EKR tase 6 · tennis<span class="kuni">kehtib kuni 25.09.2029 ·
+            <a href="https://www.spordiregister.ee/et/treener/6853/priit_pihl" rel="noopener"><span class="vh">Priit Pihli kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></li>
+        <li class="coach full"><b>Timo Kirsimäe</b><span class="role">Tennisetreener</span>
+          <div class="kutse">Abitreener · EKR tase 3 · tennis<span class="kuni">kehtib kuni 02.05.2027 ·
+            <a href="https://www.spordiregister.ee/et/treener/9793/timo_kirsimae" rel="noopener"><span class="vh">Timo Kirsimäe kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></li>
+        <li class="coach"><b>Diana Klavan</b><span class="role">Padelitreener</span></li>
+        <li class="coach"><b>Priscilla Õmblus</b><span class="role">Padelitreener</span></li>
+        <li class="coach"><b>Anelle Luik</b><span class="role">Treener</span></li>
       </ul>
     </section>
 
-    <!-- ===== 6. VÕISTLUSED — integratsioon viljandi-edetabeli süsteemiga ===== -->
+    <!-- ===== 5. VÕISTLUSED — integratsioon viljandi-edetabeli süsteemiga ===== -->
     <section id="voistlused" data-osa="voistlused" data-osa-nimi="Võistlused ja edetabel" aria-labelledby="h-voistlused">
       <div class="sec-head">
         <div>
-          <span class="label">04 / Võistlused</span>
+          <span class="label">03 / Võistlused</span>
           <h2 id="h-voistlused">Edetabel ja tulemused.</h2>
-          <p class="sec-sub">Viljandi üksikmängu sari (VÜS), püramiid ja maakonna meistrivõistlused — edetabeli süsteemist.</p>
         </div>
         <p class="data-status" id="data-status" role="status" data-asof="17.10.2026">Viimane teadaolev seis 17.10.2026.</p>
       </div>
-      <div class="comp">
-        <div class="card">
-          <h3 class="card-h">VÜS edetabel · <span id="vus-asof">viimane teadaolev seis 17.10.2026</span></h3>
+      <div class="card comp">
+        <div>
+          <h3 class="card-h">Viljandi üksikmängu sari (VÜS) · <span id="vus-asof">seis 17.10.2026</span></h3>
           <!-- Varuandmed (edetabel 17.10.2026): näha ka ilma JavaScriptita; värske seis asendab need -->
           <ol class="rank-list" id="vus-list">
             <li><span class="rk num" aria-hidden="true">01</span><span>Heimar Mirka</span><span class="pts num">602 p</span><span class="dl up"><span aria-hidden="true">▲</span>1<span class="vh"> kohta üles</span></span></li>
@@ -883,91 +835,69 @@
             <li><span class="rk num" aria-hidden="true">04</span><span>Viljar Vahemaa</span><span class="pts num">400 p</span><span class="dl eq"><span aria-hidden="true">—</span><span class="vh">muutuseta</span></span></li>
             <li><span class="rk num" aria-hidden="true">05</span><span>Henri Liiv</span><span class="pts num">362 p</span><span class="dl eq"><span aria-hidden="true">—</span><span class="vh">muutuseta</span></span></li>
           </ol>
-          <a class="link-arrow" href="https://viljandi-edetabel.pages.dev/" rel="noopener">Kogu edetabel ja mängijate statistika <span aria-hidden="true">→</span></a>
         </div>
-        <div class="side-stack">
-          <div class="card">
-            <h3 class="card-h">Püramiid · <span id="pyr-asof">viimane teadaolev seis 01.09.2026</span></h3>
-            <ol class="rank-list" id="pyr-list">
-              <li class="pyr"><span class="rk num" aria-hidden="true">01</span><span>Viljar Vahemaa <span aria-hidden="true">👑</span><span class="vh">(püramiidi tipp)</span></span></li>
-              <li class="pyr"><span class="rk num" aria-hidden="true">02</span><span>Priit Raudla</span></li>
-              <li class="pyr"><span class="rk num" aria-hidden="true">03</span><span>Timo Kirsimäe</span></li>
-            </ol>
-            <a class="link-arrow" href="https://viljandi-edetabel.pages.dev/puramiid.html" rel="noopener">Püramiid ja väljakutsed <span aria-hidden="true">→</span></a>
-          </div>
-          <div class="card">
-            <h3 class="card-h">Viljandimaa MV 2026 · lõppjärjestus</h3>
-            <ol class="podium">
-              <li><b>1.</b>Priit Pihl</li>
-              <li><b>2.</b>Ott Ahonen</li>
-              <li><b>3.</b>Priit Raudla</li>
-            </ol>
-            <a class="link-arrow" href="https://viljandi-edetabel.pages.dev/#mv" rel="noopener">Kõik MV tulemused <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
+        <ul class="comp-links">
+          <li><a href="https://viljandi-edetabel.pages.dev/" rel="noopener"><b>Kogu edetabel</b><span>Kõik mängijad, etapid ja statistika</span><span class="arr" aria-hidden="true">→</span></a></li>
+          <li><a href="https://viljandi-edetabel.pages.dev/puramiid.html" rel="noopener"><b>Püramiid</b><span id="pyr-top">Tipus Viljar Vahemaa · seis 01.09.2026</span><span class="arr" aria-hidden="true">→</span></a></li>
+          <li><a href="https://viljandi-edetabel.pages.dev/#mv" rel="noopener"><b>Viljandimaa MV 2026</b><span>1. Priit Pihl · 2. Ott Ahonen · 3. Priit Raudla</span><span class="arr" aria-hidden="true">→</span></a></li>
+        </ul>
       </div>
     </section>
 
-    <!-- ===== 7. KKK ===== -->
+    <!-- ===== 6. KKK ===== -->
     <section id="kkk" class="faq" data-osa="kkk" data-osa-nimi="Korduma kippuvad küsimused" aria-labelledby="h-kkk">
       <div class="sec-head">
         <div>
-          <span class="label">05 / KKK</span>
+          <span class="label">04 / KKK</span>
           <h2 id="h-kkk">Korduma kippuvad küsimused.</h2>
         </div>
       </div>
       <!-- Tekst on sõna-sõnalt sama mis päise FAQPage JSON-LD-s — muuda mõlemas -->
       <div class="faq-list" id="faq-list">
-        <details open><summary>Kus Viljandis saab tennist ja padelit mängida?</summary>
+        <details><summary>Kus Viljandis saab tennist ja padelit mängida?</summary>
           <p>Fellin Rackets keskuses: sisehall Kaalu 2 on avatud aastaringselt iga päev 6–24 (2 tennise- ja 3 padeliväljakut). Hooajal mai–oktoober lisanduvad järveäärsed väliväljakud Ranna puiestee 3 (6 tennise- ja 5 padeliväljakut).</p></details>
         <details><summary>Kui palju maksab väljaku rent Viljandis?</summary>
           <p>Alates 01.09.2026: sisetennis 28–36 € tund, sisepadel 36–44 € tund, väliväljakud 24–28 € tund (2026. a hooaeg). Klubiliikmetele 2–4 € soodsam.</p></details>
-        <details><summary>Kuidas väljakut broneerida?</summary>
-          <p>Broneeri Matchi keskkonnas (<a href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">matchi.se/facilities/viljanditennis</a>). Vajalik on Matchi kasutajakonto. Maksta saab kaardiga või tunnipangast. Uksekood kehtib 20 minutit enne kuni 20 minutit pärast broneeritud aega.</p></details>
         <details><summary>Kas keskuses on personal?</summary>
           <p>Ei. Viljandi tennise- ja padelikeskus on automaatkeskus. Sisse pääseb broneeringuga saadud uksekoodiga. Probleemi korral helista keskuse telefonil <a href="tel:+3725036425">+372 5036 425</a>.</p></details>
-        <details><summary>Mis vanusest saab tennise- või padelitrenni tulla?</summary>
-          <p>Ott Ahoneni tennise- ja padelikool võtab lapsi alates 4. eluaastast. Trennid on ka täiskasvanutele, algajatele ja edasijõudnutele. Kuutasu alates 56 € (1× nädalas).</p></details>
-        <details><summary>Kas treeneritel on treenerikutse?</summary>
-          <p>Jah. Peatreener Ott Ahonen ja Priit Pihl on vanemtreenerid (EKR tase 6, tennis), Timo Kirsimäe on abitreener (EKR tase 3, tennis). Kutsed on avalikult kontrollitavad Eesti spordiregistris.</p></details>
         <details><summary>Kas broneeringut saab tühistada?</summary>
           <p>Jah, tasuta kuni 24 tundi enne algust. Hilisemat tühistamist ei hüvitata.</p></details>
-        <details><summary>Mida annab klubiliikme pakett?</summary>
-          <p>Pakett maksab 49 € aastas: soodsam tunnihind, broneerimine 14 päeva ette (teistel 7), eelisjärjekord püsiaegadele ja valitud võistlustele ning soodustused üritustel. Liituda saab Matchi keskkonnas.</p></details>
-        <details><summary>Kas Viljandis toimuvad tenniseturniirid?</summary>
-          <p>Jah. Viljandi üksikmängu sari (VÜS) peab etappe läbi hooaja, lisaks käib püramiidimäng ja toimuvad Viljandimaa meistrivõistlused. Edetabel ja tulemused uuenevad automaatselt.</p></details>
+        <details><summary>Mis vanusest saab tennise- või padelitrenni tulla?</summary>
+          <p>Ott Ahoneni tennise- ja padelikool võtab lapsi alates 4. eluaastast. Trennid on ka täiskasvanutele, algajatele ja edasijõudnutele. Kuutasu alates 56 € (1× nädalas).</p></details>
       </div>
     </section>
 
-    <!-- ===== 8. KLUBI JA TOETAJAD ===== -->
+    <!-- ===== 7. KLUBI ===== -->
     <section id="klubi" data-osa="klubi" data-osa-nimi="Klubi" aria-labelledby="h-klubi">
-      <div class="grid-2" style="gap: 1.5rem 3rem;">
+      <div class="sec-head">
         <div>
-          <span class="label" style="color: var(--accent);">06 / Klubi</span>
+          <span class="label">05 / Klubi</span>
           <h2 id="h-klubi">Klubi aastast 1924.</h2>
           <p class="sec-sub">Tennise- ja padeliklubi Fellin on mittetulundusühing, mis haldab Viljandi
             tennise- ja padelikeskust ning Ott Ahoneni tennise- ja padelikooli.</p>
-          <p class="sec-sub"><b style="color: var(--ink); font-weight: 600;">Viljandis alustanud parimad:</b> Markus Kerner, Diana Klavan, Anelle Luik,
-            Annemai Mutso, Saara Orav, Sonja Anderson, Steven Tensing, Brit Martin, Bert Martin, Kendra Aidla
-            — Eesti noorte meistrivõistluste medalivõitjad.</p>
-          <a class="link-arrow" href="https://www.facebook.com/TenniseklubiFellin/" rel="noopener">Klubi Facebookis <span aria-hidden="true">↗</span></a>
         </div>
-        <ol class="timeline" aria-label="Klubi ajalugu">
-          <li><b>1924</b><span>Viljandi tenniseklubi asutatakse vee- ja motospordi klubi koosseisus</span></li>
-          <li><b>1999</b><span>Tenniseklubi Fellin registreeritakse mittetulundusühinguna</span></li>
-          <li><b>2005</b><span>Ott Ahoneni tennisekool alustab erahuvikoolina</span></li>
-          <li><b>2023</b><span>Klubi hakkab haldama järveäärseid padeliväljakuid ja õpetama padelit</span></li>
-          <li><b>2024</b><span>Uus nimi: Viljandi tennise- ja padeliklubi Fellin</span></li>
-        </ol>
       </div>
       <ul class="brands" aria-label="Klubi, keskus ja kool">
-        <li><img src="img/fellin-klubi-logo.webp" alt="" width="400" height="172" loading="lazy" />
-          <span><b>Klubi</b>Viljandi tennise- ja padeliklubi Fellin</span></li>
-        <li><img src="img/fellin-rackets-logo.svg" alt="" width="1267" height="594" loading="lazy" />
-          <span><b>Keskus</b>Fellin Rackets — sisehall ja väliväljakud</span></li>
-        <li><img src="img/ott-ahoneni-logo.webp" alt="" width="500" height="128" loading="lazy" />
-          <span><b>Kool</b>Ott Ahoneni tennise- ja padelikool</span></li>
+        <li><img src="img/fellin-klubi-logo.webp" alt="Viljandi tennise- ja padeliklubi Fellin" width="400" height="172" loading="lazy" /><span>Klubi</span></li>
+        <li><img src="img/fellin-rackets-logo.svg" alt="Fellin Rackets" width="1267" height="594" loading="lazy" /><span>Keskus</span></li>
+        <li><img src="img/ott-ahoneni-logo.webp" alt="Ott Ahoneni tennise- ja padelikool" width="500" height="128" loading="lazy" /><span>Kool</span></li>
       </ul>
+      <details class="more">
+        <summary>Klubi ajalugu ja kasvandikud</summary>
+        <div class="more-body">
+          <ol class="timeline" aria-label="Klubi ajalugu">
+            <li><b>1924</b><span>Viljandi tenniseklubi asutatakse vee- ja motospordi klubi koosseisus</span></li>
+            <li><b>1999</b><span>Tenniseklubi Fellin registreeritakse mittetulundusühinguna</span></li>
+            <li><b>2005</b><span>Ott Ahoneni tennisekool alustab erahuvikoolina</span></li>
+            <li><b>2023</b><span>Klubi hakkab haldama järveäärseid padeliväljakuid ja õpetama padelit</span></li>
+            <li><b>2024</b><span>Uus nimi: Viljandi tennise- ja padeliklubi Fellin</span></li>
+          </ol>
+          <p><b>Viljandis alustanud parimad:</b> Markus Kerner, Diana Klavan, Anelle Luik,
+            Annemai Mutso, Saara Orav, Sonja Anderson, Steven Tensing, Brit Martin, Bert Martin, Kendra Aidla
+            — Eesti noorte meistrivõistluste medalivõitjad.</p>
+        </div>
+      </details>
+      <a class="link-arrow" href="https://www.facebook.com/TenniseklubiFellin/" rel="noopener">Klubi Facebookis <span aria-hidden="true">↗</span></a>
     </section>
 
     <section id="partnerid" data-osa="partnerid" data-osa-nimi="Toetajad ja koostööpartnerid" aria-labelledby="h-partnerid" style="padding-top: 2.5rem;">
@@ -1017,7 +947,7 @@
     <section id="kontakt" data-osa="kontakt" data-osa-nimi="Kontakt" aria-labelledby="h-kontakt">
       <div class="sec-head">
         <div>
-          <span class="label">07 / Kontakt</span>
+          <span class="label">06 / Kontakt</span>
           <h2 id="h-kontakt">Kontakt.</h2>
         </div>
       </div>
@@ -1095,12 +1025,8 @@
         : "Sisehall Kaalu 2 suletud · avaneb kell 6";
       $("#hall-dot").classList.toggle("off", !hallOpen);
       const outdoor = m >= 5 && m <= 10;
-      const tag = $("#out-tag");
-      tag.textContent = outdoor ? "Hooaeg käib" : "Avaneb mais";
-      tag.classList.toggle("off", !outdoor);
-      if (!outdoor) $("#out-note").textContent = "Hooaeg maist oktoobrini — praegu suletud. Talvel mängi sisehallis.";
       const season = $("#out-season");
-      season.textContent = outdoor ? "Hooaeg käib (mai–oktoober) · 2026. aasta hinnad" : "Hooaeg mai–oktoober · praegu suletud · 2026. aasta hinnad";
+      season.textContent = outdoor ? "hooaeg käib (mai–oktoober)" : "praegu suletud, hooaeg mai–oktoober";
       season.classList.toggle("off", !outdoor);
     })();
 
@@ -1121,7 +1047,7 @@
 
     // ---------- Vaadatava osa tähistus menüüs ----------
     (function () {
-      const SEOS = { keskus: "keskus", hinnad: "hinnad", kool: "kool", voistlused: "voistlused", kkk: "kkk", klubi: "klubi", partnerid: "klubi", kontakt: "kontakt" };
+      const SEOS = { keskus: "keskus", kool: "kool", voistlused: "voistlused", kkk: "kkk", klubi: "klubi", partnerid: "klubi", kontakt: "kontakt" };
       const sektsioonid = Object.keys(SEOS).map((id) => document.getElementById(id)).filter(Boolean);
       const lingid = [...document.querySelectorAll("#atlas-nav a, #mobile-menu a")];
       let ootel = false;
@@ -1153,11 +1079,8 @@
         `<span class="pts num">${p} p</span>${delta(d)}</li>`).join("")
         : `<li><span class="empty">Tulemusi veel pole.</span></li>`;
     }
-    function renderPyr(names) {
-      $("#pyr-list").innerHTML = names.length ? names.map((n, i) =>
-        `<li class="pyr"><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>` +
-        `<span>${esc(n)}${i === 0 ? ' <span aria-hidden="true">👑</span><span class="vh">(püramiidi tipp)</span>' : ""}</span></li>`).join("")
-        : `<li><span class="empty">Püramiidis pole veel mängijaid.</span></li>`;
+    function renderPyr(tipp, seis) {
+      $("#pyr-top").textContent = tipp ? `Tipus ${tipp}${seis ? ` · seis ${seis}` : ""}` : "Püramiidis pole veel mängijaid";
     }
     function olek(tyyp, html) {
       const el = $("#data-status");
@@ -1175,9 +1098,9 @@
         ]);
         const asof = (cur.title.match(/\(([\d.]+)/) || [])[1];
         renderVus(cur.players.slice(0, 5).map((p) => [p.name, p.total, p.rank_delta || 0]));
-        renderPyr(pyr.players.slice().sort((a, b) => a.pos - b.pos).slice(0, 3).map((p) => p.name));
+        const tipp = pyr.players.slice().sort((a, b) => a.pos - b.pos)[0];
+        renderPyr(tipp && tipp.name, pyr.updated_at ? fmtKuupaev(pyr.updated_at) : "");
         $("#vus-asof").textContent = asof ? `seis ${asof}` : "seis";
-        $("#pyr-asof").textContent = pyr.updated_at ? `seis ${fmtKuupaev(pyr.updated_at)}` : "seis";
         olek("ok", `<i aria-hidden="true"></i><span>Edetabeli seis ${esc(asof || "—")} · andmed kontrollitud ${esc(cur.fetched_at ? fmtAeg(cur.fetched_at) : "—")}</span>`);
       } catch (e) {
         olek("error", `Edetabeliga ei saanud ühendust. Näitan viimast teadaolevat seisu (${esc(VARU_SEIS)}).`);

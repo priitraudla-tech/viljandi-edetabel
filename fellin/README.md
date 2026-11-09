@@ -37,7 +37,7 @@ Testid: `node scripts/test_fellin_kommentaar.mjs`
 
 ## Avatud küsimused klubile (sisu, mida ei tohi oletada)
 
-Seis 09.11.2026 (versioon 5). Kuni vastuseni on lehel ainult kinnitatud info.
+Seis 09.11.2026 (versioon 6). Kuni vastuseni on lehel ainult kinnitatud info.
 
 1. **Hinnad:** kas hind on „€ väljaku kohta tunnis“? Siis lisame selle tabelite juurde.
 2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad. Praegu on teada ainult „maist oktoobrini
@@ -61,5 +61,7 @@ Seis 09.11.2026 (versioon 5). Kuni vastuseni on lehel ainult kinnitatud info.
 ## Sisu hooldus
 
 - KKK tekst on nii lehel (`#faq-list`) kui päise FAQPage JSON-LD-s — muuda mõlemas sõna-sõnalt ühtemoodi.
-- Edetabeli varuandmed (`#vus-list`, `#pyr-list`, `data-asof`) on HTML-is; värske seis laaditakse edetabelist peale.
+- Põhimõte (v6): iga fakt ühes kohas. Hinnad on mängukoha kaardil, uksekood sisehalli kaardil,
+  broneerimislink päises, avaplokis ja hindade all. Teisejärguline info läheb `<details class="more">` sisse.
+- Edetabeli varuandmed (`#vus-list`, `#pyr-top`, `data-asof`) on HTML-is; värske seis laaditakse edetabelist peale.
 - EL-i toetuse embleem peab jääma vähemalt sama suureks kui suurim partnerilogo (praegu EL-i logo laius 260 px ≈ 84 px kõrge sisu; partnerilogod kuni 72 px kõrged).
