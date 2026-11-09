@@ -11,16 +11,5 @@
       ]
     }
   ],
-  "kommentaarid": [
-    {
-      "id": "96a1762a",
-      "osa": "uldine",
-      "osa_nimi": "Üldine kommentaar",
-      "nimi": "Test (Claude)",
-      "tekst": "Tehniline test, kustutatakse kohe.",
-      "vastus_id": null,
-      "aeg": "2026-11-09T05:06:00.854Z",
-      "staatus": "avatud"
-    }
-  ]
+  "kommentaarid": []
 }
