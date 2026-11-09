@@ -1,0 +1,444 @@
+/* Fellin Rackets — ühine stiil kõigile lehtedele (lihasatlas.raudla.com kujunduskeel). */
+/* Disainikeel: lihasatlas.raudla.com — tume alus, üks laimirohe rõhuvärv, paks Inter,
+   mono ainult lühikestes siltides, nummerdatud menüü. Ligipääsetavus: WCAG 2.2 AA siht.
+   Tüübiskaala rem-ides, kolm kaalu: 400 / 600 / 800. */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap; src: url("fonts/inter-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap; src: url("fonts/inter-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/jbmono-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/jbmono-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root {
+  color-scheme: dark;
+  --base: #10120f;
+  --surface: #1b1e18;
+  --panel: #25291f;
+  --border: #3d4136;
+  --border-hover: #777f64;
+  --ink: #f6f5ee;
+  --muted: #b6b9ac;
+  --accent: #d3fc67;
+  --accent-hover: #e7ffa5;
+  --accent-dim: #36451f;
+  --on-accent: #1c2510;
+  --warn: #f2c76b;
+  --warn-dim: rgba(242, 199, 107, 0.14);
+  --down: #ff8a7a;
+  --paper: #ffffff;
+  --paper-ink: #23261f;
+  --paper-muted: #4a4e44;
+  --paper-line: #dcdcd4;
+  --r: 9px;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "SFMono-Regular", monospace;
+  --fs-h1: clamp(2.125rem, 6vw, 5.5rem);
+  --fs-h2: clamp(1.875rem, 4vw, 3.5rem);
+  --fs-h3: 1.25rem;
+  --fs-body: 1.0625rem;
+  --fs-small: .875rem;
+  --fs-label: .78rem;
+  --gut: clamp(1rem, 2.4vw, 2.25rem);
+  --max: 77.5rem;
+  --head-h: 60px;
+  --nav-h: 52px;
+}
+* { box-sizing: border-box; }
+/* Ankruga liikudes ei peitu pealkiri kleepuva päise + menüü alla */
+html { scroll-padding-top: calc(var(--head-h) + var(--nav-h) + 1.25rem); }
+body { margin: 0; background: var(--base); color: var(--ink); font: 400 var(--fs-body)/1.6 var(--font);
+  -webkit-font-smoothing: antialiased; font-optical-sizing: auto; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); }
+p { max-width: 68ch; }
+.num { font-variant-numeric: tabular-nums; }
+.shell { max-width: var(--max); margin: 0 auto;
+  padding-left: max(var(--gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--gut), env(safe-area-inset-right, 0px)); }
+.wrap { }
+.vh { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Fookus: 3 px raam, 2 px vahe. Laimirohelisel ja valgel tume raam. */
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.intro :focus-visible, .member :focus-visible, .band :focus-visible { outline-color: var(--on-accent); }
+main:focus { outline: none; }
+.skip { position: absolute; left: 16px; top: -120px; z-index: 200; background: var(--accent); color: var(--on-accent);
+  padding: 12px 18px; border-radius: 6px; font-weight: 600; text-decoration: none; }
+.skip:focus { top: 12px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .btn, .task, .atlas-nav a, .faq summary::after, .more > summary::after { transition: background-color .15s, color .15s, border-color .15s, transform .2s; }
+}
+
+/* Mono ainult lühikestes siltides (kicker, olek). Abitekstid ja tabelipäised on tavakirjas. */
+.label { font: 600 var(--fs-label)/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+
+.proto { background: #000; color: var(--muted); font-size: var(--fs-small); text-align: center; padding: 7px 16px; }
+.proto b { color: var(--accent); font-weight: 600; }
+
+/* --- päis --- */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(16,18,15,.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+.top-row { max-width: var(--max); margin: 0 auto; min-height: var(--head-h); display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  padding-left: max(var(--gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--gut), env(safe-area-inset-right, 0px)); }
+.brand { display: flex; align-items: center; min-height: 44px; margin-right: auto; }
+.brand img { height: 34px; width: auto; filter: brightness(0) invert(.96); }
+.top-contact { display: flex; }
+.top-contact a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; color: var(--muted);
+  text-decoration: none; font-size: var(--fs-small); }
+.top-contact a:hover { color: var(--ink); text-decoration: underline; }
+.menu-btn { display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 6px;
+  border: 1px solid var(--border); background: transparent; color: var(--ink); font: 600 1rem/1 var(--font); cursor: pointer; }
+.menu-btn .bars { width: 16px; height: 2px; background: currentColor; position: relative; }
+.menu-btn .bars::before, .menu-btn .bars::after { content: ""; position: absolute; left: 0; width: 16px; height: 2px; background: currentColor; }
+.menu-btn .bars::before { top: -5px; } .menu-btn .bars::after { top: 5px; }
+.menu-btn[aria-expanded="true"] .bars { background: transparent; }
+.menu-btn[aria-expanded="true"] .bars::before { top: 0; transform: rotate(45deg); }
+.menu-btn[aria-expanded="true"] .bars::after { top: 0; transform: rotate(-45deg); }
+.mobile-menu { border-top: 1px solid var(--border); background: var(--base); }
+.mobile-menu ul { list-style: none; margin: 0 auto; padding: 6px max(var(--gut), env(safe-area-inset-left, 0px)) 14px; max-width: var(--max); }
+.mobile-menu a { display: flex; align-items: center; gap: 10px; min-height: 48px; color: var(--ink); text-decoration: none;
+  font-weight: 600; font-size: 1.0625rem; border-bottom: 1px solid var(--border); }
+.mobile-menu a span { color: var(--muted); font: 600 var(--fs-label)/1 var(--mono); }
+.mobile-menu a[aria-current="page"] { color: var(--accent); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px;
+  border-radius: 6px; border: 1px solid transparent; font: 600 1rem/1.2 var(--font); text-decoration: none; cursor: pointer; text-align: center; }
+.btn-accent { background: var(--accent); color: var(--on-accent); }
+.btn-accent:hover { background: var(--accent-hover); }
+.btn-ink { background: var(--base); color: var(--accent); }
+.btn-ink:hover { background: #262c22; }
+.btn-ghost { border-color: var(--border); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--border-hover); }
+.btn-ghost-dark { border-color: rgba(28,37,16,.5); color: var(--on-accent); background: transparent; }
+.btn-ghost-dark:hover { border-color: var(--on-accent); }
+.top .btn { min-height: 44px; padding: 0 16px; white-space: nowrap; }
+
+/* --- avaplokk: graafika püsib ploki sees (P0 ülevool) ja on summutatud --- */
+.intro-sec { padding-top: 12px; }
+.intro { position: relative; isolation: isolate; display: flex; align-items: center;
+  min-height: clamp(17rem, 40vh, 25rem); padding: clamp(1.25rem, 4vw, 3.25rem) clamp(1.25rem, 3.4vw, 3.25rem);
+  border-radius: var(--r) var(--r) 0 0; background: var(--accent); color: var(--on-accent); }
+.intro-copy { position: relative; z-index: 1; max-width: 42rem; min-width: 0; }
+.intro h1 { margin: .6rem 0 .75rem; max-width: 12ch; font-size: var(--fs-h1); font-weight: 800; line-height: 1.02; letter-spacing: -.035em;
+  text-wrap: balance; hyphens: auto; overflow-wrap: break-word; }
+.intro p { margin: 0 0 1.25rem; max-width: 30rem; font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); line-height: 1.45; }
+.intro-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.status { display: flex; align-items: center; gap: 8px; margin-top: 1rem; font: 600 var(--fs-label)/1.3 var(--mono); letter-spacing: .04em; }
+.status i { width: 9px; height: 9px; border-radius: 50%; background: var(--on-accent); box-shadow: 0 0 0 4px rgba(28,37,16,.15); flex: none; }
+.status i.off { background: transparent; border: 1.5px solid var(--on-accent); box-shadow: none; }
+.intro-facts { display: flex; flex-wrap: wrap; gap: .75rem 2rem; margin: 1.5rem 0 0; padding: 1rem 0 0; border-top: 1px solid rgba(28,37,16,.25); }
+.intro-facts div { display: flex; flex-direction: column; }
+.intro-facts dt { order: 2; font-size: var(--fs-small); font-weight: 600; }
+.intro-facts dd { order: 1; margin: 0; font-size: 1.75rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.intro-art { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; overflow: hidden; border-radius: 0 var(--r) 0 0;
+  pointer-events: none; opacity: .62;
+  background: repeating-linear-gradient(90deg, transparent 0 33px, #19271122 33px 34px),
+              repeating-linear-gradient(0deg, transparent 0 33px, #19271122 33px 34px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+.intro-art svg { position: absolute; width: 96%; right: -10%; top: 50%; transform: translateY(-50%) rotate(-21deg); }
+.intro-art::after { content: ""; position: absolute; width: clamp(120px, 15vw, 220px); aspect-ratio: 1; right: 6%; top: 6%;
+  border-radius: 50%; background: repeating-radial-gradient(circle at 42% 40%, #1b270b 0 1.4px, transparent 1.4px 7px);
+  -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 71%); mask-image: radial-gradient(circle, #000 58%, transparent 71%); }
+
+/* Nummerdatud menüü: ploki all ja kerides kleepuv päise all (P1 p 3) */
+.atlas-nav { position: sticky; top: var(--head-h); z-index: 15; display: grid; grid-template-columns: 1.45fr 1fr 1fr 1.3fr;
+  gap: 1px; padding: 1px; background: var(--border); border-radius: 0 0 var(--r) var(--r); overflow: hidden;
+  box-shadow: 0 0 0 100vmax var(--base); clip-path: inset(0 -100vmax); }
+.atlas-nav a { min-height: calc(var(--nav-h) - 2px); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 4px;
+  background: var(--surface); color: var(--ink); font: 600 clamp(.875rem, 1.3vw, 1rem)/1.15 var(--font); text-decoration: none; text-align: center; }
+.atlas-nav a span { color: var(--muted); font: 600 var(--fs-label)/1 var(--mono); }
+.atlas-nav a:hover { background: var(--panel); color: var(--accent); }
+.atlas-nav a[aria-current="page"] { background: var(--panel); color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); }
+.atlas-nav a[aria-current="page"] span { color: var(--accent); }
+.atlas-nav a:focus-visible { outline-offset: -3px; }
+
+/* --- osad --- */
+section { padding-top: 4rem; }
+.sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.25rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.sec-head .label { color: var(--accent); }
+/* Flex/grid lapsed tohivad kahaneda — pikad eesti sõnad murduvad, leht ei ole laiem kui ekraan */
+.sec-head > div { min-width: 0; }
+h2, h3, p, li, dd, dt, td, figcaption { overflow-wrap: break-word; }
+h2 { margin: .5rem 0 0; font-size: var(--fs-h2); font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
+  text-wrap: balance; hyphens: auto; overflow-wrap: break-word; }
+.sec-sub { color: var(--muted); margin: .75rem 0 0; }
+h3 { margin: 0 0 .5rem; font-size: var(--fs-h3); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
+/* Kaardi pealkiri: tavakirjas, mitte suurtähtedes monokirjas */
+.card-h { font-size: 1.0625rem; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); margin: 0 0 .75rem; }
+.card { --pad: 1.375rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: var(--pad); min-width: 0; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.muted { color: var(--muted); }
+.small { font-size: var(--fs-small); }
+.link-arrow { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; text-decoration: none; color: var(--accent); }
+.link-arrow:hover { text-decoration: underline; }
+
+/* kasutajaülesanded: pealkiri + üks rida + nool; iga kaart viib oma lehele */
+.tasks-sec { padding-top: 1.75rem; }
+.task { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-decoration: none; color: inherit; padding: 1rem 1.25rem; min-height: 64px; }
+.task:hover { border-color: var(--border-hover); background: #20241c; }
+.task-t { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.task-t b { font-size: 1.1875rem; font-weight: 800; letter-spacing: -.02em; }
+.task-t span { color: var(--muted); font-size: .9375rem; line-height: 1.4; }
+.task .arr { color: var(--accent); font-size: 1.25rem; font-weight: 600; flex: none; }
+.task:hover .task-t b { color: var(--accent); }
+
+/* väljakud ja hinnad: iga mängukoha kaardil tema hinnatabel */
+.loc { display: flex; flex-direction: column; }
+.loc h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.loc h3 .loc-type { display: block; color: var(--muted); margin-bottom: .35rem; font-size: var(--fs-small); letter-spacing: 0; font-weight: 600; }
+.loc .addr { color: var(--muted); margin: .35rem 0 .75rem; font-size: .9375rem; }
+.loc .addr .off { color: var(--warn); }
+.loc-photo { width: calc(100% + 2 * var(--pad)); max-width: none; margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 1rem;
+  aspect-ratio: 21 / 9; object-fit: cover; border-radius: var(--r) var(--r) 0 0; }
+.loc-note { font-size: .9375rem; color: var(--muted); background: var(--panel); border-radius: 6px; padding: 10px 12px; margin: .75rem 0 0; max-width: none; }
+.loc-note a { color: var(--ink); }
+.loc > .link-arrow { margin-top: auto; padding-top: .5rem; align-self: flex-start; }
+
+/* tabelid */
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: .7rem .25rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+thead th { font-size: var(--fs-small); font-weight: 600; color: var(--muted); vertical-align: bottom; }
+tbody th { font-weight: 400; }
+tr:last-child td, tr:last-child th { border-bottom: 0; }
+.pr { text-align: right; }
+td.pr b { display: block; font-weight: 800; font-size: 1.125rem; white-space: nowrap; }
+td.pr .mem { display: block; font-size: var(--fs-small); font-weight: 600; color: var(--accent); }
+td.p { text-align: right; white-space: nowrap; font-weight: 800; font-size: 1.125rem; }
+.tier { display: block; font-size: var(--fs-small); font-weight: 600; color: var(--muted); }
+.tier.peak { color: var(--warn); }
+.book-row { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; margin: 1.25rem 0 0; }
+.book-row p { margin: 0; }
+
+.member { margin-top: 1.25rem; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem 2.5rem; align-items: center;
+  background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.member .card-h { color: var(--on-accent); margin: 0; }
+.member .big { font-size: 3.5rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; margin: .4rem 0 .25rem; }
+.member .payback { margin: 0 0 .75rem; font-weight: 600; max-width: none; }
+.member ul { margin: 0; padding-left: 1.1rem; columns: 2 15rem; column-gap: 2rem; }
+.member li { margin-bottom: .35rem; break-inside: avoid; }
+.member-cta { display: flex; flex-direction: column; align-items: flex-start; gap: .4rem; }
+.member-cta .small { color: #3a4a20; }
+
+/* lahtiklõpsatavad plokid: KKK ja teisejärguline info („rohkem“) */
+.faq-list { max-width: 56rem; border-top: 1px solid var(--border); }
+.faq details, .more { border-bottom: 1px solid var(--border); }
+.more { margin-top: 1.25rem; border-top: 1px solid var(--border); }
+.card .more { margin-top: 1rem; border-bottom: 0; }
+.faq summary, .more > summary { cursor: pointer; list-style: none; min-height: 56px; padding: .9rem 0; font-weight: 600; font-size: 1.0625rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq summary::-webkit-details-marker, .more > summary::-webkit-details-marker { display: none; }
+.faq summary::after, .more > summary::after { content: "+"; font: 600 1.5rem/1 var(--mono); color: var(--accent); flex: none; }
+.faq details[open] summary::after, .more[open] > summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0; padding: 0 0 1.1rem; color: var(--muted); }
+.more-body { padding: 0 0 1.25rem; }
+.steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.75rem; margin: 0; padding: 0; list-style: none; }
+.step { border-top: 1px solid var(--border); padding-top: 1rem; }
+.step::before { counter-increment: s; content: "0" counter(s); display: block; font: 600 var(--fs-label)/1 var(--mono); color: var(--accent); letter-spacing: .06em; margin-bottom: .75rem; }
+.step h4 { margin: 0 0 .4rem; font-size: 1.0625rem; font-weight: 600; }
+.step p { margin: 0; color: var(--muted); }
+.facts-list { margin: 1.25rem 0 0; display: grid; gap: .5rem; }
+.facts-list div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; }
+.facts-list dt { font-weight: 600; }
+.facts-list dd { margin: 0; color: var(--muted); }
+.row-links { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 4px 20px; align-items: center; }
+.plain { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+.plain li { margin-bottom: .4rem; }
+
+/* treeningud */
+.train { align-items: start; }
+.aud-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0 0 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+.aud-row h3 { font-size: 1.1875rem; font-weight: 800; margin: 0 0 .25rem; }
+.aud-row p { margin: 0; color: var(--muted); font-size: .9375rem; }
+.ask { display: flex; flex-direction: column; align-items: flex-start; gap: .75rem; }
+.ask h3 { margin: 0; font-size: 1.1875rem; font-weight: 800; }
+.ask p { margin: 0; color: var(--muted); font-size: .9375rem; max-width: 48ch; }
+.ask .addr-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0 12px; }
+.ask .addr-line a { color: var(--ink); font-weight: 600; display: inline-flex; align-items: center; min-height: 44px; }
+.copy-btn { min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--border); background: transparent;
+  color: var(--ink); font: 600 var(--fs-small)/1 var(--font); cursor: pointer; }
+.copy-btn:hover { border-color: var(--border-hover); }
+.copy-ok { color: var(--accent); font-size: var(--fs-small); font-weight: 600; }
+.sub-h { margin: 2.25rem 0 0; }
+.sub-h .small { font-weight: 400; letter-spacing: 0; }
+.coaches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: .75rem 0 0; padding: 0; list-style: none; }
+.coach { padding: 12px 14px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border); min-width: 0; }
+.coach b { display: block; font-weight: 600; font-size: 1.0625rem; line-height: 1.3; }
+.coach .role { display: block; font-size: var(--fs-small); color: var(--muted); }
+.kutse { margin-top: .4rem; font-size: var(--fs-small); font-weight: 600; color: var(--accent); }
+.kutse .kuni { display: block; color: var(--muted); font-weight: 400; }
+.kutse a { display: inline-flex; align-items: center; min-height: 32px; color: var(--muted); }
+.kutse a:hover { color: var(--ink); }
+
+/* võistlused: üks kaart — VÜS esiviisik + lingid */
+.comp { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 1rem 2.25rem; }
+.rank-list { list-style: none; padding: 0; margin: 0; }
+.rank-list li { display: grid; grid-template-columns: 34px 1fr auto 52px; gap: 10px; align-items: center; padding: .6rem 0; border-bottom: 1px solid var(--border); }
+.rank-list li:last-child { border-bottom: 0; }
+.rank-list .empty { display: block; color: var(--muted); }
+/* Ruum on reserveeritud ka enne värskete andmete saabumist — leht ei hüppa */
+#vus-list { min-height: 14.5rem; }
+.rk { font: 600 .8125rem/1 var(--mono); color: var(--muted); }
+.rank-list li:first-child .rk { color: var(--accent); }
+.pts { font-weight: 800; }
+.dl { font: 600 .8125rem/1 var(--mono); text-align: right; }
+.dl.up { color: var(--accent); } .dl.down { color: var(--down); } .dl.eq { color: var(--muted); }
+.comp-links { list-style: none; margin: 0; padding: 0; align-self: center; border-top: 1px solid var(--border); }
+.comp-links li { border-bottom: 1px solid var(--border); }
+.comp-links a { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: center; min-height: 56px;
+  padding: .7rem 0; text-decoration: none; color: var(--ink); }
+.comp-links b { font-weight: 600; }
+.comp-links span { grid-column: 1; font-size: var(--fs-small); color: var(--muted); }
+.comp-links .arr { grid-column: 2; grid-row: 1 / span 2; color: var(--accent); font-size: 1rem; font-weight: 600; }
+.comp-links a:hover b { color: var(--accent); text-decoration: underline; }
+.data-status { display: flex; align-items: center; gap: 8px; margin: 0; font-size: var(--fs-small); color: var(--muted); max-width: 46ch; }
+.data-status i { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--accent); box-shadow: 0 0 0 4px rgba(211,252,103,.15); }
+.data-status.error { color: var(--warn); }
+
+/* klubi */
+.brands { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.brands li { display: flex; flex-direction: column; justify-content: space-between; gap: .6rem; padding: 1rem 1.1rem;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); min-width: 0; }
+.brands img { height: 44px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; filter: brightness(0) invert(.96); }
+.brands span { font-size: var(--fs-small); color: var(--muted); font-weight: 600; }
+#klubi .more-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem 2.5rem; align-items: start; }
+#klubi .more-body p { margin: 0; color: var(--muted); }
+#klubi .more-body p b { color: var(--ink); font-weight: 600; }
+#klubi > .link-arrow { margin-top: .5rem; }
+.timeline { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--border); }
+.timeline li { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 14px; padding: .75rem 0; border-bottom: 1px solid var(--border); }
+.timeline b { font: 600 .9375rem/1.6 var(--mono); color: var(--accent); }
+
+/* koostööpartnerid ja EL-i toetus — üks hele riba; EL-i embleem jääb partnerite logodest suuremaks */
+.band { background: var(--paper); color: var(--paper-ink); border-radius: var(--r); padding: clamp(1.25rem, 3vw, 2rem); display: grid; gap: 1.5rem; }
+.band a { color: var(--paper-ink); }
+.band .card-h { color: var(--paper-ink); margin: 0; }
+.eu { border-top: 1px solid var(--paper-line); padding-top: 1.25rem; }
+.eu-list { display: grid; gap: 1rem; margin-top: .75rem; }
+.eu-item { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 1.25rem; align-items: center; }
+.eu-item img { width: 260px; }
+.eu-item p { margin: 0; font-size: var(--fs-small); line-height: 1.5; color: var(--paper-ink); }
+.partners { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.partner { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .5rem; text-decoration: none; min-height: 44px; }
+.partner img { max-height: 72px; width: auto; }
+.partner span { font-size: var(--fs-small); color: var(--paper-muted); text-align: center; }
+
+/* kontakt */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1rem 2rem; align-items: start; }
+.contact-item { border-top: 1px solid var(--border); padding: 1rem 0 .5rem; }
+.contact-item .card-h { margin: 0; }
+.k-big { display: inline-flex; align-items: center; min-height: 44px; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+.mail { display: inline-flex; align-items: center; min-height: 44px; }
+.map-wrap { min-width: 0; }
+.map { min-height: 22rem; border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: .5rem; padding: 1.5rem; }
+.map p { color: var(--muted); font-size: var(--fs-small); margin: 0 auto; max-width: 36ch; }
+.map.on { padding: 0; display: block; }
+.map iframe { width: 100%; height: 22rem; border: 0; display: block; }
+.map-note { color: var(--muted); font-size: var(--fs-small); margin: .6rem 0 0; }
+
+.site-foot { margin-top: 4rem; padding: 0 0 2rem; color: var(--muted); font-size: var(--fs-small); }
+.foot-links { display: flex; flex-wrap: wrap; gap: 0 18px; margin: 0 0 .75rem; padding: 0; list-style: none; }
+.foot-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; }
+.foot-links a:hover { color: var(--accent); text-decoration: underline; }
+.foot-line { font-size: var(--fs-small); line-height: 1.8; margin: 0; max-width: none; }
+.foot-line b { color: var(--ink); font-weight: 600; }
+.foot-line a { color: var(--ink); }
+
+/* ===== v7: avaleht + alamlehed ===== */
+.atlas-nav.solo { margin-top: 12px; border-radius: var(--r); }
+.page-head { padding-top: 2.25rem; }
+.page-head .sec-head { margin-bottom: 0; }
+.page-head h1 { margin: .5rem 0 0; font-size: var(--fs-h2); font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
+  text-wrap: balance; hyphens: auto; overflow-wrap: break-word; }
+.page-head + section { padding-top: 1.5rem; }
+.home-info { padding-top: 1.25rem; }
+.home-info .card { display: flex; flex-direction: column; }
+.home-info .card > .link-arrow { margin-top: auto; }
+.home-info .data-status { margin: .5rem 0 .25rem; }
+.from-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 0 0 .5rem; }
+.from-grid div { display: flex; flex-direction: column; }
+.from-grid dt { order: 2; font-size: var(--fs-small); color: var(--muted); }
+.from-grid dd { order: 1; margin: 0; font-size: 1.75rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+#vus-list[data-n="3"] { min-height: 8.7rem; }
+#vus-list[data-n="10"] { min-height: 29rem; }
+#pyr-list { min-height: 14.5rem; }
+.rank-list li.pyr { grid-template-columns: 34px 1fr; }
+.podium { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 0 0 .5rem; padding: 0; list-style: none; text-align: center; }
+.podium li { background: var(--panel); border-radius: 7px; padding: 12px 6px; font-size: var(--fs-small); }
+.podium b { display: block; font-size: 1.5rem; font-weight: 800; letter-spacing: -.03em; }
+.podium li:first-child b { color: var(--accent); }
+.home-contact { padding-top: 2.5rem; }
+.hc { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1.75rem; border-top: 1px solid var(--border); padding-top: .75rem; }
+.hc p { margin: 0; color: var(--muted); }
+.alumni { margin: 0; color: var(--muted); }
+.foot-band { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.25rem 2.5rem; align-items: center; margin-bottom: 1rem; }
+.foot-band .partner img { height: 56px; width: auto; max-width: 100%; object-fit: contain; }
+.eu-mark { display: flex; flex-direction: column; align-items: center; gap: .35rem; text-decoration: none; }
+.eu-mark img { width: 220px; }
+.eu-mark span { font-size: var(--fs-small); font-weight: 600; text-decoration: underline; }
+
+/* --- keskmine laius --- */
+@media (max-width: 1100px) {
+  .top-contact { display: none; }
+}
+@media (max-width: 1020px) {
+  .member { grid-template-columns: auto minmax(0, 1fr); }
+  .member-cta { grid-column: 1 / -1; flex-direction: row; align-items: center; flex-wrap: wrap; }
+}
+/* --- tahvel ja telefon: päisemenüü, kleepuvat rida pole --- */
+@media (max-width: 900px) {
+  :root { --nav-h: 0px; }
+  .atlas-nav { display: none; }
+  .menu-btn { display: inline-flex; }
+  .intro { border-radius: var(--r); }
+  .comp, .grid-3, .grid-2, .steps, .contact-grid, #klubi .more-body { grid-template-columns: minmax(0, 1fr); }
+  .member { grid-template-columns: minmax(0, 1fr); }
+  .coaches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .intro-art { width: 42%; opacity: .4; }
+  section { padding-top: 3rem; }
+}
+/* --- telefon: lühike esimene ekraan, ainult põhiinfo nähtaval --- */
+@media (max-width: 640px) {
+  .card { --pad: 1.1rem; }
+  .intro { min-height: 0; }
+  .intro-art, .intro-facts, .book-extra { display: none; }
+  .intro h1 { max-width: none; }
+  .brand img { height: 28px; }
+  section { padding-top: 2.5rem; }
+  .grid-3, .grid-2 { gap: 8px; }
+  .task { padding: .8rem 1.1rem; }
+  .task-t b { font-size: 1.0625rem; }
+  /* kutsega treenerid täislaiuses, teised kahekaupa */
+  .coaches { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .coach { padding: 10px 12px; }
+  .coach.full { grid-column: 1 / -1; }
+  .member { gap: .75rem; }
+  .member .big { margin: .2rem 0; }
+  .rank-list li { grid-template-columns: 28px 1fr auto 44px; }
+  .member .big { font-size: 2.5rem; }
+  .member ul { columns: 1; }
+  .facts-list div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .brands { gap: 6px; }
+  .brands li { padding: .75rem; }
+  .brands img { height: 28px; }
+  .partners { gap: .5rem; }
+  .partner img { max-height: 52px; }
+  .partner span { display: none; }
+  .eu-item { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
+  .eu-item img { width: min(260px, 100%); }
+  .map { min-height: 0; padding: 1.1rem; }
+}
+@media (max-width: 480px) {
+  .intro-cta .btn { flex: 1 1 100%; }
+  .top .btn { padding: 0 12px; }
+}
+@media (max-width: 900px) {
+  .foot-band { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .foot-band .partners { width: 100%; }
+}
+@media (max-width: 640px) {
+  .page-head { padding-top: 1.5rem; }
+  .from-grid dd { font-size: 1.5rem; }
+  .foot-band .partner img { height: 44px; }
+  .eu-mark img { width: 200px; }
+  .hc { gap: 0 1rem; }
+}

@@ -39,7 +39,11 @@
 
 ## Lehed
 
-- [Avaleht](https://www.fellinrackets.ee/): kõik põhiinfo ühel lehel
+- [Avaleht](https://www.fellinrackets.ee/): lühiülevaade — mängukohad, tunnihind alates, edetabeli esikolmik, kontakt
+- [Mängimine ja hinnad](https://www.fellinrackets.ee/mangimine/): mängukohad, hinnatabelid, broneerimine, klubiliikme pakett
+- [Treeningud](https://www.fellinrackets.ee/treeningud/): tennise- ja padelikool, õppemaks, treenerid ja nende kutsed
+- [Võistlused](https://www.fellinrackets.ee/voistlused/): VÜS edetabel, püramiid, Viljandimaa meistrivõistlused
+- [Klubi ja kontakt](https://www.fellinrackets.ee/klubi/): ajalugu, Euroopa Liidu toetatud projektid, kontaktid ja kaart
 - [Klienditingimused](https://www.fellinrackets.ee/keskus/klienditingimused/)
 - [Sisekorra eeskiri](https://www.fellinrackets.ee/keskus/sisekorra-eeskiri/)
 - [Klubiliikme pakett](https://www.fellinrackets.ee/keskus/klubiliikme_pakett/)

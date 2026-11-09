@@ -1,15 +1,30 @@
-# Fellin Racketsi avalehe ettepanek
+# Fellin Racketsi kodulehe ettepanek
 
-Uue fellinrackets.ee avalehe prototüüp, mida klubi saab kommenteerida.
+Uue fellinrackets.ee kodulehe prototüüp, mida klubi saab kommenteerida.
 
-- Aadress: `https://viljandi-edetabel.pages.dev/fellin/` (kommenteerimiseks lingis `?k=…` võti — võti ise repos ei ole, ainult selle räsi `functions/api/fellin-kommentaar.js`-is)
+- Aadress: `https://viljandi-edetabel.pages.dev/fellin/` (kommenteerimiseks lingis `?k=…` võti — võti ise repos ei ole, ainult selle räsi `functions/api/fellin-kommentaar.js`-is). Võti jääb brauserisse meelde, nii et alamlehtedel lingis seda enam vaja pole.
 - Google seda ei indekseeri (`_headers`: `X-Robots-Tag: noindex`)
+
+## Ülesehitus (versioonist 7)
+
+Avaleht on lühike (telefonis ~3 ekraani); detailne sisu on neljal alamlehel.
+
+| Leht | Fail | Sisu |
+|---|---|---|
+| Avaleht | `index.html` | avaplokk, „Tahan mängida / õppida / võistelda“, tunnihind alates, VÜS esikolmik, kontakt; schema.org klubi + mängukohad |
+| 01 Mängimine ja hinnad | `mangimine/index.html` | mängukohad koos hinnatabelitega, broneerimine, liikmepakett, KKK |
+| 02 Treeningud | `treeningud/index.html` | lapsed/täiskasvanud, õppemaks, soodustused, trenni küsimine, treenerid ja kutsed, KKK; schema.org kool |
+| 03 Võistlused | `voistlused/index.html` | VÜS esikümme, püramiid, maakonna MV, KKK |
+| 04 Klubi ja kontakt | `klubi/index.html` | logod, ajalugu, kasvandikud, EL-i projektid (`#toetused`), kontakt ja kaart (`#kontakt`) |
+
+Päis, menüü ja jalus (partnerid + EL-i embleem) on kõigil viiel lehel samad — muutes muuda kõigis.
 
 ## Failid
 
 | Fail | Mis |
 |---|---|
-| `index.html` | avaleht (päris sisu + schema.org JSON-LD) |
+| `fellin.css` | ühine stiil (lihasatlas.raudla.com kujunduskeel) |
+| `fellin.js` | ühine skript: lahtiolek, hooaeg, mobiilimenüü, edetabeli värske seis, e-posti kopeerimine, kaart |
 | `llms.txt`, `robots.txt`, `sitemap.xml` | päris lehe jaoks (fellinrackets.ee juurkausta) |
 | `fonts/` | Inter (opsz + wght 400–800) ja JetBrains Mono 600, woff2, latin + latin-ext (Google Fonts, OFL) |
 | `img/` | logod, järvefoto (640/1280/1920 WebP), EL-i ja partnerite logod — klubi materjal fellinrackets.ee-st |
@@ -19,25 +34,28 @@ Uue fellinrackets.ee avalehe prototüüp, mida klubi saab kommenteerida.
 ## Kommentaaride töövoog
 
 1. Klient kommenteerib → `/api/fellin-kommentaar` kirjutab `kommentaarid.json`-i (commit `[skip ci]`, lehte uuesti ei ehitata).
-2. `git pull` → loe `kommentaarid.json`, tee muudatused `index.html`-is.
+2. `git pull` → loe `kommentaarid.json`, tee muudatused.
 3. Märgi tehtud kommentaarid: `"staatus": "tehtud"` (või `"jaab"` = jääb nii) ja lisa `"markus": "…"`.
 4. Lisa `versioonid` lõppu uus kirje (`nr`, `kuupaev`, `muudatused`) → commit + push.
 
-Kohalik proov ilma serverita: `http://localhost:8765/fellin/?mock=1`
+Osa tunnuse (`data-osa`) eesliide ütleb lehe: `m-` mängimine, `t-` treeningud, `v-` võistlused, `k-` klubi,
+eesliiteta = avaleht; `jalus` ja `uldine` on ühised. „Kommentaarid“ näitab kõigi lehtede kommentaare.
+
+Kohalik proov ilma serverita: `http://localhost:8765/fellin/?mock=1` (alamlehtedel samuti `?mock=1`)
 Testid: `node scripts/test_fellin_kommentaar.mjs`
 
 ## Enne päris avaldamist
 
 - kustuta `arvustus.js`, `kommentaarid.json`, see README
-- `index.html`-ist eemalda `.proto` riba ja `<script src="arvustus.js">` rida (mõlemad märgitud `ARVUSTUS`).
+- kõigist viiest HTML-failist eemalda `.proto` riba ja `<script src="…arvustus.js">` rida (mõlemad märgitud `ARVUSTUS`).
   Prototüübiriba, juhiseriba, kommenteerimisnupud ja dialoog tekivad ainult `arvustus.js`-ist —
-  pärast nende kahe rea eemaldamist ei jää lehele ühtegi prototüübi elementi.
+  pärast nende ridade eemaldamist ei jää lehtedele ühtegi prototüübi elementi.
 - `llms.txt`, `robots.txt`, `sitemap.xml` → fellinrackets.ee juurkausta
 - kontrolli päris iPhone'i Safaris ja ühes Androidi brauseris, VoiceOveri ja NVDA-ga (menüü, dialoogid, KKK, kaart)
 
 ## Avatud küsimused klubile (sisu, mida ei tohi oletada)
 
-Seis 09.11.2026 (versioon 6). Kuni vastuseni on lehel ainult kinnitatud info.
+Seis 09.11.2026 (versioon 7). Kuni vastuseni on lehel ainult kinnitatud info.
 
 1. **Hinnad:** kas hind on „€ väljaku kohta tunnis“? Siis lisame selle tabelite juurde.
 2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad. Praegu on teada ainult „maist oktoobrini
@@ -57,11 +75,15 @@ Seis 09.11.2026 (versioon 6). Kuni vastuseni on lehel ainult kinnitatud info.
     13 padeli- või 25 tennisetunniga aastas“ sobib (arvutatud hinnakirjast: soodustus 4 € / 2 € tunnilt;
     kehtib liikme enda broneeringutel)?
 11. **Kaart:** „Viljandi Tennis“ kaardil on kolmas märk „Kontor“ — kas see jääb kaardile?
+12. **EL-i toetuse teavitus:** embleem ja „Rahastanud Euroopa Liit – NextGenerationEU“ on iga lehe jaluses,
+    projektide kirjeldused lehel Klubi ja kontakt (`klubi/#toetused`). Kas see vastab toetuse andja
+    (EIS, endine EAS) teavitusnõuetele, või peab kirjeldus olema avalehel?
 
 ## Sisu hooldus
 
-- KKK tekst on nii lehel (`#faq-list`) kui päise FAQPage JSON-LD-s — muuda mõlemas sõna-sõnalt ühtemoodi.
-- Põhimõte (v6): iga fakt ühes kohas. Hinnad on mängukoha kaardil, uksekood sisehalli kaardil,
-  broneerimislink päises, avaplokis ja hindade all. Teisejärguline info läheb `<details class="more">` sisse.
-- Edetabeli varuandmed (`#vus-list`, `#pyr-top`, `data-asof`) on HTML-is; värske seis laaditakse edetabelist peale.
-- EL-i toetuse embleem peab jääma vähemalt sama suureks kui suurim partnerilogo (praegu EL-i logo laius 260 px ≈ 84 px kõrge sisu; partnerilogod kuni 72 px kõrged).
+- KKK tekst on nii lehel (`.faq-list`) kui sama lehe päise FAQPage JSON-LD-s — muuda mõlemas sõna-sõnalt ühtemoodi.
+- Põhimõte: iga fakt ühes kohas. Hinnad on mängukoha kaardil (avalehel ainult „alates“), uksekood sisehalli kaardil.
+  Teisejärguline info läheb `<details class="more">` sisse.
+- Edetabeli varuandmed (`#vus-list`, `#pyr-list`, `#pyr-top`, `data-asof`) on HTML-is; värske seis laaditakse edetabelist peale.
+- EL-i embleem peab jääma vähemalt sama suureks kui suurim partnerilogo (jaluses EL-i logo laius 220 px ≈ 72 px kõrge sisu;
+  partnerilogod 56 px kõrged, telefonis 200 px / 44 px).

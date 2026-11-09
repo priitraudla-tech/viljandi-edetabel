@@ -22,6 +22,17 @@
   const qs = new URLSearchParams(location.search);
   const MOCK = qs.has("mock") && /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
 
+  // Mitu lehte: osa tunnuse eesliide ütleb, millisel lehel osa asub (avaleht = eesliiteta;
+  // "jalus" ja "uldine" on kõigil lehtedel). Juurkaust (fellin/) skripti enda aadressi järgi.
+  const JUUR = new URL(".", (document.currentScript && document.currentScript.src) || location.href).href;
+  const LEHED = [
+    { eesliide: "m-", tee: "mangimine/", nimi: "Mängimine ja hinnad" },
+    { eesliide: "t-", tee: "treeningud/", nimi: "Treeningud" },
+    { eesliide: "v-", tee: "voistlused/", nimi: "Võistlused" },
+    { eesliide: "k-", tee: "klubi/", nimi: "Klubi ja kontakt" },
+  ];
+  const lehtOsale = (osa) => LEHED.find((l) => String(osa).startsWith(l.eesliide)) || { tee: "", nimi: "Avaleht" };
+
   const ls = (k, v) => {
     try {
       if (v === undefined) return localStorage.getItem(k);
@@ -54,7 +65,8 @@
     id: el.dataset.osa, nimi: el.dataset.osaNimi || el.dataset.osa, el,
   }));
   OSAD.push({ id: "uldine", nimi: "Üldine kommentaar", el: null });
-  const osaNimi = (id) => (OSAD.find((o) => o.id === id) || {}).nimi || id;
+  const osaNimi = (id) => (OSAD.find((o) => o.id === id) || {}).nimi
+    || (andmed.kommentaarid.find((c) => c.osa === id) || {}).osa_nimi || id;
 
   // ---------- andmed ----------
   let andmed = { versioonid: [], kommentaarid: [] };
@@ -201,7 +213,7 @@
   const proto = document.getElementById("proto");
   if (proto) {
     proto.innerHTML =
-      `<span><b>Ettepanek<span id="rv-ver"></span></b><span class="rv-long"> · uue fellinrackets.ee avalehe prototüüp</span> — ei ole ametlik leht.</span>` +
+      `<span><b>Ettepanek<span id="rv-ver"></span></b><span class="rv-long"> · uue fellinrackets.ee kodulehe prototüüp</span> — ei ole ametlik leht.</span>` +
       `<button type="button" class="rv-link" id="rv-open-all">Kommentaarid<span id="rv-count"></span></button>` +
       `<button type="button" class="rv-toggle" id="rv-toggle"></button>`;
   }
@@ -243,6 +255,16 @@
     });
   }
   paigutaNupud();
+  // Teiselt lehelt „Ava see leht“ (#osa=<id>): keri osa juurde ja fookus selle kommenteerimisnupule
+  const osaRaes = /^#osa=([a-z0-9-]+)$/.exec(location.hash);
+  if (osaRaes) {
+    const o = OSAD.find((x) => x.id === osaRaes[1]);
+    if (o && o.el) setTimeout(() => {
+      o.el.scrollIntoView({ block: "start" });
+      const pin = o.el.querySelector(`[data-osa-pin="${o.id}"]`);
+      if (pin && !pin.closest("[hidden]")) pin.focus({ preventScroll: true });
+    }, 60);
+  }
   let paigutusOotel = 0;
   addEventListener("resize", () => { clearTimeout(paigutusOotel); paigutusOotel = setTimeout(paigutaNupud, 150); });
 
@@ -365,7 +387,17 @@
           ${o.el ? `<button type="button" class="rv-show" data-rv-osa="${esc(o.id)}">Näita lehel</button>` : ""}</h3>
           ${cs.map((c) => kaart(c)).join("")}</section>`;
       }).join("");
-      elBody.innerHTML = viga + ver + (grupid || `<p class="rv-empty">Vajuta kollasele „Kommenteeri“ nupule selle osa juures, mida tahad kommenteerida — või kirjuta allpool üldine kommentaar.</p>`);
+      // Teiste lehtede osade kommentaarid — lingiga sellele lehele
+      const siin = new Set(OSAD.map((o) => o.id));
+      const muud = [...new Set(juured().map((c) => c.osa).filter((id) => !siin.has(id)))].map((id) => {
+        const cs = osaJuured(id);
+        const l = lehtOsale(id);
+        const href = `${JUUR}${l.tee}${MOCK ? "?mock=1" : ""}#osa=${id}`;
+        return `<section class="rv-group"><h3><span>${esc(l.nimi)} · ${esc(osaNimi(id))}</span>
+          <a class="rv-show" href="${esc(href)}">Ava see leht</a></h3>
+          ${cs.map((c) => kaart(c)).join("")}</section>`;
+      }).join("");
+      elBody.innerHTML = viga + ver + ((grupid + muud) || `<p class="rv-empty">Vajuta kollasele „Kommenteeri“ nupule selle osa juures, mida tahad kommenteerida — või kirjuta allpool üldine kommentaar.</p>`);
     } else {
       const cs = osaJuured(vaade);
       elBody.innerHTML = viga + (cs.length ? cs.map((c) => kaart(c)).join("")
