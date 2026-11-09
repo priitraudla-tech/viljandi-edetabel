@@ -29,5 +29,28 @@ Testid: `node scripts/test_fellin_kommentaar.mjs`
 ## Enne päris avaldamist
 
 - kustuta `arvustus.js`, `kommentaarid.json`, see README
-- `index.html`-ist eemalda `.proto` riba ja `<script src="arvustus.js">` rida (mõlemad märgitud `ARVUSTUS`)
+- `index.html`-ist eemalda `.proto` riba ja `<script src="arvustus.js">` rida (mõlemad märgitud `ARVUSTUS`).
+  Prototüübiriba, juhiseriba, kommenteerimisnupud ja dialoog tekivad ainult `arvustus.js`-ist —
+  pärast nende kahe rea eemaldamist ei jää lehele ühtegi prototüübi elementi.
 - `llms.txt`, `robots.txt`, `sitemap.xml` → fellinrackets.ee juurkausta
+- kontrolli päris iPhone'i Safaris ja ühes Androidi brauseris, VoiceOveri ja NVDA-ga (menüü, dialoogid, KKK, kaart)
+
+## Avatud küsimused klubile (sisu, mida ei tohi oletada)
+
+Seis 09.11.2026 (versioon 4). Kuni vastuseni on lehel ainult kinnitatud info.
+
+1. **Hinnad:** kas hind on „€ väljaku kohta tunnis“? Siis lisame selle tabelite juurde.
+2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad.
+3. **Eratreening:** kas pakute, kellele ja mis hinnaga?
+4. **Trenni registreerimine:** kas soovite veebivormi? Selleks on vaja päris vastuvõtjat
+   (nt e-posti saatmisteenus). Praegu avab nupp e-kirja valmis küsimustega.
+   Tunniplaan, vastamisaeg ja proovitrenni võimalus vajavad kinnitust.
+5. **Uksekood ei tööta:** kas +372 5036 425 on õige abikanal ja mis kellaaegadel vastatakse?
+6. **Mängukohtade praktiline info:** parkimine ja sissepääs, varustuse laenutus (reketid, pallid),
+   jalanõud, riietus- ja pesuruumid väljas, füüsiline ligipääs (astmed/kaldtee, ukse laius, ligipääsetav WC).
+7. **Fotod (klubi õigustega):** sisehall seest, mängijad, laste trenn; treenerite portreed.
+8. **Tulevased võistlused:** kuupäevad, tase ja registreerimislink.
+9. **Treenerid:** Anelle Luik ei ole spordiregistris klubi treenerite hulgas — kas treenib klubis?
+   Diana Klavan ja Priscilla Õmblus on registris padelitreenerid ilma kutseta — kas nii jääb?
+10. **Liikmelisus:** kas Matchi liikmelisuse leht müüb just 49 € aastapaketti?
+11. **Kaart:** „Viljandi Tennis“ kaardil on kolmas märk „Kontor“ — kas see jääb kaardile?

@@ -31,6 +31,20 @@
         "Google'i kaart laaditakse alles nupuvajutusel (küpsised ainult nõusolekul).",
         "Lihtsam algus: faktid avaplokis, vähem kaarte, partnerid ühel heledal ribal."
       ]
+    },
+    {
+      "nr": 4,
+      "kuupaev": "2026-11-09",
+      "muudatused": [
+        "Menüü on alati käepärast: arvutis kleepub see päise alla, telefonis on päises nupp „Menüü“. Hetkel vaadatav osa on menüüs tähistatud.",
+        "Lihtsam algus: „Tahan mängida / Tahan õppida / Tahan võistelda“. Telefonis on esimene vaade lühike ja nupud üle laiuse.",
+        "Uus järjekord: mängukohad → hinnad → treeningud → võistlused → KKK → klubi ja toetajad → kontakt.",
+        "Hinnatabelites „Tavahind“ ja „Liikmele“; klubiliikme paketi juures nupp „Liitu klubiga“ (Matchi). Väliväljakute juures on näha, kas hooaeg käib.",
+        "Treeningute juures valikud „Lapsed“ ja „Täiskasvanud“ ning nupp „Küsi trenni kohta e-postiga“ valmis küsimustega.",
+        "Edetabeli juures on näha, millal andmed viimati kontrolliti; ühenduse vea korral öeldakse seda ausalt.",
+        "Uksekoodi probleemi korral on näha keskuse telefon; kaardi juures on selgitatud, et kolmas märk on klubi kontor.",
+        "Parandused kitsastel ekraanidel (leht ei kerinud enam külgsuunas) ja kommentaaride akna klaviatuurikasutuses."
+      ]
     }
   ],
   "kommentaarid": []
