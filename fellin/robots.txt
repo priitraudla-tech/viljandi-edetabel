@@ -1,0 +1,23 @@
+# Otsingumootorid ja tehisaru-assistendid on teretulnud — klubi tahab, et teda leitaks.
+User-agent: *
+Allow: /
+
+# Tehisaru-assistendid (vastavad kasutajate küsimustele, nt "kus Viljandis tennist mängida")
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.fellinrackets.ee/sitemap.xml

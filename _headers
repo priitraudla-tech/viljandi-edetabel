@@ -10,3 +10,9 @@
 
 /mangijad.html
   Cache-Control: public, max-age=60
+
+# Fellin Racketsi avalehe ettepanek kliendile kommenteerimiseks —
+# mitte Google'isse (päris leht tuleb fellinrackets.ee-sse).
+/fellin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=60
