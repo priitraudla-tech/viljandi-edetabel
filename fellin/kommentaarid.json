@@ -19,6 +19,18 @@
         "Viljandi järve foto ei ole enam lehe taust, vaid suur pilt Keskuse osas.",
         "Toetajate ja partnerite logod valgetel alustel, et need oleksid selgelt näha."
       ]
+    },
+    {
+      "nr": 3,
+      "kuupaev": "2026-11-09",
+      "muudatused": [
+        "Treenerite kutsed Eesti spordiregistrist (vanemtreener, abitreener; kehtivus ja link registrisse).",
+        "Hinnad kolme tabelina kõrvuti — tennise ja padeli hindu saab ühe pilguga võrrelda.",
+        "Selgemad pealkirjad ja suurem sildikiri; lehe fondid ja pildid laaditakse nüüd oma serverist, leht on ~4× kergem.",
+        "Ligipääsetavus: nähtav fookus, „Liigu sisu juurde“, suuremad vajutusalad, liikumise vähendamise tugi.",
+        "Google'i kaart laaditakse alles nupuvajutusel (küpsised ainult nõusolekul).",
+        "Lihtsam algus: faktid avaplokis, vähem kaarte, partnerid ühel heledal ribal."
+      ]
     }
   ],
   "kommentaarid": []

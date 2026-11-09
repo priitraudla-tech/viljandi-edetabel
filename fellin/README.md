@@ -11,6 +11,8 @@ Uue fellinrackets.ee avalehe prototüüp, mida klubi saab kommenteerida.
 |---|---|
 | `index.html` | avaleht (päris sisu + schema.org JSON-LD) |
 | `llms.txt`, `robots.txt`, `sitemap.xml` | päris lehe jaoks (fellinrackets.ee juurkausta) |
+| `fonts/` | Inter (opsz + wght 400–800) ja JetBrains Mono 600, woff2, latin + latin-ext (Google Fonts, OFL) |
+| `img/` | logod, järvefoto (640/1280/1920 WebP), EL-i ja partnerite logod — klubi materjal fellinrackets.ee-st |
 | `arvustus.js` | kommenteerimise kiht — **ainult ettepaneku ajaks** |
 | `kommentaarid.json` | kommentaarid + versioonide ajalugu |
 

@@ -23,7 +23,13 @@
 - Lapsed alates 4. eluaastast, ka täiskasvanud; algajad ja edasijõudnud
 - Õppemaks kuus: 1× nädalas 56 €, 2× 72 €, 3× 98 €, 4× 112 €; tennis + padel 72 €
 - Õdedele-vendadele −10 %. Väljaspool Viljandit elavatele kohamaks 50 €/kuu või 600 €/aasta (Viljandi linn, Põhja-Sakala ja Mulgi vald tasuvad oma elanike eest)
-- Treenerid: Ott Ahonen (peatreener, ott@fellinrackets.ee, +372 5649 4381), Priit Pihl, Timo Kirsimäe, Diana Klavan, Priscilla Õmblus, Anelle Luik
+- Treenerid (kutsed Eesti spordiregistri järgi, seis 09.11.2026):
+  - Ott Ahonen — peatreener, vanemtreener EKR tase 6 (tennis), kehtib kuni 25.09.2029; ott@fellinrackets.ee, +372 5649 4381
+  - Priit Pihl — treener, õppealajuhataja, vanemtreener EKR tase 6 (tennis), kehtib kuni 25.09.2029
+  - Timo Kirsimäe — tennisetreener, abitreener EKR tase 3 (tennis), kehtib kuni 02.05.2027
+  - Diana Klavan, Priscilla Õmblus — padelitreenerid
+  - Anelle Luik — treener
+  - Kutsed: https://www.spordiregister.ee/et/organisatsioon/192
 
 ## Võistlused
 
