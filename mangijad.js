@@ -541,7 +541,7 @@ function winPct(p) {
 function setupTabs() {
   $$(".tab").forEach((btn) => {
     btn.addEventListener("click", () => {
-      $$(".tab").forEach((b) => b.classList.toggle("active", b === btn));
+      $$(".tab").forEach((b) => { const on = b === btn; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
       $$(".tab-panel").forEach((p) =>
         p.classList.toggle("active", p.id === `tab-${btn.dataset.tab}`));
     });
@@ -549,7 +549,7 @@ function setupTabs() {
 }
 
 function switchTab(tab) {
-  $$(".tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === tab));
+  $$(".tab").forEach((b) => { const on = b.dataset.tab === tab; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
   $$(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === `tab-${tab}`));
 }
 
@@ -795,15 +795,15 @@ function renderRankChart(name) {
       datasets: [{
         label: `${name} — VÜS koht`,
         data: points.map((p) => p.rank),
-        borderColor: "#1a1a1a",
+        borderColor: "#d3fc67",
         borderWidth: 1.5,
-        backgroundColor: "rgba(78, 50, 23, 0.06)",
+        backgroundColor: "rgba(211, 252, 103, 0.10)",
         fill: true,
         tension: 0.3,
         spanGaps: true,
         pointRadius: 4,
-        pointBackgroundColor: "#ffffff",
-        pointBorderColor: "#1a1a1a",
+        pointBackgroundColor: "#10120f",
+        pointBorderColor: "#d3fc67",
         pointBorderWidth: 1.5,
       }],
     },
@@ -812,17 +812,17 @@ function renderRankChart(name) {
       maintainAspectRatio: false,
       scales: {
         x: {
-          grid: { color: "rgba(0,0,0,0.05)", drawTicks: false },
+          grid: { color: "rgba(246,245,238,0.08)", drawTicks: false },
           border: { display: false },
-          ticks: { color: "#777169", font: { family: bodyFont, size: 11, weight: 500 }, padding: 8 },
+          ticks: { color: "#b6b9ac", font: { family: bodyFont, size: 11, weight: 600 }, padding: 8 },
         },
         y: {
           reverse: true, // 1. koht üleval
-          grid: { color: "rgba(0,0,0,0.05)", drawTicks: false },
+          grid: { color: "rgba(246,245,238,0.08)", drawTicks: false },
           border: { display: false },
           ticks: {
-            color: "#777169",
-            font: { family: bodyFont, size: 11, weight: 500 },
+            color: "#b6b9ac",
+            font: { family: bodyFont, size: 11, weight: 600 },
             padding: 10,
             precision: 0,
             callback: (v) => Number.isInteger(v) ? `${v}.` : "",
@@ -831,14 +831,14 @@ function renderRankChart(name) {
       },
       plugins: {
         legend: {
-          labels: { color: "#4e4e4e", font: { family: bodyFont, size: 13, weight: 500 },
+          labels: { color: "#d5d7cc", font: { family: bodyFont, size: 13, weight: 600 },
             usePointStyle: true, pointStyle: "line", boxWidth: 24 },
         },
         tooltip: {
-          backgroundColor: "#ffffff",
-          titleColor: "#4e4e4e",
-          bodyColor: "#1a1a1a",
-          borderColor: "rgba(0,0,0,0.06)",
+          backgroundColor: "#25291f",
+          titleColor: "#b6b9ac",
+          bodyColor: "#f6f5ee",
+          borderColor: "#3d4136",
           borderWidth: 1,
           padding: 10,
           cornerRadius: 8,

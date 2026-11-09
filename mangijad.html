@@ -13,52 +13,51 @@
   <meta property="og:url" content="https://viljandi-edetabel.pages.dev/mangijad" />
   <meta property="og:image" content="https://viljandi-edetabel.pages.dev/icons/icon-512.png" />
   <meta property="og:locale" content="et_EE" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#10120f" />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://rsms.me/" />
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <script src="mangijad.js" defer></script>
   <script src="install.js" defer></script>
 </head>
 <body>
+  <a class="skip" href="#sisu">Liigu sisu juurde</a>
+
   <header class="topbar">
-    <div class="container topbar-inner">
-      <div class="topbar-text">
+    <div class="container topbar-row">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>VÜS<span class="brand-sub">Viljandi tennis</span></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="intro" aria-labelledby="title">
+      <div class="intro-copy">
+        <span class="kicker">Viljandi / Tennis · Statistika</span>
         <h1 id="title">Mängijad</h1>
         <p class="meta">
           <span id="meta-counts">—</span>
         </p>
       </div>
-    </div>
-  </header>
-
-  <nav class="site-nav container" aria-label="Lehed">
-    <a href="index.html" class="site-nav-link">
-      <span class="site-nav-icon" aria-hidden="true">🏆</span>
-      <span>Edetabel</span>
-    </a>
-    <a href="puramiid.html" class="site-nav-link">
-      <span class="site-nav-icon" aria-hidden="true">🔺</span>
-      <span>Püramiid</span>
-    </a>
-    <a href="mangijad.html" class="site-nav-link is-active" aria-current="page">
-      <span class="site-nav-icon" aria-hidden="true">👥</span>
-      <span>Mängijad</span>
-    </a>
-  </nav>
-
-  <div class="container tabs-wrap">
-    <nav class="tabs">
-      <button class="tab active" data-tab="players">Mängijad</button>
-      <button class="tab" data-tab="h2h">Omavahelised</button>
+      <div class="intro-art" aria-hidden="true"><svg viewBox="0 0 240 112" fill="none" stroke="#1b270b" stroke-width="1.3" vector-effect="non-scaling-stroke" focusable="false"><rect x="2" y="2" width="236" height="108" /><line x1="2" y1="15.5" x2="238" y2="15.5" /><line x1="2" y1="96.5" x2="238" y2="96.5" /><line x1="56.5" y1="15.5" x2="56.5" y2="96.5" /><line x1="183.5" y1="15.5" x2="183.5" y2="96.5" /><line x1="56.5" y1="56" x2="183.5" y2="56" /><line x1="2" y1="56" x2="7" y2="56" /><line x1="233" y1="56" x2="238" y2="56" /><line x1="120" y1="-4" x2="120" y2="116" stroke-width="2.4" stroke-dasharray="2 2.2" /></svg></div>
+    </section>
+    <nav class="site-nav" aria-label="Lehed">
+      <a href="index.html" class="site-nav-link"><span class="site-nav-num" aria-hidden="true">01</span>Edetabel</a>
+      <a href="puramiid.html" class="site-nav-link"><span class="site-nav-num" aria-hidden="true">02</span>Püramiid</a>
+      <a href="mangijad.html" class="site-nav-link is-active" aria-current="page"><span class="site-nav-num" aria-hidden="true">03</span>Mängijad</a>
     </nav>
   </div>
 
-  <main class="container">
+  <div class="container tabs-wrap">
+    <div class="tabs" role="group" aria-label="Vaade">
+      <button type="button" class="tab active" aria-pressed="true" data-tab="players">Mängijad</button>
+      <button type="button" class="tab" aria-pressed="false" data-tab="h2h">Omavahelised</button>
+    </div>
+  </div>
+
+  <main class="container" id="sisu" tabindex="-1">
 
     <section id="tab-players" class="tab-panel active">
 

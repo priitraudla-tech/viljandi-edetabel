@@ -149,7 +149,7 @@ function setupTabs() {
   $$(".tab").forEach((btn) => {
     btn.addEventListener("click", () => {
       const tab = btn.dataset.tab;
-      $$(".tab").forEach((b) => b.classList.toggle("active", b === btn));
+      $$(".tab").forEach((b) => { const on = b === btn; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
       $$(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === `tab-${tab}`));
     });
   });
@@ -647,7 +647,7 @@ function setTournamentView(view) {
   $$("#tournament-view-toggle .view-toggle-btn").forEach((b) => {
     const active = b.dataset.view === view;
     b.classList.toggle("active", active);
-    b.setAttribute("aria-selected", active ? "true" : "false");
+    b.setAttribute("aria-pressed", active ? "true" : "false");
   });
   const punktid = $("#tournament-view-punktid");
   const tabel = $("#tournament-view-tabel");
@@ -1179,7 +1179,7 @@ function playerSet() {
 }
 
 function openTrendFor(name) {
-  $$(".tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === "trend"));
+  $$(".tab").forEach((b) => { const on = b.dataset.tab === "trend"; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
   $$(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === "tab-trend"));
   $("#trend-player").value = name;
   renderTrend();
@@ -1208,12 +1208,12 @@ function drawChart(labels, datasets) {
   const ctx = $("#trend-chart").getContext("2d");
   if (state.trendChart) state.trendChart.destroy();
 
-  // ElevenLabs warm-stone palette
-  const grid = "rgba(0, 0, 0, 0.05)";
-  const text = "#4e4e4e";
-  const muted = "#777169";
-  const line = "#1a1a1a";
-  const fill = "rgba(78, 50, 23, 0.06)";
+  // Tume stuudio-palett (sama mis style.css märgid)
+  const grid = "rgba(246, 245, 238, 0.08)";
+  const text = "#d5d7cc";
+  const muted = "#b6b9ac";
+  const line = "#d3fc67";
+  const fill = "rgba(211, 252, 103, 0.10)";
   const bodyFont = '"Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif';
 
   const invertY = datasets[0]?.invertY;
@@ -1233,7 +1233,7 @@ function drawChart(labels, datasets) {
         spanGaps: true,
         pointRadius: 3,
         pointHoverRadius: 6,
-        pointBackgroundColor: "#ffffff",
+        pointBackgroundColor: "#10120f",
         pointBorderColor: line,
         pointBorderWidth: 1.5,
       })),
@@ -1249,7 +1249,7 @@ function drawChart(labels, datasets) {
           border: { display: false },
           ticks: {
             color: muted,
-            font: { family: bodyFont, size: 11, weight: 500 },
+            font: { family: bodyFont, size: 11, weight: 600 },
             padding: 8,
           },
         },
@@ -1258,7 +1258,7 @@ function drawChart(labels, datasets) {
           border: { display: false },
           ticks: {
             color: muted,
-            font: { family: bodyFont, size: 11, weight: 500 },
+            font: { family: bodyFont, size: 11, weight: 600 },
             padding: 10,
             precision: 0,
             callback: (v) => Number.isInteger(v) ? v : "",
@@ -1271,7 +1271,7 @@ function drawChart(labels, datasets) {
         legend: {
           labels: {
             color: text,
-            font: { family: bodyFont, size: 13, weight: 500 },
+            font: { family: bodyFont, size: 13, weight: 600 },
             usePointStyle: true,
             pointStyle: "line",
             boxWidth: 24,
@@ -1279,14 +1279,14 @@ function drawChart(labels, datasets) {
           },
         },
         tooltip: {
-          backgroundColor: "#ffffff",
-          titleColor: text,
-          bodyColor: line,
-          borderColor: "rgba(0, 0, 0, 0.06)",
+          backgroundColor: "#25291f",
+          titleColor: muted,
+          bodyColor: "#f6f5ee",
+          borderColor: "#3d4136",
           borderWidth: 1,
           padding: 10,
           cornerRadius: 8,
-          titleFont: { family: bodyFont, size: 12, weight: 500 },
+          titleFont: { family: bodyFont, size: 12, weight: 600 },
           bodyFont: { family: bodyFont, size: 13, weight: 400 },
           displayColors: false,
           callbacks: {

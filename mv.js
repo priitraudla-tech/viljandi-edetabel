@@ -353,7 +353,7 @@
     const box = $("#mv-view-tabel");
     box.innerHTML = "";
     box.appendChild(pyrSelgitus(
-      "Kollasel taustal mängud liigutavad püramiidi kohti. Kahvel on külgsuunas keritav."));
+      "Rohekal taustal mängud liigutavad püramiidi kohti. Kahvel on külgsuunas keritav."));
 
     (state.data.brackets || []).forEach((b) => {
       const kahvel = buildKahvel(b);
@@ -386,7 +386,7 @@
     $$("#mv-view-toggle .view-toggle-btn").forEach((b) => {
       const on = b.dataset.mvview === v;
       b.classList.toggle("active", on);
-      b.setAttribute("aria-selected", on ? "true" : "false");
+      b.setAttribute("aria-pressed", on ? "true" : "false");
     });
     ["kava", "tulemused", "tabel"].forEach((x) => {
       const el = $(`#mv-view-${x}`);
@@ -441,7 +441,7 @@
   // Ava MV-vahekaart ise. app.js paneb oma tab-kuulajad paika alles pärast
   // andmete laadimist, nii et #mv-lingi puhul ei saa tema klikile loota.
   function avaVahekaart() {
-    $$(".tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === "mv"));
+    $$(".tab").forEach((b) => { const on = b.dataset.tab === "mv"; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
     $$(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === "tab-mv"));
   }
 

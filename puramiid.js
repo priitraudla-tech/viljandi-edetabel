@@ -250,7 +250,7 @@ async function init() {
 function setupTabs() {
   $$(".tab").forEach((btn) => {
     btn.addEventListener("click", () => {
-      $$(".tab").forEach((b) => b.classList.toggle("active", b === btn));
+      $$(".tab").forEach((b) => { const on = b === btn; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
       $$(".tab-panel").forEach((p) =>
         p.classList.toggle("active", p.id === `tab-${btn.dataset.tab}`));
     });
@@ -258,7 +258,7 @@ function setupTabs() {
 }
 
 function switchTab(tab) {
-  $$(".tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === tab));
+  $$(".tab").forEach((b) => { const on = b.dataset.tab === tab; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
   $$(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === `tab-${tab}`));
 }
 
