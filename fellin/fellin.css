@@ -646,3 +646,34 @@ td.p { text-align: right; white-space: nowrap; font-weight: 800; font-size: 1.12
 }
 /* Väga suure teksti või tekstivahede korral keritakse hinnatabelit tema kaardis, mitte kogu lehte */
 .loc { overflow-x: auto; }
+
+/* ===== v9: alamlehed samas vormikeeles ===== */
+.page-head + .k-flow > .k-sec:first-child { padding-top: 2.5rem; }
+.loc h3 .loc-type { display: flex; align-items: center; gap: 8px; }
+.loc h3 .loc-type .ico { width: 18px; height: 18px; color: var(--accent); }
+thead th .ico { width: 18px; height: 18px; vertical-align: -4px; margin-right: 5px; color: var(--accent); }
+.k-flow .book-row { margin: 1rem 0 0; }
+.k-flow .member { margin-top: 0; }
+.aud-ico { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(211,252,103,.1); color: var(--accent); margin-bottom: .5rem; }
+.ask .addr-line .ico { color: var(--accent); margin-right: -2px; }
+.ask .addr-line span { color: var(--muted); }
+.coach { display: flex; gap: 12px; align-items: flex-start; }
+.coach > div { min-width: 0; }
+.coach b { overflow-wrap: break-word; }
+.face { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none; font: 600 .75rem/1 var(--mono); font-style: normal;
+  background: #232a1b; color: var(--accent); }
+.coach.full .face { background: var(--accent); color: var(--on-accent); }
+.k-row.pyr { grid-template-columns: 44px minmax(0, 1fr); }
+.k-board-h { margin: .7rem .75rem .6rem; font-size: 1.0625rem; font-weight: 600; letter-spacing: -.01em; }
+.k-board-foot .link-arrow { min-height: 36px; }
+.k-board .data-status { color: var(--muted); font-size: var(--fs-small); }
+.k-contact span span a { color: var(--muted); }
+.k-contact span span a:hover { color: var(--ink); }
+.k-flow .map { border-radius: var(--round); }
+@media (max-width: 640px) {
+  .k-row.pyr { grid-template-columns: 38px minmax(0, 1fr); }
+  .k-contact span span { overflow-wrap: anywhere; }
+}
+@media (max-width: 360px) {
+  .coaches { grid-template-columns: minmax(0, 1fr); }
+}

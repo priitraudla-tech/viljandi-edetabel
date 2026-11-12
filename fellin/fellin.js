@@ -98,9 +98,12 @@
           const seis = pyr.updated_at ? fmtKuupaev(pyr.updated_at) : "";
           if (pyrList) {
             const n = Number(pyrList.dataset.n) || 5;
-            pyrList.innerHTML = jarjest.length ? jarjest.slice(0, n).map((p, i) =>
-              `<li class="pyr"><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>` +
-              `<span>${esc(p.name)}${i === 0 ? ' <span aria-hidden="true">👑</span><span class="vh">(püramiidi tipp)</span>' : ""}</span></li>`).join("")
+            const tabloo = pyrList.dataset.stiil === "tabloo";
+            pyrList.innerHTML = jarjest.length ? jarjest.slice(0, n).map((p, i) => tabloo
+              ? `<li class="k-row pyr"><span class="k-pos" aria-hidden="true">${i + 1}</span><span class="k-name">${esc(p.name)}` +
+                `${i === 0 ? ' <span class="k-lead">tipp</span>' : ""}</span></li>`
+              : `<li class="pyr"><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>` +
+                `<span>${esc(p.name)}${i === 0 ? ' <span aria-hidden="true">👑</span><span class="vh">(püramiidi tipp)</span>' : ""}</span></li>`).join("")
               : `<li><span class="empty">Püramiidis pole veel mängijaid.</span></li>`;
             const a = $("#pyr-asof");
             if (a && seis) a.textContent = `seis ${seis}`;

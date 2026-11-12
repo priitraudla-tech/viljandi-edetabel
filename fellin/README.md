@@ -5,7 +5,7 @@ Uue fellinrackets.ee kodulehe prototüüp, mida klubi saab kommenteerida.
 - Aadress: `https://viljandi-edetabel.pages.dev/fellin/` (kommenteerimiseks lingis `?k=…` võti — võti ise repos ei ole, ainult selle räsi `functions/api/fellin-kommentaar.js`-is). Võti jääb brauserisse meelde, nii et alamlehtedel lingis seda enam vaja pole.
 - Google seda ei indekseeri (`_headers`: `X-Robots-Tag: noindex`)
 
-## Ülesehitus (versioonist 7; avalehe vormikeel versioonist 8)
+## Ülesehitus (versioonist 7; uus vormikeel avalehel v8, alamlehtedel v9)
 
 Avaleht on lühike (telefonis ~4 ekraani); detailne sisu on neljal alamlehel.
 
@@ -60,7 +60,7 @@ Testid: `node scripts/test_fellin_kommentaar.mjs`
 
 ## Avatud küsimused klubile (sisu, mida ei tohi oletada)
 
-Seis 12.11.2026 (versioon 8). Kuni vastuseni on lehel ainult kinnitatud info.
+Seis 12.11.2026 (versioon 9). Kuni vastuseni on lehel ainult kinnitatud info.
 
 1. **Hinnad:** kas hind on „€ väljaku kohta tunnis“? Siis lisame selle tabelite juurde.
 2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad. Praegu on teada ainult „maist oktoobrini

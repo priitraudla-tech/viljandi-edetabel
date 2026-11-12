@@ -53,6 +53,20 @@
   </script>
 </head>
 <body>
+  <!-- Ikoonid: joonistatud selle lehe jaoks (tennise- ja padelireket, pall, kell, päike, telefon, võti, kaardinõel, kiri, kõne) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M5.7 6.3c3 2.7 3 8.700 0 11.400M18.300 6.300c-3 2.700-3 8.700 0 11.400"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.300V12l3.100 2"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.700"/><path d="M12 3v2.200M12 18.800V21M3 12h2.200M18.800 12H21M5.600 5.600l1.600 1.600M16.800 16.800l1.600 1.600M5.600 18.400l1.600-1.600M16.800 7.200l1.600-1.600"/></symbol>
+    <symbol id="i-tennis" viewBox="0 0 24 24"><ellipse cx="9.500" cy="9" rx="5.600" ry="7.200" transform="rotate(-38 9.500 9)"/><path class="grip" d="M14.400 14.900l5.600 6.100"/><path class="thin" d="M6 5.500l7.500 7.200M4.800 9.500l5.500 5.300M9.200 4l5.500 5.300"/></symbol>
+    <symbol id="i-padel" viewBox="0 0 24 24"><circle cx="10" cy="9.300" r="6.700"/><path class="grip" d="M14.700 14.300l5.300 6.700"/><circle class="dot" cx="7.500" cy="7.300" r="1"/><circle class="dot" cx="11.600" cy="6.300" r="1"/><circle class="dot" cx="8.400" cy="11.300" r="1"/><circle class="dot" cx="12.500" cy="10.300" r="1"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><rect x="7" y="2.800" width="10" height="18.400" rx="2.400"/><path d="M10.500 17.800h3M10 8.500l1.500 1.500 2.700-3"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15.700" r="3.700"/><path d="M10.700 13L19.500 4.200M16.200 7.500l2.500 2.500M13.700 10l1.800 1.800"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.500-5.600-6.500-11a6.500 6.500 0 1 1 13 0c0 5.400-6.500 11-6.500 11z"/><circle cx="12" cy="10" r="2.300"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.500" y="6" width="17" height="12" rx="2.200"/><path d="M4.200 7.700l7.800 5.800 7.800-5.800"/></symbol>
+    <symbol id="i-call" viewBox="0 0 24 24"><path d="M6.500 3.500h3.200l1.400 4.100-2.100 1.400a11.500 11.500 0 0 0 6 6l1.400-2.100 4.100 1.400v3.200a1.900 1.900 0 0 1-2 1.900C10.900 19 5 13.100 4.600 5.500a1.900 1.900 0 0 1 1.900-2z"/></symbol>
+    <symbol id="i-mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#d3fc67"/><path d="M14 20C42 38 42 62 14 80M86 20C58 38 58 62 86 80" fill="none" stroke="#10120f" stroke-width="6" stroke-linecap="round" opacity=".55"/></symbol>
+  </svg>
   <a class="skip" href="#sisu">Liigu sisu juurde</a>
 
   <!-- ARVUSTUS: eemalda enne avaldamist see riba ja arvustus.js rida lehe lõpus -->
@@ -93,16 +107,19 @@
         </div>
       </div>
     </div>
-
-    <section data-osa="m-kohad" data-osa-nimi="Mängukohad ja hinnad" aria-labelledby="h-kohad">
-      <h2 class="vh" id="h-kohad">Mängukohad ja tunnihinnad</h2>
+    <div class="k-flow">
+      <section class="k-sec" data-osa="m-kohad" data-osa-nimi="Mängukohad ja hinnad" aria-labelledby="h-kohad">
+        <div class="k-h">
+          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">15</b> Vali koht</span>
+          <h2 id="h-kohad">Kus mängime?</h2>
+        </div>
       <div class="grid-2">
         <article class="card loc" aria-labelledby="h-sise">
-          <h3 id="h-sise"><span class="loc-type">Sisehall</span><span class="vh"> — </span>Kaalu 2</h3>
+          <h3 id="h-sise"><span class="loc-type"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Sisehall</span><span class="vh"> — </span>Kaalu 2</h3>
           <p class="addr">Avatud iga päev 6–24 · 2 tennise- ja 3 padeliväljakut</p>
           <table class="ptable">
             <caption class="vh">Sisehalli tunnihinnad, tavahind ja liikmehind</caption>
-            <thead><tr><th scope="col">Aeg</th><th scope="col" class="pr">Tennis</th><th scope="col" class="pr">Padel</th></tr></thead>
+            <thead><tr><th scope="col">Aeg</th><th scope="col" class="pr"><svg class="ico" aria-hidden="true"><use href="#i-tennis"/></svg>Tennis</th><th scope="col" class="pr"><svg class="ico" aria-hidden="true"><use href="#i-padel"/></svg>Padel</th></tr></thead>
             <tbody>
               <tr><th scope="row"><span class="tier">Tavaaeg</span>E–R 6–17, 21–24</th><td class="pr"><b>28 €</b><span class="mem">liikmele 26 €</span></td><td class="pr"><b>36 €</b><span class="mem">liikmele 32 €</span></td></tr>
               <tr><th scope="row"><span class="tier peak">Tipptund</span>E–R 17–21</th><td class="pr"><b>36 €</b><span class="mem">liikmele 34 €</span></td><td class="pr"><b>44 €</b><span class="mem">liikmele 40 €</span></td></tr>
@@ -114,15 +131,14 @@
           <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Kaalu+2+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (sisehall Kaalu 2, Google Maps)</span></a>
         </article>
         <article class="card loc" aria-labelledby="h-valjas">
-          <img class="loc-photo" src="../img/viljandi-jarv-640.webp"
-               srcset="../img/viljandi-jarv-640.webp 640w, ../img/viljandi-jarv-1280.webp 1280w"
-               sizes="(max-width: 900px) 100vw, 620px" width="1920" height="1079" loading="lazy" decoding="async"
-               alt="Õhtune Viljandi järv ja järveäärne spordipark valgustatud väljakutega, linnulennult" />
-          <h3 id="h-valjas"><span class="loc-type">Väliväljakud järve ääres</span><span class="vh"> — </span>Ranna puiestee 3</h3>
+          <img class="loc-photo" src="../img/plats-800.webp" srcset="../img/plats-800.webp 800w, ../img/plats-1280.webp 1280w"
+               sizes="(max-width: 900px) 100vw, 620px" width="1280" height="684" decoding="async"
+               alt="Linnulennult: punased savi-tenniseväljakud, sinised padeliväljakud ja jalgpalliväljak Viljandi järve ääres" />
+          <h3 id="h-valjas"><span class="loc-type"><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg>Väliväljakud järve ääres</span><span class="vh"> — </span>Ranna puiestee 3</h3>
           <p class="addr">6 tennise- ja 5 padeliväljakut · <span id="out-season">hooaeg mai–oktoober</span></p>
           <table class="ptable">
             <caption class="vh">Väliväljakute tunnihinnad 2026. aasta hooajal, tavahind ja liikmehind</caption>
-            <thead><tr><th scope="col">Aeg · 2026. a hinnad</th><th scope="col" class="pr">Tennis ja padel</th></tr></thead>
+            <thead><tr><th scope="col">Aeg · 2026. a hinnad</th><th scope="col" class="pr"><svg class="ico" aria-hidden="true"><use href="#i-tennis"/></svg><svg class="ico" aria-hidden="true"><use href="#i-padel"/></svg>Tennis ja padel</th></tr></thead>
             <tbody>
               <tr><th scope="row"><span class="tier">Tavaaeg</span>E–R 6–17, 20–23</th><td class="pr"><b>24 €</b><span class="mem">liikmele 22 €</span></td></tr>
               <tr><th scope="row"><span class="tier peak">Tipptund ja nädalavahetus</span>E–R 17–20, L–P</th><td class="pr"><b>28 €</b><span class="mem">liikmele 26 €</span></td></tr>
@@ -131,21 +147,22 @@
           <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Ranna+puiestee+3+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (väliväljakud Ranna puiestee 3, Google Maps)</span></a>
         </article>
       </div>
-
       <div class="book-row">
         <a class="btn btn-accent" href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">Broneeri väljak<span aria-hidden="true"> ↗</span></a>
         <p class="small muted">Vajalik Matchi konto. Tasuta tühistamine kuni 24 tundi enne algust.</p>
       </div>
-
-      <details class="more">
-        <summary>Kuidas broneerida, väljakute katted ja tingimused</summary>
-        <div class="more-body">
-          <ol class="steps">
-            <li class="step"><h4>Loo Matchi konto</h4><p>Registreerimata klient väljakut broneerida ei saa. Konto loomine võtab minuti.</p></li>
-            <li class="step"><h4>Vali väljak ja aeg</h4><p>Maksa kaardiga või tunnipangast. Püsiaegade arve tuleb kuu alguses e-postiga.</p></li>
-            <li class="step"><h4>Tule kohale</h4><p>Uksekood kehtib 20 minutit enne kuni 20 minutit pärast broneeritud aega.</p></li>
+        <div class="k-how">
+          <h3 class="k-how-t">Nii see käib</h3>
+          <ol class="k-steps">
+            <li><span class="badge"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg></span><span><b>Broneeri Matchis</b><span>Vali väljak ja sobiv aeg.</span></span></li>
+            <li><span class="badge"><svg class="ico" aria-hidden="true"><use href="#i-key"/></svg></span><span><b>Saad uksekoodi</b><span>Kehtib 20 min enne ja pärast mängu.</span></span></li>
+            <li><span class="badge"><svg class="ico" aria-hidden="true"><use href="#i-ball"/></svg></span><span><b>Tule ja mängi</b><span>Sisehallis on riietusruumid ja saun.</span></span></li>
           </ol>
-          <dl class="facts-list">
+        </div>
+      <details class="more">
+        <summary>Väljakute katted ja tingimused</summary>
+        <div class="more-body">
+          <dl class="facts-list" style="margin-top: 0;">
             <div><dt>Sisehall</dt><dd>Tennis: Schöpp Classic vaipkate · padel: Mondo Supercourt XN · saun, riietus- ja pesuruumid</dd></div>
             <div><dt>Väliväljakud</dt><dd>Tennis: Top Clay · padel: 4 Top Velour + 1 kunstmuru</dd></div>
             <div><dt>Püsiaeg</dt><dd>Püsiaja broneerija peab ise olema regulaarne kasutaja.</dd></div>
@@ -157,12 +174,17 @@
           </div>
         </div>
       </details>
-    </section>
+      </section>
 
-    <section data-osa="m-liige" data-osa-nimi="Klubiliikme pakett" aria-labelledby="h-liige">
+      <section class="k-sec" data-osa="m-liige" data-osa-nimi="Klubiliikme pakett" aria-labelledby="h-liige">
+        <div class="k-h">
+          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">30</b> Liitu</span>
+          <h2 id="h-liige">Mängid tihti?</h2>
+          <p class="k-hint">Klubiliikmele on iga tund soodsam ja väljaku saab broneerida varem.</p>
+        </div>
       <div class="card member">
         <div>
-          <h2 class="card-h" id="h-liige">Klubiliikme pakett</h2>
+          <h3 class="card-h">Klubiliikme pakett</h3>
           <div class="big num">49 €</div>
           <span class="small">aastas · kehtib 12 kuud ostust</span>
         </div>
@@ -179,22 +201,26 @@
           <span class="small">Matchi keskkonnas, vajalik Matchi konto.</span>
         </div>
       </div>
-    </section>
+      </section>
 
-    <section id="kkk" class="faq" data-osa="m-kkk" data-osa-nimi="Korduma kippuvad küsimused" aria-labelledby="h-kkk">
-      <div class="sec-head"><div><h2 id="h-kkk">Korduma kippuvad küsimused.</h2></div></div>
-      <!-- Tekst on sõna-sõnalt sama mis päise FAQPage JSON-LD-s — muuda mõlemas -->
-      <div class="faq-list">
-        <details><summary>Kus Viljandis saab tennist ja padelit mängida?</summary>
-          <p>Fellin Rackets keskuses: sisehall Kaalu 2 on avatud aastaringselt iga päev 6–24 (2 tennise- ja 3 padeliväljakut). Hooajal mai–oktoober lisanduvad järveäärsed väliväljakud Ranna puiestee 3 (6 tennise- ja 5 padeliväljakut).</p></details>
-        <details><summary>Kui palju maksab väljaku rent Viljandis?</summary>
-          <p>Alates 01.09.2026: sisetennis 28–36 € tund, sisepadel 36–44 € tund, väliväljakud 24–28 € tund (2026. a hooaeg). Klubiliikmetele 2–4 € soodsam.</p></details>
-        <details><summary>Kas keskuses on personal?</summary>
-          <p>Ei. Viljandi tennise- ja padelikeskus on automaatkeskus. Sisse pääseb broneeringuga saadud uksekoodiga. Probleemi korral helista keskuse telefonil <a href="tel:+3725036425">+372 5036 425</a>.</p></details>
-        <details><summary>Kas broneeringut saab tühistada?</summary>
-          <p>Jah, tasuta kuni 24 tundi enne algust. Hilisemat tühistamist ei hüvitata.</p></details>
-      </div>
-    </section>
+      <section id="kkk" class="k-sec faq" data-osa="m-kkk" data-osa-nimi="Korduma kippuvad küsimused" aria-labelledby="h-kkk">
+        <div class="k-h">
+          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">40</b> Küsimused</span>
+          <h2 id="h-kkk">Korduma kippuvad küsimused.</h2>
+        </div>
+        <!-- Tekst on sõna-sõnalt sama mis päise FAQPage JSON-LD-s — muuda mõlemas -->
+        <div class="faq-list">
+          <details><summary>Kus Viljandis saab tennist ja padelit mängida?</summary>
+            <p>Fellin Rackets keskuses: sisehall Kaalu 2 on avatud aastaringselt iga päev 6–24 (2 tennise- ja 3 padeliväljakut). Hooajal mai–oktoober lisanduvad järveäärsed väliväljakud Ranna puiestee 3 (6 tennise- ja 5 padeliväljakut).</p></details>
+          <details><summary>Kui palju maksab väljaku rent Viljandis?</summary>
+            <p>Alates 01.09.2026: sisetennis 28–36 € tund, sisepadel 36–44 € tund, väliväljakud 24–28 € tund (2026. a hooaeg). Klubiliikmetele 2–4 € soodsam.</p></details>
+          <details><summary>Kas keskuses on personal?</summary>
+            <p>Ei. Viljandi tennise- ja padelikeskus on automaatkeskus. Sisse pääseb broneeringuga saadud uksekoodiga. Probleemi korral helista keskuse telefonil <a href="tel:+3725036425">+372 5036 425</a>.</p></details>
+          <details><summary>Kas broneeringut saab tühistada?</summary>
+            <p>Jah, tasuta kuni 24 tundi enne algust. Hilisemat tühistamist ei hüvitata.</p></details>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-foot" data-osa="jalus" data-osa-nimi="Jalus">
