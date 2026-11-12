@@ -6,6 +6,7 @@
   <title>Kontseptsioon – Fellin Rackets</title>
   <meta name="robots" content="noindex" />
   <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" as="image" href="../img/valjakud-ohtul-1280.webp" imagesrcset="../img/valjakud-ohtul-1280.webp 1280w, ../img/valjakud-ohtul-1920.webp 1920w" imagesizes="100vw" media="(min-width: 901px)" />
   <link rel="stylesheet" href="../fellin.css" />
   <style>
     /* KONTSEPTSIOON 2: sama palett (tume + tennisepalli laim).
@@ -24,13 +25,10 @@
     .k-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 999px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: .9375rem; }
     .k-nav a:hover { background: #1d2218; color: var(--accent); }
 
-    /* --- avaplokk: öine väljak --- */
+    /* --- avaplokk: päris väljakud õhtul (foto), tekst vasakul tumedal --- */
     .k-hero { position: relative; margin: 12px 0 0; border-radius: var(--round); background: #0b0d0a; overflow: hidden;
-      border: 1px solid #23271f; min-height: 580px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; isolation: isolate; }
-    .k-hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
-      background: radial-gradient(60% 70% at 78% 40%, rgba(211,252,103,.16), transparent 70%),
-                  radial-gradient(40% 50% at 15% 100%, rgba(211,252,103,.07), transparent 70%); }
-    .k-copy { padding: clamp(1.5rem, 4.5vw, 4rem); position: relative; z-index: 2; }
+      border: 1px solid #23271f; min-height: 600px; display: flex; align-items: center; isolation: isolate; }
+    .k-copy { padding: clamp(1.5rem, 4.5vw, 4rem); position: relative; z-index: 2; max-width: 44rem; }
     .k-live { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 13px; border-radius: 999px; background: rgba(211,252,103,.09);
       color: var(--accent); font: 600 .9375rem/1.2 var(--font); }
     .k-live i { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(211,252,103,.6); flex: none; }
@@ -48,15 +46,18 @@
     .k-btn.ball { background: var(--accent); color: var(--on-accent); }
     .k-btn.ball span { width: 26px; height: 26px; border-radius: 50%; background: var(--on-accent); color: var(--accent); display: grid; place-items: center; font-size: .9rem; }
     .k-btn.line { color: var(--ink); border: 1.5px solid #3d4136; }
-    .k-art { position: relative; height: 100%; min-height: 420px; }
-    .k-court { position: absolute; width: 118%; left: -6%; top: 50%; transform: translateY(-50%) perspective(1100px) rotateX(58deg) rotateZ(-24deg); }
-    .k-court rect, .k-court line { stroke: var(--line); fill: none; stroke-width: .8; vector-effect: non-scaling-stroke; }
-    .k-court .net { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 3 3; }
-    .k-court .surface { fill: rgba(211,252,103,.04); stroke: none; }
+    .k-art { position: absolute; inset: 0; z-index: 0; }
+    .k-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 70%; }
+    /* Tume üleminek teksti alla: vasakul peaaegu must, paremal foto puhas */
+    .k-art::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(11,13,10,.96) 0%, rgba(11,13,10,.88) 28%, rgba(11,13,10,.45) 52%, rgba(11,13,10,.06) 76%),
+                  linear-gradient(0deg, rgba(11,13,10,.5), rgba(11,13,10,0) 30%); }
+    .k-credit { position: absolute; right: 12px; bottom: 10px; z-index: 2; font-size: .75rem; color: rgba(246,245,238,.82);
+      background: rgba(11,13,10,.62); padding: 4px 10px; border-radius: 999px; }
+    .k-flight { position: absolute; z-index: 1; right: 0; top: 0; width: 46%; height: 100%; pointer-events: none; }
     .k-fly { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-    .k-fly .arc { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 2 9; stroke-linecap: round; opacity: .9; }
-    .k-fly .shadow { fill: rgba(0,0,0,.45); }
-    .k-ball { position: absolute; width: 54px; height: 54px; right: 16%; top: 12%; filter: drop-shadow(0 0 22px rgba(211,252,103,.55)); }
+    .k-fly .arc { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 2 9; stroke-linecap: round; opacity: .85; }
+    .k-ball { position: absolute; width: 46px; height: 46px; right: 20%; top: 9%; filter: drop-shadow(0 0 20px rgba(211,252,103,.6)); }
 
     /* --- palli teekond: üks punktiirjoon viib silma osast osasse --- */
     .k-flow { position: relative; }
@@ -158,7 +159,7 @@
     @media (prefers-reduced-motion: no-preference) {
       .k-live:not(.off) i { animation: k-puls 2s ease-out infinite; }
       @keyframes k-puls { 70% { box-shadow: 0 0 0 10px rgba(211,252,103,0); } 100% { box-shadow: 0 0 0 0 rgba(211,252,103,0); } }
-      .k-ball { offset-path: path("M -380 330 Q -150 -60 0 0"); offset-rotate: 0deg; animation: k-lend 1.6s cubic-bezier(.25,.6,.35,1) both .3s; }
+      .k-ball { offset-path: path("M -330 360 Q -150 -50 0 0"); offset-rotate: 0deg; animation: k-lend 1.6s cubic-bezier(.25,.6,.35,1) both .3s; }
       @keyframes k-lend { from { offset-distance: 0%; } to { offset-distance: 100%; } }
       .k-scribble { animation: k-joon .6s ease-out both 1.5s; }
       @keyframes k-joon { from { clip-path: inset(-50% 100% -50% 0); } to { clip-path: inset(-50% -2% -50% 0); } }
@@ -167,10 +168,12 @@
     }
     @media (max-width: 900px) {
       .k-nav { display: none; }
-      .k-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-      .k-art { min-height: 230px; margin-top: -1.25rem; }
-      .k-court { width: 120%; left: -4%; }
-      .k-ball { width: 44px; height: 44px; right: 14%; top: 4%; }
+      .k-hero { display: block; min-height: 0; }
+      .k-copy { max-width: none; }
+      .k-art { position: relative; inset: auto; height: 260px; margin-top: -1.5rem; }
+      .k-art img { object-position: 50% 62%; }
+      .k-art::after { background: linear-gradient(180deg, #0b0d0a 0%, rgba(11,13,10,.55) 22%, rgba(11,13,10,0) 55%); }
+      .k-flight { display: none; }
       .k-place { grid-template-columns: minmax(0, 1fr); }
       .k-photo { min-height: 200px; }
     }
@@ -180,8 +183,7 @@
       .k-live { font-size: .8125rem; padding: 8px 13px 8px 11px; gap: 8px; }
       .k-cta .k-btn { flex: 1 1 100%; justify-content: center; }
       .k-sec { padding-top: 2.25rem; }
-      .k-art { min-height: 170px; margin-top: -1.5rem; }
-      .k-ball { width: 38px; height: 38px; top: 0; }
+      .k-art { height: 215px; }
       .k-copy { padding: 1.25rem 1.25rem 1rem; }
       .k-hint { display: none; }
       .k-h { margin-bottom: .85rem; }
@@ -224,7 +226,7 @@
     <symbol id="i-mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#d3fc67"/><path d="M14 20C42 38 42 62 14 80M86 20C58 38 58 62 86 80" fill="none" stroke="#10120f" stroke-width="6" stroke-linecap="round" opacity=".55"/></symbol>
   </svg>
 
-  <div class="proto" style="background:#000;color:#b6b9ac;text-align:center;padding:7px 16px;font-size:.875rem"><b style="color:#d3fc67">Kontseptsioon 2</b> · uus vormikeel, ainult avaleht — ei ole ametlik leht. <a href="../" style="color:#d3fc67">Praegune versioon 7</a></div>
+  <div class="proto" style="background:#000;color:#b6b9ac;text-align:center;padding:7px 16px;font-size:.875rem"><b style="color:#d3fc67">Kontseptsioon 3</b> · uus vormikeel, ainult avaleht — ei ole ametlik leht. <a href="../" style="color:#d3fc67">Praegune versioon 7</a></div>
 
   <header class="top">
     <div class="top-row">
@@ -260,25 +262,22 @@
           <a class="k-btn line" href="../treeningud/">Tule trenni</a>
         </div>
       </div>
-      <div class="k-art" aria-hidden="true">
-        <svg class="k-court" viewBox="0 0 238 110">
-          <rect class="surface" x="0" y="0" width="238" height="110" />
-          <rect x=".5" y=".5" width="237" height="109" />
-          <line x1="0" y1="13.7" x2="238" y2="13.7" /><line x1="0" y1="96.3" x2="238" y2="96.3" />
-          <line x1="54.9" y1="13.7" x2="54.9" y2="96.3" /><line x1="182.9" y1="13.7" x2="182.9" y2="96.3" />
-          <line x1="54.9" y1="55" x2="182.9" y2="55" />
-          <line x1="0" y1="55" x2="4" y2="55" /><line x1="234" y1="55" x2="238" y2="55" />
-          <line class="net" x1="119" y1="-6" x2="119" y2="116" />
-        </svg>
-        <svg class="k-fly" viewBox="0 0 400 420" preserveAspectRatio="none">
-          <path class="arc" d="M 30 400 Q 170 -40 330 70" />
-          <ellipse class="shadow" cx="300" cy="300" rx="26" ry="7" />
-        </svg>
-        <svg class="k-ball" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="48" fill="#d3fc67" />
-          <path d="M 14 20 C 42 38, 42 62, 14 80" fill="none" stroke="#f6f5ee" stroke-width="5" stroke-linecap="round" />
-          <path d="M 86 20 C 58 38, 58 62, 86 80" fill="none" stroke="#f6f5ee" stroke-width="5" stroke-linecap="round" />
-        </svg>
+      <div class="k-art">
+        <picture>
+          <source media="(max-width: 900px)" srcset="../img/valjakud-ohtul-tel-900.webp" />
+          <img src="../img/valjakud-ohtul-1280.webp" srcset="../img/valjakud-ohtul-1280.webp 1280w, ../img/valjakud-ohtul-1920.webp 1920w" sizes="100vw"
+               width="1920" height="922" fetchpriority="high" decoding="async"
+               alt="Viljandi tenniseväljakud õhtul prožektorite valguses, taga Viljandi järv — droonifoto" />
+        </picture>
+        <div class="k-flight" aria-hidden="true">
+          <svg class="k-fly" viewBox="0 0 400 420" preserveAspectRatio="none"><path class="arc" d="M 20 410 Q 150 -30 300 60" /></svg>
+          <svg class="k-ball" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="48" fill="#d3fc67" />
+            <path d="M 14 20 C 42 38, 42 62, 14 80" fill="none" stroke="#f6f5ee" stroke-width="5" stroke-linecap="round" />
+            <path d="M 86 20 C 58 38, 58 62, 86 80" fill="none" stroke="#f6f5ee" stroke-width="5" stroke-linecap="round" />
+          </svg>
+        </div>
+        <span class="k-credit">Foto: fellinrackets.ee</span>
       </div>
     </section>
 
@@ -363,9 +362,11 @@
         </div>
         <div class="k-place">
           <figure class="k-photo">
-            <img src="../img/viljandi-jarv-1280.webp" srcset="../img/viljandi-jarv-640.webp 640w, ../img/viljandi-jarv-1280.webp 1280w" sizes="(max-width: 900px) 100vw, 640px"
-                 width="1920" height="1079" loading="lazy" decoding="async" alt="Õhtune Viljandi järv ja järveäärne spordipark valgustatud väljakutega, linnulennult" />
-            <figcaption><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Väliväljakud järve ääres</figcaption>
+            <img src="../img/plats-800.webp" srcset="../img/plats-800.webp 800w, ../img/plats-1280.webp 1280w" sizes="(max-width: 900px) 100vw, 660px"
+                 width="1280" height="684" loading="lazy" decoding="async"
+                 alt="Linnulennult: punased savi-tenniseväljakud, sinised padeliväljakud ja jalgpalliväljak Viljandi järve ääres" />
+            <figcaption><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Tennis ja padel järve ääres · Ranna pst 3</figcaption>
+            <span class="k-credit" style="top:10px;bottom:auto">Foto: fellinrackets.ee</span>
           </figure>
           <ul class="k-contact">
             <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Sisehall · Kaalu 2</b><span>Aasta läbi, iga päev 6–24</span></span></li>

@@ -68,6 +68,10 @@ Seis 09.11.2026 (versioon 7). Kuni vastuseni on lehel ainult kinnitatud info.
 6. **Mängukohtade praktiline info:** parkimine ja sissepääs, varustuse laenutus (reketid, pallid),
    jalanõud, riietus- ja pesuruumid väljas, füüsiline ligipääs (astmed/kaldtee, ukse laius, ligipääsetav WC).
 7. **Fotod (klubi õigustega):** sisehall seest, mängijad, laste trenn; treenerite portreed.
+   Kontseptsioonilehel (`kontsept/`) on **ainult näitamiseks** kaks fotot klubi praeguselt kodulehelt
+   (fellinrackets.ee meediakogu): `img/valjakud-ohtul-*.webp` ← `2018/10/DJI_0874.jpg` (droon DJI FC6310, 25.09.2018)
+   ja `img/plats-*.webp` ← `2024/05/IMG_6119.jpg`. Autor ja kasutusõigus on kinnitamata — Priit räägib autoriga ise.
+   Enne ametlikku kasutust: autori nimi + luba kirjalikult; lõigatud ja kergelt toonitud (kontrast, teravus), sisu muutmata.
 8. **Tulevased võistlused:** kuupäevad, tase ja registreerimislink.
 9. **Treenerid:** Anelle Luik ei ole spordiregistris klubi treenerite hulgas — kas treenib klubis?
    Diana Klavan ja Priscilla Õmblus on registris padelitreenerid ilma kutseta — kas nii jääb?
