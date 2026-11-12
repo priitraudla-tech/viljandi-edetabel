@@ -335,6 +335,12 @@ function renderStandingsBody() {
       } else if (v === null || v === undefined || v === "") {
         td.classList.add("dim");
         td.textContent = "—";
+      } else if (c.key === "rank") {
+        // Kohanumber tabloo-ruudus (liidri oma laimiga) — sama keel mis Fellini lehel
+        const pos = document.createElement("span");
+        pos.className = "pos";
+        pos.textContent = v;
+        td.appendChild(pos);
       } else {
         td.textContent = c.fmt ? c.fmt(v) : v;
       }
