@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Kontseptsioon – Fellin Rackets</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../fellin.css" />
+  <style>
+    /* KONTSEPTSIOON: sama palett (tume + tennisepalli laim), uus vormikeel —
+       väljakujooned, pall ja lennukaar, voolavad ümarad vormid, pill-nupud, tabloo. */
+    :root { --line: rgba(211,252,103,.55); --line-soft: rgba(211,252,103,.18); --round: 22px; }
+    .btn, .top .btn, .menu-btn { border-radius: 999px; }
+    body { overflow-x: hidden; }
+    .k-nav { display: flex; gap: 4px; margin-right: 8px; }
+    .k-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 999px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: .9375rem; }
+    .k-nav a:hover { background: #1d2218; color: var(--accent); }
+    @media (max-width: 900px) { .k-nav { display: none; } }
+
+    /* --- avaplokk: öine väljak prožektorite all --- */
+    .k-hero { position: relative; margin: 12px 0 0; border-radius: var(--round); background: #0b0d0a; overflow: hidden;
+      border: 1px solid #23271f; min-height: 560px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; isolation: isolate; }
+    .k-hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(60% 70% at 78% 40%, rgba(211,252,103,.16), transparent 70%),
+                  radial-gradient(40% 50% at 15% 100%, rgba(211,252,103,.07), transparent 70%); }
+    .k-copy { padding: clamp(1.5rem, 4.5vw, 4rem); position: relative; z-index: 2; }
+    .k-kicker { display: inline-flex; align-items: center; gap: 10px; font: 600 var(--fs-label)/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+    .k-kicker::before { content: ""; width: 28px; height: 2px; background: var(--accent); border-radius: 2px; }
+    .k-hero h1 { margin: 1rem 0 1rem; font-size: clamp(2.6rem, 7vw, 6rem); font-weight: 800; line-height: .95; letter-spacing: -.045em; color: var(--ink); }
+    .k-hero h1 em { font-style: normal; color: var(--accent); }
+    .k-hero p { margin: 0 0 1.5rem; color: var(--muted); font-size: 1.125rem; max-width: 32ch; }
+    .k-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+    .k-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; font: 700 1.0625rem/1 var(--font); text-decoration: none; }
+    .k-btn.ball { background: var(--accent); color: var(--on-accent); }
+    .k-btn.ball span { width: 26px; height: 26px; border-radius: 50%; background: var(--on-accent); color: var(--accent); display: grid; place-items: center; font-size: .9rem; }
+    .k-btn.line { color: var(--ink); border: 1.5px solid #3d4136; }
+    .k-live { display: inline-flex; align-items: center; gap: 9px; margin-top: 1.25rem; padding: 8px 14px; border-radius: 999px; background: rgba(211,252,103,.08);
+      color: var(--accent); font: 600 .8125rem/1 var(--mono); letter-spacing: .03em; }
+    .k-live i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(211,252,103,.6); }
+    .k-art { position: relative; height: 100%; min-height: 420px; }
+    .k-court { position: absolute; width: 118%; left: -6%; top: 50%; transform: translateY(-50%) perspective(1100px) rotateX(58deg) rotateZ(-24deg); }
+    .k-court rect, .k-court line { stroke: var(--line); fill: none; stroke-width: .8; vector-effect: non-scaling-stroke; }
+    .k-court .net { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 3 3; }
+    .k-court .surface { fill: rgba(211,252,103,.04); stroke: none; }
+    .k-fly { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .k-fly .arc { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 2 9; stroke-linecap: round; opacity: .9; }
+    .k-fly .shadow { fill: rgba(0,0,0,.45); }
+    .k-ball { position: absolute; width: 54px; height: 54px; right: 16%; top: 12%; filter: drop-shadow(0 0 22px rgba(211,252,103,.55)); }
+
+    /* --- tabloo-jooksev riba (peatatav; vähendatud liikumisel paigal) --- */
+    .k-ticker { margin: 10px 0 0; border-radius: 999px; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; overflow: hidden; min-height: 48px; }
+    .k-track { display: flex; gap: 2.5rem; white-space: nowrap; padding-left: 1.5rem; font: 600 .875rem/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+    .k-track b { font-weight: 600; opacity: .55; }
+    .k-pause { flex: none; margin: 4px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--on-accent); color: var(--accent); font-size: .9rem; cursor: pointer; }
+
+    /* --- vali mäng: tennis | padel --- */
+    .k-sec { padding-top: 3.5rem; }
+    .k-h { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0 1rem; }
+    .k-h h2 { margin: 0; font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 800; letter-spacing: -.035em; line-height: 1; }
+    .k-h a { color: var(--accent); font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .k-sports { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .k-sport { position: relative; overflow: hidden; border-radius: var(--round); padding: 1.5rem; min-height: 300px; display: flex; flex-direction: column; justify-content: flex-end; text-decoration: none; isolation: isolate; }
+    .k-sport.tennis { background: #161a12; color: var(--ink); border: 1px solid #2a3022; }
+    .k-sport.padel { background: var(--accent); color: var(--on-accent); }
+    .k-sport svg.court { position: absolute; z-index: -1; width: 92%; right: -14%; top: 8%; transform: rotate(-12deg); }
+    .k-sport.tennis svg.court * { stroke: var(--line); }
+    .k-sport.padel svg.court * { stroke: rgba(28,37,16,.5); }
+    .k-sport svg.court rect, .k-sport svg.court line { fill: none; stroke-width: 1; vector-effect: non-scaling-stroke; }
+    .k-sport svg.court .wall { stroke-width: 4; }
+    .k-sport svg.court .net { stroke-width: 2.4; stroke-dasharray: 3 3; }
+    .k-sport .tag { align-self: flex-start; font: 600 var(--fs-label)/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+      padding: 7px 11px; border-radius: 999px; }
+    .k-sport.tennis .tag { background: #161a12; color: var(--muted); box-shadow: 0 0 0 1px #2a3022; }
+    .k-sport.padel .tag { background: var(--accent); color: var(--on-accent-muted, #3a4a20); box-shadow: 0 0 0 1px rgba(28,37,16,.25); }
+    .k-sport h3, .k-sport .price b { text-shadow: 0 0 18px var(--tile-bg); }
+    .k-sport.tennis { --tile-bg: #161a12; } .k-sport.padel { --tile-bg: #d3fc67; }
+    .k-sport h3 { margin: .4rem 0 .25rem; font-size: clamp(2.25rem, 6vw, 4rem); font-weight: 800; letter-spacing: -.045em; line-height: .95; }
+    .k-sport .meta { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+    .k-sport .price { font-size: .9375rem; }
+    .k-sport .price b { display: block; font-size: 1.75rem; font-weight: 800; letter-spacing: -.03em; }
+    .k-go { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font-size: 1.25rem; flex: none; }
+    .tennis .k-go { background: var(--accent); color: var(--on-accent); }
+    .padel .k-go { background: var(--on-accent); color: var(--accent); }
+
+    /* --- õpi: üks voolav riba --- */
+    .k-learn { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; padding: 1.25rem 1.5rem; border-radius: var(--round); background: #161a12; border: 1px solid #2a3022; text-decoration: none; color: var(--ink); }
+    .k-four { width: 92px; height: 92px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-size: 2.1rem; font-weight: 800; letter-spacing: -.04em; position: relative; }
+    .k-four svg { position: absolute; inset: 0; }
+    .k-learn h3 { margin: 0 0 .25rem; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; }
+    .k-learn p { margin: 0; color: var(--muted); }
+
+    /* --- tabloo: VÜS edetabel --- */
+    .k-board { border-radius: var(--round); background: #0b0d0a; border: 1px solid #23271f; padding: .5rem; }
+    .k-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto 40px; gap: 14px; align-items: center; padding: .65rem .75rem; border-radius: 14px; }
+    .k-row + .k-row { margin-top: 4px; }
+    .k-row:first-child { background: rgba(211,252,103,.07); }
+    .k-pos { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font: 600 1.125rem/1 var(--mono); background: #1d2218; color: var(--ink); }
+    .k-row:first-child .k-pos { background: var(--accent); color: var(--on-accent); }
+    .k-name { font-weight: 600; font-size: 1.0625rem; }
+    .k-pts { font: 600 1.375rem/1 var(--mono); letter-spacing: -.02em; }
+    .k-trend { font: 600 .8125rem/1 var(--mono); text-align: right; }
+    .k-trend.up { color: var(--accent); } .k-trend.down { color: var(--down); } .k-trend.eq { color: var(--muted); }
+    .k-board-foot { display: flex; justify-content: space-between; gap: 1rem; padding: .75rem .75rem .5rem; color: var(--muted); font-size: var(--fs-small); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .k-live i { animation: k-puls 2s ease-out infinite; }
+      @keyframes k-puls { 70% { box-shadow: 0 0 0 10px rgba(211,252,103,0); } 100% { box-shadow: 0 0 0 0 rgba(211,252,103,0); } }
+      .k-track { animation: k-jookse 38s linear infinite; }
+      .k-ticker.paus .k-track { animation-play-state: paused; }
+      @keyframes k-jookse { to { transform: translateX(-50%); } }
+      .k-ball { offset-path: path("M -380 330 Q -150 -60 0 0"); offset-rotate: 0deg; animation: k-lend 1.6s cubic-bezier(.25,.6,.35,1) both .3s; }
+      @keyframes k-lend { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+      .k-sport, .k-learn { transition: transform .25s; }
+      .k-sport:hover, .k-learn:hover { transform: translateY(-3px); }
+    }
+
+    @media (max-width: 900px) {
+      .k-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+      .k-art { min-height: 240px; margin-top: -1rem; }
+      .k-court { width: 120%; left: -4%; }
+      .k-ball { width: 44px; height: 44px; right: 14%; top: 4%; }
+    }
+    @media (max-width: 640px) {
+      .k-hero h1 { font-size: 2.75rem; }
+      .k-hero p { font-size: 1.0625rem; }
+      .k-cta .k-btn { flex: 1 1 100%; justify-content: center; }
+      .k-sports { grid-template-columns: minmax(0, 1fr); }
+      .k-sport { min-height: 200px; padding: 1.25rem; }
+      .k-sport svg.court { width: 80%; right: -10%; top: -4%; }
+      .k-learn { grid-template-columns: auto minmax(0, 1fr); gap: 1rem; padding: 1rem; }
+      .k-learn .k-go { display: none; }
+      .k-four { width: 68px; height: 68px; font-size: 1.6rem; }
+      .k-learn h3 { font-size: 1.1875rem; }
+      .k-row { grid-template-columns: 38px minmax(0, 1fr) auto 30px; gap: 10px; padding: .55rem .5rem; }
+      .k-pos { width: 38px; height: 38px; }
+      .k-pts { font-size: 1.125rem; }
+      .k-sec { padding-top: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="proto" style="background:#000;color:#b6b9ac;text-align:center;padding:7px 16px;font-size:.875rem"><b style="color:#d3fc67">Kontseptsioon</b> · uus vormikeel, ainult avaleht — ei ole ametlik leht. <a href="../" style="color:#d3fc67">Praegune versioon 7</a></div>
+
+  <header class="top">
+    <div class="top-row">
+      <a class="brand" href="../kontsept/" aria-label="Fellin Rackets, avaleht"><img src="../img/fellin-rackets-logo.svg" alt="" width="73" height="34" /></a>
+      <nav class="k-nav" aria-label="Peamenüü">
+        <a href="../mangimine/">Mängimine ja hinnad</a><a href="../treeningud/">Treeningud</a><a href="../voistlused/">Võistlused</a><a href="../klubi/">Klubi ja kontakt</a>
+      </nav>
+      <a class="btn btn-accent" href="https://www.matchi.se/facilities/viljanditennis">Broneeri<span class="book-extra"> väljak</span><span aria-hidden="true"> ↗</span></a>
+      <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="mobile-menu"><span class="bars" aria-hidden="true"></span>Menüü</button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Peamenüü" hidden>
+      <ul>
+        <li><a href="../mangimine/"><span aria-hidden="true">01</span>Mängimine ja hinnad</a></li>
+        <li><a href="../treeningud/"><span aria-hidden="true">02</span>Treeningud</a></li>
+        <li><a href="../voistlused/"><span aria-hidden="true">03</span>Võistlused</a></li>
+        <li><a href="../klubi/"><span aria-hidden="true">04</span>Klubi ja kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="shell" id="sisu">
+    <section class="k-hero" aria-labelledby="h1">
+      <div class="k-copy">
+        <span class="k-kicker">Viljandi · tennis ja padel</span>
+        <h1 id="h1">Tennis ja <em>padel</em> Viljandis.</h1>
+        <p>16 väljakut kahes kohas. Sisehall on avatud iga päev 6–24.</p>
+        <div class="k-cta">
+          <a class="k-btn ball" href="https://www.matchi.se/facilities/viljanditennis">Broneeri väljak <span aria-hidden="true">↗</span></a>
+          <a class="k-btn line" href="../treeningud/">Tule trenni</a>
+        </div>
+        <span class="k-live"><i aria-hidden="true"></i><span id="k-olek">Sisehall Kaalu 2 · avatud iga päev 6–24</span></span>
+      </div>
+      <div class="k-art" aria-hidden="true">
+        <svg class="k-court" viewBox="0 0 238 110">
+          <rect class="surface" x="0" y="0" width="238" height="110" />
+          <rect x=".5" y=".5" width="237" height="109" />
+          <line x1="0" y1="13.7" x2="238" y2="13.7" /><line x1="0" y1="96.3" x2="238" y2="96.3" />
+          <line x1="54.9" y1="13.7" x2="54.9" y2="96.3" /><line x1="182.9" y1="13.7" x2="182.9" y2="96.3" />
+          <line x1="54.9" y1="55" x2="182.9" y2="55" />
+          <line x1="0" y1="55" x2="4" y2="55" /><line x1="234" y1="55" x2="238" y2="55" />
+          <line class="net" x1="119" y1="-6" x2="119" y2="116" />
+        </svg>
+        <svg class="k-fly" viewBox="0 0 400 420" preserveAspectRatio="none">
+          <path class="arc" d="M 30 400 Q 170 -40 330 70" />
+          <ellipse class="shadow" cx="300" cy="300" rx="26" ry="7" />
+        </svg>
+        <svg class="k-ball" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="48" fill="#d3fc67" />
+          <path d="M 14 20 C 42 38, 42 62, 14 80" fill="none" stroke="#f6f5ee" stroke-width="5" stroke-linecap="round" />
+          <path d="M 86 20 C 58 38, 58 62, 86 80" fill="none" stroke="#f6f5ee" stroke-width="5" stroke-linecap="round" />
+        </svg>
+      </div>
+    </section>
+
+    <div class="k-ticker" id="ticker">
+      <div class="k-track" aria-hidden="true">
+        <span>● Sisehall avatud 6–24</span><span><b>Tennis</b> alates 28 €</span><span><b>Padel</b> alates 36 €</span><span><b>VÜS liider</b> Heimar Mirka 602 p</span><span><b>Väliväljakud</b> avanevad mais</span><span><b>Trenn</b> alates 4. eluaastast</span>
+        <span>● Sisehall avatud 6–24</span><span><b>Tennis</b> alates 28 €</span><span><b>Padel</b> alates 36 €</span><span><b>VÜS liider</b> Heimar Mirka 602 p</span><span><b>Väliväljakud</b> avanevad mais</span><span><b>Trenn</b> alates 4. eluaastast</span>
+      </div>
+      <button class="k-pause" type="button" aria-label="Peata jooksev riba" aria-pressed="false">❚❚</button>
+    </div>
+
+    <section class="k-sec" aria-labelledby="h-mang">
+      <div class="k-h"><h2 id="h-mang">Vali mäng.</h2><a href="../mangimine/">Kõik hinnad →</a></div>
+      <div class="k-sports">
+        <a class="k-sport tennis" href="../mangimine/#tennis">
+          <svg class="court" viewBox="0 0 238 110" aria-hidden="true">
+            <rect x=".5" y=".5" width="237" height="109" /><line x1="0" y1="13.7" x2="238" y2="13.7" /><line x1="0" y1="96.3" x2="238" y2="96.3" />
+            <line x1="54.9" y1="13.7" x2="54.9" y2="96.3" /><line x1="182.9" y1="13.7" x2="182.9" y2="96.3" /><line x1="54.9" y1="55" x2="182.9" y2="55" />
+            <line class="net" x1="119" y1="-6" x2="119" y2="116" />
+          </svg>
+          <span class="tag">8 väljakut · sees ja väljas</span>
+          <h3>Tennis</h3>
+          <div class="meta"><span class="price">Tund alates<b>28 €</b></span><span class="k-go" aria-hidden="true">→</span></div>
+        </a>
+        <a class="k-sport padel" href="../mangimine/#padel">
+          <svg class="court" viewBox="0 0 200 100" aria-hidden="true">
+            <rect class="wall" x="1" y="1" width="198" height="98" /><line x1="30.5" y1="1" x2="30.5" y2="99" /><line x1="169.5" y1="1" x2="169.5" y2="99" />
+            <line x1="30.5" y1="50" x2="169.5" y2="50" /><line class="net" x1="100" y1="-6" x2="100" y2="106" />
+          </svg>
+          <span class="tag">8 väljakut · sees ja väljas</span>
+          <h3>Padel</h3>
+          <div class="meta"><span class="price">Tund alates<b>36 €</b></span><span class="k-go" aria-hidden="true">→</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="k-sec" aria-labelledby="h-opi">
+      <a class="k-learn" href="../treeningud/">
+        <span class="k-four" aria-hidden="true">4+
+          <svg viewBox="0 0 100 100"><path d="M 14 20 C 42 38, 42 62, 14 80" fill="none" stroke="rgba(28,37,16,.25)" stroke-width="4" /><path d="M 86 20 C 58 38, 58 62, 86 80" fill="none" stroke="rgba(28,37,16,.25)" stroke-width="4" /></svg>
+        </span>
+        <span><h3 id="h-opi">Õpi mängima.</h3><p>Trennid lastele alates 4. eluaastast ja täiskasvanutele. Õppemaks alates 56 € kuus.</p></span>
+        <span class="k-go" style="background:var(--accent);color:var(--on-accent)" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <section class="k-sec" aria-labelledby="h-vus">
+      <div class="k-h"><h2 id="h-vus">Edetabel.</h2><a href="../voistlused/">Võistlused →</a></div>
+      <div class="k-board">
+        <div class="k-row"><span class="k-pos">1</span><span class="k-name">Heimar Mirka</span><span class="k-pts">602</span><span class="k-trend up">▲1</span></div>
+        <div class="k-row"><span class="k-pos">2</span><span class="k-name">Priit Raudla</span><span class="k-pts">580</span><span class="k-trend down">▼1</span></div>
+        <div class="k-row"><span class="k-pos">3</span><span class="k-name">Reevo Kirna</span><span class="k-pts">500</span><span class="k-trend eq">—</span></div>
+        <div class="k-board-foot"><span>Viljandi üksikmängu sari · seis 17.10.2026</span><span>uueneb ise</span></div>
+      </div>
+    </section>
+
+    <section class="home-contact" aria-labelledby="h-kontakt">
+      <h2 class="card-h" id="h-kontakt">Kontakt</h2>
+      <div class="hc">
+        <a class="k-big" href="tel:+3725036425">+372 5036 425</a>
+        <a class="mail" href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a>
+        <p>Sisehall Kaalu 2 · väliväljakud Ranna pst 3, Viljandi</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="shell">
+      <div class="band foot-band" style="border-radius: var(--round);">
+        <div class="partners">
+          <div class="partner"><img src="../img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" /><span aria-hidden="true">Viljandi linn · Viljandimaa Spordiliit</span></div>
+          <div class="partner"><img src="../img/uku.webp" alt="UKU keskus" width="300" height="212" /><span aria-hidden="true">UKU keskus</span></div>
+          <div class="partner"><img src="../img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" /><span aria-hidden="true">Eesti Tennise Liit</span></div>
+        </div>
+        <a class="eu-mark" href="../klubi/#toetused"><img src="../img/el-nextgen-1.webp" width="480" height="270" alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." /><span>Euroopa Liidu toetatud projektid</span></a>
+      </div>
+    </div>
+  </footer>
+  <script src="../fellin.js" defer></script>
+  <script>
+    const tund = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Tallinn", hour: "numeric", hourCycle: "h23" }).format(new Date()));
+    document.getElementById("k-olek").textContent = tund >= 6 ? "Sisehall praegu avatud" : "Sisehall suletud · avaneb kell 6";
+    const t = document.getElementById("ticker"), b = t.querySelector(".k-pause");
+    b.addEventListener("click", () => { const p = t.classList.toggle("paus"); b.setAttribute("aria-pressed", String(p)); b.textContent = p ? "▶" : "❚❚"; b.setAttribute("aria-label", p ? "Käivita jooksev riba" : "Peata jooksev riba"); });
+  </script>
+</body>
+</html>
