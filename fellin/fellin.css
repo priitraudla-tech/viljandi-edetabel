@@ -677,3 +677,207 @@ thead th .ico { width: 18px; height: 18px; vertical-align: -4px; margin-right: 5
 @media (max-width: 360px) {
   .coaches { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ===== v10: rahulikum, kiiremini mõistetav, telefonis mugavam ===== */
+
+/* Teateriba: ainult olulise muudatuse, sulgemise või eriteate jaoks (tekst failis seaded.js) */
+.teade { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0 0; padding: .75rem 1rem; border-radius: var(--r);
+  background: var(--warn-dim); border: 1px solid rgba(242, 199, 107, .45); color: var(--ink); }
+.teade[hidden] { display: none; }
+.teade .ico { color: var(--warn); margin-top: 2px; }
+
+/* Avaplokk: madalam; pealkiri, tutvustus ja kaks nuppu enne fotot */
+.k-hero { min-height: 420px; }
+.k-copy { padding: clamp(1.5rem, 4vw, 3.25rem); max-width: 40rem; }
+.k-hero h1 { margin: 0 0 .9rem; font-size: clamp(2.4rem, 5.4vw, 4.5rem); line-height: 1; }
+.k-intro { margin: 0 0 .6rem; font-size: clamp(1.0625rem, 1.6vw, 1.3125rem); line-height: 1.4; color: var(--ink); max-width: 30ch; }
+.k-open { display: flex; align-items: center; gap: 9px; margin: 0 0 1.4rem; color: var(--muted); font-size: 1rem; max-width: none; }
+.k-open .ico { color: var(--accent); width: 20px; height: 20px; }
+.k-btn.prim { background: var(--accent); color: var(--on-accent); }
+.k-btn.prim:hover { background: var(--accent-hover); }
+.k-btn.line:hover { border-color: var(--border-hover); }
+
+/* Alamlehe päis: üks selge pealkiri */
+.page-head { padding-top: 2rem; }
+.page-head h1 { margin: 0; }
+.page-head .sec-sub { margin: .6rem 0 0; max-width: 62ch; }
+.page-head + .k-flow > .k-sec:first-child { padding-top: 2rem; }
+
+/* Osa pealkiri: selge nimetus; arvutis pallimärk joonel, telefonis ilma */
+.k-sec { padding-top: 3.25rem; }
+.k-h { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: .4rem 1.25rem; margin: 0 0 1.1rem; }
+.k-h h2 { position: relative; grid-column: 1; margin: 0; font-size: clamp(1.625rem, 3.2vw, 2.375rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; }
+.k-h > a { grid-column: 2; grid-row: 1; }
+.k-h .k-hint { grid-column: 1 / -1; margin: 0; font-size: 1.0625rem; max-width: 62ch; }
+@media (min-width: 901px) {
+  .k-h h2 .k-mark { position: absolute; left: -58px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; }
+}
+
+/* Tennis ja padel: sama ülesehitus, sama kontrast, sama palju laimi */
+.sports { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.sport { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start;
+  padding: 1.4rem 1.5rem 1rem; border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b); color: var(--ink); text-decoration: none; }
+.sport:hover { border-color: var(--border-hover); }
+.sport svg.court { position: absolute; z-index: -1; width: 56%; right: -6%; top: 50%; transform: translateY(-50%) rotate(-10deg); opacity: .7; }
+.sport svg.court rect, .sport svg.court line { fill: none; stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.sport svg.court .wall { stroke-width: 3; }
+.sport svg.court .net { stroke-width: 2.2; stroke-dasharray: 3 3; }
+.sport::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--pane) 42%, rgba(22, 26, 18, 0) 90%); }
+.sport .tag { display: inline-flex; align-items: center; gap: 7px; font-size: var(--fs-small); font-weight: 600; color: var(--muted); }
+.sport .tag .ico { color: var(--accent); width: 18px; height: 18px; }
+.sport h3 { margin: .35rem 0 .5rem; font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.sport .hind { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; color: var(--accent); max-width: none; }
+.sport .hind-lisa { margin: .15rem 0 0; color: var(--muted); font-size: 1rem; max-width: none; }
+.sport .edasi { margin-top: .5rem; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; color: var(--accent); }
+.sport:hover .edasi { text-decoration: underline; }
+.k-note { margin: .9rem 0 0; color: var(--muted); max-width: none; }
+
+/* Esmakülastaja juhend ja broneerimistingimused: ikooniga read */
+.esimest { margin-top: .6rem; }
+.esimest ul, .tingimused { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; max-width: 64ch; }
+.esimest li, .tingimused li { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); }
+.esimest li b, .tingimused li b { color: var(--ink); font-weight: 600; }
+.esimest .ico, .tingimused .ico { color: var(--accent); margin-top: 2px; }
+.esimest a { color: var(--ink); font-weight: 600; }
+
+/* Lühike tutvustus + üks nupp (treeningud, võistlused) */
+.band2 { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem 1.5rem; align-items: center; padding: 1.25rem 1.5rem;
+  border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b); }
+.band2.plain { grid-template-columns: minmax(0, 1fr) auto; }
+.band2 p { margin: 0; font-size: 1.0625rem; max-width: 56ch; }
+.band2 .lisa { margin-top: .35rem; color: var(--muted); }
+.band2 .k-four { width: 72px; height: 72px; font-size: 1.6rem; }
+.band2 .btn { white-space: nowrap; }
+
+/* Asukohad ja kontakt: koht + olek + kaardilink ühel real */
+.k-photo { min-height: 220px; }
+.k-contact li { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: .7rem 0; }
+.k-contact .k-map { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--accent); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.k-contact .k-map:hover { text-decoration: underline; }
+.k-contact .rida { display: flex; flex-direction: column; align-items: flex-start; }
+.k-contact .rida a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); }
+.k-contact .rida > a { color: var(--muted); }
+.k-contact .rida > a:hover { color: var(--ink); }
+.k-contact .rida .kes { margin-top: -6px; }
+.k-contact [data-hooaeg].off, .olek.off { color: var(--warn); }
+.jur { margin: .75rem 0 0; color: var(--muted); font-size: var(--fs-small); max-width: none; }
+
+/* Hinnaleht: sisehalli hinnakiri ja broneerimine kõrvuti; väliväljakud avatavas plokis */
+.hinnad { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 10px; align-items: start; }
+.hinnad .loc-note { margin: .75rem 0 .5rem; }
+.bron { display: flex; flex-direction: column; align-items: stretch; gap: 1rem; }
+.bron h3 { margin: 0; font-size: 1.1875rem; font-weight: 800; }
+.vali > summary .olek { display: block; margin-top: .2rem; font-size: var(--fs-small); font-weight: 400; color: var(--muted); }
+.vali-sisu { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1.25rem 2rem; align-items: start; }
+.vali-sisu img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; }
+.vali-info { margin: .75rem 0 0; color: var(--muted); max-width: none; }
+.vali-info b { color: var(--ink); font-weight: 600; }
+
+/* Treeningud: kohustuslik lisatasu hinna juures; üks peamine nupp; kutse avatavas lisainfos */
+.fee-note { margin: 1rem 0 0; padding: .8rem 1rem; border-radius: 12px; background: var(--panel); color: var(--muted); max-width: none; }
+.fee-note b { color: var(--ink); font-weight: 600; }
+.ask2 { display: flex; flex-direction: column; align-items: stretch; gap: .9rem; }
+.ask2 h3 { margin: 0; font-size: 1.1875rem; font-weight: 800; }
+.ask2 ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.ask2 li { display: flex; flex-wrap: wrap; align-items: center; gap: 0 12px; min-height: 44px; }
+.ask2 li .ico { color: var(--accent); }
+.ask2 li a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; }
+.coach details { margin-top: .2rem; }
+.coach summary { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; cursor: pointer; list-style: none;
+  color: var(--accent); font-weight: 600; font-size: var(--fs-small); }
+.coach summary::-webkit-details-marker { display: none; }
+.coach summary::after { content: "+"; font: 600 1.1rem/1 var(--mono); }
+.coach details[open] summary::after { content: "–"; }
+.coach .kutse { margin-top: 0; }
+.coach.full .face, .coach .face { background: #232a1b; color: var(--accent); }
+
+/* Edetabel: sisuline kuupäev ees, kontrollimise kellaaeg detailina */
+.data-status b { color: var(--ink); font-weight: 600; }
+.data-status .kontroll { display: block; color: var(--muted); font-size: var(--fs-small); }
+
+/* Klubi: ajalugu avatavas plokis */
+.ajalugu { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem 2.5rem; align-items: start; }
+.ajalugu .alumni b { color: var(--ink); font-weight: 600; }
+
+/* Jalus: partnerite hele ala kompaktsem; EL-i embleem jääb partnerilogodest suuremaks */
+.site-foot { margin-top: 3rem; }
+.foot-band { grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2.5rem; padding: .9rem 1.5rem; border-radius: var(--round); margin-bottom: .75rem; }
+.foot-band .partners { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: .75rem 2rem; }
+.foot-band .partner { min-height: 44px; justify-content: center; }
+.foot-band .partner img { height: 44px; width: auto; max-width: 100%; object-fit: contain; }
+.eu-mark { flex-direction: row; align-items: center; gap: .9rem; min-height: 44px; }
+.eu-mark img { width: 170px; }
+.eu-mark span { max-width: 13ch; line-height: 1.3; }
+
+@media (max-width: 900px) {
+  .k-h h2 .k-mark { display: none; }
+  .hinnad, .vali-sisu, .ajalugu { grid-template-columns: minmax(0, 1fr); }
+  .band2, .band2.plain { grid-template-columns: minmax(0, 1fr); }
+  .band2 .k-four { display: none; }
+  .band2 .btn { justify-self: start; }
+}
+@media (max-width: 640px) {
+  /* Põhitekst 16 px, mugav reavahe */
+  :root { --fs-body: 1rem; }
+  body { line-height: 1.6; }
+  .k-hint, .k-note, .esimest li, .tingimused li, .fee-note, .loc-note, .k-contact span span, .k-contact .rida > a, .coach .role,
+  .band2 p, .facts-list dd, .plain li, .aud-row p, .vali-info, .faq details p { font-size: 1rem; }
+  .k-sec { padding-top: 2.25rem; }
+  .page-head { padding-top: 1.5rem; }
+  .page-head + .k-flow > .k-sec:first-child { padding-top: 1.75rem; }
+  /* Pealkiri ja link ei suru end ühele reale: link läheb pealkirja alla */
+  .k-h { grid-template-columns: minmax(0, 1fr); margin-bottom: .9rem; }
+  .k-h > a { grid-column: 1; grid-row: auto; order: 3; justify-self: start; }
+  .k-hero { min-height: 0; }
+  .k-copy { padding: 1.25rem 1.25rem 1rem; }
+  .k-hero h1 { font-size: 2.5rem; margin: 0 0 .75rem; }
+  .k-intro { font-size: 1.0625rem; }
+  .k-open { margin-bottom: 1.1rem; }
+  .k-art { height: 170px; margin-top: -1rem; }
+  .sports { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .sport { padding: 1.1rem 1.1rem .6rem; }
+  .sport svg.court { width: 62%; right: -12%; }
+  .band2 { padding: 1.1rem; }
+  .band2 .btn { justify-self: stretch; }
+  .k-photo { min-height: 150px; }
+  .k-contact li { grid-template-columns: 22px minmax(0, 1fr); }
+  .k-contact .k-map { grid-column: 2; justify-self: start; }
+  .site-foot { margin-top: 2.25rem; }
+  .foot-band { grid-template-columns: minmax(0, 1fr); justify-items: center; padding: .9rem 1rem; gap: .75rem; }
+  .foot-band .partners { width: 100%; gap: .5rem 1rem; }
+  .foot-band .partner img { height: 36px; }
+  .eu-mark img { width: 150px; }
+}
+
+/* --- v10 kontrolli järel --- */
+.hinnad .card { overflow-x: auto; }                      /* väga suure teksti korral kerib tabel oma kaardis */
+.coach .kutse a, .k-board-foot .link-arrow { min-height: 44px; }
+.data-status { font-size: 1rem; max-width: none; }
+@media (max-width: 640px) {
+  .k-h .k-hint { display: block; }                       /* väljakute arv ja hooajalisus peab olema näha ka telefonis */
+  .jur, .map p, .map-note, .data-status .kontroll { font-size: 1rem; }
+  .k-art { height: 150px; }
+  /* Tennis ja padel kõrvuti, et mõlemad oleksid korraga näha */
+  .sports { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .sport { padding: .9rem .9rem .35rem; }
+  .sport svg.court { display: none; }
+  .sport::after { display: none; }
+  .sport h3 { font-size: 1.75rem; margin: .3rem 0 .4rem; }
+  .sport .hind { font-size: 1.25rem; }
+  .sport .hind-lisa { font-size: .9375rem; line-height: 1.4; }
+  .k-place.kodu .k-photo { display: none; }
+  .k-contact li { padding: .45rem 0; }
+  .k-contact .rida a { min-height: 44px; }
+}
+@media (max-width: 350px) {
+  .sports { grid-template-columns: minmax(0, 1fr); }
+}
+.k-board .data-status { font-size: 1rem; }
+.k-board .data-status .kontroll { font-size: var(--fs-small); }
+@media (max-width: 640px) { .k-board .data-status .kontroll { font-size: 1rem; } }
+@media (max-width: 640px) {
+  /* Treenerid ühes veerus: nimi ja amet ei murdu poole sõna pealt */
+  .coaches { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .coach.full { grid-column: auto; }
+  .coach b, .coach .role { overflow-wrap: normal; }
+}

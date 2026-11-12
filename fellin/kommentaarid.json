@@ -106,6 +106,20 @@
         "Võistlused: VÜS-i esikümme, püramiid ja maakonna meistrivõistlused tabloo-stiilis.",
         "Klubi ja kontakt: platsi foto ja kõik kontaktid ühes kaardis, kaart selle all."
       ]
+    },
+    {
+      "nr": 10,
+      "kuupaev": "2026-11-12",
+      "muudatused": [
+        "Avaleht on rahulikum: avaplokis pealkiri, üks tutvustuslause, lahtiolekuaeg ja kaks nuppu (Broneeri väljak, Tule trenni).",
+        "Uus järjestus: Väljakud ja hinnad → Treeningud → Asukohad ja kontakt → Võistlused ja edetabel → partnerid.",
+        "Tennise ja padeli kaardid on võrdse kaaluga: spordiala, „alates … €/h“ (tavahind ja liikmehind) ning link hinnakirja.",
+        "„Esimest korda mängima?“ on avatav juhend: broneerimine Matchis, uksekood, iseteenindus, riietusruumid ja saun, abitelefon.",
+        "Kontaktid on avalehel ettepoole tõstetud: mõlemad mängukohad koos lahtioleku ja kaardilingiga, telefon ja e-post.",
+        "Hinnalehel on sisehalli hinnakiri ja broneerimistingimused kohe näha; väliväljakute hinnad on hooajavälisel ajal avatavas plokis.",
+        "Treeningute lehel on üks nupp „Küsi treeningute kohta“ koos e-posti ja telefoniga; kohamaks on hinna juures näha; treeneri kutse avaneb lisainfona.",
+        "Telefonis on tekst 16 px, nupud vähemalt 44 px ja partnerite ala kompaktsem. Tagasisideks on nüüd üks nupp „Tagasiside“."
+      ]
     }
   ],
   "kommentaarid": []

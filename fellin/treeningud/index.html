@@ -125,6 +125,8 @@
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.500" y="6" width="17" height="12" rx="2.200"/><path d="M4.200 7.700l7.800 5.800 7.800-5.800"/></symbol>
     <symbol id="i-call" viewBox="0 0 24 24"><path d="M6.500 3.500h3.200l1.400 4.100-2.100 1.400a11.500 11.500 0 0 0 6 6l1.400-2.100 4.100 1.400v3.200a1.900 1.900 0 0 1-2 1.900C10.900 19 5 13.100 4.600 5.500a1.900 1.900 0 0 1 1.900-2z"/></symbol>
     <symbol id="i-mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#d3fc67"/><path d="M14 20C42 38 42 62 14 80M86 20C58 38 58 62 86 80" fill="none" stroke="#10120f" stroke-width="6" stroke-linecap="round" opacity=".55"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.2M12 7.8v.2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.2 12.3l2.6 2.6 5-5.4"/></symbol>
   </svg>
   <a class="skip" href="#sisu">Liigu sisu juurde</a>
 
@@ -157,28 +159,23 @@
   </header>
 
   <main class="shell" id="sisu" tabindex="-1">
+    <div class="teade" id="teade" role="status" hidden><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span></span></div>
     <div class="page-head">
-      <div class="sec-head">
-        <div>
-          <span class="label">02 / Treeningud</span>
-          <h1 id="h-leht">Ott Ahoneni tennise- ja padelikool.</h1>
-          <p class="sec-sub">Erahuvikool aastast 2005. Trennid käivad aastaringselt — talvel sisehallis, suvel järve ääres.</p>
-        </div>
-      </div>
+      <h1 id="h-leht">Treeningud</h1>
+      <p class="sec-sub">Ott Ahoneni tennise- ja padelikool — erahuvikool aastast 2005. Trennid käivad aastaringselt: talvel sisehallis, suvel järve ääres.</p>
     </div>
     <div class="k-flow">
       <section class="k-sec" data-osa="t-trennid" data-osa-nimi="Trennid ja õppemaks" aria-labelledby="h-trennid">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">15</b> Õpi</span>
-          <h2 id="h-trennid">Kellele ja mis hinnaga?</h2>
+          <h2 id="h-trennid"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Trennid ja õppemaks</h2>
         </div>
-      <div class="grid-2 train">
-        <div class="card">
+        <div class="grid-2 train">
+          <div class="card">
           <div class="aud-row">
-            <div><span class="aud-ico"><svg class="ico" aria-hidden="true"><use href="#i-ball"/></svg></span><h3>Lapsed</h3><p>Alates 4. eluaastast. Reketi saab algul kohapealt.</p></div>
-            <div><span class="aud-ico"><svg class="ico" aria-hidden="true"><use href="#i-tennis"/></svg></span><h3>Täiskasvanud</h3><p>Algajad ja edasijõudnud.</p></div>
+            <div><h3>Lapsed</h3><p>Alates 4. eluaastast. Reketi saab algul kohapealt.</p></div>
+            <div><h3>Täiskasvanud</h3><p>Algajad ja edasijõudnud.</p></div>
           </div>
-          <h3 class="card-h" id="h-oppemaks">Õppemaks kuus · alates 01.09.2026</h3>
+            <h3 class="card-h" id="h-oppemaks">Õppemaks kuus · alates 01.09.2026</h3>
           <table aria-labelledby="h-oppemaks">
             <thead class="vh"><tr><th scope="col">Trennide arv</th><th scope="col">Hind kuus</th></tr></thead>
             <tbody>
@@ -189,60 +186,59 @@
               <tr><td>Tennis 1× + padel 1× nädalas</td><td class="p num">72 €</td></tr>
             </tbody>
           </table>
-          <details class="more">
-            <summary>Soodustused ja kohamaks</summary>
-            <div class="more-body">
-              <ul class="plain">
-                <li>Õdedele-vendadele −10 %.</li>
-                <li>Haiguse korral alates 2 nädalast (tõendiga) kuutasu ei arvestata.</li>
-                <li>Väljaspool Viljandit elavatele kohamaks 50 € kuus või 600 € aastas. Viljandi linn, Põhja-Sakala ja Mulgi vald tasuvad selle oma elanike eest.</li>
-              </ul>
-            </div>
-          </details>
+            <p class="fee-note"><b>Lisandub kohamaks,</b> kui elad väljaspool Viljandit: 50 € kuus või 600 € aastas. Viljandi linn, Põhja-Sakala ja Mulgi vald tasuvad selle oma elanike eest.</p>
+            <details class="more">
+              <summary>Soodustused</summary>
+              <div class="more-body">
+                <ul class="plain">
+                  <li>Õdedele-vendadele −10 %.</li>
+                  <li>Haiguse korral alates 2 nädalast (tõendiga) kuutasu ei arvestata.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+          <div class="card ask2">
+            <h3>Võta ühendust</h3>
+            <a class="btn btn-accent" id="trenni-kiri" href="mailto:ott@fellinrackets.ee?subject=Trenni%20kohta&amp;body=Tere!%0A%0ASoovin%20infot%20trenni%20kohta.%0A%0ANimi%3A%20%0ATelefon%20v%C3%B5i%20e-post%3A%20%0ASpordiala%20(tennis%20%2F%20padel)%3A%20%0ALaps%20v%C3%B5i%20t%C3%A4iskasvanu%20(lapse%20vanus)%3A%20%0AKogemus%20(algaja%20%2F%20m%C3%A4nginud%20varem)%3A%20%0ASobivad%20p%C3%A4evad%20ja%20kellaajad%3A%20%0A">Küsi treeningute kohta</a>
+            <ul>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:ott@fellinrackets.ee">ott@fellinrackets.ee</a>
+                <button class="copy-btn" type="button" data-copy="ott@fellinrackets.ee" hidden>Kopeeri</button><span class="copy-ok" role="status"></span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><a href="tel:+37256494381">+372 5649 4381</a><span class="muted">Ott Ahonen</span></li>
+            </ul>
+          </div>
         </div>
-        <div class="card ask">
-          <h3>Küsi trenni kohta</h3>
-          <a class="btn btn-accent" id="trenni-kiri"
-             href="mailto:ott@fellinrackets.ee?subject=Trenni%20kohta&amp;body=Tere!%0A%0ASoovin%20infot%20trenni%20kohta.%0A%0ANimi%3A%20%0ATelefon%20v%C3%B5i%20e-post%3A%20%0ASpordiala%20(tennis%20%2F%20padel)%3A%20%0ALaps%20v%C3%B5i%20t%C3%A4iskasvanu%20(lapse%20vanus)%3A%20%0AKogemus%20(algaja%20%2F%20m%C3%A4nginud%20varem)%3A%20%0ASobivad%20p%C3%A4evad%20ja%20kellaajad%3A%20%0A">Küsi trenni kohta e-postiga</a>
-          <p>Avab e-kirja valmis küsimustega: spordiala, vanus, kogemus ja sobivad ajad.</p>
-          <p class="addr-line">
-            <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><span>Veebipostkasti kasutajale:</span>
-            <a href="mailto:ott@fellinrackets.ee">ott@fellinrackets.ee</a>
-            <button class="copy-btn" type="button" data-copy="ott@fellinrackets.ee" hidden>Kopeeri aadress</button>
-            <span class="copy-ok" role="status"></span>
-          </p>
-          <p class="addr-line"><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><span>Või helista:</span> <a href="tel:+37256494381">5649 4381</a> <span>(Ott Ahonen)</span></p>
-        </div>
-      </div>
       </section>
 
       <section class="k-sec" data-osa="t-treenerid" data-osa-nimi="Treenerid" aria-labelledby="h-treenerid">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">30</b> Treenerid</span>
-          <h2 id="h-treenerid">Kes õpetab?</h2>
+          <h2 id="h-treenerid"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Treenerid</h2>
           <p class="k-hint">Kutsed on kontrollitavad Eesti spordiregistris.</p>
         </div>
-      <!-- Kutsed: Eesti spordiregister, seis 09.11.2026 -->
-      <ul class="coaches" id="coaches">
-        <li class="coach full"><i class="face" aria-hidden="true">OA</i><div><b>Ott Ahonen</b><span class="role">Peatreener · tennis ja padel</span>
-          <div class="kutse">Vanemtreener · EKR tase 6 · tennis<span class="kuni">kehtib kuni 25.09.2029 ·
-            <a href="https://www.spordiregister.ee/et/treener/2972/ott_ahonen" rel="noopener"><span class="vh">Ott Ahoneni kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></div></li>
-        <li class="coach full"><i class="face" aria-hidden="true">PP</i><div><b>Priit Pihl</b><span class="role">Treener · õppealajuhataja</span>
-          <div class="kutse">Vanemtreener · EKR tase 6 · tennis<span class="kuni">kehtib kuni 25.09.2029 ·
-            <a href="https://www.spordiregister.ee/et/treener/6853/priit_pihl" rel="noopener"><span class="vh">Priit Pihli kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></div></li>
-        <li class="coach full"><i class="face" aria-hidden="true">TK</i><div><b>Timo Kirsimäe</b><span class="role">Tennisetreener</span>
-          <div class="kutse">Abitreener · EKR tase 3 · tennis<span class="kuni">kehtib kuni 02.05.2027 ·
-            <a href="https://www.spordiregister.ee/et/treener/9793/timo_kirsimae" rel="noopener"><span class="vh">Timo Kirsimäe kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div></div></li>
-        <li class="coach"><i class="face" aria-hidden="true">DK</i><div><b>Diana Klavan</b><span class="role">Padelitreener</span></div></li>
-        <li class="coach"><i class="face" aria-hidden="true">PÕ</i><div><b>Priscilla Õmblus</b><span class="role">Padelitreener</span></div></li>
-        <li class="coach"><i class="face" aria-hidden="true">AL</i><div><b>Anelle Luik</b><span class="role">Treener</span></div></li>
-      </ul>
+          <ul class="coaches" id="coaches">
+            <li class="coach"><i class="face" aria-hidden="true">OA</i><div><b>Ott Ahonen</b><span class="role">Peatreener · tennis ja padel</span>
+              <details><summary>Kutse<span class="vh">: Ott Ahonen</span></summary>
+                <div class="kutse">Vanemtreener · EKR tase 6 · tennis<span class="kuni">kehtib kuni 25.09.2029 ·
+                  <a href="https://www.spordiregister.ee/et/treener/2972/ott_ahonen" rel="noopener"><span class="vh">Ott Ahoneni kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div>
+              </details></div></li>
+            <li class="coach"><i class="face" aria-hidden="true">PP</i><div><b>Priit Pihl</b><span class="role">Treener · õppealajuhataja</span>
+              <details><summary>Kutse<span class="vh">: Priit Pihl</span></summary>
+                <div class="kutse">Vanemtreener · EKR tase 6 · tennis<span class="kuni">kehtib kuni 25.09.2029 ·
+                  <a href="https://www.spordiregister.ee/et/treener/6853/priit_pihl" rel="noopener"><span class="vh">Priit Pihli kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div>
+              </details></div></li>
+            <li class="coach"><i class="face" aria-hidden="true">TK</i><div><b>Timo Kirsimäe</b><span class="role">Tennisetreener</span>
+              <details><summary>Kutse<span class="vh">: Timo Kirsimäe</span></summary>
+                <div class="kutse">Abitreener · EKR tase 3 · tennis<span class="kuni">kehtib kuni 02.05.2027 ·
+                  <a href="https://www.spordiregister.ee/et/treener/9793/timo_kirsimae" rel="noopener"><span class="vh">Timo Kirsimäe kutse: </span>spordiregister<span aria-hidden="true"> ↗</span></a></span></div>
+              </details></div></li>
+            <li class="coach"><i class="face" aria-hidden="true">DK</i><div><b>Diana Klavan</b><span class="role">Padelitreener</span></div></li>
+            <li class="coach"><i class="face" aria-hidden="true">PÕ</i><div><b>Priscilla Õmblus</b><span class="role">Padelitreener</span></div></li>
+            <li class="coach"><i class="face" aria-hidden="true">AL</i><div><b>Anelle Luik</b><span class="role">Treener</span></div></li>
+          </ul>
       </section>
 
       <section id="kkk" class="k-sec faq" data-osa="t-kkk" data-osa-nimi="Korduma kippuvad küsimused" aria-labelledby="h-kkk">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">40</b> Küsimused</span>
-          <h2 id="h-kkk">Korduma kippuvad küsimused.</h2>
+          <h2 id="h-kkk"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Korduma kippuvad küsimused</h2>
         </div>
         <!-- Tekst on sõna-sõnalt sama mis päise FAQPage JSON-LD-s — muuda mõlemas -->
         <div class="faq-list">
@@ -259,22 +255,12 @@
     <div class="shell">
       <div class="band foot-band">
         <div class="partners">
-          <div class="partner">
-            <img src="../img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" loading="lazy" />
-            <span aria-hidden="true">Viljandi linn · Viljandimaa Spordiliit</span>
-          </div>
-          <div class="partner">
-            <img src="../img/uku.webp" alt="UKU keskus – Tark valik" width="300" height="212" loading="lazy" />
-            <span aria-hidden="true">UKU keskus</span>
-          </div>
-          <a class="partner" href="https://www.tennis.ee/" rel="noopener">
-            <img src="../img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" loading="lazy" />
-            <span aria-hidden="true">Eesti Tennise Liit</span>
-          </a>
+          <div class="partner"><img src="../img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" loading="lazy" /></div>
+          <div class="partner"><img src="../img/uku.webp" alt="UKU keskus – Tark valik" width="300" height="212" loading="lazy" /></div>
+          <a class="partner" href="https://www.tennis.ee/" rel="noopener"><img src="../img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" loading="lazy" /></a>
         </div>
         <a class="eu-mark" href="../klubi/#toetused">
-          <img src="../img/el-nextgen-1.webp" width="480" height="270" loading="lazy"
-               alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." />
+          <img src="../img/el-nextgen-1.webp" width="480" height="270" loading="lazy" alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." />
           <span>Euroopa Liidu toetatud projektid</span>
         </a>
       </div>
@@ -290,12 +276,13 @@
         </ul>
       </nav>
       <p class="foot-line">
-        <b>MTÜ Tennise- ja padeliklubi Fellin</b> · registrikood 80065678 · Reinu tee 18, Viljandi ·
+        <b>MTÜ Tennise- ja padeliklubi Fellin</b> · registrikood 80065678 · juriidiline aadress Reinu tee 18, Viljandi ·
         <a href="tel:+3725036425">+372 5036 425</a> · <a href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a>
       </p>
     </div>
   </footer>
 
+  <script src="../seaded.js"></script>
   <script src="../fellin.js" defer></script>
   <!-- ARVUSTUS: kliendi kommentaarid — eemalda enne avaldamist -->
   <script src="../arvustus.js" defer></script>

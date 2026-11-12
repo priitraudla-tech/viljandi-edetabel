@@ -177,6 +177,8 @@
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.500" y="6" width="17" height="12" rx="2.200"/><path d="M4.200 7.700l7.800 5.800 7.800-5.800"/></symbol>
     <symbol id="i-call" viewBox="0 0 24 24"><path d="M6.500 3.500h3.200l1.400 4.100-2.100 1.400a11.500 11.500 0 0 0 6 6l1.400-2.100 4.100 1.400v3.200a1.900 1.900 0 0 1-2 1.900C10.900 19 5 13.100 4.600 5.500a1.900 1.900 0 0 1 1.900-2z"/></symbol>
     <symbol id="i-mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#d3fc67"/><path d="M14 20C42 38 42 62 14 80M86 20C58 38 58 62 86 80" fill="none" stroke="#10120f" stroke-width="6" stroke-linecap="round" opacity=".55"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.2M12 7.8v.2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.2 12.3l2.6 2.6 5-5.4"/></symbol>
   </svg>
   <a class="skip" href="#sisu">Liigu sisu juurde</a>
 
@@ -209,135 +211,120 @@
   </header>
 
   <main class="shell" id="sisu" tabindex="-1">
+    <div class="teade" id="teade" role="status" hidden><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span></span></div>
     <section class="k-hero-sec" data-osa="avaosa" data-osa-nimi="Avaplokk" aria-labelledby="h1">
-    <div class="k-hero">
-      <div class="k-copy">
-        <span class="k-live" id="k-live"><i aria-hidden="true"></i><span id="k-olek">Tere tulemast! Sisehall on avatud iga päev 6–24.</span></span>
-        <h1 id="h1">Tennis ja <em>padel<svg class="k-scribble" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 7C24 3 44 10 64 6S88 4 98 6"/></svg></em> Viljandis.</h1>
-        <ul class="k-facts">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-ball"/></svg>16 väljakut kahes kohas</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Sisehall avatud iga päev 6–24</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg>Suvel väljakud Viljandi järve ääres</li>
-        </ul>
-        <div class="k-cta">
-          <a class="k-btn ball" href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">Broneeri väljak <span aria-hidden="true">↗</span></a>
-          <a class="k-btn line" href="treeningud/">Tule trenni</a>
+      <div class="k-hero">
+        <div class="k-copy">
+          <h1 id="h1">Tennis ja padel Viljandis.</h1>
+          <p class="k-intro">Mängi aasta läbi sisehallis ja suvel Viljandi järve ääres.</p>
+          <p class="k-open"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Sisehall avatud iga päev 6–24.</p>
+          <div class="k-cta">
+            <a class="k-btn prim" href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">Broneeri väljak <span aria-hidden="true">↗</span><span class="vh"> (Matchi)</span></a>
+            <a class="k-btn line" href="treeningud/">Tule trenni</a>
+          </div>
+        </div>
+        <div class="k-art">
+          <picture>
+            <source media="(max-width: 900px)" srcset="img/valjakud-ohtul-tel-900.webp" />
+            <img src="img/valjakud-ohtul-1280.webp" srcset="img/valjakud-ohtul-1280.webp 1280w, img/valjakud-ohtul-1920.webp 1920w" sizes="100vw"
+                 width="1920" height="922" fetchpriority="high" decoding="async"
+                 alt="Viljandi tenniseväljakud õhtul prožektorite valguses, taga Viljandi järv — droonifoto" />
+          </picture>
         </div>
       </div>
-      <div class="k-art">
-        <picture>
-          <source media="(max-width: 900px)" srcset="img/valjakud-ohtul-tel-900.webp" />
-          <img src="img/valjakud-ohtul-1280.webp" srcset="img/valjakud-ohtul-1280.webp 1280w, img/valjakud-ohtul-1920.webp 1920w" sizes="100vw"
-               width="1920" height="922" fetchpriority="high" decoding="async"
-               alt="Viljandi tenniseväljakud õhtul prožektorite valguses, taga Viljandi järv — droonifoto" />
-        </picture>
-        <div class="k-flight" aria-hidden="true">
-          <svg class="k-fly" viewBox="0 0 400 420" preserveAspectRatio="none"><path class="arc" d="M 20 410 Q 150 -30 300 60" /></svg>
-          <svg class="k-ball" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="48" fill="#d3fc67" />
-            <path d="M 14 20 C 42 38, 42 62, 14 80" fill="none" stroke="#f6f5ee" stroke-width="5" stroke-linecap="round" />
-            <path d="M 86 20 C 58 38, 58 62, 86 80" fill="none" stroke="#f6f5ee" stroke-width="5" stroke-linecap="round" />
-          </svg>
-        </div>
-      </div>
-    </div>
     </section>
 
     <div class="k-flow">
-      <section class="k-sec" data-osa="mangi" data-osa-nimi="Mida mängime? (tennis, padel, nii see käib)" aria-labelledby="h-mang">
+      <section class="k-sec" data-osa="mangi" data-osa-nimi="Väljakud ja hinnad" aria-labelledby="h-mang">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">15</b> Mängi</span>
-          <h2 id="h-mang">Mida mängime?</h2>
-          <a href="mangimine/">Kõik hinnad <span aria-hidden="true">→</span></a>
-          <p class="k-hint">Mõlemat saab mängida sisehallis aasta läbi ja suvel järve ääres.</p>
+          <h2 id="h-mang"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Väljakud ja hinnad</h2>
+          <p class="k-hint">16 väljakut kahes kohas. Aasta läbi sisehallis: 2 tennise- ja 3 padeliväljakut. Suvel lisanduvad Viljandi järve ääres 6 tennise- ja 5 padeliväljakut.</p>
         </div>
-        <div class="k-sports">
-          <a class="k-sport tennis" href="mangimine/">
+        <div class="sports">
+          <a class="sport" href="mangimine/">
             <svg class="court" viewBox="0 0 238 110" aria-hidden="true">
               <rect x=".5" y=".5" width="237" height="109" /><line x1="0" y1="13.7" x2="238" y2="13.7" /><line x1="0" y1="96.3" x2="238" y2="96.3" />
               <line x1="54.9" y1="13.7" x2="54.9" y2="96.3" /><line x1="182.9" y1="13.7" x2="182.9" y2="96.3" /><line x1="54.9" y1="55" x2="182.9" y2="55" />
               <line class="net" x1="119" y1="-6" x2="119" y2="116" />
             </svg>
-            <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-tennis"/></svg>8 väljakut</span>
+            <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-tennis"/></svg>Sisehall</span>
             <h3>Tennis</h3>
-            <div class="meta"><span class="price">Tund alates<b>28 €</b></span><span class="k-go" aria-hidden="true">→</span></div>
+            <p class="hind">alates 28 €/h</p>
+            <p class="hind-lisa">Tavahind · klubiliikmele alates 26 €/h</p>
+            <span class="edasi">Vaata hinnakirja <span aria-hidden="true">→</span></span>
           </a>
-          <a class="k-sport padel" href="mangimine/">
+          <a class="sport" href="mangimine/">
             <svg class="court" viewBox="0 0 200 100" aria-hidden="true">
               <rect class="wall" x="1" y="1" width="198" height="98" /><line x1="30.5" y1="1" x2="30.5" y2="99" /><line x1="169.5" y1="1" x2="169.5" y2="99" />
               <line x1="30.5" y1="50" x2="169.5" y2="50" /><line class="net" x1="100" y1="-6" x2="100" y2="106" />
             </svg>
-            <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-padel"/></svg>8 väljakut</span>
+            <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-padel"/></svg>Sisehall</span>
             <h3>Padel</h3>
-            <div class="meta"><span class="price">Tund alates<b>36 €</b></span><span class="k-go" aria-hidden="true">→</span></div>
+            <p class="hind">alates 36 €/h</p>
+            <p class="hind-lisa">Tavahind · klubiliikmele alates 32 €/h</p>
+            <span class="edasi">Vaata hinnakirja <span aria-hidden="true">→</span></span>
           </a>
         </div>
-        <div class="k-how">
-          <h3 class="k-how-t">Nii see käib</h3>
-          <ol class="k-steps">
-            <li><span class="badge"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg></span><span><b>Broneeri Matchis</b><span>Vali väljak ja sobiv aeg.</span></span></li>
-            <li><span class="badge"><svg class="ico" aria-hidden="true"><use href="#i-key"/></svg></span><span><b>Saad uksekoodi</b><span>Kehtib 20 min enne ja pärast mängu.</span></span></li>
-            <li><span class="badge"><svg class="ico" aria-hidden="true"><use href="#i-ball"/></svg></span><span><b>Tule ja mängi</b><span>Sisehallis on riietusruumid ja saun.</span></span></li>
-          </ol>
-          <p class="k-help">Sisehallis personali pole. Mure korral helista <a href="tel:+3725036425">+372 5036 425</a>.</p>
-        </div>
+        <p class="k-note">Broneeri Matchis ja sisene uksekoodiga.</p>
+        <details class="more esimest">
+          <summary>Esimest korda mängima?</summary>
+          <div class="more-body">
+            <ul>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg><span><b>Broneeri väljak Matchis.</b> Vajalik on Matchi kasutajakonto; maksta saab kaardiga või tunnipangast. <a href="https://www.matchi.se/facilities/viljanditennis" rel="noopener">Ava Matchi <span aria-hidden="true">↗</span></a></span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-key"/></svg><span><b>Uksekoodi saad koos broneeringuga.</b> Kood kehtib 20 minutit enne kuni 20 minutit pärast broneeritud aega.</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span><b>Sisehall on iseteeninduslik.</b> Teenindavat personali kohapeal ei ole.</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span><b>Riietus- ja pesuruumid ning saun</b> on sisehallis olemas.</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><span><b>Vajad abi?</b> Helista <a href="tel:+3725036425">+372 5036 425</a>.</span></li>
+            </ul>
+          </div>
+        </details>
       </section>
 
-      <section class="k-sec" data-osa="opi" data-osa-nimi="Tahad õppida?" aria-labelledby="h-opi">
+      <section class="k-sec" data-osa="opi" data-osa-nimi="Treeningud" aria-labelledby="h-opi">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">30</b> Õpi</span>
-          <h2 id="h-opi">Tahad õppida?</h2>
-          <a href="treeningud/">Treeningud <span aria-hidden="true">→</span></a>
+          <h2 id="h-opi"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Treeningud</h2>
         </div>
-        <a class="k-learn" href="treeningud/">
+        <div class="band2">
           <span class="k-four" aria-hidden="true">4+
             <svg viewBox="0 0 100 100"><path d="M 14 20 C 42 38, 42 62, 14 80" fill="none" stroke="rgba(28,37,16,.25)" stroke-width="4" /><path d="M 86 20 C 58 38, 58 62, 86 80" fill="none" stroke="rgba(28,37,16,.25)" stroke-width="4" /></svg>
           </span>
           <div>
-            <p>Trennid lastele alates 4. eluaastast ja täiskasvanutele — algajatele ja edasijõudnutele. Õppemaks alates 56 € kuus.</p>
-            <span class="k-faces"><span class="vh">Treenerid: Ott Ahonen, Priit Pihl, Timo Kirsimäe, Diana Klavan, Priscilla Õmblus, Anelle Luik.</span>
-              <i aria-hidden="true">OA</i><i aria-hidden="true">PP</i><i aria-hidden="true">TK</i><i aria-hidden="true">DK</i><i aria-hidden="true">PÕ</i><i aria-hidden="true">AL</i><b aria-hidden="true">6 treenerit</b></span>
+            <p>Tennise- ja padelitrennid lastele alates 4. eluaastast ning täiskasvanutele. Algajatele ja edasijõudnutele.</p>
+            <p class="lisa">Õppemaks alates 56 € kuus.</p>
           </div>
-          <span class="k-go" aria-hidden="true">→</span>
-        </a>
-      </section>
-
-      <section class="k-sec" data-osa="tipus" data-osa-nimi="Kes on tipus? (edetabel)" aria-labelledby="h-vus">
-        <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">40</b> Võistle</span>
-          <h2 id="h-vus">Kes on tipus?</h2>
-          <a href="voistlused/">Kogu edetabel <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="k-board">
-          <!-- Varuandmed: näha ka ilma JavaScriptita; värske seis asendab need -->
-          <ol class="k-rows" id="vus-list" data-n="3" data-stiil="tabloo">
-            <li class="k-row"><span class="k-pos" aria-hidden="true">1</span><span class="k-name">Heimar Mirka <span class="k-lead">liider</span></span><span class="k-pts num">602<small>p</small></span><span class="k-trend up"><span aria-hidden="true">▲</span>1<span class="vh"> kohta üles</span></span></li>
-            <li class="k-row"><span class="k-pos" aria-hidden="true">2</span><span class="k-name">Priit Raudla</span><span class="k-pts num">580<small>p</small></span><span class="k-trend down"><span aria-hidden="true">▼</span>1<span class="vh"> kohta alla</span></span></li>
-            <li class="k-row"><span class="k-pos" aria-hidden="true">3</span><span class="k-name">Reevo Kirna</span><span class="k-pts num">500<small>p</small></span><span class="k-trend eq"><span aria-hidden="true">—</span><span class="vh">muutuseta</span></span></li>
-          </ol>
-          <div class="k-board-foot"><p class="data-status" id="data-status" role="status" data-asof="17.10.2026">Viimane teadaolev seis 17.10.2026.</p></div>
+          <a class="btn btn-ghost" href="treeningud/">Vaata treeninguid</a>
         </div>
       </section>
 
-      <section class="k-sec" data-osa="kohale" data-osa-nimi="Kohtume väljakul (asukoht ja kontakt)" aria-labelledby="h-koht">
+      <section class="k-sec" data-osa="kohale" data-osa-nimi="Asukohad ja kontakt" aria-labelledby="h-koht">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">Game</b> Tule kohale</span>
-          <h2 id="h-koht">Kohtume väljakul.</h2>
-          <a href="klubi/#kontakt">Kaart ja kontaktid <span aria-hidden="true">→</span></a>
+          <h2 id="h-koht"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Asukohad ja kontakt</h2>
+          <a href="klubi/">Kõik kontaktid ja kaart <span aria-hidden="true">→</span></a>
         </div>
-        <div class="k-place">
+        <div class="k-place kodu">
           <figure class="k-photo">
             <img src="img/plats-800.webp" srcset="img/plats-800.webp 800w, img/plats-1280.webp 1280w" sizes="(max-width: 900px) 100vw, 660px"
                  width="1280" height="684" loading="lazy" decoding="async"
                  alt="Linnulennult: punased savi-tenniseväljakud, sinised padeliväljakud ja jalgpalliväljak Viljandi järve ääres" />
-            <figcaption><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Tennis ja padel järve ääres · Ranna pst 3</figcaption>
+            <figcaption><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Väliväljakud Viljandi järve ääres</figcaption>
           </figure>
           <ul class="k-contact">
-            <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Sisehall · Kaalu 2</b><span>Aasta läbi, iga päev 6–24</span></span></li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg><span><b>Väliväljakud · Ranna pst 3</b><span>Viljandi järve ääres, mai–oktoober</span></span></li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><span><b><a href="tel:+3725036425">+372 5036 425</a></b><span>Keskus ja klubi</span></span></li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><span><b><a href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a></b><span>Kirjuta julgelt</span></span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Sisehall · Kaalu 2</b><span>Avatud iga päev 6–24</span></span>
+              <a class="k-map" href="https://www.google.com/maps/search/?api=1&amp;query=Kaalu+2+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (sisehall, Kaalu 2)</span></a></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg><span><b>Väliväljakud · Ranna pst 3</b><span data-hooaeg>Hooaeg mai–oktoober</span></span>
+              <a class="k-map" href="https://www.google.com/maps/search/?api=1&amp;query=Ranna+puiestee+3+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (väliväljakud, Ranna pst 3)</span></a></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><span class="rida"><b><a href="tel:+3725036425">+372 5036 425</a></b><a href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a></span></li>
           </ul>
+        </div>
+      </section>
+
+      <section class="k-sec" data-osa="tipus" data-osa-nimi="Võistlused ja edetabel" aria-labelledby="h-vus">
+        <div class="k-h">
+          <h2 id="h-vus"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Võistlused ja edetabel</h2>
+        </div>
+        <div class="band2 plain">
+          <p>Vaata Viljandi turniire, tulemusi ja edetabelit.</p>
+          <a class="btn btn-ghost" href="voistlused/">Vaata võistlusi ja edetabelit</a>
         </div>
       </section>
     </div>
@@ -347,22 +334,12 @@
     <div class="shell">
       <div class="band foot-band">
         <div class="partners">
-          <div class="partner">
-            <img src="img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" loading="lazy" />
-            <span aria-hidden="true">Viljandi linn · Viljandimaa Spordiliit</span>
-          </div>
-          <div class="partner">
-            <img src="img/uku.webp" alt="UKU keskus – Tark valik" width="300" height="212" loading="lazy" />
-            <span aria-hidden="true">UKU keskus</span>
-          </div>
-          <a class="partner" href="https://www.tennis.ee/" rel="noopener">
-            <img src="img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" loading="lazy" />
-            <span aria-hidden="true">Eesti Tennise Liit</span>
-          </a>
+          <div class="partner"><img src="img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" loading="lazy" /></div>
+          <div class="partner"><img src="img/uku.webp" alt="UKU keskus – Tark valik" width="300" height="212" loading="lazy" /></div>
+          <a class="partner" href="https://www.tennis.ee/" rel="noopener"><img src="img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" loading="lazy" /></a>
         </div>
         <a class="eu-mark" href="klubi/#toetused">
-          <img src="img/el-nextgen-1.webp" width="480" height="270" loading="lazy"
-               alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." />
+          <img src="img/el-nextgen-1.webp" width="480" height="270" loading="lazy" alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." />
           <span>Euroopa Liidu toetatud projektid</span>
         </a>
       </div>
@@ -378,12 +355,13 @@
         </ul>
       </nav>
       <p class="foot-line">
-        <b>MTÜ Tennise- ja padeliklubi Fellin</b> · registrikood 80065678 · Reinu tee 18, Viljandi ·
+        <b>MTÜ Tennise- ja padeliklubi Fellin</b> · registrikood 80065678 · juriidiline aadress Reinu tee 18, Viljandi ·
         <a href="tel:+3725036425">+372 5036 425</a> · <a href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a>
       </p>
     </div>
   </footer>
 
+  <script src="seaded.js"></script>
   <script src="fellin.js" defer></script>
   <!-- ARVUSTUS: kliendi kommentaarid — eemalda enne avaldamist -->
   <script src="arvustus.js" defer></script>

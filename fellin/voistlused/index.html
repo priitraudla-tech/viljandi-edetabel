@@ -42,6 +42,8 @@
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.500" y="6" width="17" height="12" rx="2.200"/><path d="M4.200 7.700l7.800 5.800 7.800-5.800"/></symbol>
     <symbol id="i-call" viewBox="0 0 24 24"><path d="M6.500 3.500h3.200l1.400 4.100-2.100 1.400a11.500 11.500 0 0 0 6 6l1.400-2.100 4.100 1.400v3.200a1.900 1.900 0 0 1-2 1.900C10.900 19 5 13.100 4.600 5.500a1.900 1.900 0 0 1 1.900-2z"/></symbol>
     <symbol id="i-mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#d3fc67"/><path d="M14 20C42 38 42 62 14 80M86 20C58 38 58 62 86 80" fill="none" stroke="#10120f" stroke-width="6" stroke-linecap="round" opacity=".55"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.2M12 7.8v.2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.2 12.3l2.6 2.6 5-5.4"/></symbol>
   </svg>
   <a class="skip" href="#sisu">Liigu sisu juurde</a>
 
@@ -74,20 +76,15 @@
   </header>
 
   <main class="shell" id="sisu" tabindex="-1">
+    <div class="teade" id="teade" role="status" hidden><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span></span></div>
     <div class="page-head">
-      <div class="sec-head">
-        <div>
-          <span class="label">03 / Võistlused</span>
-          <h1 id="h-leht">Edetabel ja tulemused.</h1>
-          <p class="sec-sub">Viljandi üksikmängu sari (VÜS), püramiid ja maakonna meistrivõistlused — andmed tulevad otse edetabelist.</p>
-        </div>
-      </div>
+      <h1 id="h-leht">Võistlused</h1>
+      <p class="sec-sub">Viljandi üksikmängu sari (VÜS), püramiid ja maakonna meistrivõistlused — andmed tulevad otse edetabelist.</p>
     </div>
     <div class="k-flow">
       <section class="k-sec" data-osa="v-edetabel" data-osa-nimi="VÜS edetabel" aria-labelledby="h-vus">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">15</b> VÜS</span>
-          <h2 id="h-vus">Kes on tipus?</h2>
+          <h2 id="h-vus"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>VÜS edetabel</h2>
           <a href="https://viljandi-edetabel.pages.dev/" rel="noopener">Kogu edetabel <span aria-hidden="true">↗</span></a>
         </div>
         <div class="k-board">
@@ -104,24 +101,23 @@
             <li class="k-row"><span class="k-pos" aria-hidden="true">9</span><span class="k-name">Gabriel Tralla</span><span class="k-pts num">158<small>p</small></span><span class="k-trend eq"><span aria-hidden="true">—</span><span class="vh">muutuseta</span></span></li>
             <li class="k-row"><span class="k-pos" aria-hidden="true">10</span><span class="k-name">Eneli Pihl</span><span class="k-pts num">158<small>p</small></span><span class="k-trend up"><span aria-hidden="true">▲</span>1<span class="vh"> kohta üles</span></span></li>
           </ol>
-          <div class="k-board-foot"><p class="data-status" id="data-status" role="status" data-asof="17.10.2026">Viimane teadaolev seis 17.10.2026.</p></div>
+          <div class="k-board-foot"><p class="data-status" id="data-status" role="status" data-asof="17.10.2026"><span><b>Seis 17.10.2026</b></span></p></div>
         </div>
       </section>
 
       <section class="k-sec" data-osa="v-muud" data-osa-nimi="Püramiid ja maakonna MV" aria-labelledby="h-muud">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">30</b> Püramiid ja MV</span>
-          <h2 id="h-muud">Kes veel kõrgel on?</h2>
+          <h2 id="h-muud"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Püramiid ja maakonna meistrivõistlused</h2>
         </div>
         <div class="grid-2">
           <div class="k-board">
             <h3 class="k-board-h">Püramiid · <span id="pyr-asof">seis 01.09.2026</span></h3>
             <ol class="k-rows" id="pyr-list" data-n="5" data-stiil="tabloo">
-            <li class="k-row pyr"><span class="k-pos" aria-hidden="true">1</span><span class="k-name">Viljar Vahemaa <span class="k-lead">tipp</span></span></li>
-            <li class="k-row pyr"><span class="k-pos" aria-hidden="true">2</span><span class="k-name">Priit Raudla</span></li>
-            <li class="k-row pyr"><span class="k-pos" aria-hidden="true">3</span><span class="k-name">Timo Kirsimäe</span></li>
-            <li class="k-row pyr"><span class="k-pos" aria-hidden="true">4</span><span class="k-name">Daniel Snegirjov</span></li>
-            <li class="k-row pyr"><span class="k-pos" aria-hidden="true">5</span><span class="k-name">Kert Perkmann</span></li>
+              <li class="k-row pyr"><span class="k-pos" aria-hidden="true">1</span><span class="k-name">Viljar Vahemaa <span class="k-lead">tipp</span></span></li>
+              <li class="k-row pyr"><span class="k-pos" aria-hidden="true">2</span><span class="k-name">Priit Raudla</span></li>
+              <li class="k-row pyr"><span class="k-pos" aria-hidden="true">3</span><span class="k-name">Timo Kirsimäe</span></li>
+              <li class="k-row pyr"><span class="k-pos" aria-hidden="true">4</span><span class="k-name">Daniel Snegirjov</span></li>
+              <li class="k-row pyr"><span class="k-pos" aria-hidden="true">5</span><span class="k-name">Kert Perkmann</span></li>
             </ol>
             <div class="k-board-foot"><a class="link-arrow" href="https://viljandi-edetabel.pages.dev/puramiid.html" rel="noopener">Püramiid ja väljakutsed <span aria-hidden="true">↗</span></a></div>
           </div>
@@ -139,8 +135,7 @@
 
       <section id="kkk" class="k-sec faq" data-osa="v-kkk" data-osa-nimi="Korduma kippuvad küsimused" aria-labelledby="h-kkk">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">40</b> Küsimused</span>
-          <h2 id="h-kkk">Korduma kippuvad küsimused.</h2>
+          <h2 id="h-kkk"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Korduma kippuvad küsimused</h2>
         </div>
         <!-- Tekst on sõna-sõnalt sama mis päise FAQPage JSON-LD-s — muuda mõlemas -->
         <div class="faq-list">
@@ -155,22 +150,12 @@
     <div class="shell">
       <div class="band foot-band">
         <div class="partners">
-          <div class="partner">
-            <img src="../img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" loading="lazy" />
-            <span aria-hidden="true">Viljandi linn · Viljandimaa Spordiliit</span>
-          </div>
-          <div class="partner">
-            <img src="../img/uku.webp" alt="UKU keskus – Tark valik" width="300" height="212" loading="lazy" />
-            <span aria-hidden="true">UKU keskus</span>
-          </div>
-          <a class="partner" href="https://www.tennis.ee/" rel="noopener">
-            <img src="../img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" loading="lazy" />
-            <span aria-hidden="true">Eesti Tennise Liit</span>
-          </a>
+          <div class="partner"><img src="../img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" loading="lazy" /></div>
+          <div class="partner"><img src="../img/uku.webp" alt="UKU keskus – Tark valik" width="300" height="212" loading="lazy" /></div>
+          <a class="partner" href="https://www.tennis.ee/" rel="noopener"><img src="../img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" loading="lazy" /></a>
         </div>
         <a class="eu-mark" href="../klubi/#toetused">
-          <img src="../img/el-nextgen-1.webp" width="480" height="270" loading="lazy"
-               alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." />
+          <img src="../img/el-nextgen-1.webp" width="480" height="270" loading="lazy" alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." />
           <span>Euroopa Liidu toetatud projektid</span>
         </a>
       </div>
@@ -186,12 +171,13 @@
         </ul>
       </nav>
       <p class="foot-line">
-        <b>MTÜ Tennise- ja padeliklubi Fellin</b> · registrikood 80065678 · Reinu tee 18, Viljandi ·
+        <b>MTÜ Tennise- ja padeliklubi Fellin</b> · registrikood 80065678 · juriidiline aadress Reinu tee 18, Viljandi ·
         <a href="tel:+3725036425">+372 5036 425</a> · <a href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a>
       </p>
     </div>
   </footer>
 
+  <script src="../seaded.js"></script>
   <script src="../fellin.js" defer></script>
   <!-- ARVUSTUS: kliendi kommentaarid — eemalda enne avaldamist -->
   <script src="../arvustus.js" defer></script>

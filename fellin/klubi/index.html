@@ -25,6 +25,8 @@
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.500" y="6" width="17" height="12" rx="2.200"/><path d="M4.200 7.700l7.800 5.800 7.800-5.800"/></symbol>
     <symbol id="i-call" viewBox="0 0 24 24"><path d="M6.500 3.500h3.200l1.400 4.100-2.100 1.400a11.500 11.500 0 0 0 6 6l1.400-2.100 4.100 1.400v3.200a1.900 1.900 0 0 1-2 1.900C10.900 19 5 13.100 4.600 5.500a1.900 1.900 0 0 1 1.900-2z"/></symbol>
     <symbol id="i-mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#d3fc67"/><path d="M14 20C42 38 42 62 14 80M86 20C58 38 58 62 86 80" fill="none" stroke="#10120f" stroke-width="6" stroke-linecap="round" opacity=".55"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.2M12 7.8v.2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.2 12.3l2.6 2.6 5-5.4"/></symbol>
   </svg>
   <a class="skip" href="#sisu">Liigu sisu juurde</a>
 
@@ -57,30 +59,62 @@
   </header>
 
   <main class="shell" id="sisu" tabindex="-1">
+    <div class="teade" id="teade" role="status" hidden><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span></span></div>
     <div class="page-head">
-      <div class="sec-head">
-        <div>
-          <span class="label">04 / Klubi ja kontakt</span>
-          <h1 id="h-leht">Klubi aastast 1924.</h1>
-          <p class="sec-sub">Tennise- ja padeliklubi Fellin on mittetulundusühing, mis haldab Viljandi
-            tennise- ja padelikeskust ning Ott Ahoneni tennise- ja padelikooli.</p>
-        </div>
-      </div>
+      <h1 id="h-leht">Klubi ja kontakt</h1>
+      <p class="sec-sub">Kontaktid, mängukohad ja kaart — ning kes me oleme.</p>
     </div>
     <div class="k-flow">
+      <section id="kontakt" class="k-sec" data-osa="k-kontakt" data-osa-nimi="Kontaktid ja mängukohad" aria-labelledby="h-kontakt">
+        <div class="k-h">
+          <h2 id="h-kontakt"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Kontaktid ja mängukohad</h2>
+        </div>
+        <div class="k-place">
+          <ul class="k-contact">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Sisehall · Kaalu 2</b><span>Avatud iga päev 6–24</span></span>
+              <a class="k-map" href="https://www.google.com/maps/search/?api=1&amp;query=Kaalu+2+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (sisehall, Kaalu 2)</span></a></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg><span><b>Väliväljakud · Ranna pst 3</b><span data-hooaeg>Hooaeg mai–oktoober</span></span>
+              <a class="k-map" href="https://www.google.com/maps/search/?api=1&amp;query=Ranna+puiestee+3+Viljandi" rel="noopener">Ava kaardil <span aria-hidden="true">↗</span><span class="vh"> (väliväljakud, Ranna pst 3)</span></a></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><span class="rida"><b><a href="tel:+3725036425">+372 5036 425</a></b><span class="kes">Keskus ja klubi</span><a href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a></span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><span class="rida"><b><a href="tel:+37256494381">+372 5649 4381</a></b><span class="kes">Tennise- ja padelikool · Ott Ahonen</span><a href="mailto:ott@fellinrackets.ee">ott@fellinrackets.ee</a></span></li>
+          </ul>
+          <figure class="k-photo">
+            <img src="../img/plats-800.webp" srcset="../img/plats-800.webp 800w, ../img/plats-1280.webp 1280w" sizes="(max-width: 900px) 100vw, 560px"
+                 width="1280" height="684" decoding="async"
+                 alt="Linnulennult: punased savi-tenniseväljakud, sinised padeliväljakud ja jalgpalliväljak Viljandi järve ääres" />
+            <figcaption><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Väliväljakud Viljandi järve ääres</figcaption>
+          </figure>
+        </div>
+        <p class="jur">Juriidiline aadress (ei ole mängukoht): Reinu tee 18, 71020 Viljandi</p>
+      </section>
+
+      <section class="k-sec" data-osa="k-kaart" data-osa-nimi="Kaart" aria-labelledby="h-kaart">
+        <div class="k-h">
+          <h2 id="h-kaart"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Kaart</h2>
+        </div>
+          <div class="map" id="map">
+            <p class="card-h" style="margin: 0;">Google'i kaart</p>
+            <p>Kaart laaditakse Google'i serverist ja Google võib seejuures salvestada küpsiseid.</p>
+            <button class="btn btn-ghost" type="button" id="map-load">Näita kaarti</button>
+            <a class="link-arrow" href="https://www.google.com/maps/d/viewer?mid=1edaLlcJRuS-RaN6xDFF_qVSuKz4" rel="noopener">Ava Google Mapsis <span aria-hidden="true">↗</span></a>
+          </div>
+        <p class="map-note">Kaardil on kolm märki: tennisehall (Kaalu 2), väliväljakud (Ranna pst 3) ja klubi kontor — kontor ei ole mängukoht.</p>
+      </section>
+
       <section class="k-sec" data-osa="k-klubi" data-osa-nimi="Klubi" aria-labelledby="h-klubi">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">15</b> Klubi</span>
-          <h2 id="h-klubi">Kes me oleme?</h2>
+          <h2 id="h-klubi"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Klubi aastast 1924</h2>
+          <p class="k-hint">Tennise- ja padeliklubi Fellin on mittetulundusühing, mis haldab Viljandi
+            tennise- ja padelikeskust ning Ott Ahoneni tennise- ja padelikooli.</p>
         </div>
       <ul class="brands" aria-label="Klubi, keskus ja kool">
         <li><img src="../img/fellin-klubi-logo.webp" alt="Viljandi tennise- ja padeliklubi Fellin" width="400" height="172" loading="lazy" /><span>Klubi</span></li>
         <li><img src="../img/fellin-rackets-logo.svg" alt="Fellin Rackets" width="1267" height="594" loading="lazy" /><span>Keskus</span></li>
         <li><img src="../img/ott-ahoneni-logo.webp" alt="Ott Ahoneni tennise- ja padelikool" width="500" height="128" loading="lazy" /><span>Kool</span></li>
       </ul>
-        <div class="grid-2" style="margin-top: 1.5rem; gap: 1.5rem 3rem;">
-          <div>
-            <h3 class="card-h">Ajalugu</h3>
+        <details class="more">
+          <summary>Ajalugu ja klubi kasvandikud</summary>
+          <div class="more-body ajalugu">
           <ol class="timeline" aria-label="Klubi ajalugu">
             <li><b>1924</b><span>Viljandi tenniseklubi asutatakse vee- ja motospordi klubi koosseisus</span></li>
             <li><b>1999</b><span>Tenniseklubi Fellin registreeritakse mittetulundusühinguna</span></li>
@@ -88,21 +122,19 @@
             <li><b>2023</b><span>Klubi hakkab haldama järveäärseid padeliväljakuid ja õpetama padelit</span></li>
             <li><b>2024</b><span>Uus nimi: Viljandi tennise- ja padeliklubi Fellin</span></li>
           </ol>
-          </div>
-          <div>
-            <h3 class="card-h">Viljandis alustanud parimad</h3>
-            <p class="alumni">Markus Kerner, Diana Klavan, Anelle Luik,
+            <div>
+              <p class="alumni"><b>Viljandis alustanud parimad:</b> Markus Kerner, Diana Klavan, Anelle Luik,
             Annemai Mutso, Saara Orav, Sonja Anderson, Steven Tensing, Brit Martin, Bert Martin, Kendra Aidla
             — Eesti noorte meistrivõistluste medalivõitjad.</p>
-            <a class="link-arrow" href="https://www.facebook.com/TenniseklubiFellin/" rel="noopener">Klubi Facebookis <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
-        </div>
+        </details>
+        <a class="link-arrow" href="https://www.facebook.com/TenniseklubiFellin/" rel="noopener">Klubi Facebookis <span aria-hidden="true">↗</span></a>
       </section>
 
       <section id="toetused" class="k-sec" data-osa="k-toetused" data-osa-nimi="Euroopa Liidu toetus" aria-labelledby="h-toetused">
         <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">30</b> Toetus</span>
-          <h2 id="h-toetused">Euroopa Liidu toetus.</h2>
+          <h2 id="h-toetused"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg>Euroopa Liidu toetus</h2>
         </div>
         <div class="band">
           <div class="eu-list" style="margin-top: 0;">
@@ -124,37 +156,6 @@
           </div>
         </div>
       </section>
-
-      <section id="kontakt" class="k-sec" data-osa="k-kontakt" data-osa-nimi="Kontakt ja kaart" aria-labelledby="h-kontakt">
-        <div class="k-h">
-          <span class="k-score"><svg class="k-mark" aria-hidden="true"><use href="#i-mark"/></svg><b aria-hidden="true">Game</b> Tule kohale</span>
-          <h2 id="h-kontakt">Kohtume väljakul.</h2>
-        </div>
-        <div class="k-place">
-          <figure class="k-photo">
-            <img src="../img/plats-800.webp" srcset="../img/plats-800.webp 800w, ../img/plats-1280.webp 1280w" sizes="(max-width: 900px) 100vw, 660px"
-                 width="1280" height="684" loading="lazy" decoding="async"
-                 alt="Linnulennult: punased savi-tenniseväljakud, sinised padeliväljakud ja jalgpalliväljak Viljandi järve ääres" />
-            <figcaption><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Tennis ja padel järve ääres · Ranna pst 3</figcaption>
-          </figure>
-          <ul class="k-contact">
-            <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Sisehall · Kaalu 2</b><span>Aasta läbi, iga päev 6–24</span></span></li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg><span><b>Väliväljakud · Ranna pst 3</b><span>Viljandi järve ääres, mai–oktoober</span></span></li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><span><b><a href="tel:+3725036425">+372 5036 425</a></b><span>Keskus ja klubi · <a href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a></span></span></li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-call"/></svg><span><b><a href="tel:+37256494381">+372 5649 4381</a></b><span>Tennise- ja padelikool, Ott Ahonen · <a href="mailto:ott@fellinrackets.ee">ott@fellinrackets.ee</a></span></span></li>
-          </ul>
-        </div>
-        <p class="muted small" style="margin: .75rem 0 1.25rem;">Juriidiline aadress (ei ole mängukoht): Reinu tee 18, 71020 Viljandi</p>
-        <div class="map-wrap">
-          <div class="map" id="map">
-            <h3 class="card-h" style="margin: 0;">Kaart</h3>
-            <p>Kaart laaditakse Google'i serverist ja Google võib seejuures salvestada küpsiseid.</p>
-            <button class="btn btn-ghost" type="button" id="map-load">Näita kaarti</button>
-            <a class="link-arrow" href="https://www.google.com/maps/d/viewer?mid=1edaLlcJRuS-RaN6xDFF_qVSuKz4" rel="noopener">Ava Google Mapsis <span aria-hidden="true">↗</span></a>
-          </div>
-          <p class="map-note">Kaardil on kolm märki: tennisehall (Kaalu 2), väliväljakud (Ranna pst 3) ja klubi kontor — kontor ei ole mängukoht.</p>
-        </div>
-      </section>
     </div>
   </main>
 
@@ -162,22 +163,12 @@
     <div class="shell">
       <div class="band foot-band">
         <div class="partners">
-          <div class="partner">
-            <img src="../img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" loading="lazy" />
-            <span aria-hidden="true">Viljandi linn · Viljandimaa Spordiliit</span>
-          </div>
-          <div class="partner">
-            <img src="../img/uku.webp" alt="UKU keskus – Tark valik" width="300" height="212" loading="lazy" />
-            <span aria-hidden="true">UKU keskus</span>
-          </div>
-          <a class="partner" href="https://www.tennis.ee/" rel="noopener">
-            <img src="../img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" loading="lazy" />
-            <span aria-hidden="true">Eesti Tennise Liit</span>
-          </a>
+          <div class="partner"><img src="../img/viljandi-linn-spordiliit.webp" alt="Viljandi linn ja Viljandimaa Spordiliit" width="377" height="197" loading="lazy" /></div>
+          <div class="partner"><img src="../img/uku.webp" alt="UKU keskus – Tark valik" width="300" height="212" loading="lazy" /></div>
+          <a class="partner" href="https://www.tennis.ee/" rel="noopener"><img src="../img/eesti-tennise-liit.webp" alt="Eesti Tennise Liit" width="253" height="158" loading="lazy" /></a>
         </div>
         <a class="eu-mark" href="../klubi/#toetused">
-          <img src="../img/el-nextgen-1.webp" width="480" height="270" loading="lazy"
-               alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." />
+          <img src="../img/el-nextgen-1.webp" width="480" height="270" loading="lazy" alt="Rahastanud Euroopa Liit – NextGenerationEU. Eesti tuleviku heaks." />
           <span>Euroopa Liidu toetatud projektid</span>
         </a>
       </div>
@@ -193,12 +184,13 @@
         </ul>
       </nav>
       <p class="foot-line">
-        <b>MTÜ Tennise- ja padeliklubi Fellin</b> · registrikood 80065678 · Reinu tee 18, Viljandi ·
+        <b>MTÜ Tennise- ja padeliklubi Fellin</b> · registrikood 80065678 · juriidiline aadress Reinu tee 18, Viljandi ·
         <a href="tel:+3725036425">+372 5036 425</a> · <a href="mailto:fellin@fellinrackets.ee">fellin@fellinrackets.ee</a>
       </p>
     </div>
   </footer>
 
+  <script src="../seaded.js"></script>
   <script src="../fellin.js" defer></script>
   <!-- ARVUSTUS: kliendi kommentaarid — eemalda enne avaldamist -->
   <script src="../arvustus.js" defer></script>

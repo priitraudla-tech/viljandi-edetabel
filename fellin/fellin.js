@@ -11,25 +11,24 @@
   const fmtKuupaev = (iso) => new Intl.DateTimeFormat("et-EE", { timeZone: TZ, day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(iso));
   const fmtAeg = (iso) => new Intl.DateTimeFormat("et-EE", { timeZone: TZ, day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(iso));
 
-  // ---------- Lahtiolek ja hooaeg Tallinna aja järgi ----------
-  const now = new Date();
-  const tund = Number(new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "numeric", hourCycle: "h23" }).format(now));
-  const kuu = Number(new Intl.DateTimeFormat("en-GB", { timeZone: TZ, month: "numeric" }).format(now));
-  // Avaploki tervitus: ausalt kellaaja järgi — öösel ei ütle leht „avatud“.
-  const tervitus = $("#k-olek");
-  if (tervitus) {
-    const pill = $("#k-live");
-    if (tund < 6) { tervitus.textContent = "Sisehall puhkab — avame kell 6."; if (pill) pill.classList.add("off"); }
-    else if (tund < 10) tervitus.textContent = "Tere hommikust! Sisehall on avatud.";
-    else if (tund < 18) tervitus.textContent = "Tere päevast! Sisehall on avatud.";
-    else tervitus.textContent = "Tere õhtust! Sisehall on avatud kuni 24.";
-  }
-  const hooaeg = $("#out-season");
-  if (hooaeg) {
-    const valjas = kuu >= 5 && kuu <= 10;
-    hooaeg.textContent = valjas ? "hooaeg käib (mai–oktoober)" : "praegu suletud, hooaeg mai–oktoober";
-    hooaeg.classList.toggle("off", !valjas);
-  }
+  // ---------- Seaded (seaded.js): väliväljakute hooaeg ja teateriba ----------
+  const SEADED = window.FELLIN_SEADED || {};
+  const hooaeg = SEADED.valihooaeg || { algus: "01.05", lopp: "31.10", silt: "mai–oktoober" };
+  // Tänane kuupäev Tallinna aja järgi kujul kk*100 + pp, et vahemikku oleks lihtne võrrelda
+  const osad = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, day: "2-digit", month: "2-digit" }).formatToParts(new Date());
+  const tana = Number(osad.find((o) => o.type === "month").value) * 100 + Number(osad.find((o) => o.type === "day").value);
+  const arv = (ppkk) => { const [pp, kk] = String(ppkk).split(".").map(Number); return kk * 100 + pp; };
+  const valjasAvatud = tana >= arv(hooaeg.algus) && tana <= arv(hooaeg.lopp);
+  document.querySelectorAll("[data-hooaeg]").forEach((el) => {
+    el.textContent = valjasAvatud ? `Avatud · hooaeg ${hooaeg.silt}` : `Praegu suletud · hooaeg ${hooaeg.silt}`;
+    el.classList.toggle("off", !valjasAvatud);
+  });
+  // Hinnalehel on väliväljakute plokk hooajal lahti, hooajavälisel ajal kokku pandud
+  const valiPlokk = $("#valjas");
+  if (valiPlokk && valjasAvatud) valiPlokk.open = true;
+  // Teateriba ainult siis, kui seadetes on teade
+  const teade = $("#teade");
+  if (teade && SEADED.teade) { teade.querySelector("span").textContent = SEADED.teade; teade.hidden = false; }
 
   // ---------- Mobiilimenüü (avatav loend, mitte ARIA menüü) ----------
   const nupp = $("#menu-btn"), menuu = $("#mobile-menu");
@@ -110,7 +109,8 @@
           }
           if (pyrTop) pyrTop.textContent = jarjest[0] ? `Tipus ${jarjest[0].name}${seis ? ` · seis ${seis}` : ""}` : "Püramiidis pole veel mängijaid";
         }
-        if (cur) olek("ok", `<i aria-hidden="true"></i><span>Edetabeli seis ${esc(asof || "—")} · andmed kontrollitud ${esc(cur.fetched_at ? fmtAeg(cur.fetched_at) : "—")}</span>`);
+        if (cur) olek("ok", `<span><b>Seis ${esc(asof || "—")}</b>` +
+          `${cur.fetched_at ? `<span class="kontroll">Andmed kontrollitud ${esc(fmtAeg(cur.fetched_at))}</span>` : ""}</span>`);
       } catch (e) {
         olek("error", `Edetabeliga ei saanud ühendust. Näitan viimast teadaolevat seisu (${esc(varuSeis)}).`);
       }

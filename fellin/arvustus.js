@@ -41,6 +41,17 @@
     return null;
   };
   if (qs.get("k")) ls("fr_k", qs.get("k"));
+  // Puhas eelvaade (nagu avalik leht): ?puhas=1 peidab tagasiside nupud, ?puhas=0 toob tagasi.
+  // Lahtiütlus „ei ole ametlik leht“ jääb prototüübis alati nähtavale.
+  const ss = (k, v) => {
+    try {
+      if (v === undefined) return sessionStorage.getItem(k);
+      if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v);
+    } catch (e) { /* ilma salvestuseta */ }
+    return null;
+  };
+  if (qs.has("puhas")) ss("fr_puhas", qs.get("puhas") === "0" ? null : "1");
+  const PUHAS = qs.has("puhas") ? qs.get("puhas") !== "0" : ss("fr_puhas") === "1";
   const VOTI = qs.get("k") || ls("fr_k") || (MOCK ? "mock" : "");
   const saabKommenteerida = !!VOTI;
 
@@ -128,16 +139,25 @@
   .rv-pin .n { background:#8a6a00; color:#fff; border-radius:999px; padding:1px 8px; font-size:12.5px; }
   footer .rv-pin { background:#3a3420; color:#ffe98a; border-color:#8a7414; }
   .rv-on { outline:3px solid #f2c500; outline-offset:-3px; }
-  .rv-fab { position:fixed; right:calc(18px + env(safe-area-inset-right, 0px)); bottom:calc(18px + env(safe-area-inset-bottom, 0px));
-    z-index:60; min-height:48px; padding:0 18px; border-radius:999px;
-    background:#ffd83d; color:#2b2200; box-shadow:0 6px 22px rgba(0,0,0,.35); display:flex; gap:8px; align-items:center; }
+  .rv-fab { position:fixed; right:calc(14px + env(safe-area-inset-right, 0px)); bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+    z-index:60; min-height:44px; min-width:44px; padding:0 15px; border-radius:999px; justify-content:center;
+    background:#ffd83d; color:#2b2200; box-shadow:0 4px 14px rgba(0,0,0,.3); display:flex; gap:7px; align-items:center; }
+  /* Lehe lõppu jääb nupu jagu ruumi, et see ei kataks jaluse viimast rida */
+  body.rv-has-fab { padding-bottom:68px; }
+  .rv-pick { margin:0 0 16px; }
+  .rv-pick h3 { font-size:14px; margin:0 0 8px; color:#3d3726; }
+  .rv-pick-list { display:flex; flex-wrap:wrap; gap:6px; }
+  .rv-osa { min-height:44px; padding:0 13px; border-radius:999px; border:1px solid #d8cb96; background:#fff; color:#1d1d1b;
+    font:600 14px/1.2 var(--font, system-ui); cursor:pointer; display:inline-flex; align-items:center; gap:7px; text-align:left; }
+  .rv-osa:hover { background:#fff3b8; }
+  .rv-osa .n { background:#8a6a00; color:#fff; border-radius:999px; padding:1px 8px; font-size:12.5px; }
   .rv-fab .n { background:#2b2200; color:#ffd83d; border-radius:999px; padding:1px 8px; font-size:12.5px; }
   .proto { position:relative; z-index:30; display:flex; flex-wrap:wrap; gap:6px 10px; justify-content:center; align-items:center; }
   .rv-link, .rv-toggle { min-height:32px; padding:0 12px; border-radius:999px; font-size:13px; }
   .rv-link { background:#ffd83d; color:#2b2200; }
   .rv-toggle { background:transparent; color:#f6f5ee; border:1px solid #5d6253; }
   .rv-hint { position:relative; z-index:29; background:#fff3b8; color:#2b2200; display:flex; gap:12px; align-items:center;
-    justify-content:center; padding:10px 16px; font:400 15px/1.45 var(--font, system-ui); }
+    justify-content:center; padding:6px 16px; font:400 14px/1.4 var(--font, system-ui); }
   .rv-hint p { margin:0; max-width:70ch; }
   .rv-hint-x { flex:none; width:36px; height:36px; border-radius:50%; border:1px solid #b88f00; background:transparent;
     color:#2b2200; font-size:20px; line-height:1; cursor:pointer; }
@@ -148,7 +168,7 @@
   .rv-drawer { position:fixed; top:0; right:0; bottom:0; width:min(420px, 100%); z-index:80; background:#fffdf4;
     box-shadow:-10px 0 40px rgba(0,0,0,.3); display:flex; flex-direction:column;
     font:400 15px/1.5 var(--font, system-ui); color:#1d1d1b; }
-  .rv-drawer[hidden], .rv-backdrop[hidden] { display:none !important; }
+  .rv-drawer[hidden], .rv-backdrop[hidden], .rv-bar[hidden], .rv-fab[hidden] { display:none !important; }
   @media (prefers-reduced-motion: no-preference) {
     .rv-drawer:not([hidden]) { animation:rv-sisse .2s ease-out; }
     @keyframes rv-sisse { from { transform:translateX(28px); opacity:0; } }
@@ -199,7 +219,8 @@
       .rv-drawer:not([hidden]) { animation:rv-ules .22s ease-out; }
       @keyframes rv-ules { from { transform:translateY(40px); opacity:0; } }
     }
-    .rv-fab { padding:0 15px; }
+    .rv-fab { padding:0 12px; }
+    .rv-fab .rv-txt { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
     /* Telefonis ainult ikoon — nupu nimi tuleb aria-label'ist */
     .rv-pin { padding:0 11px; }
     .rv-pin .rv-txt, .proto .rv-long { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
@@ -212,19 +233,21 @@
   // ---------- prototüübi riba (ainult ettepaneku ajal) ----------
   const proto = document.getElementById("proto");
   if (proto) {
-    proto.innerHTML =
-      `<span><b>Ettepanek<span id="rv-ver"></span></b><span class="rv-long"> · uue fellinrackets.ee kodulehe prototüüp</span> — ei ole ametlik leht.</span>` +
-      `<button type="button" class="rv-link" id="rv-open-all">Kommentaarid<span id="rv-count"></span></button>` +
-      `<button type="button" class="rv-toggle" id="rv-toggle"></button>`;
+    proto.innerHTML = PUHAS
+      ? `<span><b>Ettepanek</b> — ei ole ametlik leht.</span>`
+      : `<span><b>Ettepanek<span id="rv-ver"></span></b> — ei ole ametlik leht.</span>` +
+        `<button type="button" class="rv-link" id="rv-open-all">Tagasiside<span id="rv-count"></span></button>` +
+        `<button type="button" class="rv-toggle" id="rv-toggle"></button>`;
   }
+  // Puhas eelvaade: tagasiside kihti ei looda (nupud, juhis ja dialoog jäävad ära).
+  if (PUHAS) return;
 
   // Esimese külastuse juhis: suletav riba, mitte modaalaken.
   if (saabKommenteerida && !ls("fr_juhend") && proto) {
     const hint = document.createElement("div");
     hint.className = "rv-hint";
     hint.setAttribute("role", "note");
-    hint.innerHTML = `<p><b>Tere! See on uue kodulehe ettepanek.</b> Vajuta kollasele 💬 nupule selle osa juures,
-      mida tahad muuta. Kõik kommentaarid on ülal nupus „Kommentaarid“.</p>
+    hint.innerHTML = `<p><b>See on uue kodulehe ettepanek.</b> Tagasiside jätmiseks vajuta nuppu „Tagasiside“.</p>
       <button type="button" class="rv-hint-x" aria-label="Sulge juhis">×</button>`;
     proto.after(hint);
     hint.querySelector("button").addEventListener("click", () => {
@@ -263,6 +286,7 @@
       o.el.scrollIntoView({ block: "start" });
       const pin = o.el.querySelector(`[data-osa-pin="${o.id}"]`);
       if (pin && !pin.closest("[hidden]")) pin.focus({ preventScroll: true });
+      else ava(o.id, fab);
     }, 60);
   }
   let paigutusOotel = 0;
@@ -272,14 +296,14 @@
   fab.type = "button";
   fab.className = "rv-fab";
   document.body.append(fab);
+  document.body.classList.add("rv-has-fab");
 
-  // Kommenteerimisnuppe saab peita (tagasisiderežiim on eraldi lülitatav).
-  let nupudNahtaval = ls("fr_rv_peida") !== "1";
+  // Vaikimisi on lehel üks tagasihoidlik nupp „Tagasiside“; nupud iga osa juures saab soovi korral sisse lülitada.
+  let nupudNahtaval = ls("fr_rv_nupud") === "1";
   function rakendaNahtavus() {
     document.querySelectorAll(".rv-bar").forEach((b) => { b.hidden = !nupudNahtaval; });
-    fab.hidden = !nupudNahtaval;
     const t = $("#rv-toggle");
-    if (t) t.textContent = nupudNahtaval ? "Peida kommenteerimisnupud" : "Näita kommenteerimisnupud";
+    if (t) t.textContent = nupudNahtaval ? "Peida nupud osade juures" : "Näita nuppe osade juures";
   }
   rakendaNahtavus();
 
@@ -320,7 +344,8 @@
       b.innerHTML = `💬<span class="rv-txt"> Kommenteeri</span>${n ? ` <span class="n">${n}</span>` : ""}`;
     });
     const n = juured().length;
-    fab.innerHTML = `💬 Kommentaarid${n ? ` <span class="n">${n}</span>` : ""}`;
+    fab.innerHTML = `💬<span class="rv-txt"> Tagasiside</span>${n ? ` <span class="n">${n}</span>` : ""}`;
+    fab.setAttribute("aria-label", n ? `Tagasiside, ${kommentaari(n)}` : "Anna tagasisidet");
     const v = andmed.versioonid[andmed.versioonid.length - 1];
     const ver = $("#rv-ver"), cnt = $("#rv-count");
     if (ver) ver.textContent = v ? ` · versioon ${v.nr}` : "";
@@ -397,7 +422,12 @@
           <a class="rv-show" href="${esc(href)}">Ava see leht</a></h3>
           ${cs.map((c) => kaart(c)).join("")}</section>`;
       }).join("");
-      elBody.innerHTML = viga + ver + ((grupid + muud) || `<p class="rv-empty">Vajuta kollasele „Kommenteeri“ nupule selle osa juures, mida tahad kommenteerida — või kirjuta allpool üldine kommentaar.</p>`);
+      const vali = saabKommenteerida ? `<div class="rv-pick"><h3 id="rv-pick-h">Vali osa, mille kohta tagasisidet anda</h3>
+        <div class="rv-pick-list" role="group" aria-labelledby="rv-pick-h">${OSAD.filter((o) => o.el).map((o) => {
+          const nn = osaJuured(o.id).length;
+          return `<button type="button" class="rv-osa" data-rv-vali="${esc(o.id)}">${esc(o.nimi)}${nn ? ` <span class="n">${nn}</span>` : ""}</button>`;
+        }).join("")}</div></div>` : "";
+      elBody.innerHTML = viga + ver + vali + ((grupid + muud) || `<p class="rv-empty">Kommentaare veel pole. Vali ülalt osa või kirjuta allpool üldine kommentaar kogu lehe kohta.</p>`);
     } else {
       const cs = osaJuured(vaade);
       elBody.innerHTML = viga + (cs.length ? cs.map((c) => kaart(c)).join("")
@@ -454,11 +484,13 @@
     if (!t) return;
     if (t.id === "rv-toggle") {
       nupudNahtaval = !nupudNahtaval;
-      ls("fr_rv_peida", nupudNahtaval ? null : "1");
+      ls("fr_rv_nupud", nupudNahtaval ? "1" : null);
+      paigutaNupud();
       rakendaNahtavus();
       return;
     }
     if (t.dataset.osaPin) { ava(t.dataset.osaPin, t); return; }
+    if (t.dataset.rvVali) { ava(t.dataset.rvVali); return; }
     if (t === fab || t.id === "rv-open-all") { ava("koik", t); return; }
     if (t.hasAttribute("data-rv-koik")) { ava("koik"); return; }
     if (t.hasAttribute("data-rv-sulge")) { sulge(); return; }
@@ -470,6 +502,7 @@
         o.el.scrollIntoView({ block: "start" });
         const pin = o.el.querySelector(`[data-osa-pin="${o.id}"]`);
         if (pin && !pin.closest("[hidden]")) pin.focus({ preventScroll: true });
+        else fab.focus({ preventScroll: true });
       }
       return;
     }
