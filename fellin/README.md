@@ -5,6 +5,21 @@ Uue fellinrackets.ee kodulehe prototüüp, mida klubi saab kommenteerida.
 - Aadress: `https://viljandi-edetabel.pages.dev/fellin/` (kommenteerimiseks lingis `?k=…` võti — võti ise repos ei ole, ainult selle räsi `functions/api/fellin-kommentaar.js`-is). Võti jääb brauserisse meelde, nii et alamlehtedel lingis seda enam vaja pole.
 - Google seda ei indekseeri (`_headers`: `X-Robots-Tag: noindex`)
 
+## Kujunduse eelvaade: versioon 8 (`v8/`)
+
+Uus kujundus on eraldi kaustas ja kliendi link (versioon 7) sellest ei muutu.
+
+- Aadress: `https://viljandi-edetabel.pages.dev/fellin/v8/` (viis lehte, sama sisu ja samad alamlehed mis versioonis 7)
+- Oma `v8/fellin.css`, `v8/fellin.js` ja `v8/fonts/` (Archivo muutuvfont, OFL 1.1). Pildid on ühised: `../img/`.
+- Kommenteerimisskripti (`arvustus.js`) eelvaates pole; `data-osa` tunnused on HTML-is alles, et selle saaks hiljem lihtsalt lisada.
+- Vormikeel: avalehe taustaks klubi foto järveäärsetest väljakutest, värvid sealt (ööjärv, savi, kriidijoon),
+  pealkirjad kitsas rasvases kirjas. Avaleht kolme lõiguna: Mängi, Õpi, Võistle. Väljakud piktogrammina
+  (peidetud SVG sümbolid `#ct-t` ja `#ct-p` `<body>` alguses, sama mõõtkava), püramiid püramiidina, MV pjedestaal.
+- Lehe „Mängimine ja hinnad“ nimi on eelvaates „Väljakud ja hinnad“; aadress (`mangimine/`) on sama.
+- Kliendi lingile viimiseks: tõsta `v8/` failid kausta `fellin/` asemele (pilditeed `../img/` → `img/`, alamlehtedel `../../img/` → `../img/`),
+  lisa tagasi `arvustus.js` rida ja prototüübiriba `id="proto"` ning lisa `kommentaarid.json`-i versiooni 8 kirje.
+  Leht `kontsept/` kasutab versiooni 7 `fellin.css`-i ja Interi fonte — otsusta enne, mis sellest saab.
+
 ## Ülesehitus (versioonist 7)
 
 Avaleht on lühike (telefonis ~3 ekraani); detailne sisu on neljal alamlehel.
