@@ -5,19 +5,24 @@ Uue fellinrackets.ee kodulehe prototüüp, mida klubi saab kommenteerida.
 - Aadress: `https://viljandi-edetabel.pages.dev/fellin/` (kommenteerimiseks lingis `?k=…` võti — võti ise repos ei ole, ainult selle räsi `functions/api/fellin-kommentaar.js`-is). Võti jääb brauserisse meelde, nii et alamlehtedel lingis seda enam vaja pole.
 - Google seda ei indekseeri (`_headers`: `X-Robots-Tag: noindex`)
 
-## Ülesehitus (versioonist 7)
+## Ülesehitus (versioonist 7; avalehe vormikeel versioonist 8)
 
-Avaleht on lühike (telefonis ~3 ekraani); detailne sisu on neljal alamlehel.
+Avaleht on lühike (telefonis ~4 ekraani); detailne sisu on neljal alamlehel.
 
 | Leht | Fail | Sisu |
 |---|---|---|
-| Avaleht | `index.html` | avaplokk, „Tahan mängida / õppida / võistelda“, tunnihind alates, VÜS esikolmik, kontakt; schema.org klubi + mängukohad |
+| Avaleht | `index.html` | avaplokk päris fotoga ja tervitusega, „Mida mängime?“ (Tennis / Padel + „Nii see käib“), „Tahad õppida?“, „Kes on tipus?“ (VÜS esikolmik tabloona), „Kohtume väljakul“ (foto + kontakt); schema.org klubi + mängukohad |
 | 01 Mängimine ja hinnad | `mangimine/index.html` | mängukohad koos hinnatabelitega, broneerimine, liikmepakett, KKK |
 | 02 Treeningud | `treeningud/index.html` | lapsed/täiskasvanud, õppemaks, soodustused, trenni küsimine, treenerid ja kutsed, KKK; schema.org kool |
 | 03 Võistlused | `voistlused/index.html` | VÜS esikümme, püramiid, maakonna MV, KKK |
 | 04 Klubi ja kontakt | `klubi/index.html` | logod, ajalugu, kasvandikud, EL-i projektid (`#toetused`), kontakt ja kaart (`#kontakt`) |
 
-Päis, menüü ja jalus (partnerid + EL-i embleem) on kõigil viiel lehel samad — muutes muuda kõigis.
+Päis (menüü päises, telefonis nupp „Menüü“) ja jalus (partnerid + EL-i embleem) on kõigil viiel lehel samad — muutes muuda kõigis.
+`kontsept/index.html` on ainult ümbersuunamine avalehele (seal oli enne v8 kontseptsiooni eelvaade).
+
+Vormikeel (v8): tume alus + tennisepalli laim; väljakujooned, pall ja lennukaar, ümarad vormid ja pill-nupud;
+ikoonid on avalehe alguses `<symbol>`-itena (tennise- ja padelireket, pall, kell, päike, võti, kaardinõel, kiri, kõne).
+Liikumine (palli lend, pulseeriv täpp, joone joonistumine) töötab ainult siis, kui kasutaja pole liikumist vähendanud.
 
 ## Failid
 
@@ -55,7 +60,7 @@ Testid: `node scripts/test_fellin_kommentaar.mjs`
 
 ## Avatud küsimused klubile (sisu, mida ei tohi oletada)
 
-Seis 09.11.2026 (versioon 7). Kuni vastuseni on lehel ainult kinnitatud info.
+Seis 12.11.2026 (versioon 8). Kuni vastuseni on lehel ainult kinnitatud info.
 
 1. **Hinnad:** kas hind on „€ väljaku kohta tunnis“? Siis lisame selle tabelite juurde.
 2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad. Praegu on teada ainult „maist oktoobrini
@@ -68,7 +73,7 @@ Seis 09.11.2026 (versioon 7). Kuni vastuseni on lehel ainult kinnitatud info.
 6. **Mängukohtade praktiline info:** parkimine ja sissepääs, varustuse laenutus (reketid, pallid),
    jalanõud, riietus- ja pesuruumid väljas, füüsiline ligipääs (astmed/kaldtee, ukse laius, ligipääsetav WC).
 7. **Fotod (klubi õigustega):** sisehall seest, mängijad, laste trenn; treenerite portreed.
-   Kontseptsioonilehel (`kontsept/`) on **ainult näitamiseks** kaks fotot klubi praeguselt kodulehelt
+   Avalehel on **ainult näitamiseks** kaks fotot klubi praeguselt kodulehelt
    (fellinrackets.ee meediakogu): `img/valjakud-ohtul-*.webp` ← `2018/10/DJI_0874.jpg` (droon DJI FC6310, 25.09.2018)
    ja `img/plats-*.webp` ← `2024/05/IMG_6119.jpg`. Autor ja kasutusõigus on kinnitamata — Priit räägib autoriga ise.
    Enne ametlikku kasutust: autori nimi + luba kirjalikult; lõigatud ja kergelt toonitud (kontrast, teravus), sisu muutmata.
@@ -88,6 +93,7 @@ Seis 09.11.2026 (versioon 7). Kuni vastuseni on lehel ainult kinnitatud info.
 - KKK tekst on nii lehel (`.faq-list`) kui sama lehe päise FAQPage JSON-LD-s — muuda mõlemas sõna-sõnalt ühtemoodi.
 - Põhimõte: iga fakt ühes kohas. Hinnad on mängukoha kaardil (avalehel ainult „alates“), uksekood sisehalli kaardil.
   Teisejärguline info läheb `<details class="more">` sisse.
-- Edetabeli varuandmed (`#vus-list`, `#pyr-list`, `#pyr-top`, `data-asof`) on HTML-is; värske seis laaditakse edetabelist peale.
+- Edetabeli varuandmed (`#vus-list`, `#pyr-list`, `data-asof`) on HTML-is; värske seis laaditakse edetabelist peale
+  (avalehel tabloo-stiilis: `data-stiil="tabloo"`).
 - EL-i embleem peab jääma vähemalt sama suureks kui suurim partnerilogo (jaluses EL-i logo laius 220 px ≈ 72 px kõrge sisu;
   partnerilogod 56 px kõrged, telefonis 200 px / 44 px).

@@ -15,12 +15,14 @@
   const now = new Date();
   const tund = Number(new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "numeric", hourCycle: "h23" }).format(now));
   const kuu = Number(new Intl.DateTimeFormat("en-GB", { timeZone: TZ, month: "numeric" }).format(now));
-  const hall = $("#hall-status");
-  if (hall) {
-    const lahti = tund >= 6;
-    hall.textContent = lahti ? "Sisehall Kaalu 2 praegu avatud · sissepääs uksekoodiga" : "Sisehall Kaalu 2 suletud · avaneb kell 6";
-    const dot = $("#hall-dot");
-    if (dot) dot.classList.toggle("off", !lahti);
+  // Avaploki tervitus: ausalt kellaaja järgi — öösel ei ütle leht „avatud“.
+  const tervitus = $("#k-olek");
+  if (tervitus) {
+    const pill = $("#k-live");
+    if (tund < 6) { tervitus.textContent = "Sisehall puhkab — avame kell 6."; if (pill) pill.classList.add("off"); }
+    else if (tund < 10) tervitus.textContent = "Tere hommikust! Sisehall on avatud.";
+    else if (tund < 18) tervitus.textContent = "Tere päevast! Sisehall on avatud.";
+    else tervitus.textContent = "Tere õhtust! Sisehall on avatud kuni 24.";
   }
   const hooaeg = $("#out-season");
   if (hooaeg) {
@@ -51,6 +53,11 @@
     if (d < 0) return `<span class="dl down"><span aria-hidden="true">▼</span>${-d}<span class="vh"> kohta alla</span></span>`;
     return `<span class="dl eq"><span aria-hidden="true">—</span><span class="vh">muutuseta</span></span>`;
   }
+  function trend(d) {
+    if (d > 0) return `<span class="k-trend up"><span aria-hidden="true">▲</span>${d}<span class="vh"> kohta üles</span></span>`;
+    if (d < 0) return `<span class="k-trend down"><span aria-hidden="true">▼</span>${-d}<span class="vh"> kohta alla</span></span>`;
+    return `<span class="k-trend eq"><span aria-hidden="true">—</span><span class="vh">muutuseta</span></span>`;
+  }
   function olek(tyyp, html) {
     if (!olekEl) return;
     olekEl.className = "data-status " + tyyp;
@@ -76,9 +83,12 @@
           asof = (cur.title.match(/\(([\d.]+)/) || [])[1] || "";
           const n = Number(vusList.dataset.n) || 5;
           const top = cur.players.slice(0, n);
-          vusList.innerHTML = top.length ? top.map((p, i) =>
-            `<li><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span><span>${esc(p.name)}</span>` +
-            `<span class="pts num">${p.total} p</span>${delta(p.rank_delta || 0)}</li>`).join("")
+          const tabloo = vusList.dataset.stiil === "tabloo";
+          vusList.innerHTML = top.length ? top.map((p, i) => tabloo
+            ? `<li class="k-row"><span class="k-pos" aria-hidden="true">${i + 1}</span><span class="k-name">${esc(p.name)}` +
+              `${i === 0 ? ' <span class="k-lead">liider</span>' : ""}</span><span class="k-pts num">${p.total}<small>p</small></span>${trend(p.rank_delta || 0)}</li>`
+            : `<li><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span><span>${esc(p.name)}</span>` +
+              `<span class="pts num">${p.total} p</span>${delta(p.rank_delta || 0)}</li>`).join("")
             : `<li><span class="empty">Tulemusi veel pole.</span></li>`;
           const a = $("#vus-asof");
           if (a) a.textContent = asof ? `seis ${asof}` : "seis";
