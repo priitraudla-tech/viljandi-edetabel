@@ -65,7 +65,7 @@ Testid: `node scripts/test_fellin_kommentaar.mjs`
 
 ## Avatud küsimused klubile (sisu, mida ei tohi oletada)
 
-Seis 13.11.2026 (versioon 11). Kuni vastuseni on lehel ainult kinnitatud info.
+Seis 13.11.2026 (versioon 12). Kuni vastuseni on lehel ainult kinnitatud info.
 
 1. **Hinnad:** kas hind on „€ väljaku kohta tunnis“? Siis lisame selle tabelite juurde.
 2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad. Praegu on teada ainult „maist oktoobrini

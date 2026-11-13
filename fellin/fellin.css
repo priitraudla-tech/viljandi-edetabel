@@ -934,3 +934,33 @@ thead th .ico { width: 18px; height: 18px; vertical-align: -4px; margin-right: 5
 @media (max-width: 640px) {
   .proto { padding: 6px 12px !important; font-size: 13px !important; }
 }
+
+/* ===== v12: telefonis selged osad — rohkem õhku osade vahel, joon, sisu kaardis ===== */
+@media (max-width: 640px) {
+  /* Rütm: osade vahel palju ruumi ja õhuke joon; pealkiri on oma sisule lähemal kui eelmisele osale */
+  .k-sec { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  .k-flow > .k-sec:first-child { margin-top: 0; padding-top: 2.5rem; border-top: 0; }
+  .page-head + .k-flow > .k-sec:first-child { padding-top: 2rem; }
+  .k-h { margin-bottom: 1.1rem; gap: .5rem; }
+  .k-h h2 { font-size: 1.75rem; line-height: 1.1; }
+  .k-h .k-hint { margin-top: .1rem; }
+
+  /* Iga osa sisu on üks selge kaart */
+  .band2, .band2.plain { padding: 1.25rem; background: var(--pane); border: 1px solid var(--pane-b); border-radius: var(--round); gap: 1.1rem; }
+  .band2 .lisa { margin-top: .5rem; }
+  .sports { gap: 10px; }
+  .k-note { margin-top: 1rem; }
+
+  /* Avatav juhend sama kaardina, mitte joonte vahel rippuva reana */
+  .k-sec > .more, .k-sec > details.more { margin-top: 1rem; padding: 0 1.1rem; background: var(--pane); border: 1px solid var(--pane-b); border-radius: 16px; }
+  .k-sec > .more > summary { min-height: 60px; }
+  .k-sec > .more[open] > .more-body { padding-bottom: 1.1rem; }
+
+  /* Kontaktikaart: read ja nupud hingavad */
+  .kontakt-kaart { padding: .5rem 1.1rem 1.1rem; gap: 1rem; }
+  .kiir { gap: 10px; }
+
+  /* Avaplokk ja jalus selgelt eraldi */
+  .k-hero-sec { padding-bottom: .5rem; }
+  .site-foot { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+}

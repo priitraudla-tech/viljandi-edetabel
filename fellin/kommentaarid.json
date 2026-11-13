@@ -131,6 +131,15 @@
         "Treeningud ja võistlused on telefonis ilma lisakastideta: lühike tekst ja üks nupp.",
         "Prototüübi ülariba on telefonis üherealine; juhiseriba ja osanuppude lüliti ei võta seal ruumi."
       ]
+    },
+    {
+      "nr": 12,
+      "kuupaev": "2026-11-13",
+      "muudatused": [
+        "Telefonis on osad selgelt eraldi: osade vahel on rohkem ruumi ja õhuke joon, pealkiri on oma sisu lähedal.",
+        "Iga osa sisu on ühes kaardis (treeningud, kontakt, võistlused, „Esimest korda mängima?“), nii et on näha, mis kokku kuulub.",
+        "Sama rütm kehtib telefonis ka alamlehtedel; arvutivaade on endine."
+      ]
     }
   ],
   "kommentaarid": []
