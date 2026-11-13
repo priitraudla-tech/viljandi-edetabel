@@ -881,3 +881,56 @@ thead th .ico { width: 18px; height: 18px; vertical-align: -4px; margin-right: 5
   .coach.full { grid-column: auto; }
   .coach b, .coach .role { overflow-wrap: normal; }
 }
+
+/* ===== v11: telefonis lihtsam — üks muster (puudutatav rida), vähem kaste ja teksti ===== */
+.sport .hind { margin-bottom: .25rem; }
+.kontakt-kaart { padding: .5rem 1.5rem 1.25rem; border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b);
+  display: flex; flex-direction: column; justify-content: center; gap: .75rem; }
+.kohad { list-style: none; margin: 0; padding: 0; }
+.kohad li + li { border-top: 1px dashed var(--pane-b); }
+.koht { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 14px; align-items: center; min-height: 64px; padding: .6rem 0;
+  color: var(--ink); text-decoration: none; }
+.koht .ico { color: var(--accent); }
+.koht b { display: block; font-weight: 600; font-size: 1.0625rem; }
+.koht span span { display: block; color: var(--muted); font-size: .9375rem; }
+.koht [data-hooaeg].off { color: var(--warn); }
+.koht .kaart { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.koht .kaart span { display: inline; color: inherit; font-size: inherit; }
+.koht:hover b { color: var(--accent); }
+.kiir { display: flex; flex-wrap: wrap; gap: 8px; }
+.kiir .btn { flex: 1 1 200px; justify-content: flex-start; gap: 10px; }
+.kiir .btn .ico { color: var(--accent); }
+.kiir .btn { min-width: 0; white-space: normal; overflow-wrap: anywhere; text-align: left; }
+.kiir .btn .ico { flex: none; }
+
+@media (max-width: 640px) {
+  /* Avaplokk: kaks nuppu kõrvuti (kitsamal ekraanil üksteise all) */
+  .k-cta .k-btn { flex: 1 1 auto; padding: 0 18px; justify-content: center; white-space: nowrap; }
+  .k-hero h1 { font-size: 2.25rem; }
+  .k-art { height: 140px; }
+
+  /* Tennis ja padel: kaks selget rida — ala, alghind, nool */
+  .sports { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .sport { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; grid-template-rows: auto auto; column-gap: 12px; row-gap: 0;
+    align-items: center; padding: .8rem 1rem; min-height: 72px; }
+  .sport .tag { grid-column: 1; grid-row: 1 / span 2; }
+  .sport .tag .ico { width: 24px; height: 24px; }
+  .sport .tag-t, .sport .edasi-t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .sport h3 { grid-column: 2; grid-row: 1; margin: 0; font-size: 1.375rem; letter-spacing: -.02em; }
+  .sport .hind { grid-column: 2; grid-row: 2; margin: 0; font-size: 1.0625rem; }
+  .sport .edasi { grid-column: 3; grid-row: 1 / span 2; margin: 0; min-height: 44px; min-width: 44px; justify-content: center; font-size: 1.25rem; }
+  .k-note { margin-top: .75rem; }
+
+  /* Vähem kaste: tutvustus ja nupp otse taustal */
+  .band2, .band2.plain { padding: 0; background: none; border: 0; border-radius: 0; gap: .9rem; }
+
+  /* Asukohad: read kaardile, all kaks nuppu */
+  .kontakt-kaart { padding: .25rem 1rem 1rem; }
+  .koht { min-height: 60px; }
+  .kiir .btn { flex: 1 1 100%; }
+}
+
+/* Telefonis on prototüübi ülariba üherealine ja juhiseriba ei võta ruumi (tagasiside nupp jääb alla paremale) */
+@media (max-width: 640px) {
+  .proto { padding: 6px 12px !important; font-size: 13px !important; }
+}

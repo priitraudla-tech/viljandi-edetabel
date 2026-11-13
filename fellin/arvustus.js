@@ -220,6 +220,9 @@
       @keyframes rv-ules { from { transform:translateY(40px); opacity:0; } }
     }
     .rv-fab { padding:0 12px; }
+    /* Telefonis: üks lühike ülarida, juhiseriba ja osanuppude lüliti ei võta ruumi */
+    .proto { flex-wrap:nowrap; gap:8px; }
+    #rv-ver, .rv-toggle, .rv-hint { display:none !important; }
     .rv-fab .rv-txt { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
     /* Telefonis ainult ikoon — nupu nimi tuleb aria-label'ist */
     .rv-pin { padding:0 11px; }

@@ -120,6 +120,17 @@
         "Treeningute lehel on üks nupp „Küsi treeningute kohta“ koos e-posti ja telefoniga; kohamaks on hinna juures näha; treeneri kutse avaneb lisainfona.",
         "Telefonis on tekst 16 px, nupud vähemalt 44 px ja partnerite ala kompaktsem. Tagasisideks on nüüd üks nupp „Tagasiside“."
       ]
+    },
+    {
+      "nr": 11,
+      "kuupaev": "2026-11-13",
+      "muudatused": [
+        "Telefonis on avaleht lihtsam ja lühem (umbes 2,8 ekraani): ühtne muster — suured puudutatavad read ikooni, nime ja ühe infonäitajaga.",
+        "Tennis ja padel on telefonis kaks selget rida: ala ja alghind; tava- ja liikmehinna selgitus on üks kord nende all.",
+        "Mängukohad on üks puudutus kaardile („Kaart ↗“); telefon ja e-post on kaks suurt nuppu.",
+        "Treeningud ja võistlused on telefonis ilma lisakastideta: lühike tekst ja üks nupp.",
+        "Prototüübi ülariba on telefonis üherealine; juhiseriba ja osanuppude lüliti ei võta seal ruumi."
+      ]
     }
   ],
   "kommentaarid": []
