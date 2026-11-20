@@ -11,23 +11,24 @@
   const fmtKuupaev = (iso) => new Intl.DateTimeFormat("et-EE", { timeZone: TZ, day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(iso));
   const fmtAeg = (iso) => new Intl.DateTimeFormat("et-EE", { timeZone: TZ, day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(iso));
 
-  // ---------- Lahtiolek ja hooaeg Tallinna aja järgi ----------
-  const now = new Date();
-  const tund = Number(new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "numeric", hourCycle: "h23" }).format(now));
-  const kuu = Number(new Intl.DateTimeFormat("en-GB", { timeZone: TZ, month: "numeric" }).format(now));
-  const hall = $("#hall-status");
-  if (hall) {
-    const lahti = tund >= 6;
-    hall.textContent = lahti ? "Sisehall Kaalu 2 praegu avatud · sissepääs uksekoodiga" : "Sisehall Kaalu 2 suletud · avaneb kell 6";
-    const dot = $("#hall-dot");
-    if (dot) dot.classList.toggle("off", !lahti);
-  }
-  const hooaeg = $("#out-season");
-  if (hooaeg) {
-    const valjas = kuu >= 5 && kuu <= 10;
-    hooaeg.textContent = valjas ? "hooaeg käib (mai–oktoober)" : "praegu suletud, hooaeg mai–oktoober";
-    hooaeg.classList.toggle("off", !valjas);
-  }
+  // ---------- Seaded (seaded.js): väliväljakute hooaeg ja teateriba ----------
+  const SEADED = window.FELLIN_SEADED || {};
+  const hooaeg = SEADED.valihooaeg || { algus: "01.05", lopp: "31.10", silt: "mai–oktoober" };
+  // Tänane kuupäev Tallinna aja järgi kujul kk*100 + pp, et vahemikku oleks lihtne võrrelda
+  const osad = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, day: "2-digit", month: "2-digit" }).formatToParts(new Date());
+  const tana = Number(osad.find((o) => o.type === "month").value) * 100 + Number(osad.find((o) => o.type === "day").value);
+  const arv = (ppkk) => { const [pp, kk] = String(ppkk).split(".").map(Number); return kk * 100 + pp; };
+  const valjasAvatud = tana >= arv(hooaeg.algus) && tana <= arv(hooaeg.lopp);
+  document.querySelectorAll("[data-hooaeg]").forEach((el) => {
+    el.textContent = valjasAvatud ? `Avatud · hooaeg ${hooaeg.silt}` : `Praegu suletud · hooaeg ${hooaeg.silt}`;
+    el.classList.toggle("off", !valjasAvatud);
+  });
+  // Hinnalehel on väliväljakute plokk hooajal lahti, hooajavälisel ajal kokku pandud
+  const valiPlokk = $("#valjas");
+  if (valiPlokk && valjasAvatud) valiPlokk.open = true;
+  // Teateriba ainult siis, kui seadetes on teade
+  const teade = $("#teade");
+  if (teade && SEADED.teade) { teade.querySelector("span").textContent = SEADED.teade; teade.hidden = false; }
 
   // ---------- Mobiilimenüü (avatav loend, mitte ARIA menüü) ----------
   const nupp = $("#menu-btn"), menuu = $("#mobile-menu");
@@ -50,6 +51,11 @@
     if (d > 0) return `<span class="dl up"><span aria-hidden="true">▲</span>${d}<span class="vh"> kohta üles</span></span>`;
     if (d < 0) return `<span class="dl down"><span aria-hidden="true">▼</span>${-d}<span class="vh"> kohta alla</span></span>`;
     return `<span class="dl eq"><span aria-hidden="true">—</span><span class="vh">muutuseta</span></span>`;
+  }
+  function trend(d) {
+    if (d > 0) return `<span class="k-trend up"><span aria-hidden="true">▲</span>${d}<span class="vh"> kohta üles</span></span>`;
+    if (d < 0) return `<span class="k-trend down"><span aria-hidden="true">▼</span>${-d}<span class="vh"> kohta alla</span></span>`;
+    return `<span class="k-trend eq"><span aria-hidden="true">—</span><span class="vh">muutuseta</span></span>`;
   }
   function olek(tyyp, html) {
     if (!olekEl) return;
@@ -76,9 +82,12 @@
           asof = (cur.title.match(/\(([\d.]+)/) || [])[1] || "";
           const n = Number(vusList.dataset.n) || 5;
           const top = cur.players.slice(0, n);
-          vusList.innerHTML = top.length ? top.map((p, i) =>
-            `<li><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span><span>${esc(p.name)}</span>` +
-            `<span class="pts num">${p.total} p</span>${delta(p.rank_delta || 0)}</li>`).join("")
+          const tabloo = vusList.dataset.stiil === "tabloo";
+          vusList.innerHTML = top.length ? top.map((p, i) => tabloo
+            ? `<li class="k-row"><span class="k-pos" aria-hidden="true">${i + 1}</span><span class="k-name">${esc(p.name)}` +
+              `${i === 0 ? ' <span class="k-lead">liider</span>' : ""}</span><span class="k-pts num">${p.total}<small>p</small></span>${trend(p.rank_delta || 0)}</li>`
+            : `<li><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span><span>${esc(p.name)}</span>` +
+              `<span class="pts num">${p.total} p</span>${delta(p.rank_delta || 0)}</li>`).join("")
             : `<li><span class="empty">Tulemusi veel pole.</span></li>`;
           const a = $("#vus-asof");
           if (a) a.textContent = asof ? `seis ${asof}` : "seis";
@@ -88,16 +97,20 @@
           const seis = pyr.updated_at ? fmtKuupaev(pyr.updated_at) : "";
           if (pyrList) {
             const n = Number(pyrList.dataset.n) || 5;
-            pyrList.innerHTML = jarjest.length ? jarjest.slice(0, n).map((p, i) =>
-              `<li class="pyr"><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>` +
-              `<span>${esc(p.name)}${i === 0 ? ' <span aria-hidden="true">👑</span><span class="vh">(püramiidi tipp)</span>' : ""}</span></li>`).join("")
+            const tabloo = pyrList.dataset.stiil === "tabloo";
+            pyrList.innerHTML = jarjest.length ? jarjest.slice(0, n).map((p, i) => tabloo
+              ? `<li class="k-row pyr"><span class="k-pos" aria-hidden="true">${i + 1}</span><span class="k-name">${esc(p.name)}` +
+                `${i === 0 ? ' <span class="k-lead">tipp</span>' : ""}</span></li>`
+              : `<li class="pyr"><span class="rk num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>` +
+                `<span>${esc(p.name)}${i === 0 ? ' <span aria-hidden="true">👑</span><span class="vh">(püramiidi tipp)</span>' : ""}</span></li>`).join("")
               : `<li><span class="empty">Püramiidis pole veel mängijaid.</span></li>`;
             const a = $("#pyr-asof");
             if (a && seis) a.textContent = `seis ${seis}`;
           }
           if (pyrTop) pyrTop.textContent = jarjest[0] ? `Tipus ${jarjest[0].name}${seis ? ` · seis ${seis}` : ""}` : "Püramiidis pole veel mängijaid";
         }
-        if (cur) olek("ok", `<i aria-hidden="true"></i><span>Edetabeli seis ${esc(asof || "—")} · andmed kontrollitud ${esc(cur.fetched_at ? fmtAeg(cur.fetched_at) : "—")}</span>`);
+        if (cur) olek("ok", `<span><b>Seis ${esc(asof || "—")}</b>` +
+          `${cur.fetched_at ? `<span class="kontroll">Andmed kontrollitud ${esc(fmtAeg(cur.fetched_at))}</span>` : ""}</span>`);
       } catch (e) {
         olek("error", `Edetabeliga ei saanud ühendust. Näitan viimast teadaolevat seisu (${esc(varuSeis)}).`);
       }

@@ -82,6 +82,64 @@
         "Toetajate logod ja Euroopa Liidu embleem on iga lehe jaluses; EL-i projektide kirjeldused on lehel Klubi ja kontakt.",
         "Kommenteerida saab igal lehel. „Kommentaarid“ näitab kõigi lehtede kommentaare ja viib vajadusel õigele lehele."
       ]
+    },
+    {
+      "nr": 8,
+      "kuupaev": "2026-11-12",
+      "muudatused": [
+        "Avalehel on uus kujundus: avaplokis päris Viljandi väljakud õhtul, tekst vasakul tumedal taustal.",
+        "Leht tervitab kellaaja järgi ja ütleb, kas sisehall on avatud.",
+        "„Mida mängime?“ — Tennis ja Padel on kaks suurt kaarti oma väljakujoonise, reketi-ikooni ja tunnihinnaga.",
+        "„Nii see käib“ kolme sammuna: broneeri Matchis, saad uksekoodi, tule ja mängi.",
+        "Üks punktiirjoon pallimärkidega juhib silma osast osasse; osade tähised on tennise punktiarvestuses (15, 30, 40, Game).",
+        "Edetabel on tabloo-stiilis ja uueneb ise; asukoha juures on foto kogu platsist (tennis, padel, järv).",
+        "Menüü on nüüd päises kõigil lehtedel; nupud ja kaardid on ümaramad ka alamlehtedel."
+      ]
+    },
+    {
+      "nr": 9,
+      "kuupaev": "2026-11-12",
+      "muudatused": [
+        "Kõik neli alamlehte on nüüd avalehega samas kujunduses: pallimärkidega teekond, küsimus-pealkirjad ja ikoonid.",
+        "Mängimine ja hinnad: hinnatabelites tennise- ja padelireketi ikoonid, välisväljakute kaardil foto päris platsist, „Nii see käib“ kolm sammu on kohe näha.",
+        "Treeningud: treenerid nimetähtedega ringides (kutsega treenerid esile tõstetud), kontaktiread ikoonidega.",
+        "Võistlused: VÜS-i esikümme, püramiid ja maakonna meistrivõistlused tabloo-stiilis.",
+        "Klubi ja kontakt: platsi foto ja kõik kontaktid ühes kaardis, kaart selle all."
+      ]
+    },
+    {
+      "nr": 10,
+      "kuupaev": "2026-11-12",
+      "muudatused": [
+        "Avaleht on rahulikum: avaplokis pealkiri, üks tutvustuslause, lahtiolekuaeg ja kaks nuppu (Broneeri väljak, Tule trenni).",
+        "Uus järjestus: Väljakud ja hinnad → Treeningud → Asukohad ja kontakt → Võistlused ja edetabel → partnerid.",
+        "Tennise ja padeli kaardid on võrdse kaaluga: spordiala, „alates … €/h“ (tavahind ja liikmehind) ning link hinnakirja.",
+        "„Esimest korda mängima?“ on avatav juhend: broneerimine Matchis, uksekood, iseteenindus, riietusruumid ja saun, abitelefon.",
+        "Kontaktid on avalehel ettepoole tõstetud: mõlemad mängukohad koos lahtioleku ja kaardilingiga, telefon ja e-post.",
+        "Hinnalehel on sisehalli hinnakiri ja broneerimistingimused kohe näha; väliväljakute hinnad on hooajavälisel ajal avatavas plokis.",
+        "Treeningute lehel on üks nupp „Küsi treeningute kohta“ koos e-posti ja telefoniga; kohamaks on hinna juures näha; treeneri kutse avaneb lisainfona.",
+        "Telefonis on tekst 16 px, nupud vähemalt 44 px ja partnerite ala kompaktsem. Tagasisideks on nüüd üks nupp „Tagasiside“."
+      ]
+    },
+    {
+      "nr": 11,
+      "kuupaev": "2026-11-13",
+      "muudatused": [
+        "Telefonis on avaleht lihtsam ja lühem (umbes 2,8 ekraani): ühtne muster — suured puudutatavad read ikooni, nime ja ühe infonäitajaga.",
+        "Tennis ja padel on telefonis kaks selget rida: ala ja alghind; tava- ja liikmehinna selgitus on üks kord nende all.",
+        "Mängukohad on üks puudutus kaardile („Kaart ↗“); telefon ja e-post on kaks suurt nuppu.",
+        "Treeningud ja võistlused on telefonis ilma lisakastideta: lühike tekst ja üks nupp.",
+        "Prototüübi ülariba on telefonis üherealine; juhiseriba ja osanuppude lüliti ei võta seal ruumi."
+      ]
+    },
+    {
+      "nr": 12,
+      "kuupaev": "2026-11-13",
+      "muudatused": [
+        "Telefonis on osad selgelt eraldi: osade vahel on rohkem ruumi ja õhuke joon, pealkiri on oma sisu lähedal.",
+        "Iga osa sisu on ühes kaardis (treeningud, kontakt, võistlused, „Esimest korda mängima?“), nii et on näha, mis kokku kuulub.",
+        "Sama rütm kehtib telefonis ka alamlehtedel; arvutivaade on endine."
+      ]
     }
   ],
   "kommentaarid": []

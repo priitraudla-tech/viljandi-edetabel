@@ -27,7 +27,7 @@
   --paper-ink: #23261f;
   --paper-muted: #4a4e44;
   --paper-line: #dcdcd4;
-  --r: 9px;
+  --r: 18px;
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --mono: "JetBrains Mono", Consolas, "SFMono-Regular", monospace;
   --fs-h1: clamp(2.125rem, 6vw, 5.5rem);
@@ -441,4 +441,526 @@ td.p { text-align: right; white-space: nowrap; font-weight: 800; font-size: 1.12
   .foot-band .partner img { height: 44px; }
   .eu-mark img { width: 200px; }
   .hc { gap: 0 1rem; }
+}
+
+/* ===== v8: uus vormikeel — päris väljakud avaplokis, palli teekond, ikoonid, tabloo ===== */
+/* KONTSEPTSIOON 2: sama palett (tume + tennisepalli laim).
+   Vormikeel: väljakujooned, pall ja lennukaar, ümarad vormid.
+   Selgus: üks punktiirjoon (palli teekond) viib silma osast osasse; iga osa = üks küsimus + üks tegevus.
+   Inimlikkus: tervitus kellaaja järgi, „nii see käib“, treenerid, päris koht fotol, käsitsi tõmmatud joon. */
+:root { --line: rgba(211,252,103,.55); --rail: rgba(211,252,103,.32); --round: 22px; --pane: #161a12; --pane-b: #2a3022; }
+.btn, .top .btn, .menu-btn, .copy-btn { border-radius: 999px; }
+.ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ico .dot { fill: currentColor; stroke: none; }
+.ico .thin { stroke-width: 1; }
+.ico .grip { stroke-width: 2.8; }
+
+.k-nav { display: flex; gap: 4px; margin-right: 8px; }
+.k-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 999px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: .9375rem; }
+.k-nav a:hover, .k-nav a[aria-current="page"] { background: #1d2218; color: var(--accent); }
+
+/* --- avaplokk: päris väljakud õhtul (foto), tekst vasakul tumedal --- */
+.k-hero-sec { padding-top: 12px; }
+.k-hero { position: relative; border-radius: var(--round); background: #0b0d0a; overflow: hidden;
+  border: 1px solid #23271f; min-height: 600px; display: flex; align-items: center; isolation: isolate; }
+.k-copy { padding: clamp(1.5rem, 4.5vw, 4rem); position: relative; z-index: 2; max-width: 44rem; }
+.k-live { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 13px; border-radius: 999px; background: rgba(211,252,103,.09);
+  color: var(--accent); font: 600 .9375rem/1.2 var(--font); }
+.k-live i { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(211,252,103,.6); flex: none; }
+.k-live.off { color: var(--muted); background: rgba(255,255,255,.05); }
+.k-live.off i { background: transparent; border: 1.5px solid var(--muted); }
+.k-hero h1 { margin: 1.1rem 0 1.25rem; font-size: clamp(2.6rem, 7vw, 6rem); font-weight: 800; line-height: 1; letter-spacing: -.045em; color: var(--ink); }
+.k-hero h1 em { font-style: normal; color: var(--accent); position: relative; white-space: nowrap; }
+.k-scribble { position: absolute; left: 0; width: 100%; bottom: -.03em; height: .13em; overflow: visible; }
+.k-scribble path { fill: none; stroke: var(--accent); stroke-width: 3.5; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.k-facts { list-style: none; margin: 0 0 1.6rem; padding: 0; display: grid; gap: .55rem; }
+.k-facts li { display: flex; align-items: center; gap: 11px; color: var(--ink); font-size: 1.0625rem; }
+.k-facts .ico { color: var(--accent); }
+.k-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.k-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; font: 700 1.0625rem/1 var(--font); text-decoration: none; }
+.k-btn.ball { background: var(--accent); color: var(--on-accent); }
+.k-btn.ball span { width: 26px; height: 26px; border-radius: 50%; background: var(--on-accent); color: var(--accent); display: grid; place-items: center; font-size: .9rem; }
+.k-btn.line { color: var(--ink); border: 1.5px solid #3d4136; }
+.k-art { position: absolute; inset: 0; z-index: 0; }
+.k-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 70%; }
+/* Tume üleminek teksti alla: vasakul peaaegu must, paremal foto puhas */
+.k-art::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(11,13,10,.96) 0%, rgba(11,13,10,.88) 28%, rgba(11,13,10,.45) 52%, rgba(11,13,10,.06) 76%),
+              linear-gradient(0deg, rgba(11,13,10,.5), rgba(11,13,10,0) 30%); }
+.k-flight { position: absolute; z-index: 1; right: 0; top: 0; width: 46%; height: 100%; pointer-events: none; }
+.k-fly { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.k-fly .arc { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 2 9; stroke-linecap: round; opacity: .85; }
+.k-ball { position: absolute; width: 46px; height: 46px; right: 20%; top: 9%; filter: drop-shadow(0 0 20px rgba(211,252,103,.6)); }
+
+/* --- palli teekond: üks punktiirjoon viib silma osast osasse --- */
+.k-flow { position: relative; }
+.k-sec { padding-top: 3.75rem; }
+.k-h { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: .3rem 1rem; margin: 0 0 1.1rem; }
+.k-score { grid-column: 1 / -1; display: inline-flex; align-items: center; gap: 8px; font: 600 var(--fs-label)/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.k-score b { color: var(--accent); font-weight: 600; }
+.k-mark { width: 16px; height: 16px; flex: none; }
+.k-h h2 { margin: 0; font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.02; }
+.k-h > a { color: var(--accent); font-weight: 600; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+.k-h > a:hover { text-decoration: underline; }
+.k-hint { grid-column: 1 / -1; margin: .2rem 0 0; color: var(--muted); max-width: 52ch; }
+
+/* --- mida mängime: tennis | padel --- */
+.k-sports { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.k-sport { position: relative; overflow: hidden; border-radius: var(--round); padding: 1.5rem; min-height: 290px; display: flex; flex-direction: column; justify-content: flex-end; text-decoration: none; isolation: isolate; }
+.k-sport.tennis { --tile: #161a12; background: var(--tile); color: var(--ink); border: 1px solid var(--pane-b); }
+.k-sport.padel { --tile: #d3fc67; background: var(--tile); color: var(--on-accent); }
+.k-sport svg.court { position: absolute; z-index: -1; width: 92%; right: -16%; top: 4%; transform: rotate(-12deg); }
+.k-sport::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 95% at 0% 100%, var(--tile) 42%, transparent 72%); }
+.k-sport.tennis svg.court * { stroke: var(--line); }
+.k-sport.padel svg.court * { stroke: rgba(28,37,16,.5); }
+.k-sport svg.court rect, .k-sport svg.court line { fill: none; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.k-sport svg.court .wall { stroke-width: 4; }
+.k-sport svg.court .net { stroke-width: 2.4; stroke-dasharray: 3 3; }
+.k-sport .tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font-size: var(--fs-small); font-weight: 600; padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--tile); }
+.k-sport.tennis .tag { color: var(--ink); box-shadow: 0 0 0 1px var(--pane-b); }
+.k-sport.tennis .tag .ico { color: var(--accent); }
+.k-sport.padel .tag { box-shadow: 0 0 0 1px rgba(28,37,16,.28); }
+.k-sport h3 { margin: .5rem 0 .25rem; font-size: clamp(2.1rem, 6vw, 4rem); font-weight: 800; letter-spacing: -.045em; line-height: .95; text-shadow: 0 0 18px var(--tile); }
+.k-sport .meta { display: flex; justify-content: space-between; align-items: flex-end; gap: .75rem; }
+.k-sport .price { font-size: .9375rem; }
+.k-sport .price b { display: block; font-size: 1.75rem; font-weight: 800; letter-spacing: -.03em; text-shadow: 0 0 18px var(--tile); }
+.k-go { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font-size: 1.25rem; flex: none; background: var(--accent); color: var(--on-accent); }
+.padel .k-go { background: var(--on-accent); color: var(--accent); }
+
+/* --- nii see käib: kolm sammu --- */
+.k-how { margin-top: 10px; border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b); padding: 1.1rem 1.5rem 1.25rem; }
+.k-how-t { margin: 0 0 .85rem; font-size: var(--fs-small); font-weight: 600; color: var(--muted); }
+.k-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.5rem; counter-reset: s; }
+.k-steps li { display: flex; gap: 12px; align-items: flex-start; counter-increment: s; }
+.k-steps .badge { position: relative; width: 46px; height: 46px; border-radius: 50%; background: rgba(211,252,103,.1); color: var(--accent); display: grid; place-items: center; flex: none; }
+.k-steps .badge::after { content: counter(s); position: absolute; right: -4px; top: -4px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--on-accent);
+  font: 600 .75rem/20px var(--mono); text-align: center; }
+.k-steps b { display: block; font-weight: 600; font-size: 1.0625rem; }
+.k-steps span span { color: var(--muted); font-size: .9375rem; line-height: 1.4; display: block; }
+.k-help { margin: 1rem 0 0; padding-top: .9rem; border-top: 1px dashed var(--pane-b); color: var(--muted); font-size: .9375rem; max-width: none; }
+.k-help a { color: var(--ink); font-weight: 600; }
+
+/* --- tahad õppida --- */
+.k-learn { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; padding: 1.25rem 1.5rem; border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b); text-decoration: none; color: var(--ink); }
+.k-four { width: 92px; height: 92px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-size: 2.1rem; font-weight: 800; letter-spacing: -.04em; position: relative; }
+.k-four svg { position: absolute; inset: 0; }
+.k-learn p { margin: 0 0 .75rem; font-size: 1.125rem; line-height: 1.45; max-width: 48ch; }
+.k-faces { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 0; }
+.k-faces i { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font: 600 .75rem/1 var(--mono); font-style: normal;
+  background: #232a1b; color: var(--accent); border: 2px solid var(--pane); margin-left: -8px; }
+.k-faces i:first-child { margin-left: 0; background: var(--accent); color: var(--on-accent); }
+.k-faces b { margin-left: 10px; font-weight: 400; color: var(--muted); font-size: .9375rem; }
+
+/* --- kes on tipus: tabloo --- */
+.k-board { border-radius: var(--round); background: #0b0d0a; border: 1px solid #23271f; padding: .5rem; }
+.k-rows { list-style: none; margin: 0; padding: 0; }
+#vus-list[data-stiil="tabloo"] { min-height: 0; }
+.k-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto 40px; gap: 14px; align-items: center; padding: .65rem .75rem; border-radius: 14px; }
+.k-row + .k-row { margin-top: 4px; }
+.k-row:first-child { background: rgba(211,252,103,.07); }
+.k-pos { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font: 600 1.125rem/1 var(--mono); background: #1d2218; color: var(--ink); }
+.k-row:first-child .k-pos { background: var(--accent); color: var(--on-accent); }
+.k-name { font-weight: 600; font-size: 1.0625rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.k-lead { font-size: .75rem; font-weight: 600; color: var(--on-accent); background: var(--accent); border-radius: 999px; padding: 3px 9px; }
+.k-pts { font: 600 1.375rem/1 var(--mono); letter-spacing: -.02em; }
+.k-pts small { font: 400 .8125rem/1 var(--font); color: var(--muted); letter-spacing: 0; margin-left: 3px; }
+.k-trend { font: 600 .8125rem/1 var(--mono); text-align: right; }
+.k-trend.up { color: var(--accent); } .k-trend.down { color: var(--down); } .k-trend.eq { color: var(--muted); }
+.k-board-foot { padding: .75rem .75rem .5rem; }
+.k-board-foot .data-status { max-width: none; }
+
+/* --- tule kohale: päris koht + kontakt --- */
+.k-place { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 10px; }
+.k-photo { position: relative; margin: 0; border-radius: var(--round); overflow: hidden; min-height: 260px; background: var(--pane); }
+.k-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.k-photo figcaption { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px 7px 9px; border-radius: 999px;
+  background: rgba(11,13,10,.86); color: var(--ink); font-size: var(--fs-small); font-weight: 600; }
+.k-photo figcaption .ico { color: var(--accent); width: 18px; height: 18px; }
+.k-contact { list-style: none; margin: 0; padding: .5rem 1.5rem; border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b); display: grid; align-content: center; }
+.k-contact li { display: flex; gap: 14px; align-items: center; padding: .8rem 0; }
+.k-contact li + li { border-top: 1px dashed var(--pane-b); }
+.k-contact .ico { color: var(--accent); }
+.k-contact b { display: block; font-weight: 600; font-size: 1.0625rem; }
+.k-contact b a { color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; min-height: 32px; }
+.k-contact b a:hover { color: var(--accent); text-decoration: underline; }
+.k-contact span span { display: block; color: var(--muted); font-size: .9375rem; }
+.k-bye { margin: 2.5rem 0 0; text-align: center; font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); max-width: none; }
+.k-bye em { font-style: normal; color: var(--accent); }
+
+@media (min-width: 901px) {
+  .k-flow { padding-left: 58px; }
+  .k-flow::before { content: ""; position: absolute; left: 13px; top: 0; bottom: 3.2rem; border-left: 2px dotted var(--rail); }
+  .k-mark { position: absolute; left: -58px; top: -7px; width: 28px; height: 28px; border-radius: 50%; box-shadow: 0 0 0 7px var(--base); background: var(--base); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .k-live:not(.off) i { animation: k-puls 2s ease-out infinite; }
+  @keyframes k-puls { 70% { box-shadow: 0 0 0 10px rgba(211,252,103,0); } 100% { box-shadow: 0 0 0 0 rgba(211,252,103,0); } }
+  .k-ball { offset-path: path("M -330 360 Q -150 -50 0 0"); offset-rotate: 0deg; animation: k-lend 1.6s cubic-bezier(.25,.6,.35,1) both .3s; }
+  @keyframes k-lend { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+  .k-scribble { animation: k-joon .6s ease-out both 1.5s; }
+  @keyframes k-joon { from { clip-path: inset(-50% 100% -50% 0); } to { clip-path: inset(-50% -2% -50% 0); } }
+  .k-sport, .k-learn { transition: transform .25s; }
+  .k-sport:hover, .k-learn:hover { transform: translateY(-3px); }
+}
+@media (max-width: 900px) {
+  .k-nav { display: none; }
+  .k-hero { display: block; min-height: 0; }
+  .k-copy { max-width: none; }
+  .k-art { position: relative; inset: auto; height: 260px; margin-top: -1.5rem; }
+  .k-art img { object-position: 50% 62%; }
+  .k-art::after { background: linear-gradient(180deg, #0b0d0a 0%, rgba(11,13,10,.55) 22%, rgba(11,13,10,0) 55%); }
+  .k-flight { display: none; }
+  .k-place { grid-template-columns: minmax(0, 1fr); }
+  .k-photo { min-height: 200px; }
+}
+@media (max-width: 640px) {
+  .k-hero h1 { font-size: 2.75rem; margin: 1rem 0 1.1rem; }
+  .k-facts li { font-size: 1rem; }
+  .k-live { font-size: .8125rem; padding: 8px 13px 8px 11px; gap: 8px; }
+  .k-cta .k-btn { flex: 1 1 100%; justify-content: center; }
+  .k-sec { padding-top: 2.5rem; }
+  .k-art { height: 215px; }
+  .k-copy { padding: 1.25rem 1.25rem 1rem; }
+  .k-hint { display: none; }
+  .k-h { margin-bottom: .85rem; }
+  .k-steps .badge { width: 40px; height: 40px; }
+  .k-help { margin-top: .85rem; padding-top: .75rem; }
+  .k-photo { min-height: 170px; }
+  .k-contact li { padding: .65rem 0; }
+  .k-board-foot { padding-top: .5rem; }
+  .k-sports { gap: 8px; }
+  .k-sport { min-height: 205px; padding: 1rem; }
+  .k-sport svg.court { width: 135%; right: -52%; top: -6%; }
+  .k-sport .price b { font-size: 1.5rem; }
+  .k-go { width: 40px; height: 40px; font-size: 1.1rem; }
+  .k-how { padding: 1rem 1.1rem 1.1rem; }
+  .k-steps { grid-template-columns: minmax(0, 1fr); gap: .85rem; }
+  .k-learn { grid-template-columns: auto minmax(0, 1fr); gap: 1rem; padding: 1.1rem; align-items: start; }
+  .k-learn .k-go { display: none; }
+  .k-four { width: 62px; height: 62px; font-size: 1.45rem; }
+  .k-learn p { font-size: 1rem; }
+  .k-row { grid-template-columns: 38px minmax(0, 1fr) auto 30px; gap: 10px; padding: .55rem .5rem; }
+  .k-pos { width: 38px; height: 38px; }
+  .k-pts { font-size: 1.125rem; }
+  .k-contact { padding: .35rem 1.1rem; }
+}
+/* Väga suure teksti või tekstivahede korral keritakse hinnatabelit tema kaardis, mitte kogu lehte */
+.loc { overflow-x: auto; }
+
+/* ===== v9: alamlehed samas vormikeeles ===== */
+.page-head + .k-flow > .k-sec:first-child { padding-top: 2.5rem; }
+.loc h3 .loc-type { display: flex; align-items: center; gap: 8px; }
+.loc h3 .loc-type .ico { width: 18px; height: 18px; color: var(--accent); }
+thead th .ico { width: 18px; height: 18px; vertical-align: -4px; margin-right: 5px; color: var(--accent); }
+.k-flow .book-row { margin: 1rem 0 0; }
+.k-flow .member { margin-top: 0; }
+.aud-ico { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(211,252,103,.1); color: var(--accent); margin-bottom: .5rem; }
+.ask .addr-line .ico { color: var(--accent); margin-right: -2px; }
+.ask .addr-line span { color: var(--muted); }
+.coach { display: flex; gap: 12px; align-items: flex-start; }
+.coach > div { min-width: 0; }
+.coach b { overflow-wrap: break-word; }
+.face { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none; font: 600 .75rem/1 var(--mono); font-style: normal;
+  background: #232a1b; color: var(--accent); }
+.coach.full .face { background: var(--accent); color: var(--on-accent); }
+.k-row.pyr { grid-template-columns: 44px minmax(0, 1fr); }
+.k-board-h { margin: .7rem .75rem .6rem; font-size: 1.0625rem; font-weight: 600; letter-spacing: -.01em; }
+.k-board-foot .link-arrow { min-height: 36px; }
+.k-board .data-status { color: var(--muted); font-size: var(--fs-small); }
+.k-contact span span a { color: var(--muted); }
+.k-contact span span a:hover { color: var(--ink); }
+.k-flow .map { border-radius: var(--round); }
+@media (max-width: 640px) {
+  .k-row.pyr { grid-template-columns: 38px minmax(0, 1fr); }
+  .k-contact span span { overflow-wrap: anywhere; }
+}
+@media (max-width: 360px) {
+  .coaches { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ===== v10: rahulikum, kiiremini mõistetav, telefonis mugavam ===== */
+
+/* Teateriba: ainult olulise muudatuse, sulgemise või eriteate jaoks (tekst failis seaded.js) */
+.teade { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0 0; padding: .75rem 1rem; border-radius: var(--r);
+  background: var(--warn-dim); border: 1px solid rgba(242, 199, 107, .45); color: var(--ink); }
+.teade[hidden] { display: none; }
+.teade .ico { color: var(--warn); margin-top: 2px; }
+
+/* Avaplokk: madalam; pealkiri, tutvustus ja kaks nuppu enne fotot */
+.k-hero { min-height: 420px; }
+.k-copy { padding: clamp(1.5rem, 4vw, 3.25rem); max-width: 40rem; }
+.k-hero h1 { margin: 0 0 .9rem; font-size: clamp(2.4rem, 5.4vw, 4.5rem); line-height: 1; }
+.k-intro { margin: 0 0 .6rem; font-size: clamp(1.0625rem, 1.6vw, 1.3125rem); line-height: 1.4; color: var(--ink); max-width: 30ch; }
+.k-open { display: flex; align-items: center; gap: 9px; margin: 0 0 1.4rem; color: var(--muted); font-size: 1rem; max-width: none; }
+.k-open .ico { color: var(--accent); width: 20px; height: 20px; }
+.k-btn.prim { background: var(--accent); color: var(--on-accent); }
+.k-btn.prim:hover { background: var(--accent-hover); }
+.k-btn.line:hover { border-color: var(--border-hover); }
+
+/* Alamlehe päis: üks selge pealkiri */
+.page-head { padding-top: 2rem; }
+.page-head h1 { margin: 0; }
+.page-head .sec-sub { margin: .6rem 0 0; max-width: 62ch; }
+.page-head + .k-flow > .k-sec:first-child { padding-top: 2rem; }
+
+/* Osa pealkiri: selge nimetus; arvutis pallimärk joonel, telefonis ilma */
+.k-sec { padding-top: 3.25rem; }
+.k-h { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: .4rem 1.25rem; margin: 0 0 1.1rem; }
+.k-h h2 { position: relative; grid-column: 1; margin: 0; font-size: clamp(1.625rem, 3.2vw, 2.375rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; }
+.k-h > a { grid-column: 2; grid-row: 1; }
+.k-h .k-hint { grid-column: 1 / -1; margin: 0; font-size: 1.0625rem; max-width: 62ch; }
+@media (min-width: 901px) {
+  .k-h h2 .k-mark { position: absolute; left: -58px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; }
+}
+
+/* Tennis ja padel: sama ülesehitus, sama kontrast, sama palju laimi */
+.sports { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.sport { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start;
+  padding: 1.4rem 1.5rem 1rem; border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b); color: var(--ink); text-decoration: none; }
+.sport:hover { border-color: var(--border-hover); }
+.sport svg.court { position: absolute; z-index: -1; width: 56%; right: -6%; top: 50%; transform: translateY(-50%) rotate(-10deg); opacity: .7; }
+.sport svg.court rect, .sport svg.court line { fill: none; stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.sport svg.court .wall { stroke-width: 3; }
+.sport svg.court .net { stroke-width: 2.2; stroke-dasharray: 3 3; }
+.sport::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--pane) 42%, rgba(22, 26, 18, 0) 90%); }
+.sport .tag { display: inline-flex; align-items: center; gap: 7px; font-size: var(--fs-small); font-weight: 600; color: var(--muted); }
+.sport .tag .ico { color: var(--accent); width: 18px; height: 18px; }
+.sport h3 { margin: .35rem 0 .5rem; font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.sport .hind { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; color: var(--accent); max-width: none; }
+.sport .hind-lisa { margin: .15rem 0 0; color: var(--muted); font-size: 1rem; max-width: none; }
+.sport .edasi { margin-top: .5rem; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; color: var(--accent); }
+.sport:hover .edasi { text-decoration: underline; }
+.k-note { margin: .9rem 0 0; color: var(--muted); max-width: none; }
+
+/* Esmakülastaja juhend ja broneerimistingimused: ikooniga read */
+.esimest { margin-top: .6rem; }
+.esimest ul, .tingimused { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; max-width: 64ch; }
+.esimest li, .tingimused li { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); }
+.esimest li b, .tingimused li b { color: var(--ink); font-weight: 600; }
+.esimest .ico, .tingimused .ico { color: var(--accent); margin-top: 2px; }
+.esimest a { color: var(--ink); font-weight: 600; }
+
+/* Lühike tutvustus + üks nupp (treeningud, võistlused) */
+.band2 { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem 1.5rem; align-items: center; padding: 1.25rem 1.5rem;
+  border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b); }
+.band2.plain { grid-template-columns: minmax(0, 1fr) auto; }
+.band2 p { margin: 0; font-size: 1.0625rem; max-width: 56ch; }
+.band2 .lisa { margin-top: .35rem; color: var(--muted); }
+.band2 .k-four { width: 72px; height: 72px; font-size: 1.6rem; }
+.band2 .btn { white-space: nowrap; }
+
+/* Asukohad ja kontakt: koht + olek + kaardilink ühel real */
+.k-photo { min-height: 220px; }
+.k-contact li { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: .7rem 0; }
+.k-contact .k-map { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--accent); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.k-contact .k-map:hover { text-decoration: underline; }
+.k-contact .rida { display: flex; flex-direction: column; align-items: flex-start; }
+.k-contact .rida a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); }
+.k-contact .rida > a { color: var(--muted); }
+.k-contact .rida > a:hover { color: var(--ink); }
+.k-contact .rida .kes { margin-top: -6px; }
+.k-contact [data-hooaeg].off, .olek.off { color: var(--warn); }
+.jur { margin: .75rem 0 0; color: var(--muted); font-size: var(--fs-small); max-width: none; }
+
+/* Hinnaleht: sisehalli hinnakiri ja broneerimine kõrvuti; väliväljakud avatavas plokis */
+.hinnad { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 10px; align-items: start; }
+.hinnad .loc-note { margin: .75rem 0 .5rem; }
+.bron { display: flex; flex-direction: column; align-items: stretch; gap: 1rem; }
+.bron h3 { margin: 0; font-size: 1.1875rem; font-weight: 800; }
+.vali > summary .olek { display: block; margin-top: .2rem; font-size: var(--fs-small); font-weight: 400; color: var(--muted); }
+.vali-sisu { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1.25rem 2rem; align-items: start; }
+.vali-sisu img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; }
+.vali-info { margin: .75rem 0 0; color: var(--muted); max-width: none; }
+.vali-info b { color: var(--ink); font-weight: 600; }
+
+/* Treeningud: kohustuslik lisatasu hinna juures; üks peamine nupp; kutse avatavas lisainfos */
+.fee-note { margin: 1rem 0 0; padding: .8rem 1rem; border-radius: 12px; background: var(--panel); color: var(--muted); max-width: none; }
+.fee-note b { color: var(--ink); font-weight: 600; }
+.ask2 { display: flex; flex-direction: column; align-items: stretch; gap: .9rem; }
+.ask2 h3 { margin: 0; font-size: 1.1875rem; font-weight: 800; }
+.ask2 ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.ask2 li { display: flex; flex-wrap: wrap; align-items: center; gap: 0 12px; min-height: 44px; }
+.ask2 li .ico { color: var(--accent); }
+.ask2 li a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; }
+.coach details { margin-top: .2rem; }
+.coach summary { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; cursor: pointer; list-style: none;
+  color: var(--accent); font-weight: 600; font-size: var(--fs-small); }
+.coach summary::-webkit-details-marker { display: none; }
+.coach summary::after { content: "+"; font: 600 1.1rem/1 var(--mono); }
+.coach details[open] summary::after { content: "–"; }
+.coach .kutse { margin-top: 0; }
+.coach.full .face, .coach .face { background: #232a1b; color: var(--accent); }
+
+/* Edetabel: sisuline kuupäev ees, kontrollimise kellaaeg detailina */
+.data-status b { color: var(--ink); font-weight: 600; }
+.data-status .kontroll { display: block; color: var(--muted); font-size: var(--fs-small); }
+
+/* Klubi: ajalugu avatavas plokis */
+.ajalugu { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem 2.5rem; align-items: start; }
+.ajalugu .alumni b { color: var(--ink); font-weight: 600; }
+
+/* Jalus: partnerite hele ala kompaktsem; EL-i embleem jääb partnerilogodest suuremaks */
+.site-foot { margin-top: 3rem; }
+.foot-band { grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2.5rem; padding: .9rem 1.5rem; border-radius: var(--round); margin-bottom: .75rem; }
+.foot-band .partners { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: .75rem 2rem; }
+.foot-band .partner { min-height: 44px; justify-content: center; }
+.foot-band .partner img { height: 44px; width: auto; max-width: 100%; object-fit: contain; }
+.eu-mark { flex-direction: row; align-items: center; gap: .9rem; min-height: 44px; }
+.eu-mark img { width: 170px; }
+.eu-mark span { max-width: 13ch; line-height: 1.3; }
+
+@media (max-width: 900px) {
+  .k-h h2 .k-mark { display: none; }
+  .hinnad, .vali-sisu, .ajalugu { grid-template-columns: minmax(0, 1fr); }
+  .band2, .band2.plain { grid-template-columns: minmax(0, 1fr); }
+  .band2 .k-four { display: none; }
+  .band2 .btn { justify-self: start; }
+}
+@media (max-width: 640px) {
+  /* Põhitekst 16 px, mugav reavahe */
+  :root { --fs-body: 1rem; }
+  body { line-height: 1.6; }
+  .k-hint, .k-note, .esimest li, .tingimused li, .fee-note, .loc-note, .k-contact span span, .k-contact .rida > a, .coach .role,
+  .band2 p, .facts-list dd, .plain li, .aud-row p, .vali-info, .faq details p { font-size: 1rem; }
+  .k-sec { padding-top: 2.25rem; }
+  .page-head { padding-top: 1.5rem; }
+  .page-head + .k-flow > .k-sec:first-child { padding-top: 1.75rem; }
+  /* Pealkiri ja link ei suru end ühele reale: link läheb pealkirja alla */
+  .k-h { grid-template-columns: minmax(0, 1fr); margin-bottom: .9rem; }
+  .k-h > a { grid-column: 1; grid-row: auto; order: 3; justify-self: start; }
+  .k-hero { min-height: 0; }
+  .k-copy { padding: 1.25rem 1.25rem 1rem; }
+  .k-hero h1 { font-size: 2.5rem; margin: 0 0 .75rem; }
+  .k-intro { font-size: 1.0625rem; }
+  .k-open { margin-bottom: 1.1rem; }
+  .k-art { height: 170px; margin-top: -1rem; }
+  .sports { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .sport { padding: 1.1rem 1.1rem .6rem; }
+  .sport svg.court { width: 62%; right: -12%; }
+  .band2 { padding: 1.1rem; }
+  .band2 .btn { justify-self: stretch; }
+  .k-photo { min-height: 150px; }
+  .k-contact li { grid-template-columns: 22px minmax(0, 1fr); }
+  .k-contact .k-map { grid-column: 2; justify-self: start; }
+  .site-foot { margin-top: 2.25rem; }
+  .foot-band { grid-template-columns: minmax(0, 1fr); justify-items: center; padding: .9rem 1rem; gap: .75rem; }
+  .foot-band .partners { width: 100%; gap: .5rem 1rem; }
+  .foot-band .partner img { height: 36px; }
+  .eu-mark img { width: 150px; }
+}
+
+/* --- v10 kontrolli järel --- */
+.hinnad .card { overflow-x: auto; }                      /* väga suure teksti korral kerib tabel oma kaardis */
+.coach .kutse a, .k-board-foot .link-arrow { min-height: 44px; }
+.data-status { font-size: 1rem; max-width: none; }
+@media (max-width: 640px) {
+  .k-h .k-hint { display: block; }                       /* väljakute arv ja hooajalisus peab olema näha ka telefonis */
+  .jur, .map p, .map-note, .data-status .kontroll { font-size: 1rem; }
+  .k-art { height: 150px; }
+  /* Tennis ja padel kõrvuti, et mõlemad oleksid korraga näha */
+  .sports { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .sport { padding: .9rem .9rem .35rem; }
+  .sport svg.court { display: none; }
+  .sport::after { display: none; }
+  .sport h3 { font-size: 1.75rem; margin: .3rem 0 .4rem; }
+  .sport .hind { font-size: 1.25rem; }
+  .sport .hind-lisa { font-size: .9375rem; line-height: 1.4; }
+  .k-place.kodu .k-photo { display: none; }
+  .k-contact li { padding: .45rem 0; }
+  .k-contact .rida a { min-height: 44px; }
+}
+@media (max-width: 350px) {
+  .sports { grid-template-columns: minmax(0, 1fr); }
+}
+.k-board .data-status { font-size: 1rem; }
+.k-board .data-status .kontroll { font-size: var(--fs-small); }
+@media (max-width: 640px) { .k-board .data-status .kontroll { font-size: 1rem; } }
+@media (max-width: 640px) {
+  /* Treenerid ühes veerus: nimi ja amet ei murdu poole sõna pealt */
+  .coaches { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .coach.full { grid-column: auto; }
+  .coach b, .coach .role { overflow-wrap: normal; }
+}
+
+/* ===== v11: telefonis lihtsam — üks muster (puudutatav rida), vähem kaste ja teksti ===== */
+.sport .hind { margin-bottom: .25rem; }
+.kontakt-kaart { padding: .5rem 1.5rem 1.25rem; border-radius: var(--round); background: var(--pane); border: 1px solid var(--pane-b);
+  display: flex; flex-direction: column; justify-content: center; gap: .75rem; }
+.kohad { list-style: none; margin: 0; padding: 0; }
+.kohad li + li { border-top: 1px dashed var(--pane-b); }
+.koht { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 14px; align-items: center; min-height: 64px; padding: .6rem 0;
+  color: var(--ink); text-decoration: none; }
+.koht .ico { color: var(--accent); }
+.koht b { display: block; font-weight: 600; font-size: 1.0625rem; }
+.koht span span { display: block; color: var(--muted); font-size: .9375rem; }
+.koht [data-hooaeg].off { color: var(--warn); }
+.koht .kaart { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.koht .kaart span { display: inline; color: inherit; font-size: inherit; }
+.koht:hover b { color: var(--accent); }
+.kiir { display: flex; flex-wrap: wrap; gap: 8px; }
+.kiir .btn { flex: 1 1 200px; justify-content: flex-start; gap: 10px; }
+.kiir .btn .ico { color: var(--accent); }
+.kiir .btn { min-width: 0; white-space: normal; overflow-wrap: anywhere; text-align: left; }
+.kiir .btn .ico { flex: none; }
+
+@media (max-width: 640px) {
+  /* Avaplokk: kaks nuppu kõrvuti (kitsamal ekraanil üksteise all) */
+  .k-cta .k-btn { flex: 1 1 auto; padding: 0 18px; justify-content: center; white-space: nowrap; }
+  .k-hero h1 { font-size: 2.25rem; }
+  .k-art { height: 140px; }
+
+  /* Tennis ja padel: kaks selget rida — ala, alghind, nool */
+  .sports { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .sport { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; grid-template-rows: auto auto; column-gap: 12px; row-gap: 0;
+    align-items: center; padding: .8rem 1rem; min-height: 72px; }
+  .sport .tag { grid-column: 1; grid-row: 1 / span 2; }
+  .sport .tag .ico { width: 24px; height: 24px; }
+  .sport .tag-t, .sport .edasi-t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .sport h3 { grid-column: 2; grid-row: 1; margin: 0; font-size: 1.375rem; letter-spacing: -.02em; }
+  .sport .hind { grid-column: 2; grid-row: 2; margin: 0; font-size: 1.0625rem; }
+  .sport .edasi { grid-column: 3; grid-row: 1 / span 2; margin: 0; min-height: 44px; min-width: 44px; justify-content: center; font-size: 1.25rem; }
+  .k-note { margin-top: .75rem; }
+
+  /* Vähem kaste: tutvustus ja nupp otse taustal */
+  .band2, .band2.plain { padding: 0; background: none; border: 0; border-radius: 0; gap: .9rem; }
+
+  /* Asukohad: read kaardile, all kaks nuppu */
+  .kontakt-kaart { padding: .25rem 1rem 1rem; }
+  .koht { min-height: 60px; }
+  .kiir .btn { flex: 1 1 100%; }
+}
+
+/* Telefonis on prototüübi ülariba üherealine ja juhiseriba ei võta ruumi (tagasiside nupp jääb alla paremale) */
+@media (max-width: 640px) {
+  .proto { padding: 6px 12px !important; font-size: 13px !important; }
+}
+
+/* ===== v12: telefonis selged osad — rohkem õhku osade vahel, joon, sisu kaardis ===== */
+@media (max-width: 640px) {
+  /* Rütm: osade vahel palju ruumi ja õhuke joon; pealkiri on oma sisule lähemal kui eelmisele osale */
+  .k-sec { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  .k-flow > .k-sec:first-child { margin-top: 0; padding-top: 2.5rem; border-top: 0; }
+  .page-head + .k-flow > .k-sec:first-child { padding-top: 2rem; }
+  .k-h { margin-bottom: 1.1rem; gap: .5rem; }
+  .k-h h2 { font-size: 1.75rem; line-height: 1.1; }
+  .k-h .k-hint { margin-top: .1rem; }
+
+  /* Iga osa sisu on üks selge kaart */
+  .band2, .band2.plain { padding: 1.25rem; background: var(--pane); border: 1px solid var(--pane-b); border-radius: var(--round); gap: 1.1rem; }
+  .band2 .lisa { margin-top: .5rem; }
+  .sports { gap: 10px; }
+  .k-note { margin-top: 1rem; }
+
+  /* Avatav juhend sama kaardina, mitte joonte vahel rippuva reana */
+  .k-sec > .more, .k-sec > details.more { margin-top: 1rem; padding: 0 1.1rem; background: var(--pane); border: 1px solid var(--pane-b); border-radius: 16px; }
+  .k-sec > .more > summary { min-height: 60px; }
+  .k-sec > .more[open] > .more-body { padding-bottom: 1.1rem; }
+
+  /* Kontaktikaart: read ja nupud hingavad */
+  .kontakt-kaart { padding: .5rem 1.1rem 1.1rem; gap: 1rem; }
+  .kiir { gap: 10px; }
+
+  /* Avaplokk ja jalus selgelt eraldi */
+  .k-hero-sec { padding-bottom: .5rem; }
+  .site-foot { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
 }

@@ -5,41 +5,48 @@ Uue fellinrackets.ee kodulehe prototüüp, mida klubi saab kommenteerida.
 - Aadress: `https://viljandi-edetabel.pages.dev/fellin/` (kommenteerimiseks lingis `?k=…` võti — võti ise repos ei ole, ainult selle räsi `functions/api/fellin-kommentaar.js`-is). Võti jääb brauserisse meelde, nii et alamlehtedel lingis seda enam vaja pole.
 - Google seda ei indekseeri (`_headers`: `X-Robots-Tag: noindex`)
 
-## Kujunduse eelvaade: versioon 8 (`v8/`)
+## Alternatiivne kujundus eelvaatena (`v8/`)
 
-Uus kujundus on eraldi kaustas ja kliendi link (versioon 7) sellest ei muutu.
+Teine kujundusvariant eraldi kaustas: hele põhi, avaplokis klubi foto järveäärsetest väljakutest. Kliendi link `/fellin/` sellest ei muutu.
+Kausta nimi `v8/` pärineb ajast, mil kliendi link oli versioonis 7 — see **ei ole** kliendi lingi versioon 8.
 
-- Aadress: `https://viljandi-edetabel.pages.dev/fellin/v8/` (viis lehte, sama sisu ja samad alamlehed mis versioonis 7)
+- Aadress: `https://viljandi-edetabel.pages.dev/fellin/v8/` (viis lehte, samad alamlehed)
+- Sisu on kliendi lingi versiooni 7 seisuga (hinnad, treenerid, KKK); hilisemaid muudatusi (v8–v12, `seaded.js`, teateriba) selles pole.
 - Oma `v8/fellin.css`, `v8/fellin.js` ja `v8/fonts/` (Archivo muutuvfont, OFL 1.1). Pildid on ühised: `../img/`.
 - Kommenteerimisskripti (`arvustus.js`) eelvaates pole; `data-osa` tunnused on HTML-is alles, et selle saaks hiljem lihtsalt lisada.
-- Vormikeel: avalehe taustaks klubi foto järveäärsetest väljakutest, värvid sealt (ööjärv, savi, kriidijoon),
-  pealkirjad kitsas rasvases kirjas. Avaleht kolme lõiguna: Mängi, Õpi, Võistle. Väljakud piktogrammina
-  (peidetud SVG sümbolid `#ct-t` ja `#ct-p` `<body>` alguses, sama mõõtkava), püramiid püramiidina, MV pjedestaal.
+- Vormikeel: värvid fotolt (ööjärv, savi, kriidijoon), pealkirjad kitsas rasvases kirjas. Avaleht kolme lõiguna: Mängi, Õpi, Võistle.
+  Väljakud piktogrammina (peidetud SVG sümbolid `#ct-t` ja `#ct-p` `<body>` alguses, sama mõõtkava), püramiid püramiidina, MV pjedestaal.
 - Lehe „Mängimine ja hinnad“ nimi on eelvaates „Väljakud ja hinnad“; aadress (`mangimine/`) on sama.
-- Kliendi lingile viimiseks: tõsta `v8/` failid kausta `fellin/` asemele (pilditeed `../img/` → `img/`, alamlehtedel `../../img/` → `../img/`),
-  lisa tagasi `arvustus.js` rida ja prototüübiriba `id="proto"` ning lisa `kommentaarid.json`-i versiooni 8 kirje.
-  Leht `kontsept/` kasutab versiooni 7 `fellin.css`-i ja Interi fonte — otsusta enne, mis sellest saab.
+- Kui see variant peaks kliendi lingile minema: too enne sisu kliendi lingi praegusele seisule järele, tõsta failid kausta `fellin/`
+  (pilditeed `../img/` → `img/`, alamlehtedel `../../img/` → `../img/`), lisa `arvustus.js` rida ja prototüübiriba `id="proto"`
+  ning lisa `kommentaarid.json`-i uue versiooni kirje.
 
-## Ülesehitus (versioonist 7)
+## Ülesehitus (versioonist 7; vormikeel v8–v9; lihtsustatud v10)
 
-Avaleht on lühike (telefonis ~3 ekraani); detailne sisu on neljal alamlehel.
+Avaleht on lühike (telefonis ~4 ekraani); detailne sisu on neljal alamlehel.
 
 | Leht | Fail | Sisu |
 |---|---|---|
-| Avaleht | `index.html` | avaplokk, „Tahan mängida / õppida / võistelda“, tunnihind alates, VÜS esikolmik, kontakt; schema.org klubi + mängukohad |
+| Avaleht | `index.html` | avaplokk (pealkiri, tutvustus, lahtiolek, 2 nuppu) → Väljakud ja hinnad (Tennis / Padel „alates … €/h“, avatav „Esimest korda mängima?“) → Treeningud → Asukohad ja kontakt → Võistlused ja edetabel; schema.org klubi + mängukohad |
 | 01 Mängimine ja hinnad | `mangimine/index.html` | mängukohad koos hinnatabelitega, broneerimine, liikmepakett, KKK |
 | 02 Treeningud | `treeningud/index.html` | lapsed/täiskasvanud, õppemaks, soodustused, trenni küsimine, treenerid ja kutsed, KKK; schema.org kool |
 | 03 Võistlused | `voistlused/index.html` | VÜS esikümme, püramiid, maakonna MV, KKK |
 | 04 Klubi ja kontakt | `klubi/index.html` | logod, ajalugu, kasvandikud, EL-i projektid (`#toetused`), kontakt ja kaart (`#kontakt`) |
 
-Päis, menüü ja jalus (partnerid + EL-i embleem) on kõigil viiel lehel samad — muutes muuda kõigis.
+Päis (menüü päises, telefonis nupp „Menüü“) ja jalus (partnerid + EL-i embleem) on kõigil viiel lehel samad — muutes muuda kõigis.
+`kontsept/index.html` on ainult ümbersuunamine avalehele (seal oli enne v8 kontseptsiooni eelvaade).
+
+Vormikeel (v8): tume alus + tennisepalli laim; väljakujooned, pall ja lennukaar, ümarad vormid ja pill-nupud;
+ikoonid on avalehe alguses `<symbol>`-itena (tennise- ja padelireket, pall, kell, päike, võti, kaardinõel, kiri, kõne).
+Liikumine (palli lend, pulseeriv täpp, joone joonistumine) töötab ainult siis, kui kasutaja pole liikumist vähendanud.
 
 ## Failid
 
 | Fail | Mis |
 |---|---|
 | `fellin.css` | ühine stiil (lihasatlas.raudla.com kujunduskeel) |
-| `fellin.js` | ühine skript: lahtiolek, hooaeg, mobiilimenüü, edetabeli värske seis, e-posti kopeerimine, kaart |
+| `seaded.js` | **muudetavad seaded**: väliväljakute hooaeg (`algus`, `lopp` kujul pp.kk) ja lehe ülaosa teade (tühi = teateriba ei näidata) |
+| `fellin.js` | ühine skript: hooaja olek seadetest, teateriba, mobiilimenüü, edetabeli värske seis, e-posti kopeerimine, kaart |
 | `llms.txt`, `robots.txt`, `sitemap.xml` | päris lehe jaoks (fellinrackets.ee juurkausta) |
 | `fonts/` | Inter (opsz + wght 400–800) ja JetBrains Mono 600, woff2, latin + latin-ext (Google Fonts, OFL) |
 | `img/` | logod, järvefoto (640/1280/1920 WebP), EL-i ja partnerite logod — klubi materjal fellinrackets.ee-st |
@@ -52,6 +59,10 @@ Päis, menüü ja jalus (partnerid + EL-i embleem) on kõigil viiel lehel samad 
 2. `git pull` → loe `kommentaarid.json`, tee muudatused.
 3. Märgi tehtud kommentaarid: `"staatus": "tehtud"` (või `"jaab"` = jääb nii) ja lisa `"markus": "…"`.
 4. Lisa `versioonid` lõppu uus kirje (`nr`, `kuupaev`, `muudatused`) → commit + push.
+
+Lehel on vaikimisi üks nupp „Tagasiside“ (all paremal); selle alt saab valida osa, mida kommenteerida.
+Nupud iga osa juures saab ülaribalt sisse lülitada. Puhas eelvaade ilma tagasiside nuppudeta: lisa aadressile `?puhas=1`
+(tagasi: `?puhas=0`); lahtiütlus „ei ole ametlik leht“ jääb prototüübis alati näha.
 
 Osa tunnuse (`data-osa`) eesliide ütleb lehe: `m-` mängimine, `t-` treeningud, `v-` võistlused, `k-` klubi,
 eesliiteta = avaleht; `jalus` ja `uldine` on ühised. „Kommentaarid“ näitab kõigi lehtede kommentaare.
@@ -70,7 +81,7 @@ Testid: `node scripts/test_fellin_kommentaar.mjs`
 
 ## Avatud küsimused klubile (sisu, mida ei tohi oletada)
 
-Seis 09.11.2026 (versioon 7). Kuni vastuseni on lehel ainult kinnitatud info.
+Seis 13.11.2026 (versioon 12). Kuni vastuseni on lehel ainult kinnitatud info.
 
 1. **Hinnad:** kas hind on „€ väljaku kohta tunnis“? Siis lisame selle tabelite juurde.
 2. **Väliväljakud 2027:** hooaja hinnad ja täpsed lahtiolekuajad. Praegu on teada ainult „maist oktoobrini
@@ -83,6 +94,10 @@ Seis 09.11.2026 (versioon 7). Kuni vastuseni on lehel ainult kinnitatud info.
 6. **Mängukohtade praktiline info:** parkimine ja sissepääs, varustuse laenutus (reketid, pallid),
    jalanõud, riietus- ja pesuruumid väljas, füüsiline ligipääs (astmed/kaldtee, ukse laius, ligipääsetav WC).
 7. **Fotod (klubi õigustega):** sisehall seest, mängijad, laste trenn; treenerite portreed.
+   Avalehel on **ainult näitamiseks** kaks fotot klubi praeguselt kodulehelt
+   (fellinrackets.ee meediakogu): `img/valjakud-ohtul-*.webp` ← `2018/10/DJI_0874.jpg` (droon DJI FC6310, 25.09.2018)
+   ja `img/plats-*.webp` ← `2024/05/IMG_6119.jpg`. Autor ja kasutusõigus on kinnitamata — Priit räägib autoriga ise.
+   Enne ametlikku kasutust: autori nimi + luba kirjalikult; lõigatud ja kergelt toonitud (kontrast, teravus), sisu muutmata.
 8. **Tulevased võistlused:** kuupäevad, tase ja registreerimislink.
 9. **Treenerid:** Anelle Luik ei ole spordiregistris klubi treenerite hulgas — kas treenib klubis?
    Diana Klavan ja Priscilla Õmblus on registris padelitreenerid ilma kutseta — kas nii jääb?
@@ -99,6 +114,9 @@ Seis 09.11.2026 (versioon 7). Kuni vastuseni on lehel ainult kinnitatud info.
 - KKK tekst on nii lehel (`.faq-list`) kui sama lehe päise FAQPage JSON-LD-s — muuda mõlemas sõna-sõnalt ühtemoodi.
 - Põhimõte: iga fakt ühes kohas. Hinnad on mängukoha kaardil (avalehel ainult „alates“), uksekood sisehalli kaardil.
   Teisejärguline info läheb `<details class="more">` sisse.
-- Edetabeli varuandmed (`#vus-list`, `#pyr-list`, `#pyr-top`, `data-asof`) on HTML-is; värske seis laaditakse edetabelist peale.
+- Edetabeli varuandmed (`#vus-list`, `#pyr-list`, `data-asof`) on võistluste lehe HTML-is; värske seis laaditakse edetabelist peale.
+  Näha on sisuline kuupäev „Seis pp.kk.aaaa“; kontrollimise kellaaeg on selle all väiksemalt.
+- Hooaeg ei ole lehtedele sisse kirjutatud: HTML-is on neutraalne „Hooaeg mai–oktoober“, olek („Avatud“ / „Praegu suletud“)
+  arvutatakse `seaded.js` kuupäevadest. Hinnalehel on väliväljakute plokk (`#valjas`) hooajal lahti, muul ajal kokku pandud.
 - EL-i embleem peab jääma vähemalt sama suureks kui suurim partnerilogo (jaluses EL-i logo laius 220 px ≈ 72 px kõrge sisu;
   partnerilogod 56 px kõrged, telefonis 200 px / 44 px).

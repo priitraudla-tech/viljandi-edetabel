@@ -63,10 +63,10 @@
   --font-mono: "JetBrains Mono", Consolas, "SFMono-Regular", monospace;
   --fs-label: 0.78rem;
 
-  --r-sm: 6px;
-  --r-md: 9px;
-  --r-lg: 9px;
-  --r-xl: 12px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 22px;
   --r-pill: 9999px;
 }
 
@@ -208,7 +208,7 @@ main.container { min-height: calc(100vh - 260px); }
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--r-pill);
   font: 600 0.875rem/1 var(--font-body);
   cursor: pointer;
   white-space: nowrap;
@@ -235,7 +235,7 @@ main.container { min-height: calc(100vh - 260px); }
   min-height: clamp(130px, 20vh, 210px);
   margin-top: 12px;
   padding: clamp(16px, 3vw, 36px) clamp(16px, 3.2vw, 44px);
-  border-radius: 9px 9px 0 0;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
   background: var(--accent);
   color: var(--on-accent);
 }
@@ -261,7 +261,7 @@ main.container { min-height: calc(100vh - 260px); }
   position: absolute;
   inset: 0 0 0 52%;
   overflow: hidden;
-  border-radius: 0 9px 0 0;
+  border-radius: 0 var(--r-lg) 0 0;
   pointer-events: none;
   background: repeating-linear-gradient(90deg, transparent 0 33px, #19271122 33px 34px),
               repeating-linear-gradient(0deg, transparent 0 33px, #19271122 33px 34px);
@@ -310,7 +310,7 @@ main.container { min-height: calc(100vh - 260px); }
   gap: 1px;
   padding: 1px;
   background: var(--border);
-  border-radius: 0 0 9px 9px;
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
   overflow: hidden;
 }
 .site-nav-link {
@@ -345,7 +345,7 @@ main.container { min-height: calc(100vh - 260px); }
   padding: 1px;
   max-width: 100%;
   background: var(--border);
-  border-radius: 7px;
+  border-radius: var(--r-pill);
   overflow: hidden;
 }
 .tab {
@@ -371,7 +371,7 @@ main.container { min-height: calc(100vh - 260px); }
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   min-height: 44px;
   padding: 0 12px;
   font: 400 14px/1.4 var(--font-body);
@@ -380,7 +380,8 @@ main.container { min-height: calc(100vh - 260px); }
 
 @media (max-width: 720px) {
   .brand-sub { display: none; }
-  .intro-art { inset: 0 -25% 0 35%; opacity: 0.45; }
+  /* Graafika püsib ploki sees — negatiivne serv tekitas telefonis külgsuunalise kerimise */
+  .intro-art { inset: 0 0 0 35%; opacity: 0.45; }
   .refresh-label { display: none; }
   .refresh-btn { padding: 0 12px; min-width: 44px; justify-content: center; }
 }
@@ -410,7 +411,7 @@ input[type="search"], select {
   font: 400 14px/1.4 var(--font-body);
   letter-spacing: 0.14px;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--r-pill);
   padding: 0 14px;
   min-height: 44px;
   min-width: 220px;
@@ -509,6 +510,21 @@ tbody tr.highlight td:first-child {
   box-shadow: inset 2px 0 0 var(--highlight-bar);
 }
 tbody tr.highlight:hover { background: rgba(211, 252, 103, 0.14); }
+
+/* Kohanumber tabloo-ruudus; liider laimiga (Fellini lehe edetabeliga sama keel) */
+.pos {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: #1d2218;
+  color: var(--text);
+  font: 600 0.9375rem/1 var(--font-mono);
+}
+tbody tr.highlight .pos { background: var(--accent); color: var(--on-accent); }
+#standings-table tbody tr.highlight td:first-child { box-shadow: none; }
 
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 td.dim { color: var(--text-3); }
@@ -1182,7 +1198,7 @@ tr.game-note-row td {
   border: 0;
   width: 44px;
   height: 44px;
-  border-radius: 6px;
+  border-radius: var(--r-pill);
   font-size: 18px;
   color: var(--text-2);
   cursor: pointer;
@@ -1242,7 +1258,7 @@ tr.game-note-row td {
   font: 600 15px/1.2 var(--font-body);
   min-height: 48px;
   padding: 0 20px;
-  border-radius: 6px;
+  border-radius: var(--r-pill);
   cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -1566,8 +1582,9 @@ tr.game-note-row td {
   tbody td { padding: 11px 8px; }
   .chart-wrap { height: 360px; padding: 16px; }
   input[type="search"], select { min-width: 140px; }
-  .tabs { display: grid; width: 100%; grid-auto-columns: minmax(0, 1fr); }
-  .tab { padding: 0 6px; font-size: 13px; }
+  /* Veerg vähemalt oma sõna laiune (nt „Väljakutsed“ ei lõiku); väga kitsal ekraanil saab riba kerida */
+  .tabs { display: grid; width: 100%; grid-auto-columns: minmax(max-content, 1fr); overflow-x: auto; }
+  .tab { padding: 0 5px; font-size: 13px; white-space: nowrap; }
   .toolbar { gap: 10px 14px; }
   .detail { padding: 14px 12px 16px; }
   .stage-grid { grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 8px; }
@@ -1590,7 +1607,7 @@ tr.game-note-row td {
   padding: 1px;
   margin: 4px 0 24px;
   background: var(--border);
-  border-radius: 7px;
+  border-radius: var(--r-pill);
   overflow: hidden;
 }
 .view-toggle[hidden] { display: none; }
