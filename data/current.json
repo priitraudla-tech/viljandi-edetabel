@@ -1,6 +1,6 @@
 {
   "title": "Viljandi üksikmängu edetabel (17.10.2026 seisuga)",
-  "fetched_at": "2026-11-14T23:36:47+00:00",
+  "fetched_at": "2026-11-20T18:32:19+00:00",
   "stages": [
     {
       "label": "9. etapp 29.11.2025",
@@ -931,6 +931,6 @@
     "9. etapp 13.09.2026": 9,
     "10. etapp 17.10.2026": 5
   },
-  "snapshot_date": "2026-11-14",
+  "snapshot_date": "2026-11-20",
   "compared_to": "2026-09-13"
 }
