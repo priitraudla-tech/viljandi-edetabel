@@ -1,0 +1,62 @@
+{
+  "turniir": {
+    "nimi": "VÜS 2026 11. etapp",
+    "sari": "VÜS",
+    "etapp": 11,
+    "kuupaev": "2026-11-21",
+    "asukoht": "TK Fellin",
+    "tarkvara": "etl.tournamentsoftware.com"
+  },
+  "mangijad": [
+    {"id": 1, "nimi": "Heimar Mirka",     "asetus": 1},
+    {"id": 2, "nimi": "Andrus Jürgenson", "asetus": null},
+    {"id": 3, "nimi": "Manfred Mets",     "asetus": null},
+    {"id": 4, "nimi": "Lauri Tõnisalu",   "asetus": null},
+    {"id": 5, "nimi": "Rain Paju",        "asetus": null},
+    {"id": 6, "nimi": "Toivo Teng",       "asetus": null},
+    {"id": 7, "nimi": "Ilja Balabko",     "asetus": null},
+    {"id": 8, "nimi": "Reevo Kirna",      "asetus": 2}
+  ],
+  "pohitabel": {
+    "veerandfinaalid": [
+      {"match": "QF-1", "voitja": "Andrus Jürgenson", "kaotaja": "Heimar Mirka",   "skoor": "7-6(5)"},
+      {"match": "QF-2", "voitja": "Manfred Mets",     "kaotaja": "Lauri Tõnisalu", "skoor": "6-4"},
+      {"match": "QF-3", "voitja": "Rain Paju",        "kaotaja": "Toivo Teng",     "skoor": "7-6(4)"},
+      {"match": "QF-4", "voitja": "Reevo Kirna",      "kaotaja": "Ilja Balabko",   "skoor": "6-4"}
+    ],
+    "poolfinaalid": [
+      {"match": "SF-1", "voitja": "Manfred Mets", "kaotaja": "Andrus Jürgenson", "skoor": "6-4"},
+      {"match": "SF-2", "voitja": "Reevo Kirna",  "kaotaja": "Rain Paju",        "skoor": "4-3 ret."}
+    ],
+    "finaal": {
+      "match": "F",
+      "voitja": "Reevo Kirna",
+      "kaotaja": "Manfred Mets",
+      "skoor": "6-4"
+    },
+    "koht_3_4": {
+      "match": "3-4",
+      "voitja": "Andrus Jürgenson",
+      "kaotaja": "Rain Paju",
+      "skoor": "ret."
+    }
+  },
+  "kohamang_5_8": {
+    "poolfinaalid": [
+      {"match": "5-8 SF1", "voitja": "Lauri Tõnisalu", "kaotaja": "Heimar Mirka", "skoor": "7-6(4)"},
+      {"match": "5-8 SF2", "voitja": "Toivo Teng",     "kaotaja": "Ilja Balabko", "skoor": "6-2"}
+    ],
+    "koht_5_6": {"match": "5-6", "voitja": "Lauri Tõnisalu", "kaotaja": "Toivo Teng",   "skoor": "7-5"},
+    "koht_7_8": {"match": "7-8", "voitja": "Ilja Balabko",   "kaotaja": "Heimar Mirka", "skoor": "6-4"}
+  },
+  "loppjarjestus": [
+    {"koht": 1, "mangija": "Reevo Kirna",      "punktid": 100},
+    {"koht": 2, "mangija": "Manfred Mets",     "punktid": 70},
+    {"koht": 3, "mangija": "Andrus Jürgenson", "punktid": 50},
+    {"koht": 4, "mangija": "Rain Paju",        "punktid": 40},
+    {"koht": 5, "mangija": "Lauri Tõnisalu",   "punktid": 30},
+    {"koht": 6, "mangija": "Toivo Teng",       "punktid": 26},
+    {"koht": 7, "mangija": "Ilja Balabko",     "punktid": 23},
+    {"koht": 8, "mangija": "Heimar Mirka",     "punktid": 21}
+  ]
+}

@@ -40,5 +40,12 @@
     "nimi": "VÜS 2026 10. etapp",
     "etapp": 10,
     "osalejaid": 5
+  },
+  {
+    "date": "2026-11-21",
+    "label": "11. etapp 21.11.2026",
+    "nimi": "VÜS 2026 11. etapp",
+    "etapp": 11,
+    "osalejaid": 8
   }
 ]

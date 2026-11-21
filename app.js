@@ -683,6 +683,9 @@ function parseScore(skoor) {
   if (skoor === "—") return { winner: "—", loser: "—" };
   const m = String(skoor).match(/^(\d+)\s*[-:]\s*(\d+)$/);
   if (m) return { winner: m[1], loser: m[2] };
+  // Kiire lõppmäng: "7-6(5)" -> võitjal 7, kaotajal 6 ja sulgudes tema punktid.
+  const tb = String(skoor).match(/^(\d+)\s*[-:]\s*(\d+)\s*\((\d+)\)$/);
+  if (tb) return { winner: tb[1], loser: `${tb[2]}(${tb[3]})` };
   return { winner: String(skoor), loser: "" };
 }
 
@@ -814,9 +817,18 @@ function buildMainBracket(data) {
   const seedMap = buildSeedMap(data.mangijad);
   const pt = data.pohitabel || {};
 
-  bracket.appendChild(bracketRound("1. ring", pt.round_1 || [], { seedMap }));
-  bracket.appendChild(bracketRound("Veerandfinaal", pt.veerandfinaalid || []));
-  bracket.appendChild(bracketRound("Poolfinaal", pt.poolfinaalid || []));
+  // Kuni 8 mängijaga tabel algab veerandfinaalist: tühja ringi ei näidata ja
+  // asetused lähevad esimesele ringile, mis päriselt mängiti.
+  let seedsShown = false;
+  [
+    ["1. ring", pt.round_1],
+    ["Veerandfinaal", pt.veerandfinaalid],
+    ["Poolfinaal", pt.poolfinaalid],
+  ].forEach(([title, matches]) => {
+    if (!Array.isArray(matches) || !matches.length) return;
+    bracket.appendChild(bracketRound(title, matches, seedsShown ? {} : { seedMap }));
+    seedsShown = true;
+  });
   if (pt.finaal) {
     bracket.appendChild(bracketRound("Finaal", [pt.finaal], {
       final: true,
@@ -902,9 +914,10 @@ function buildRoundRobin(group, title) {
       lookup[`${m.voitja}|${m.kaotaja}`] = `${sc.winner}/${sc.loser}`;
       lookup[`${m.kaotaja}|${m.voitja}`] = `${sc.loser}/${sc.winner}`;
     } else {
-      // Non-numeric result (w/o, ret., ?): show the token on the winner's
-      // cell and a dash on the loser's; the V–K column carries the outcome.
-      lookup[`${m.voitja}|${m.kaotaja}`] = sc.winner;
+      // Non-numeric result (w/o, ret., ?, 7-6(4)): show the result as written
+      // on the winner's cell and a dash on the loser's; the V–K column
+      // carries the outcome.
+      lookup[`${m.voitja}|${m.kaotaja}`] = m.skoor == null ? "" : String(m.skoor);
       lookup[`${m.kaotaja}|${m.voitja}`] = "—";
     }
   });
