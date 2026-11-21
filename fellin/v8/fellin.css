@@ -1,0 +1,485 @@
+/* Fellin Rackets — ühine stiil kõigile lehtedele (versioon 8).
+   Värvid tulevad klubi enda fotolt ja väljakutelt: ööjärv, savi, kriidijoon, pallikollane.
+   Pealkirjad: Archivo kitsas rasvane (plakatikiri); põhitekst: Archivo tavaline.
+   Ligipääsetavus: WCAG 2.2 AA siht. */
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url("fonts/archivo-latin-ext-wdth-normal.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url("fonts/archivo-latin-wdth-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root {
+  color-scheme: light;
+  --chalk: #f3f0e8;
+  --paper: #ffffff;
+  --ink: #0d1b2a;
+  --ink-2: #47525e;
+  --rule: rgba(13, 27, 42, .2);
+  --night: #0d1b2a;
+  --on-night: #f3f0e8;
+  --on-night-2: #aebac5;
+  --rule-night: rgba(243, 240, 232, .24);
+  --clay: #e4683b;
+  --clay-deep: #a53a15;
+  --ball: #dcf24b;
+  --font: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --gut: clamp(1.25rem, 4.2vw, 4rem);
+  --max: 84rem;
+  --head-h: 68px;
+  --sec: clamp(3.25rem, 7.5vw, 7rem);
+  --ct-line: var(--chalk);
+  --i-go: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 8h13M9 3l5 5-5 5' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+  --i-out: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 13 13 3M5 3h8v8' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: calc(var(--head-h) + 1.25rem); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--chalk); color: var(--ink); font: 400 1.0625rem/1.55 var(--font); font-stretch: 100%;
+  -webkit-font-smoothing: antialiased; }
+img, svg { max-width: 100%; display: block; }
+img { height: auto; }
+a { color: inherit; text-underline-offset: .18em; text-decoration-thickness: 1px; }
+p { margin: 0 0 1rem; max-width: 62ch; }
+h1, h2, h3, h4, p, li, dd, dt, td, th { overflow-wrap: break-word; }
+.num { font-variant-numeric: tabular-nums; }
+.shell { max-width: var(--max); margin: 0 auto;
+  padding-left: max(var(--gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--gut), env(safe-area-inset-right, 0px)); }
+.vh { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.muted { color: var(--ink-2); }
+.small { font-size: .9375rem; }
+
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.top :focus-visible, .hero :focus-visible, .night :focus-visible, .site-foot :focus-visible { outline-color: var(--ball); }
+.foot-band :focus-visible { outline-color: var(--ink); }
+main:focus { outline: none; }
+.skip { position: absolute; left: 16px; top: -120px; z-index: 200; background: var(--ball); color: var(--ink);
+  padding: 12px 18px; font-weight: 700; text-decoration: none; }
+.skip:focus { top: 12px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .btn, .big-link, .nav a::after, .top, .faq summary::after, .more > summary::after { transition: background-color .18s, color .18s, border-color .18s, transform .22s; }
+}
+
+/* Plakatikiri: kitsas, rasvane, suurtähtedes. Täpitähtede jaoks on rea kõrgus .92. */
+.d, h1, h2 { font-family: var(--font); font-stretch: 62%; font-weight: 800; text-transform: uppercase; line-height: .92;
+  letter-spacing: .004em; margin: 0; text-wrap: balance; }
+.kicker { margin: 0 0 .6rem; font-size: .8125rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; font-stretch: 92%; }
+
+/* Eelvaate riba */
+.proto { background: #000; color: #b9bdb4; font-size: .875rem; text-align: center; padding: 7px 16px; }
+.proto b { color: var(--ball); font-weight: 700; }
+.proto a { color: #fff; font-weight: 700; margin-left: .35rem; }
+
+/* --- päis --- */
+.top { position: sticky; top: 0; z-index: 20; background: var(--night); color: var(--on-night); }
+.top.is-clear { background: transparent; }
+.top-row { max-width: var(--max); margin: 0 auto; height: var(--head-h); display: flex; align-items: center; gap: clamp(.75rem, 2vw, 2rem);
+  padding-left: max(var(--gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--gut), env(safe-area-inset-right, 0px)); }
+.brand { display: flex; align-items: center; min-height: 44px; margin-right: auto; }
+.brand img { height: 36px; width: auto; filter: brightness(0) invert(1); }
+.nav ul { display: flex; gap: clamp(1rem, 2.2vw, 2.25rem); list-style: none; margin: 0; padding: 0; }
+.nav a { position: relative; display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-weight: 600; font-size: .9688rem; white-space: nowrap; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 7px; height: 2px; background: var(--clay); transform: scaleX(0); transform-origin: left; }
+.nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); }
+.menu-btn { display: none; align-items: center; gap: 9px; min-height: 44px; padding: 0 2px 0 8px; border: 0; background: transparent;
+  color: inherit; font: 700 1rem/1 var(--font); cursor: pointer; }
+.menu-btn .bars { width: 22px; height: 2px; background: currentColor; position: relative; }
+.menu-btn .bars::before, .menu-btn .bars::after { content: ""; position: absolute; left: 0; width: 22px; height: 2px; background: currentColor; }
+.menu-btn .bars::before { top: -7px; } .menu-btn .bars::after { top: 7px; }
+.menu-btn[aria-expanded="true"] .bars { background: transparent; }
+.menu-btn[aria-expanded="true"] .bars::before { top: 0; transform: rotate(45deg); }
+.menu-btn[aria-expanded="true"] .bars::after { top: 0; transform: rotate(-45deg); }
+
+/* --- nupud ja lingid --- */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 1.5rem; border: 2px solid transparent;
+  font: 700 1.0625rem/1.2 var(--font); text-decoration: none; cursor: pointer; text-align: center; }
+.btn-clay { background: var(--clay); color: var(--ink); border-color: var(--clay); }
+.btn-clay:hover { background: var(--chalk); border-color: var(--chalk); }
+.btn-ink { background: var(--ink); color: var(--chalk); border-color: var(--ink); }
+.btn-ink:hover { background: transparent; color: var(--ink); }
+.btn-line { border-color: currentColor; background: transparent; color: inherit; }
+.btn-line:hover { background: var(--chalk); color: var(--ink); border-color: var(--chalk); }
+.on-chalk .btn-clay:hover, .page-head .btn-clay:hover { background: var(--ink); color: var(--chalk); border-color: var(--ink); }
+.on-chalk .btn-line:hover { background: var(--ink); color: var(--chalk); border-color: var(--ink); }
+.top .btn { min-height: 44px; padding: 0 1.1rem; font-size: .9688rem; white-space: nowrap; }
+.go::after, .out::after { content: ""; flex: none; display: inline-block; width: .72em; height: .72em; margin-left: .55em; background: currentColor;
+  -webkit-mask: var(--i-go) center / contain no-repeat; mask: var(--i-go) center / contain no-repeat; }
+.out::after { -webkit-mask-image: var(--i-out); mask-image: var(--i-out); }
+.link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; text-decoration: underline; }
+.link:hover { color: var(--clay-deep); }
+.night .link:hover, .site-foot .link:hover { color: var(--clay); }
+
+/* Suur lingirida osa lõpus: üks selge järgmine samm */
+.big-link { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: clamp(1.75rem, 4vw, 3rem);
+  padding: 1.1rem 0; border-top: 2px solid currentColor; text-decoration: none; font-stretch: 62%; font-weight: 800; text-transform: uppercase;
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem); line-height: 1; }
+.big-link::after { width: .62em; height: .62em; }
+.big-link:hover { background: var(--ink); color: var(--chalk); padding-left: 1rem; padding-right: 1rem; }
+.night .big-link:hover { background: var(--chalk); color: var(--ink); }
+.clay .big-link:hover { background: var(--ink); color: var(--chalk); }
+
+/* --- avaleht: foto --- */
+.hero { position: relative; isolation: isolate; margin-top: calc(-1 * var(--head-h)); min-height: clamp(35rem, 90svh, 60rem);
+  display: flex; align-items: flex-end; color: var(--on-night); background: var(--night); overflow: hidden; }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% 45%; z-index: -2; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(13,27,42,.62) 0, rgba(13,27,42,0) 22%, rgba(13,27,42,0) 40%, rgba(13,27,42,.86) 100%); }
+.hero-in { width: 100%; padding-top: calc(var(--head-h) + 3rem); padding-bottom: clamp(1.25rem, 3vw, 2.25rem); }
+.hero h1 { font-size: clamp(4rem, 11.6vw, 11.5rem); margin: 0 0 clamp(1rem, 2.4vw, 2rem); }
+.hero h1 span { display: block; }
+.hero-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem 3rem; }
+.hero-lead { margin: 0; max-width: 34ch; font-size: clamp(1.125rem, 1.7vw, 1.375rem); line-height: 1.4; font-weight: 500; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 2rem; margin-top: clamp(1.25rem, 3vw, 2.25rem);
+  padding-top: .9rem; border-top: 1px solid var(--rule-night); font-size: .9375rem; font-weight: 600; }
+.hero-foot p { margin: 0; max-width: none; }
+.status { display: flex; align-items: center; gap: 10px; }
+/* Olekutäpp on tennisepall */
+.status i { width: 12px; height: 12px; border-radius: 50%; background: var(--ball); flex: none; }
+.status i.off { background: transparent; box-shadow: inset 0 0 0 2px var(--on-night-2); }
+@media (prefers-reduced-motion: no-preference) {
+  .status i:not(.off) { animation: pall 2.4s ease-in-out infinite; }
+  @keyframes pall { 50% { box-shadow: 0 0 0 6px rgba(220, 242, 75, .22); } }
+}
+
+/* Avamisel tõusevad pealkirja read kohale; foto tõmbub rahulikult paika */
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1 span { animation: rida .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .hero h1 span:nth-child(2) { animation-delay: .08s; }
+  .hero h1 span:nth-child(3) { animation-delay: .16s; }
+  .hero-img { animation: foto 1.8s ease-out both; }
+  @keyframes rida { from { opacity: 0; transform: translateY(.3em); } }
+  @keyframes foto { from { transform: scale(1.05); } }
+  .big-link::after { transition: transform .2s; }
+  .big-link:hover::after { transform: translateX(4px); }
+}
+
+/* --- osad --- */
+.sec { position: relative; padding: var(--sec) 0; }
+.sec + .sec.on-chalk { padding-top: 0; }
+.night { background: var(--night); color: var(--on-night); --ct-line: var(--night); }
+.clay { background: var(--clay); color: var(--ink); }
+.night + .on-chalk, .clay + .on-chalk, .photo-strip + .on-chalk { padding-top: var(--sec) !important; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 3rem; margin-bottom: clamp(1.75rem, 4vw, 3.25rem); }
+.sec-head h2 { font-size: clamp(4rem, 9.5vw, 8.75rem); }
+.sec-head p { margin: 0 0 .5rem; max-width: 38ch; font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.45; }
+.h2-m { font-size: clamp(2.5rem, 6vw, 5rem); }
+h3 { margin: 0 0 .5rem; font-size: 1.25rem; font-weight: 700; line-height: 1.25; }
+/* Kommenteerimisnupp (arvustus.js) ei lükka sisu: istub osa paremas ülanurgas */
+.rv-bar { position: absolute !important; top: 10px; right: max(var(--gut), env(safe-area-inset-right, 0px)); margin: 0 !important; z-index: 5; }
+.hero .rv-bar { top: calc(var(--head-h) + 10px); }
+.on-chalk + .sec.on-chalk .rv-bar { top: -52px; }
+.site-foot { position: relative; }
+
+/* Mängukohad: nimi, lahtiolek, väljakute piktogramm (iga kujund = üks väljak, õiges mõõtkavas) */
+.venues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.venue { padding: 0 clamp(1.25rem, 3.5vw, 3.5rem) 0 0; }
+.venue + .venue { padding: 0 0 0 clamp(1.25rem, 3.5vw, 3.5rem); border-left: 2px solid var(--ink); }
+.venue-name { font-size: clamp(2.75rem, 5.6vw, 5rem); margin: 0 0 .5rem; font-stretch: 62%; font-weight: 800; text-transform: uppercase; line-height: .92; }
+.venue-meta { margin: 0 0 1.5rem; font-weight: 600; }
+.venue-meta .off { color: var(--clay-deep); }
+.courts { --ch: clamp(54px, 6vw, 92px); display: flex; align-items: flex-end; gap: clamp(4px, .7vw, 9px); margin: 0 0 .75rem; }
+.courts svg { flex: none; width: auto; }
+.courts .t { height: var(--ch); color: var(--clay); }
+.courts .p { height: calc(var(--ch) * .731); color: var(--ink); }
+.courts-key { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; margin: 0 0 1.5rem; font-size: .9375rem; font-weight: 600; }
+.courts-key span { display: inline-flex; align-items: center; gap: .5rem; }
+.courts-key i { width: 12px; height: 12px; flex: none; background: var(--clay); }
+.courts-key .kp i { background: var(--ink); }
+.from { display: flex; flex-wrap: wrap; gap: .5rem 2.5rem; margin: 0; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.from div { display: flex; flex-direction: column; }
+.from dt { order: 2; font-size: .9375rem; color: var(--ink-2); }
+.from dd { order: 1; margin: 0; font-stretch: 62%; font-weight: 800; font-size: clamp(2.25rem, 4vw, 3.25rem); line-height: 1; }
+.after-note { margin: 1.5rem 0 0; color: var(--ink-2); }
+
+/* Avaleht: Õpi (savi) */
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1.5rem clamp(2rem, 6vw, 6rem); align-items: end; }
+.split h2 { font-size: clamp(4rem, 9.5vw, 8.75rem); white-space: nowrap; }
+.say { margin: 0 0 1rem; max-width: 24ch; font-size: clamp(1.5rem, 3.1vw, 2.5rem); line-height: 1.15; font-weight: 600; font-stretch: 88%; letter-spacing: -.01em; }
+.say-sub { margin: 0; font-weight: 500; }
+
+/* Edetabel: tabloo */
+.rank-list { list-style: none; padding: 0; margin: 0; border-top: 2px solid currentColor; }
+.rank-list li { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto 3.25rem; gap: .75rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid var(--rule-night); }
+.on-chalk .rank-list li { border-bottom-color: var(--rule); }
+.rank-list li > span:nth-child(2) { font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: 1.625rem; line-height: 1.05; }
+.rank-list .empty { grid-column: 1 / -1; font: inherit; text-transform: none; color: var(--on-night-2); }
+.rk { font-stretch: 62%; font-weight: 800; font-size: 1.625rem; line-height: 1.05; color: var(--clay); }
+.pts { font-weight: 700; white-space: nowrap; }
+.dl { display: inline-flex; align-items: center; justify-content: flex-end; gap: 5px; font-weight: 700; font-size: .9375rem; }
+.dl i { width: 0; height: 0; border: 5px solid transparent; }
+.dl.up { color: var(--ball); } .dl.up i { border-bottom-color: currentColor; border-top-width: 0; }
+.dl.down { color: #ff9b85; } .dl.down i { border-top-color: currentColor; border-bottom-width: 0; }
+.dl.eq { color: var(--on-night-2); }
+.rank-list.top3 li { grid-template-columns: clamp(3rem, 6vw, 5rem) minmax(0, 1fr) auto 3.25rem; padding: .85rem 0; }
+.rank-list.top3 .rk, .rank-list.top3 li > span:nth-child(2) { font-size: clamp(2rem, 4.4vw, 3.75rem); line-height: .95; }
+.rank-list.top3 .pts { font-size: 1.125rem; }
+#vus-list.top3 { min-height: 11rem; }
+#vus-list[data-n="10"] { min-height: 33rem; }
+.board { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem clamp(2rem, 6vw, 6rem); align-items: start; }
+.board h2 { font-size: clamp(4rem, 9.5vw, 8.75rem); }
+.board h2:not(.h2-m) { white-space: nowrap; }
+.board-side p { color: var(--on-night-2); margin: 1.25rem 0 0; max-width: 34ch; }
+.asof { margin: .75rem 0 0; font-weight: 700; }
+.data-status { display: flex; align-items: center; gap: 10px; margin: 1rem 0 0; font-size: .9375rem; color: var(--on-night-2); max-width: 46ch; }
+.on-chalk .data-status, .page-head .data-status { color: var(--ink-2); }
+.data-status i { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--ball); }
+.page-head .data-status i { background: var(--clay); }
+.data-status.error { color: #ffc9a8; }
+.page-head .data-status.error { color: var(--clay-deep); }
+
+/* Avaleht: kontakt */
+.tel-big { display: inline-block; font-stretch: 62%; font-weight: 800; font-size: clamp(3.25rem, 10vw, 9rem); line-height: .92; text-decoration: none; white-space: nowrap; }
+.tel-big:hover { color: var(--clay-deep); }
+.contact-line { display: flex; flex-wrap: wrap; gap: .25rem 2.5rem; margin: 1.25rem 0 0; font-size: 1.125rem; }
+.contact-line p { margin: 0; }
+.contact-line a { font-weight: 700; display: inline-flex; align-items: center; min-height: 44px; }
+
+/* --- alamlehe pealkiri: joone keskel on otsajoone keskmärk --- */
+.page-head { position: relative; padding: clamp(2.25rem, 6vw, 5rem) 0 0; }
+.page-head h1 { font-size: clamp(3.5rem, 11.5vw, 10.5rem); }
+.page-head-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem 3rem; margin-top: clamp(1rem, 2.4vw, 1.75rem); }
+.page-head-row p { margin: 0; max-width: 46ch; font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.45; }
+.baseline { position: relative; height: 2px; background: var(--ink); margin-top: clamp(1.5rem, 3.5vw, 2.75rem); }
+.baseline::after { content: ""; position: absolute; left: 50%; top: 0; width: 2px; height: 16px; background: var(--ink); }
+.page-head + .sec { padding-top: clamp(2.25rem, 5vw, 4rem); }
+
+/* Mängukoht alamlehel: vasakul koht, paremal hinnad */
+.place { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1.5rem clamp(2rem, 6vw, 6rem); align-items: start; }
+.place + .place { margin-top: clamp(2.5rem, 6vw, 5rem); padding-top: clamp(2.5rem, 6vw, 5rem); border-top: 2px solid var(--ink); }
+.place .venue-name { font-size: clamp(2.75rem, 6.5vw, 5.75rem); }
+.note { margin: 1.25rem 0 0; padding: .9rem 1.1rem; border-left: 4px solid var(--clay); background: rgba(13, 27, 42, .06); font-size: .9688rem; max-width: none; }
+.photo-strip { margin: clamp(2.5rem, 6vw, 5rem) 0 clamp(2rem, 4.5vw, 3.5rem); }
+.photo-strip img { width: 100%; height: clamp(13rem, 34vw, 30rem); object-fit: cover; object-position: 60% 62%; }
+.photo-strip figcaption { padding-top: .6rem; padding-bottom: 0; font-size: .9375rem; color: var(--ink-2); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: .8rem .25rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+thead th { font-size: .8125rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; font-stretch: 92%; vertical-align: bottom; border-bottom: 2px solid var(--ink); padding-top: 0; }
+tbody th { font-weight: 500; }
+.pr { text-align: right; }
+td.pr b, td.p { font-stretch: 62%; font-weight: 800; font-size: 2rem; line-height: 1; white-space: nowrap; }
+td.pr b { display: block; }
+td.pr .mem { display: block; margin-top: .25rem; font-size: .9375rem; color: var(--ink-2); white-space: nowrap; }
+td.p { text-align: right; }
+.tier { display: block; font-weight: 700; }
+.tier.peak { color: var(--clay-deep); }
+
+.book { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+.book p { margin: 0; font-weight: 500; }
+.book h2 { font-size: clamp(2.5rem, 6vw, 5rem); flex: 1 1 18rem; }
+
+.member { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1.5rem clamp(2rem, 6vw, 6rem); align-items: center; }
+.member .big { font-stretch: 62%; font-weight: 800; font-size: clamp(6rem, 17vw, 15rem); line-height: .85; color: var(--clay); white-space: nowrap; }
+.member .per { margin: .75rem 0 0; color: var(--on-night-2); }
+.member .payback { margin: 0 0 1.25rem; max-width: 30ch; font-size: clamp(1.375rem, 2.4vw, 2rem); line-height: 1.2; font-weight: 600; font-stretch: 88%; }
+.member ul { margin: 0 0 1.75rem; padding: 0; list-style: none; border-top: 1px solid var(--rule-night); }
+.member li { padding: .65rem 0; border-bottom: 1px solid var(--rule-night); }
+.member-cta { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; }
+.member-cta span { color: var(--on-night-2); font-size: .9375rem; }
+
+/* lahtiklõpsatavad plokid */
+.faq-wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1.5rem clamp(2rem, 6vw, 6rem); align-items: start; }
+.faq-list { border-top: 2px solid var(--ink); }
+.faq details, .more { border-bottom: 1px solid var(--rule); }
+.more { margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+.faq summary, .more > summary { cursor: pointer; list-style: none; min-height: 60px; padding: 1rem 0; font-weight: 700; font-size: 1.125rem; line-height: 1.3;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.faq summary::-webkit-details-marker, .more > summary::-webkit-details-marker { display: none; }
+.faq summary::after, .more > summary::after { content: ""; flex: none; width: 16px; height: 16px;
+  background: linear-gradient(currentColor, currentColor) center / 100% 2px no-repeat, linear-gradient(currentColor, currentColor) center / 2px 100% no-repeat; }
+.faq details[open] summary::after, .more[open] > summary::after { transform: rotate(45deg); }
+.faq summary:hover, .more > summary:hover { color: var(--clay-deep); }
+.faq details p { margin: 0; padding: 0 0 1.25rem; color: var(--ink-2); }
+.faq details p a { color: var(--ink); font-weight: 700; }
+.more-body { padding: .25rem 0 1.5rem; }
+.steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 2.5rem; margin: 0; padding: 0; list-style: none; }
+.step::before { counter-increment: s; content: counter(s); display: block; font-stretch: 62%; font-weight: 800; font-size: 3rem; line-height: 1; color: var(--clay-deep); margin-bottom: .5rem; }
+.step h4 { margin: 0 0 .35rem; font-size: 1.125rem; font-weight: 700; }
+.step p { margin: 0; color: var(--ink-2); }
+.facts-list { margin: 1.75rem 0 0; border-top: 1px solid var(--rule); }
+.facts-list div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--rule); }
+.facts-list dt { font-weight: 700; }
+.facts-list dd { margin: 0; color: var(--ink-2); }
+.row-links { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0 1.75rem; }
+.plain { margin: 0; padding-left: 1.1rem; color: var(--ink-2); }
+.plain li { margin-bottom: .5rem; }
+
+/* treeningud */
+.two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem clamp(2rem, 6vw, 6rem); align-items: start; }
+.aud { display: grid; gap: 1.75rem; }
+.aud h3 { font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(2.25rem, 4.6vw, 4rem); line-height: .92; margin: 0 0 .5rem; }
+.aud p { margin: 0; max-width: 30ch; font-size: 1.125rem; }
+.tbl-h { margin: 0 0 .9rem; padding-bottom: .7rem; border-bottom: 2px solid var(--ink); font-size: .8125rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; font-stretch: 92%; }
+.ask { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1.5rem clamp(2rem, 6vw, 6rem); align-items: start; }
+.ask h2 { font-size: clamp(2.75rem, 6.5vw, 5.5rem); }
+.ask p { margin: 0 0 .75rem; font-weight: 500; }
+.ask .btn { margin-bottom: 1rem; }
+.ask .addr-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0 12px; }
+.ask a:not(.btn) { font-weight: 700; display: inline-flex; align-items: center; min-height: 44px; }
+.copy-btn { min-height: 40px; padding: 0 14px; border: 2px solid var(--ink); background: transparent; color: var(--ink); font: 700 .9375rem/1 var(--font); cursor: pointer; }
+.copy-btn:hover { background: var(--ink); color: var(--chalk); }
+.copy-ok { font-size: .9375rem; font-weight: 700; }
+.coaches { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
+.coach { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr); gap: .25rem clamp(1rem, 3vw, 3rem); align-items: baseline; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+.coach b { font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(1.75rem, 3.4vw, 2.75rem); line-height: 1; }
+.coach .role { font-weight: 600; }
+.kutse { font-size: .9688rem; }
+.kutse .kuni { display: block; color: var(--ink-2); }
+.kutse a { display: inline-flex; align-items: center; min-height: 32px; font-weight: 700; }
+
+/* võistlused: püramiid on päriselt püramiid, MV lõppjärjestus on pjedestaal */
+.pyramid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; min-height: 13rem; }
+.pyramid li { grid-column: span 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .15rem; min-height: 4rem;
+  padding: .6rem .4rem; border: 2px solid var(--ink); text-align: center; font-weight: 700; line-height: 1.15; }
+.pyramid li:nth-child(1) { grid-column: 3 / span 2; background: var(--clay); border-color: var(--clay); }
+.pyramid li:nth-child(2) { grid-column: 2 / span 2; }
+.pyramid li:nth-child(4) { grid-column: 1 / span 2; }
+.pyramid .rk { font-size: 1rem; color: var(--clay-deep); }
+.pyramid li:nth-child(1) .rk { color: var(--ink); }
+.pyramid .empty { grid-column: 1 / -1; border: 0; font-weight: 400; color: var(--ink-2); }
+.podium { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; gap: 6px; margin: 0; padding: 0; list-style: none; text-align: center; }
+.podium li { display: flex; flex-direction: column; gap: .5rem; font-weight: 700; line-height: 1.15; }
+.podium b { display: flex; align-items: flex-start; justify-content: center; padding-top: .5rem; background: var(--ink); color: var(--chalk);
+  font-stretch: 62%; font-weight: 800; font-size: 3rem; line-height: 1; }
+.podium li:nth-child(1) { order: 2; } .podium li:nth-child(1) b { height: 9rem; background: var(--clay); color: var(--ink); }
+.podium li:nth-child(2) { order: 1; } .podium li:nth-child(2) b { height: 6.5rem; }
+.podium li:nth-child(3) { order: 3; } .podium li:nth-child(3) b { height: 4.75rem; }
+.sub-h { margin: 0 0 1.25rem; font-size: clamp(2.25rem, 4.6vw, 4rem); }
+.sub-asof { margin: -.75rem 0 1.25rem; color: var(--ink-2); font-weight: 600; }
+
+/* klubi */
+.brands { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.brands li { display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; padding: clamp(1rem, 2.5vw, 1.75rem) clamp(.75rem, 2.5vw, 2rem); min-width: 0; }
+.brands li + li { border-left: 1px solid var(--rule); }
+.brands img { height: clamp(34px, 5vw, 60px); width: auto; max-width: 100%; object-fit: contain; object-position: left center; mix-blend-mode: multiply; }
+.brands span { font-size: .8125rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 clamp(1rem, 2.5vw, 2.25rem); }
+.timeline li { position: relative; padding-top: 1.5rem; border-top: 2px solid var(--ink); }
+.timeline li::before { content: ""; position: absolute; left: 0; top: 0; width: 2px; height: 14px; background: var(--ink); }
+.timeline b { display: block; font-stretch: 62%; font-weight: 800; font-size: clamp(2.75rem, 5.6vw, 5rem); line-height: .92; color: var(--clay-deep); margin-bottom: .5rem; }
+.timeline span { display: block; font-size: .9688rem; }
+.alumni { margin: 0 0 .75rem; max-width: 44ch; font-size: clamp(1.375rem, 2.6vw, 2.125rem); line-height: 1.2; font-weight: 600; font-stretch: 88%; }
+.alumni-sub { color: var(--on-night-2); margin: 0 0 1rem; }
+.eu-list { display: grid; gap: 1.5rem; background: var(--paper); padding: clamp(1.25rem, 3vw, 2.25rem); }
+.eu-item { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 1.5rem; align-items: center; }
+.eu-item img { width: 260px; }
+.eu-item p { margin: 0; max-width: none; font-size: .9375rem; line-height: 1.5; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem clamp(2rem, 6vw, 6rem); align-items: start; }
+.contact-item { border-top: 2px solid var(--ink); padding: 1rem 0 1.5rem; }
+.contact-item h3 { font-size: .8125rem; letter-spacing: .09em; text-transform: uppercase; font-stretch: 92%; margin: 0 0 .5rem; }
+.contact-item p { margin: 0 0 .25rem; }
+.k-big { display: inline-flex; align-items: center; min-height: 48px; font-stretch: 62%; font-weight: 800; font-size: clamp(2.25rem, 4.4vw, 3.5rem); line-height: 1; text-decoration: none; white-space: nowrap; }
+.k-big:hover { color: var(--clay-deep); }
+.mail { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+.map-wrap { min-width: 0; }
+.map { min-height: 24rem; border: 2px solid var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: .75rem; padding: 1.5rem; }
+.map h3 { margin: 0; }
+.map p { color: var(--ink-2); font-size: .9375rem; margin: 0 auto; max-width: 36ch; }
+.map.on { padding: 0; display: block; }
+.map iframe { width: 100%; height: 24rem; border: 0; display: block; }
+.map-note { color: var(--ink-2); font-size: .9375rem; margin: .75rem 0 0; }
+
+/* --- jalus: partnerid ja EL-i embleem heledal taustal; EL-i embleem jääb partnerilogodest suuremaks --- */
+.site-foot { background: var(--night); color: var(--on-night-2); font-size: .9375rem; padding: clamp(2rem, 5vw, 3.5rem) 0 2rem; }
+.foot-band { background: var(--paper); color: var(--ink); padding: clamp(1.1rem, 3vw, 2rem); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.25rem 2.5rem; align-items: center; margin-bottom: 1.75rem; }
+.foot-band a { color: var(--ink); }
+.partners { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.partner { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .5rem; text-decoration: none; min-height: 44px; }
+.partner img { height: 56px; width: auto; max-width: 100%; object-fit: contain; }
+.partner span { font-size: .875rem; color: var(--ink-2); text-align: center; }
+.eu-mark { display: flex; flex-direction: column; align-items: center; gap: .35rem; text-decoration: none; }
+.eu-mark img { width: 220px; }
+.eu-mark span { font-size: .875rem; font-weight: 700; text-decoration: underline; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 0 1.5rem; margin: 0 0 .75rem; padding: 0; list-style: none; }
+.foot-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--on-night); text-decoration: none; font-weight: 600; }
+.foot-links a:hover { color: var(--clay); text-decoration: underline; }
+.foot-line { line-height: 1.8; margin: 0; max-width: none; }
+.foot-line b { color: var(--on-night); font-weight: 700; }
+.foot-line a { color: var(--on-night); }
+
+/* --- täiendused --- */
+.nav-home { display: none; }
+.clay { --ink-2: var(--ink); --rule: rgba(13, 27, 42, .4); --clay-deep: var(--ink); }
+.night { --ink-2: var(--on-night-2); --rule: var(--rule-night); --clay-deep: var(--clay); }
+.h2-m, .sec-head h2.h2-m, .board h2.h2-m { font-size: clamp(2.75rem, 6.5vw, 5.5rem); }
+.label-h, h2.kicker { font-size: .8125rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; font-stretch: 92%; line-height: 1.3; }
+h2.kicker { margin: 0 0 .6rem; }
+.halves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem clamp(2rem, 6vw, 6rem); align-items: start; }
+.halves .link { margin-top: 1rem; }
+.page-head + .night { margin-top: clamp(2rem, 4.5vw, 3.5rem); padding-top: var(--sec); }
+.page-head .kicker { color: var(--clay-deep); margin-bottom: .75rem; }
+.hist-h { margin: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(1.25rem, 3vw, 2rem); }
+.contact-item p b { font-weight: 700; }
+.board-side .link { margin-top: .75rem; }
+.night .kicker { color: var(--on-night-2); }
+.member .kicker { margin-bottom: 1rem; }
+
+/* --- tahvel ja telefon --- */
+@media (max-width: 1100px) {
+  .coach { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .coach b { grid-column: 1 / -1; }
+}
+@media (max-width: 900px) {
+  .menu-btn { display: inline-flex; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--night); border-top: 1px solid var(--rule-night);
+    padding: .5rem max(var(--gut), env(safe-area-inset-left, 0px)) 1.25rem; box-shadow: 0 24px 40px rgba(0, 0, 0, .35); }
+  .nav.open { display: block; }
+  .nav ul { flex-direction: column; gap: 0; }
+  .nav a { display: flex; min-height: 60px; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: 2rem; line-height: 1; border-bottom: 1px solid var(--rule-night); }
+  .nav a::after { display: none; }
+  .nav a[aria-current="page"] { color: var(--clay); }
+  .nav-home { display: list-item; }
+  .halves { grid-template-columns: minmax(0, 1fr); }
+  .top.is-clear:has(.nav.open) { background: var(--night); }
+  .venues, .split, .board, .place, .member, .faq-wrap, .two, .ask, .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .venue, .venue + .venue { padding: 0; border-left: 0; }
+  .venue + .venue { margin-top: 2.25rem; padding-top: 2.25rem; border-top: 2px solid var(--ink); }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .timeline { grid-template-columns: minmax(0, 1fr); }
+  .timeline li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; align-items: baseline; padding: .9rem 0 .7rem; border-top-width: 1px; border-top-color: var(--rule); }
+  .timeline li:first-child { border-top: 2px solid var(--ink); }
+  .timeline li::before { display: none; }
+  .timeline b { margin: 0; }
+  .foot-band { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .foot-band .partners { width: 100%; }
+}
+@media (max-width: 640px) {
+  :root { --head-h: 60px; --sec: 2.75rem; }
+  .brand img { height: 30px; }
+  .book-extra { display: none; }
+  .top .btn { padding: 0 .85rem; }
+  .hero { min-height: clamp(31rem, 80svh, 44rem); }
+  .big-link { margin-top: 1.5rem; padding: .9rem 0; }
+  .sec-head { margin-bottom: 1.25rem; }
+  .venue-meta, .courts-key { margin-bottom: 1rem; }
+  .hero h1 { font-size: clamp(4.25rem, 22.5vw, 7rem); }
+  .hero-img { object-position: 66% 50%; }
+  .hero::after { background: linear-gradient(180deg, rgba(13,27,42,.6) 0, rgba(13,27,42,.08) 18%, rgba(13,27,42,.4) 46%, rgba(13,27,42,.9) 80%); }
+  .hero-foot p + p { display: none; }
+  .hero-cta { width: 100%; }
+  .hero-cta .btn { flex: 1 1 auto; }
+  .sec-head h2, .split h2, .board h2 { font-size: clamp(4.5rem, 24vw, 7rem); }
+  .page-head h1 { font-size: clamp(3.25rem, 15.5vw, 5.5rem); }
+  .rank-list li { grid-template-columns: 1.9rem minmax(0, 1fr) auto 2.75rem; gap: .6rem; }
+  .rank-list li > span:nth-child(2), .rk { font-size: 1.375rem; }
+  .rank-list.top3 li { grid-template-columns: 2.25rem minmax(0, 1fr) auto 2.75rem; }
+  .rank-list.top3 .rk, .rank-list.top3 li > span:nth-child(2) { font-size: 1.875rem; }
+  .rank-list.top3 .pts { font-size: 1rem; }
+  td.pr b, td.p { font-size: 1.75rem; }
+  .coach { grid-template-columns: minmax(0, 1fr); padding: .9rem 0; }
+  .facts-list div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .brands li { padding: .9rem .6rem; gap: .6rem; }
+  .brands span { font-size: .75rem; letter-spacing: .06em; }
+  .pyramid li { font-size: .9375rem; padding: .5rem .25rem; }
+  .partners { gap: .5rem; }
+  .partner img { height: 44px; }
+  .partner span { display: none; }
+  .eu-mark img { width: 200px; }
+  .eu-item { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+  .eu-item img { width: min(260px, 100%); }
+  .map { min-height: 0; padding: 1.25rem; }
+  .contact-line { font-size: 1.0625rem; }
+}
+@media print {
+  .top, .proto, .hero-img, .site-foot .foot-links { display: none; }
+  .hero { color: var(--ink); background: none; min-height: 0; margin: 0; }
+  .hero::after { display: none; }
+}
