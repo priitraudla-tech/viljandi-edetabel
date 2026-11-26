@@ -62,5 +62,13 @@
   "10. etapp 17.10.2026": {
     "first_seen": "2026-10-17T17:44:49+00:00",
     "first_run": false
+  },
+  "11. etapp 21.11.2026": {
+    "first_seen": "2026-11-26T06:57:38+00:00",
+    "first_run": false
+  },
+  "Masters 26.12.2026": {
+    "first_seen": "2026-11-26T06:57:38+00:00",
+    "first_run": false
   }
 }
